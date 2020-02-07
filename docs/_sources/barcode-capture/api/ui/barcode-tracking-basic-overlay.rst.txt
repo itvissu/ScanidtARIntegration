@@ -1,0 +1,91 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Barcode Tracking Basic Overlay
+==============================
+
+.. module:: scandit.datacapture.barcode.tracking.ui
+  :android-package: com.scandit.datacapture.barcode.tracking.ui.overlay
+
+.. class:: BarcodeTrackingBasicOverlay : core.ui.IDataCaptureOverlay
+  @objc@ SDCBarcodeTrackingBasicOverlay : NSObject <SDCDataCaptureOverlay>
+  :available: android=6.0, ios=6.0
+  
+  An overlay for SDCDataCaptureView that shows a simple augmentation over each tracked barcode.
+
+  To display the augmentations, this overlay must be attached to a :type:`core.ui.DataCaptureView`. This may be done either by creating it with :meth:`NewInstance` with a non-null view parameter or by passing this overlay to :meth:`core.ui.DataCaptureView.AddOverlay`.
+
+  A user of this class may configure the appearance of the augmentations by implementing  :type:`IBarcodeTrackingBasicOverlayListener` or by calling :meth:`SetBrushForTrackedBarcode`.
+
+  For additional information about using this overlay, refer to :doc:`/get-started-matrixscan`.
+
+  .. method:: static BarcodeTrackingBasicOverlay NewInstance(BarcodeTracking barcodeTracking, core.ui.DataCaptureView? view)
+    @objc@ + (instancetype)overlayWithBarcodeTracking:(nonnull SDCBarcodeTracking *)barcodeTracking forDataCaptureView:(nullable SDCDataCaptureView *)view
+    :available: android=6.0, ios=6.0
+
+    Constructs a new barcode tracking basic overlay for the barcode tracking instance. The overlay is automatically added to the view.
+
+  .. method:: static BarcodeTrackingBasicOverlay FromJson(BarcodeTracking mode, String jsonData)
+    @objc@ + (nullable instancetype)barcodeTrackingBasicOverlayFromJSONString:(nonnull NSString *)jsonString mode:(nonnull SDCBarcodeTracking *)mode error:(NSError **)error
+    :available: android=6.0, ios=6.0
+
+    Constructs a new barcode tracking basic overlay with the provided JSON serialization. See :doc:`/core/serialization` for details.
+
+    For the overlay to be displayed on screen, it must be added to a :type:`core.ui.DataCaptureView`.
+
+  .. method:: BarcodeTrackingBasicOverlay(BarcodeTracking barcodeTracking)
+    @objc@ + (instancetype)overlayWithBarcodeTracking:(nonnull SDCBarcodeTracking *)barcodeTracking
+    :available: ios=6.0
+
+    Constructs a new barcode tracking basic overlay for the barcode tracking instance. For the overlay to be displayed on screen, it must be added to a :type:`core.ui.DataCaptureView`.
+
+  .. property:: IBarcodeTrackingBasicOverlayListener? Listener { get; set; }
+    @objc@ @property (nonatomic, nullable, weak) id<SDCBarcodeTrackingBasicOverlayDelegate> delegate
+    :available: android=6.0, ios=6.0
+
+    The |delegate| which is called whenever a new TrackedBarcode is newly tracked or newly recognized.
+
+  .. property:: core.ui.Brush? DefaultBrush { get; set; }
+    @objc@ @property (nonatomic, strong, nullable) SDCBrush *defaultBrush
+    :available: android=6.0, ios=6.0
+
+    The default brush applied to recognized tracked barcodes. This is the brush used if :type:`IBarcodeTrackingBasicOverlayListener` is not implemented.
+    Setting this brush to |null| hides all tracked barcodes, unless :meth:`SetBrushForTrackedBarcode` is called.
+
+  .. method:: void SetBrushForTrackedBarcode(TrackedBarcode trackedBarcode, core.ui.Brush? brush)
+    @objc@ - (void)setBrush:(nullable SDCBrush *)brush forTrackedBarcode:(nonnull SDCTrackedBarcode *)trackedBarcode
+    :available: android=6.0, ios=6.0
+
+    The method can be called to change the visualization style of a tracked barcode. This method is thread-safe, it can be called from any thread.
+    If the brush is |null|, then no visualization will be drawn for the tracked barcode. Additionally, tapping on the barcode will have no effect - the action defined by :meth:`ui.IBarcodeTrackingBasicOverlayListener.OnTrackedBarcodeTapped` callback will not be performed.
+
+  .. method:: void ClearTrackedBarcodeBrushes()
+    :available: android=6.0, ios=6.0
+
+    Clears all currently displayed visualizations for the tracked barcodes.
+
+    This only applies to the currently tracked barcodes, the visualizations for the new ones will still appear.
+
+  .. property:: bool ShouldShowScanAreaGuides { get; set; }
+    :available: android=6.0, ios=6.0
+
+    When set to |true|, this overlay will visualize the active scan area used for BarcodeTracking. This is useful to check :prop:`margins<core.ui.DataCaptureView.ScanAreaMargins>` defined on the :type:`core.ui.DataCaptureView` are set correctly. This property is meant for debugging during development and is not intended for use in production.
+
+    By default this property is |false|.
+
+  .. method:: void UpdateFromJson(String jsonData)
+    @objc@ - (BOOL)updateFromJSONString:(nonnull NSString *)jsonString error:(NSError **)error
+    :available: android=6.0, ios=6.0
+
+    Updates the overlay according to a JSON serialization. See :doc:`/core/serialization` for details.
+
+  .. method:: void SetProperty(string name, Object value)
+    :available: android=6.1
+
+    Set barcode tracking basic overlay property to the provided value. Use this method to set properties that are not yet part of a stable API. Properties set through this method may or may not be used or change in a future release.
+
+  .. method:: Object? GetProperty(string name)
+    :available: android=6.1
+
+    Retrieves the value of a previously set barcode tracking basic overlay property. In case the property does not exist, |null| is returned.

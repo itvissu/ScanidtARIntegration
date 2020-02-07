@@ -1,0 +1,120 @@
+Barcode Capture Settings
+========================
+
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.capture
+
+.. class:: BarcodeCaptureSettings
+  @objc@ SDCBarcodeCaptureSettings : NSObject <NSCopying>
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  Holds all the barcode recognition related settings, such as enabled symbologies and location selection. For the settings to take effect, they must be applied to a :type:`barcode capture<BarcodeCapture>` instance using :meth:`BarcodeCapture.ApplySettingsAsync`.
+
+  By default, all types of barcodes (symbologies) are disabled. To scan barcodes, you need to manually enable all the symbologies you want to scan in your application.
+
+  The following lines of code show how to enable :enum:`Symbology.Code128` and apply the settings to :type:`barcode capture<BarcodeCapture>`.
+
+  .. sample:: swift
+
+    let settings = BarcodeCaptureSettings()
+    settings.set(symbology: .code128, enabled: true)
+    barcodeCapture.apply(settings, completionHandler: nil)
+
+  .. sample:: java
+
+    BarcodeCaptureSettings settings = new BarcodeCaptureSettings();
+    settings.enableSymbology(Symbology.CODE128, true);
+    barcodeCapture.applySettings(settings, null);
+
+  .. sample:: javascript
+
+    let settings = Scandit.BarcodeCaptureSettings.settings()
+    settings.setSymbologyEnabled(Scandit.Symbology.Code128, true)
+    barcodeCapture.applySettings(settings)
+
+  .. method:: BarcodeCaptureSettings()
+    @objc@ + (instancetype)settings
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Creates new default settings instance. Recognition is setup for recognizing codes in the full image. Symbologies are all disabled. Before passing the settings to the :type:`BarcodeCapture` instance, make sure to enable the symbologies required by your application.
+
+  .. method:: static BarcodeCaptureSettings FromJson(String jsonData)
+    :available: android=6.0
+
+    Constructs new barcode capture settings with the provided JSON serialization. See :doc:`/core/serialization` for details.
+
+  .. property:: IDictionary<object, object> ToMap { get; set; }
+    @objc@ @property (nonatomic, strong, readonly) NSDictionary *toDictionary
+    :available: none
+
+    |to-dict|
+
+  .. method:: SymbologySettings GetSymbologySettings(Symbology symbology)
+    @objc@ - (nonnull SDCSymbologySettings *)settingsForSymbology:(SDCSymbology)symbology
+    @javascript@ settingsForSymbology(symbology: Symbology): SymbologySettings
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The returned :type:`SymbologySettings` object contains symbology-specific settings.
+
+  .. method:: void SetProperty(string name, object value)
+    @objc@ - (void)setValue:(id)value forProperty:(NSString *)property
+    @javascript@ setProperty(name: string, value: any): void
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Sets a property to the provided value. Use this method to set properties that are not yet part of a stable API. Properties set through this method may or may not be used or change in a future release.
+
+    .. implnote:: Values that can be converted to int (bools, ints, etc) should be set as "hidden properties" on the engine's barcode scanner settings. The values should be stored in a dictionary as well, so they can be retrieved again with :meth:`GetProperty`.
+
+  .. method:: object GetProperty(string name)
+    @objc@ - (nullable id)valueForProperty:(NSString *)property
+    @javascript@ getProperty(name: string): any
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Retrieves the value of a previously set property. In case the property does not exist, |null| is returned.
+
+  .. property:: TimeInterval CodeDuplicateFilter { get; set; }
+    @java@ core.TimeInterval CodeDuplicateFilter { get; set; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Determines the time interval in which codes with the same symbology/data are filtered out as duplicates. By default, when the same code (data, symbology) is scanned in consecutive frames, it is reported again as a new scan. Use this property to change the interval or completely turn off duplicate filtering:
+
+    - Setting this property to value smaller than zero, means that the same code will not be reported again until the scanning has been stopped.
+    - Setting this property to a value of zero means that the same code will be reported every time it is found.
+    - Setting this property to a value larger than zero indicates the time that must pass between the same code to be reported again.
+
+  .. property:: ISet<Symbology> EnabledSymbologies { get; }
+    @objc@ @property (nonatomic, nonnull, readonly) NSSet<NSNumber *> *enabledSymbologies
+    @javascript@ get enabledSymbologies(): Symbology[]
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Returns the set of enabled symbologies.
+
+  .. method:: void EnableSymbologies(ISet<Symbology> symbologies)
+    @objc@ - (void)enableSymbologies:(nonnull NSSet<NSNumber *> *)symbologies
+    @javascript@ enableSymbologies(symbologies: Symbology[]): void
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    This function provides a convenient shortcut to enabling decoding of particular symbologies without having to go through :type:`SymbologySettings`.
+    By default, all symbologies are turned off and symbologies need to be explicitly enabled.
+
+  .. method:: void EnableSymbology(Symbology symbology, bool enabled)
+    @objc@ -(void)setSymbology:(SDCSymbology)symbology enabled:(BOOL)enabled
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    This function provides a convenient shortcut to enabling/disabling decoding of a particular symbology without having to go through :type:`SymbologySettings`.
+
+    Some 1d barcode symbologies allow you to encode variable-length data. By default, the |sdk| only scans barcodes in a certain length range.
+
+    If your application requires scanning of one of these symbologies, and the length is falling outside the default range, you may need to adjust the :prop:`active symbol counts<SymbologySettings.ActiveSymbolCounts>` for the symbology in addition to enabling it.
+
+  .. property:: core.ILocationSelection? LocationSelection { get; set; }
+    @objc@ @property (nonatomic, nullable, strong) id<SDCLocationSelection> locationSelection
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Defines the strategy with which to select one out of many visible barcodes. See :doc:`Location Selection Guide</scan-area>`. By default, this property is |null| and code selection is disabled.
+
+  .. method:: void UpdateFromJson(String jsonData)
+    :available: android=6.0
+
+    Updates the settings according to a JSON serialization. See :doc:`/core/serialization` for details.

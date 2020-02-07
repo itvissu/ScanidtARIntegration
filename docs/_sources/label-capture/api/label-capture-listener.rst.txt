@@ -1,0 +1,30 @@
+Label Capture Listener
+======================
+
+.. module:: scandit.datacapture.label
+  :android-package: com.scandit.datacapture.label.capture
+
+.. interface:: ILabelCaptureListener
+  @objc@ SDCLabelCaptureListener <NSObject>
+  :available: ios=6.0, android=6.0
+
+  |Interface| to be implemented by listeners that want to observe a :type:`label capture mode<LabelCapture>` and get informed whenever new labels have been captured, existing labels have been updated or lost.
+
+  .. method:: void OnSessionUpdated(LabelCapture labelCapture, LabelCaptureSession session, core.IFrameData frameData)
+    @objc@ -(void)labelCapture:(SDCLabelCapture*)labelCapture didUpdateSession:(SDCLabelCaptureSession*)session frameData:(id<SDCFrameData>)frameData
+    :available: ios=6.0, android=6.0
+
+    Invoked after label capture has completed to process a frame. The *session* contains a list of the currently captured labels. The list may be empty in case no label is currently present.
+
+  .. method:: void OnObservationStarted(LabelCapture labelCapture)
+    @objc@ - (void)didStartObservingLabelCapture:(SDCLabelCapture *)labelCapture
+    :available: ios=6.0, android=6.0
+
+    Invoked when the listener starts observing the label capture instance.
+
+  .. method:: void OnObservationStopped(LabelCapture labelCapture)
+    @objc@ - (void)didStopObservingLabelCapture:(SDCLabelCapture *)labelCapture
+    :available: ios=6.0, android=6.0
+
+    Invoked when the listener stops observing the label capture instance.
+

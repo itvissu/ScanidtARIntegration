@@ -1,0 +1,179 @@
+Camera Settings
+===============
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.source
+
+.. enum:: CameraPosition
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  .. value:: WorldFacing
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The camera is attached at the back of the device and is facing away from the user.
+
+  .. value:: UserFacing
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The camera is attached on the front of the device and facing towards the user.
+
+  .. value:: Unspecified
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The camera position is unspecified.
+
+.. enum:: VideoResolution
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  .. value:: Hd
+    @objc@ SDCVideoResolutionHD
+    @javascript@ HD
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Resolution is 1280x720.
+
+  .. value:: FullHd
+    @objc@ SDCVideoResolutionFullHD
+    @javascript@ FullHD
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Resolution is 1920x1080.
+
+  .. value:: Uhd4k
+    @objc@ SDCVideoResolutionUHD4K
+    @javascript@ UHD4K
+    @java@ UHD4K
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Resolution is 3840x2160.
+
+    .. eager-ifconfig:: platform == 'android'
+
+      Requires Android's camera API 2. If you would like to use it please contact us at support@scandit.com.
+
+  .. value:: Auto
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    In contrast to :enum:`FullHd`, and :enum:`Hd`, :enum:`Auto` will select the resolution based on hardware capabilities and/or scan-performance considerations. The chosen resolution may change in future versions of the software.
+
+  .. value:: Highest
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The highest available video resolution on the device. Use with caution, as this video resolution can slow down processing substantially.
+
+    .. eager-ifconfig:: platform == 'android'
+
+      Higher resolutions (like :enum:`Uhd4k`) require Android's camera API 2, with API 1 the possible resolutions are restricted. If you would like to use API 2 please contact us at support@scandit.com.
+
+      .. note::
+        
+        On certain devices using the highest available resolution with camera API 2 can cause the device to not recognize any barcodes anymore or show a scrambled preview.
+
+.. enum:: FocusRange
+  :available: ios=6.0, cordova=6.1
+
+  Enumeration of possible focus ranges to use. This can be used to restrict the auto-focus system to only consider objects in a certain range to focus on.
+
+  .. value:: Full
+    :available: ios=6.0, cordova=6.1
+
+    Use the full focus range supported by the camera.
+
+  .. value:: Near
+    :available: ios=6.0, cordova=6.1
+
+    Only focus on objects that are near to the camera.
+
+  .. value:: Far
+    :available: ios=6.0, cordova=6.1
+
+    Only focus on objects that are far from the camera.
+
+.. class:: CameraSettings
+  @objc@ SDCCameraSettings : NSObject
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  Holds camera-specific settings such as preferred resolution, maximum frame rate etc. The defaults are chosen such that they work for a wide variety of use cases. You may apply custom settings to further optimize scan performance for your particular use case. There is typically no need to customize the camera settings beyond changing the :prop:`preferred resolution <PreferredResolution>`.
+
+  .. eager-ifconfig:: platform == 'android'
+
+    For best performance use the camera settings returned by the capture mode you are using, e.g. :meth:`barcode.BarcodeCapture.CreateRecommendedCameraSettings`, or :meth:`barcode.tracking.BarcodeTracking.CreateRecommendedCameraSettings`.
+
+  .. method:: CameraSettings()
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Creates new default camera settings. :prop:`MaxFrameRate` is set to 30, :prop:`ZoomFactor` is set to 1 and :prop:`PreferredResolution` is set to :enum:`VideoResolution.Auto`.
+
+  .. method:: CameraSettings(CameraSettings settings)
+    :available: ios=6.0, cordova=6.1
+
+    Creates a copy of the provided settings.
+
+  Holds camera related settings such as preview resolution and maximum frame rate to use.
+
+  .. property:: VideoResolution PreferredResolution { get; set; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The preferred resolution to use for the camera. The camera will use the resolution that is closests to the resolution preference. For example, if only lower resolutions than the preferred resolution are available, the highest available resolution will be used.
+
+    The resolution chosen by the camera only takes the :prop:`PreferredResolution` into account, it does not consider the resolution limit of your license key. When the device selects a resolution that is larger than what you have licensed, the data capture context will report a license status error.
+
+    The default value is :enum:`VideoResolution.Auto`.
+
+  .. property:: float MaxFrameRate { get; set; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The maximum frame rate to use for the camera. If the value is higher than the maximum available frame rate of the device, it will be set to the device's maximum. 
+
+    The default value is 30 Hz.
+
+  .. property:: float ZoomFactor { get; set; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The zoom factor to use for the camera. This value is a multiplier, a value of `1.0` means no zoom, while a value of `2.0` doubles the size of the image, but halves the field of view.
+
+    Values less than 1.0 are treated as 1.0. Values greater than the maximum available zoom factor are clamped to the maximum accepted value.
+
+    If the zoom factor should not change, CurrentZoomFactor should be used.
+
+    .. todo:: define CurrentZoomFactor and create link to it.
+
+    The default zoom factor is 1.0.
+
+  .. todo:: Expose exposure and focus options.
+
+  .. property:: bool ShouldPreferSmoothAutoFocus { get; set; }
+    :available: android=6.0
+
+    Whether to prefer smooth auto-focus. The default settings have this turned off. Enable it to switch to a smoother (but potentially less reliable) auto-focus strategy. For some devices, this property has no effect.
+
+  .. property:: FocusRange FocusRange { get; set; }
+    :available: ios=6.0, cordova=6.1
+
+    The focus range to primarily use, if supported by the device.
+
+  .. method:: void SetProperty(string name, Object value)
+    :available: android=6.0
+
+    Set camera property to the provided value. Use this method to set properties that are not yet part of a stable API. Properties set through this method may or may not be used or change in a future release.
+
+  .. method:: Object? GetProperty(string name)
+    :available: android=6.0
+
+    Retrieves the value of a previously set camera property. In case the property does not exist, |null| is returned.
+
+.. method:: string StringFromVideoResolution(VideoResolution videoResolution)
+  @objc@ NSString *_Nonnull NSStringFromVideoResolution(SDCVideoResolution videoResolution)
+  :available: ios=6.1
+
+.. method:: VideoResolution VideoResolutionFromJSONString(string JSONString)
+  @objc@ BOOL SDCVideoResolutionFromJSONString(NSString *_Nonnull JSONString, SDCVideoResolution *_Nonnull videoResolution)
+  :available: ios=6.1
+
+.. method:: string StringFromFocusRange(FocusRange focusRange)
+  @objc@ NSString *_Nonnull NSStringFromFocusRange(SDCFocusRange focusRange)
+  :available: ios=6.1
+
+.. method:: FocusRange FocusRangeFromJSONString(string JSONString)
+  @objc@ BOOL SDCFocusRangeFromJSONString(NSString *_Nonnull JSONString, SDCFocusRange *_Nonnull focusRange)
+  :available: ios=6.1

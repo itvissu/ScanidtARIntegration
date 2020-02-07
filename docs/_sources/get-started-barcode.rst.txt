@@ -1,0 +1,200 @@
+Get Started With Barcode Scanning
+=================================
+
+.. module:: scandit.datacapture.barcode
+  :hidden:
+
+In this guide you will learn step by step how to add barcode capture to your application. Roughly, the steps are:
+
+* Create a new :type:`data capture context<core.DataCaptureContext>` instance, initialized with your license key.
+* Create a :type:`barcode capture settings<BarcodeCaptureSettings>` and enable the :type:`barcode symbologies<Symbology>` you want to read in your application.
+* Create a new :type:`barcode capture mode<BarcodeCapture>` instance and initialize it with the settings created above.
+* Register a :type:`barcode capture listener<IBarcodeCaptureListener>` to receive scan events. Process the successful scans according to your applications needs, e.g. by looking up information in a database. After a successful scan, decide whether more codes will be scanned, or the scanning process should be stopped.
+* Obtain a :type:`camera<core.Camera>` instance and set it as the frame source on the data capture context.
+* Display the camera preview by creating a :type:`data capture view<core.ui.DataCaptureView>`.
+* If displaying a preview, optionally create a new :type:`overlay<barcode.ui.BarcodeCaptureOverlay>` and add it to :type:`data capture view<core.ui.DataCaptureView>`
+
+.. include:: /core/prerequisites.txt
+
+.. include:: /core/create-context.txt
+
+Configure the Barcode Scanning Behavior
+---------------------------------------
+
+Barcode scanning is orchestrated by the :type:`BarcodeCapture` :type:`data capture mode<core.IDataCaptureMode>`. This class is the main entry point for scanning barcodes. It is configured through :type:`BarcodeCaptureSettings` and allows to register one or more :type:`listeners<IBarcodeCaptureListener>` that will get informed whenever new codes have been recognized. 
+
+For this tutorial, we will setup barcode scanning for a small list of different barcode types, called :type:`symbologies<Symbology>`. The list of symbologies to enable is highly application specific. We recommend that you only enable the list of symbologies your application requires.
+
+.. sample:: swift
+
+  let settings = BarcodeCaptureSettings()
+  settings.set(symbology: .code128, enabled: true)
+  settings.set(symbology: .code39, enabled: true)
+  settings.set(symbology: .qr, enabled: true)
+  settings.set(symbology: .ean8, enabled: true)
+  settings.set(symbology: .upce, enabled: true)
+  settings.set(symbology: .ean13UPCA, enabled: true)
+
+.. sample:: java
+
+  BarcodeCaptureSettings settings = new BarcodeCaptureSettings();
+  settings.enableSymbology(Symbology.CODE128, true);
+  settings.enableSymbology(Symbology.CODE39, true);
+  settings.enableSymbology(Symbology.QR, true);
+  settings.enableSymbology(Symbology.EAN8, true);
+  settings.enableSymbology(Symbology.UPCE, true);
+  settings.enableSymbology(Symbology.EAN13_UPCA, true);
+
+.. sample:: javascript
+
+  const settings = new Scandit.BarcodeCaptureSettings();
+  settings.enableSymbologies([
+      Scandit.Symbology.Code128,
+      Scandit.Symbology.Code39,
+      Scandit.Symbology.QR,
+      Scandit.Symbology.EAN8,
+      Scandit.Symbology.UPCE,
+      Scandit.Symbology.EAN13UPCA
+    ]);
+
+If you are not disabling barcode capture immediately after having scanned the first code, consider setting the :prop:`BarcodeCaptureSettings.CodeDuplicateFilter` to around `500` or even `-1` if you do not want codes to be scanned more than once.
+
+Next, create a :type:`BarcodeCapture` instance with the settings initialized in the previous step:
+
+.. sample:: swift
+
+  barcodeCapture = BarcodeCapture(context: context, settings: settings)
+
+.. sample:: java
+
+  barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, settings);
+
+.. sample:: javascript
+
+  const barcodeCapture = Scandit.BarcodeCapture.forContext(context, settings);
+
+Register the Barcode Capture Listener
+-------------------------------------
+
+To get informed whenever a new code has been recognized, add a :type:`IBarcodeCaptureListener` through :meth:`BarcodeCapture.AddListener` and implement the listener methods to suit your application's needs.
+
+First |implement| the :type:`IBarcodeCaptureListener` |interface|. For example:
+
+.. sample:: swift
+
+  extension ViewController: BarcodeCaptureListener {
+    func barcodeCapture(_ barcodeCapture: BarcodeCapture,
+                     didScanIn session: BarcodeCaptureSession,
+                     frameData: FrameData) {
+          let recognizedBarcodes = session.newlyRecognizedBarcodes
+          for barcode in recognizedBarcodes {
+              // Do something with the barcode.
+          }
+      }
+  }
+
+.. sample:: java
+
+  @Override
+  public void onBarcodeScanned(@NonNull BarcodeCapture barcodeCapture,
+          @NonNull BarcodeCaptureSession session, @NonNull FrameData frameData) {
+      List<Barcode> recognizedBarcodes = session.getNewlyRecognizedBarcodes();
+      // Do something with the barcodes. 
+  }
+
+.. sample:: javascript
+
+  const listener = {
+    didScan: (barcodeCapture, session) => {
+      const recognizedBarcodes = session.newlyRecognizedBarcodes;
+      // Do something with the barcodes
+    }
+  };
+
+Then add the listener:
+
+.. sample:: swift
+
+  barcodeCapture.addListener(self)
+
+.. sample:: java
+
+  barcodeCapture.addListener(this);
+
+.. sample:: javascript
+
+  barcodeCapture.addListener(listener);
+
+.. include:: /core/use-builtin-camera-start.txt
+
+
+When using the built-in camera there are recommended settings for each capture mode. These should be used to achieve the best performance and user experience for the respective mode. The following couple of lines show how to get the recommended settings and create the camera from it:
+
+.. sample:: java
+
+  CameraSettings cameraSettings = BarcodeCapture.createRecommendedCameraSettings();
+
+  // Depending on the use case further camera settings adjustments can be made here.
+
+  Camera camera = Camera.getDefaultCamera();
+
+  if (camera != null) {
+      camera.applySettings(cameraSettings);
+  }
+
+.. sample:: swift
+
+  let cameraSettings = BarcodeCapture.recommendedCameraSettings
+
+  // Depending on the use case further camera settings adjustments can be made here.
+
+  let camera = Camera.default
+  camera?.applySettings(cameraSettings)
+
+.. sample:: javascript
+
+  const cameraSettings = Scandit.BarcodeCapture.recommendedCameraSettings;
+
+  // Depending on the use case further camera settings adjustments can be made here.
+
+  const camera = Scandit.Camera.default;
+
+  if (camera) {
+    camera.applySettings(cameraSettings);
+  }
+
+.. include:: /core/use-builtin-camera-end.txt
+
+.. include:: /core/display-scan-process.txt
+
+To visualize the results of barcode scanning, the following :type:`overlay<ui.BarcodeCaptureOverlay>` can be added:
+
+.. sample:: swift
+
+  let overlay = BarcodeCaptureOverlay(barcodeCapture: barcodeCapture, view: captureView)
+
+.. sample:: java
+
+  BarcodeCaptureOverlay overlay = BarcodeCaptureOverlay.newInstance(barcodeCapture, dataCaptureView);
+
+.. sample:: javascript
+
+  const overlay = new Scandit.BarcodeCaptureOverlay(barcodeCapture, view);
+
+
+Disabling Barcode Capture
+-------------------------
+
+To disable barcode capture, for instance as a consequence of a barcode being recognized, set :prop:`BarcodeCapture.IsEnabled` to |false|. 
+There will not be any new results until the capture mode is enabled again. 
+Note that disabling the capture mode does not stop the camera, the camera continues to stream frames until it is turned off.
+
+
+.. admonition:: What's next?
+
+  To dive further into the |sdk| we recommend the following articles:
+
+  * :doc:`barcode-symbologies`
+  * :doc:`configure-barcodes`
+  * :doc:`scan-area`
+  

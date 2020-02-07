@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Serialization &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ScanditCaptureCore API" href="api.html" />
+    <link rel="prev" title="Core Concepts of the Scandit Data Capture SDK" href="concepts.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">ScanditCaptureCore</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="concepts.html">Core Concepts of the Scandit Data Capture SDK</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Serialization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-from-json">Creating from JSON</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#updating-from-json">Updating from JSON</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#context-updates">Context Updates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="overview.html">ScanditCaptureCore</a> &raquo;</li>
+        
+      <li>Serialization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="serialization">
+<h1>Serialization<a class="headerlink" href="#serialization" title="Permalink to this headline">#</a></h1>
+<p>Most objects, such as <a class="reference internal" href="../barcode-capture/api/barcode-capture.html#class-scandit.datacapture.barcode.BarcodeCapture" title="BarcodeCapture class">BarcodeCapture</a> provide methods to convert to and from JSON. This is referred to as serialization and deserialization, respectively. Its main use is to be able to capture the current configuration of the object and restore it at a later point on any device. This can be especially useful when wrapping the Scandit Data Capture SDK for a Java Script based framework or to debug issues without needing to filter through the code base of an entire project.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Serialization and deserialization are a very specific use case that is generally only relevant to Scandit’s internal implementation of third-party frameworks and internal apps. As an implementer you very likely do not want to be touching the serialization at all and should steer clear of this section.</p>
+</div>
+<div class="section" id="creating-from-json">
+<h2>Creating from JSON<a class="headerlink" href="#creating-from-json" title="Permalink to this headline">#</a></h2>
+<p>Most bigger objects can be created from JSON directly through a method like <code class="docutils literal notranslate"><span class="pre">FromJson</span></code> in <a class="reference internal" href="../barcode-capture/api/barcode-capture.html#class-scandit.datacapture.barcode.BarcodeCapture" title="BarcodeCapture class">BarcodeCapture</a>. While it is possible to deserialize a data capture mode like <a class="reference internal" href="../barcode-capture/api/barcode-capture.html#class-scandit.datacapture.barcode.BarcodeCapture" title="BarcodeCapture class">BarcodeCapture</a>, it is also possible to just deserialize the <a class="reference internal" href="../barcode-capture/api/barcode-capture-settings.html#class-scandit.datacapture.barcode.BarcodeCaptureSettings" title="BarcodeCaptureSettings class">BarcodeCaptureSettings</a> or go higher up and deserialize an entire <a class="reference internal" href="api/data-capture-context.html#class-scandit.datacapture.core.DataCaptureContext" title="DataCaptureContext class">DataCaptureContext</a> that contains a frame source, a view and any number of data capture modes.</p>
+<p>The deserialization of most bigger objects is backed by a deserializer, a class specifically just for JSON deserialization. For example, the <code class="docutils literal notranslate"><span class="pre">BarcodeCaptureDeserializer</span></code> handles deserialization of <a class="reference internal" href="../barcode-capture/api/barcode-capture.html#class-scandit.datacapture.barcode.BarcodeCapture" title="BarcodeCapture class">BarcodeCapture</a>, <a class="reference internal" href="../barcode-capture/api/barcode-capture-settings.html#class-scandit.datacapture.barcode.BarcodeCaptureSettings" title="BarcodeCaptureSettings class">BarcodeCaptureSettings</a> and <a class="reference internal" href="../barcode-capture/api/ui/barcode-capture-overlay.html#class-scandit.datacapture.barcode.ui.BarcodeCaptureOverlay" title="BarcodeCaptureOverlay class">BarcodeCaptureOverlay</a>. the individual <cite>fromJson</cite> methods of these classes simply delegate the work to the deserializer and often it is fine to ignore the deserializer itself. However, the deserializer adds certain functionality that is not available by simple <cite>fromJson</cite> calls:</p>
+<ul class="simple">
+<li><p>There is a listener associated with every deserializer like for example <code class="docutils literal notranslate"><span class="pre">IBarcodeCaptureDeserializerListener</span></code>, that exposes events that can help in manipulating the deserialization. For example it would be possible to change the default settings in <code class="docutils literal notranslate"><span class="pre">OnSettingsDeserializationStarted</span></code> and do additional deserialization in <code class="docutils literal notranslate"><span class="pre">OnSettingsDeserializationFinished</span></code> after the “official” deserialization has finished.</p></li>
+<li><p>A list of warnings is available to be checked after the deserialization has finished. Warnings are especially useful for detecting issues during the deserialization like when a property was misspelled and therefore never processed by the deserializer.</p></li>
+</ul>
+</div>
+<div class="section" id="updating-from-json">
+<span id="serialization-update-from-json"></span><h2>Updating from JSON<a class="headerlink" href="#updating-from-json" title="Permalink to this headline">#</a></h2>
+<p>Just like creating new objects, it is possible to update already existing objects from JSON. When updating an object, top level properties that are not set will be left as they are. As soon as a top level property is set when updating, it will be deserialized in its entirety and the old values of this property are not taken into consideration anymore. As an example lets say we first created an object through deserialization from the following JSON:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;topLevelOne&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;oneOne&quot;</span><span class="p">:</span> <span class="mi">10</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;topLevelTwo&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;twoOne&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="nt">&quot;twoTwo&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;twoTwoOne&quot;</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The resulting object is now updated by the following JSON:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;topLevelTwo&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;twoTwo&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;twoTwoTwo&quot;</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;twoThree&quot;</span><span class="p">:</span> <span class="mi">20</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>What happens now is that the top-level property <cite>topLevelOne</cite> stays the same as it is not mentioned in the update. On the other hand <cite>topLevelTwo</cite> is overwritten in its entirety. For example, even though <cite>twoOne</cite> is not mentioned anymore, it will not be kept as a value as the entire <cite>topLevelTwo</cite> is being overwritten. The update results in the same configuration that we would have accomplished by creating an object through this merged JSON:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;topLevelOne&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;oneOne&quot;</span><span class="p">:</span> <span class="mi">10</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;topLevelTwo&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;twoTwo&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;twoTwoTwo&quot;</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;twoThree&quot;</span><span class="p">:</span> <span class="mi">20</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="context-updates">
+<h3>Context Updates<a class="headerlink" href="#context-updates" title="Permalink to this headline">#</a></h3>
+<p>When updating the context, some special rules apply and the update behaves slightly different from other objects.</p>
+<p>When updating the context, the deserializer will not leave the top level properties <cite>“frameSource”</cite>, <cite>“modes”</cite> and <cite>“view”</cite> as they are in case they are not specified. If such a property is no longer specified, the object created by it is disonnected from the context, otherwise the existing object is updated with the new settings. So for example if we created a context from this JSON:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;licenseKey&quot;</span><span class="p">:</span> <span class="s2">&quot;AbE89o...&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;deviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;myDevice&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;frameSource&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;camera&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;modes&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;barcodeCapture&quot;</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;textCapture&quot;</span> <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;view&quot;</span><span class="p">:</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And now we update it with the following:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;modes&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;barcodeTracking&quot;</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;textCapture&quot;</span> <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;view&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;overlays&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;barcodeTracking&quot;</span> <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Since this exception does not concern <cite>“licenseKey”</cite> and <cite>“deviceName”</cite>, the license key and the device name stay the same. Be aware that it is actually not possible to change these properties through an update. If you want to change them, you will have to create a new context entirely. Whether you specify them for an update does not make a difference, as long as they are the same as before.
+Since the <cite>“frameSource”</cite> is no longer specified, it will be removed from the context. The <cite>“view”</cite> is still specified which means the deserializer will reuse the view from before and add the new barcode tracking overlay to it. The <cite>“modes”</cite> array is also still specified but contains different modes which results in the old barcode capture mode being removed from the context and a new barcode tracking mode being added. Since the text capture mode is specified in both, it will simply continue being attached to the context.</p>
+<p>In cases where an existing frame source, data capture mode or data capture view is updated, these updates behave as if that object were directly updated, meaning its top-level properties are left as they are if not specified. For example, if we start out with the following context:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;licenseKey&quot;</span><span class="p">:</span> <span class="s2">&quot;AbE89o...&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;deviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;myDevice&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;modes&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;barcodeCapture&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;symbologies&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;ean13upca&quot;</span><span class="p">,</span> <span class="s2">&quot;code39&quot;</span><span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And update it with:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;licenseKey&quot;</span><span class="p">:</span> <span class="s2">&quot;AbE89o...&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;deviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;myDevice&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;modes&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;barcodeCapture&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;feedback&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;vibration&quot;</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We did not touch the top-level property <cite>“settings”</cite>, leaving it as it is (both symbologies continue to be enabled). The top-level property <cite>“feedback”</cite> was set and overwrites the default feedback behavior that we had before by only enabling vibration but turning off the sound. If we now further update it with:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;licenseKey&quot;</span><span class="p">:</span> <span class="s2">&quot;AbE89o...&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;deviceName&quot;</span><span class="p">:</span> <span class="s2">&quot;myDevice&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;modes&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;barcodeCapture&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;codeDuplicateFilter&quot;</span><span class="p">:</span> <span class="mi">500</span>
+      <span class="p">}</span>
+      <span class="s2">&quot;feedback&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;sound&quot;</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case we are changing both top-level properties, meaning both of them are being overwritten. The result is that we have a code duplicate filter of 500ms but all symbologies are disabled. The feedback was changed to only beep but not vibrate.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+Parser Result
+=========================
+
+.. module:: scandit.datacapture.parser
+
+
+.. class:: ParsedData
+  @objc@ SDCParsedData : NSObject
+  :available: ios=6.1, android=6.1
+
+  Holds the result of a successfully parsed data string or raw data. Instances of this class are returned by :meth:`Parser.ParseString` and :meth:`Parser.ParseRawData`. The parsed data is divided into *fields*, each identified by a name. 
+
+  The data contained in this result object can be accessed in one of the following ways:
+
+  * Through an array of parser fields (see :prop:`Fields`). 
+
+  * Through a dictionary that maps field names to the field (see :prop:`FieldsByName`).
+  * Directly as a JSON string (see :prop:`JsonString`).
+
+  .. property:: string JsonString { get; }
+   @objc@ @property (nonatomic, readonly) NSString *jsonString
+   :available: ios=6.1, android=6.1
+
+   The result object as a serialized JSON string.
+
+  .. property:: IDictionary<string, ParsedField> FieldsByName { get; }
+    @objc@ @property (nonatomic, readonly) NSDictionary<NSString *, SDCParsedField *> *fieldsByName
+    :available: ios=6.1, android=6.1
+
+     Provides by-name lookup of the fields. The field names are data format specific. Consult the data format documentation for information on available fields.
+
+  .. property:: IList<ParsedField> Fields { get; }
+    @objc@ @property (nonatomic, readonly) NSArray<SDCParsedField *> *fields
+    :available: ios=6.1, android=6.1
+
+    The order of the fields matches the order in the original data string. The fields are data format specific. Consult the data format documentation for information on available fields.
+

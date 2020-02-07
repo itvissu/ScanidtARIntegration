@@ -1,0 +1,48 @@
+Captured Field
+==============
+
+.. module:: scandit.datacapture.label
+  :android-package: com.scandit.datacapture.label.data
+
+.. class:: LabelField
+  @objc@ SDCLabelField : NSObject
+  :available: android=6.0, ios=6.0
+
+  .. property:: string Name { get; }
+    :available: android=6.0, ios=6.0
+
+    The field name. Unique within a label, for example *barcode-a*, or *price*. The names are defined when defining the label.
+
+  .. property:: LabelFieldType Type { get; }
+    :available: android=6.0, ios=6.0
+
+    Identifies the type of the captured field type. This either returns :enum:`LabelFieldType.Barcode`, or :enum:`LabelFieldType.Text`. Depending on the type, further information such as captured data is available through the following properties:
+    
+    * When the type is :enum:`LabelFieldType.Barcode`, the captured data can be extracted through the :prop:`Barcode` property.
+    * When the type is :enum:`LabelFieldType.Text`, the captured data can be extracted through the :prop:`Text` property.
+
+  .. property:: core.Quadrilateral PredictedLocation { get; }
+    :available: android=6.0, ios=6.0
+
+     The location of the captured field inside the image. These coordinates will need to be converted to view coordinates before they can be visualized. When the field's :prop:`State` is :enum:`LabelFieldState.Unknown`, a quadrilateral with all points set to (0,0) is returned.
+
+  .. property:: LabelFieldState State { get; }
+    :available: android=6.0, ios=6.0
+
+     The field state. For fields that have been captured :enum:`LabelFieldState.Captured` is returned. For fields whose location has been predicted, :enum:`LabelFieldState.Predicted` is returned. For fields whose location could not be predicted, :enum:`LabelFieldState.Unknown` is returned.
+
+  .. property:: bool IsRequired { get; }
+    :available: android=6.0, ios=6.0
+
+    Whether the captured field is required. This property is |false| for optional fields.
+
+  .. property:: barcode.Barcode? Barcode { get; }
+    :available: android=6.0, ios=6.0
+
+    The barcode associated to this captured field. This property is |null| when the type is not equal to :enum:`LabelFieldType.Barcode`.
+
+  .. property:: string? Text { get; }
+    :available: android=6.0, ios=6.0
+
+    The text associated to this captured field. This property is |null| when the type is not equal to :enum:`LabelFieldType.Text`.
+

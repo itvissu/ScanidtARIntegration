@@ -1,0 +1,58 @@
+Brush
+=====
+
+.. module:: scandit.datacapture.core.ui
+  :android-package: com.scandit.datacapture.core.ui.style
+
+.. class:: Brush
+  @objc@ SDCBrush : NSObject
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  Brushes define how objects are drawn on screen and allow to change their fill and stroke color as well as the stroke width. They are, for example, used to change the styling of barcode locations, or other objects drawn on top of the video preview. Brushes are immutable. Once created none of the members can be modified.
+
+  .. method:: static Brush Transparent()
+    @objc@ @property (class, nonatomic, readonly) SDCBrush *transparentBrush;
+    :available: ios=6.1, android=6.1
+
+    Creates a new brush where both fill and stroke colors are set to fully transparent black. The stroke width is set to zero.
+
+  .. method:: Brush(Color fillColor, Color strokeColor, float strokeWidth)
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Creates a new brush with provided fill, stroke colors and stroke width.
+
+    .. eager-ifconfig:: platform == "android"
+
+      The *fillColor* and *strokeColor* arguments should represent a color in an ARGB format.
+
+  .. method:: Brush()
+    :available: ios=6.0, cordova=6.1
+
+    Creates a new default brush. Both fill and stroke color are set to fully transparent black. The stroke width is set to zero.
+
+  .. property:: Color FillColor { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The fill color used to draw the object.
+
+  .. property:: Color StrokeColor { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The stroke color used to draw the object.
+
+  .. property:: float StrokeWidth { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The width in device-independent pixels used to render the stroke.
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.0
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.0
+
+    Returns a hash code value for the object.
+
+

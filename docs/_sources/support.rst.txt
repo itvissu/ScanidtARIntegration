@@ -1,0 +1,22 @@
+Support & FAQ
+=============
+
+Please check the `FAQs <https://support.scandit.com/hc/en-us/categories/200595391-Barcode-Scanner-SDK>`_ to see if your question has been answered already. Support request are handled via the `Scandit Support Page <https://support.scandit.com/hc/en-us/requests/new>`_.
+
+Bug Reports
+-----------
+
+If you have found a bug in one of our products, we would love to hear from you so we can get the bug fixed as soon as possible. The more information we have on the issue, the better! Please try to reproduce the bug with the latest available version of the SDK and include at least the following information:
+
+* Your account name.
+* SDK Version used (e.g. 6.0).
+* Platform used (iOS, Android, etc.) ideally including the OS version.
+* Framework used (none, Xamarin, Cordova, etc.).
+* Device model used (e.g. iPhone X, Samsung Galaxy S9).
+* Steps or code snippet to reproduce the bug.
+* Environment to reproduce the bug (e.g. room illumination)
+* SDK settings applied (e.g. enabled symbologies)
+
+Bugs can be reported using `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_.
+
+

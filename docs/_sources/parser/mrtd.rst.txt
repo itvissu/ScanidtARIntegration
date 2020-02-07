@@ -1,0 +1,367 @@
+****
+MRTD
+****
+
+Overview
+========
+
+The parser supports all versions of Machine Readable Travel Documents (MRTD) specified by the International Civil Aviation Organization (ICAO).
+
+The ICAO specifies four types of MRTDs:
+
+* `TD1 <https://www.icao.int/publications/Documents/9303_p5_cons_en.pdf>`_ (id cards)
+* `TD2 <https://www.icao.int/publications/Documents/9303_p6_cons_en.pdf>`_ (other official travel documents)
+* `TD3/MRP <https://www.icao.int/publications/Documents/9303_p4_cons_en.pdf>`_ (passports)
+* `MRV (A & B) <https://www.icao.int/publications/Documents/9303_p7_cons_en.pdf>`_ (visas)
+
+In addition, the parser supports the following non-ICAO standards:
+
+* `SwissDL <http://www.astra2.admin.ch/media/pdfpub/2003-10-20_2261_d.pdf>`_ (Swiss driving license)
+* `TD2/FrenchID <https://en.wikipedia.org/wiki/National_identity_card_(France)>`_ (French identity card)
+
+Regex patterns
+==============
+
+Use the following regex pattern to filter out MRTD codes:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 20, 115
+    :file: mrtd_regex_patterns.csv
+
+ICAO MRTDs
+==========
+
+Example
+-------
+
+Parsing the following code (without quotes, source: 2015 ICAO Doc 9303, Specifications for TD1 Sized MRTDs, `<https://www.icao.int>`_)
+
+::
+
+    "I<UTOD231458907<<<<<<<<<<<<<<<\n7408122F1204159UTO<<<<<<<<<<<6\nERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+
+will result in the following JSON output:
+
+.. code-block:: javascript
+
+	[
+	   {
+		  "name" : "documentType",
+		  "parsed" : "td1",
+		  "rawString" : ""
+	   },
+	   {
+		  "name" : "documentCode",
+		  "parsed" : "I",
+		  "rawString" : "I<"
+	   },
+	   {
+		  "name" : "issuingState",
+		  "parsed" : "UTO",
+		  "rawString" : "UTO"
+	   },
+	   {
+		  "name" : "documentNumber",
+		  "parsed" : "D23145890",
+		  "rawString" : "D23145890"
+	   },
+	   {
+		  "name" : "optional",
+		  "parsed" : "",
+		  "rawString" : "<<<<<<<<<<<<<<<"
+	   },
+	   {
+		  "name" : "birthDate",
+		  "parsed" : {
+			 "day" : 12,
+			 "month" : 8,
+			 "year" : 74
+		  },
+		  "rawString" : "740812"
+	   },
+	   {
+		  "name" : "sex",
+		  "parsed" : "female",
+		  "rawString" : "F"
+	   },
+	   {
+		  "name" : "expiryDate",
+		  "parsed" : {
+			 "day" : 15,
+			 "month" : 4,
+			 "year" : 12
+		  },
+		  "rawString" : "120415"
+	   },
+	   {
+		  "name" : "nationality",
+		  "parsed" : "UTO",
+		  "rawString" : "UTO"
+	   },
+	   {
+		  "name" : "optional1",
+		  "parsed" : "",
+		  "rawString" : "<<<<<<<<<<<"
+	   },
+	   {
+		  "name" : "name",
+		  "parsed" : {
+			 "primary" : [ "ERIKSSON" ],
+			 "secondary" : [ "ANNA", "MARIA" ],
+			 "truncated" : false
+		  },
+		  "rawString" : "ERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+	   },
+	   {
+		  "name" : "metadata",
+		  "parsed" : {
+			 "checksumValidation" : {
+				"birthDate" : true,
+				"compositeChecksum" : true,
+				"documentNumber" : true,
+				"expiryDate" : true
+			 }
+		  },
+		  "rawString" : ""
+	   }
+	]
+
+Common fields
+-------------
+The four types of MRTDs specified by the ICAO share most of the fields encoded in the Machine Readable Zone (MRZ) of the travel document.
+
+The following fields are exposed for all ICAO MRTDs:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 10, 15, 35
+    :file: mrtd_common.csv
+
+Please refer to the following sections for deviations from the the above table.
+
+TD3 fields
+----------
+* 'optional': Usually employed to store the document holder's personal number.
+
+MRV fields
+----------
+* 'documentNumber': At the discretion of the issuing State, either the passport number or the visa number shall be used in this field.
+* 'expiryDate': In most cases this will be the date of expiry of the MRV and indicates the last day on which the visa can be used to seek entry. For some States this will be the date by or on which the holder should have left.
+
+MRTD extensions
+===============
+
+TD2/FrenchID fields
+-------------------
+The French ID format is different then other ICAO formats in Common and does not contain all information described in the common fields section.
+For clarity, there is a complete example of TD2/FrenchID format.
+
+Parsing the following code:
+
+::
+
+"IDFRABOITON<<<<<<<<<<<<<<<<<<<382020\n1203382018024PIERRE<<EMMANU8712068M5\n"
+
+will result in the following JSON output:
+
+.. code-block:: javascript
+
+    [
+        {
+            "name" : "documentCode",
+            "parsed" : "ID",
+            "rawString" : "ID"
+        },
+        {
+            "name" : "issuingCountry",
+            "parsed" : "FRA",
+            "rawString" : "FRA"
+        },
+        {
+            "name" : "lastName",
+            "parsed" : {
+            "lastName" : "BOITON",
+            "truncated" : false
+            },
+            "rawString" : "BOITON<<<<<<<<<<<<<<<<<<<"
+        },
+        {
+            "name" : "officeOfIssuance",
+            "parsed" : 20,
+            "rawString" : "020"
+        },
+        {
+            "name" : "dateOfIssuance",
+            "parsed" : {
+                "month" : 3,
+                "year" : 12
+            },
+            "rawString" : "1203"
+        },
+        {
+            "name" : "departmentOfIssuance",
+            "parsed" : "382",
+            "rawString" : "382"
+        },
+        {
+            "name" : "managementCenterSign",
+            "parsed" : 1802,
+            "rawString" : "01802"
+        },
+        {
+            "name" : "firstNames",
+            "parsed" : {
+                "firstNames" : [ "PIERRE", "EMMANU" ],
+                "truncated" : true
+            },
+            "rawString" : "PIERRE<<EMMANU"
+        },
+        {
+            "name" : "birthDate",
+            "parsed" : {
+                "day" : 6,
+                "month" : 12,
+                "year" : 87
+            },
+            "rawString" : "871206"
+        },
+        {
+            "name" : "sex",
+            "parsed" : "male",
+            "rawString" : "M"
+        },
+        {
+            "name" : "documentType",
+            "parsed" : "td2/frenchID",
+            "rawString" : ""
+        },
+        {
+            "name" : "metadata",
+            "parsed" : {
+            "checksumValidation" : {
+                "birthDate" : true,
+                "compositeChecksum" : true,
+                "issuanceInformation" : true
+                }
+            },
+            "rawString" : ""
+        }
+    ]
+
+The following fields are exposed for TD2/FrenchID:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 10, 15, 35
+    :file: td2_frenchID.csv
+
+Swiss Driving License fields
+----------------------------
+The Swiss driving license format differs from the other MRTD formats. For example, no check digit is included in the data.
+For clarity, there is a complete example of this format.
+
+Parsing the following code:
+
+::
+
+"AKU735D<<\nFACHE000231268003<<530727<<<<<\nAELLEN<<ROLAND<JOHN<<<<<<<<<<<\n"
+
+will result in the following JSON output:
+
+.. code-block:: javascript
+
+    [
+        {
+            "name": "documentNumber",
+            "parsed": "AKU735",
+            "rawString": "AKU735"
+        },
+        {
+            "name": "languageCode",
+            "parsed": "D",
+            "rawString" : "D"
+        },
+        {
+            "name": "documentCode",
+            "parsed": "FA",
+            "rawString" : "FA"
+        },
+        {
+            "name": "issuingState",
+            "parsed": "CHE",
+            "rawString" : "CHE"
+        },
+        {
+            "name": "pinCode",
+            "parsed": "000231268",
+            "rawString" : "000231268"
+        },
+        {
+            "name": "versionNumber",
+            "parsed": "003",
+            "rawString" : "003"
+        },
+        {
+            "name": "birthDate",
+            "parsed": {
+                "year": 53,
+                "month": 7,
+                "day": 27
+            },
+            "rawString" : "530727"
+        },
+        {
+            "name": "name",
+            "parsed": {
+                "primary": [
+                    "AELLEN"
+                ],
+                "secondary": [
+                    "ROLAND",
+                    "JOHN"
+                ]
+            },
+            "rawString" : "AELLEN<<ROLAND<JOHN<<<<<<<<<<<"
+        },
+        {
+            "name": "documentType",
+            "parsed": "swissDL",
+            "rawString": ""
+        },
+        {
+            "name" : "metadata",
+            "parsed" : {
+                "checksumValidation" : null
+            },
+            "rawString" : ""
+        }
+    ]
+
+The following fields are exposed for Swiss Driving License format:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 10, 15, 35
+    :file: swiss_driver_license.csv
+
+Parser Options
+==============
+The parser can be configured by providing a JSON string containing key / value pairs.
+The following configuration options are available:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 10, 15, 35
+    :file: mrtd_options.csv
+
+Metadata
+========
+The metadata field provides more information about the parsing of the input's fields.
+The dictionary encoded in the JSON string of the 'parsed' field contains the following
+entries:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 10, 15, 35
+    :file: mrtd_metadata.csv

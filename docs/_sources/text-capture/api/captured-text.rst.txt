@@ -1,0 +1,25 @@
+Captured Text
+=============
+
+.. module:: scandit.datacapture.text
+  :android-package: com.scandit.datacapture.text.data
+
+.. class:: CapturedText
+  @objc@ SDCCapturedText: NSObject
+  :available: ios=6.1, android=6.1
+
+  A captured text.
+
+  .. property:: string Value { get; }
+    :available: ios=6.1, android=6.1
+
+    The value of the captured text.
+
+  .. property:: core.Quadrilateral Location { get; }
+    :available: ios=6.1, android=6.1
+
+    The location of the captured text. The coordinates are in image-space, meaning that the coordinates correspond to actual pixels in the image. For display, the coordinates need first to be converted into screen-space.
+
+    The meaning of the values of :prop:`core.Quadrilateral.TopLeft` etc is such that the top left point corresponds to the top left corner of the captured text, independent of how the captured text is oriented in the image.
+
+  .. todo:: SDK-11002 add link to section describing coordinate conversions.

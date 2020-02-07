@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Barcode &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Checksum" href="checksum.html" />
+    <link rel="prev" title="Barcode Capture Overlay" href="ui/barcode-capture-overlay.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../overview.html">ScanditBarcodeCapture</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../symbology-properties.html">Symbology Properties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture.html">Barcode Capture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture-settings.html">Barcode Capture Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture-listener.html">Barcode Capture Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture-session.html">Barcode Capture Session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture-feedback.html">Barcode Capture Feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/barcode-capture-overlay.html">Barcode Capture Overlay</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Barcode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checksum.html">Checksum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="composite-flag.html">Composite Flag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localized-only-barcode.html">Localized Only Barcode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbology-description.html">Symbology Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbology-settings.html">Symbology Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbology.html">Symbology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#traditional-barcode-scanning">Traditional Barcode Scanning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#matrixscan-barcode-tracking">MatrixScan (Barcode Tracking)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#deserialization">Deserialization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../overview.html">ScanditBarcodeCapture</a> &raquo;</li>
+        
+          <li><a href="../api.html">ScanditBarcodeCapture API</a> &raquo;</li>
+        
+      <li>Barcode</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="barcode">
+<h1>Barcode<a class="headerlink" href="#barcode" title="Permalink to this headline">#</a></h1>
+<p>Defined under the namespace <em>Scandit.Datacapture.Barcode</em></p>
+<dl class="class">
+<dt id="class-scandit.datacapture.barcode.Barcode">
+<code class="sig-name descname">Barcode</code><a class="headerlink" href="#class-scandit.datacapture.barcode.Barcode" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class Barcode</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>A recognized barcode.</p>
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.Barcode.Symbology">
+<code class="sig-name descname">symbology</code><a class="headerlink" href="#property-scandit.datacapture.barcode.Barcode.Symbology" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get symbology(): <a class="reference internal" href="symbology.html#enum-scandit.datacapture.barcode.Symbology" title="Symbology enum">Symbology</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The symbology of the barcode.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.Barcode.Data">
+<code class="sig-name descname">data</code><a class="headerlink" href="#property-scandit.datacapture.barcode.Barcode.Data" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get data(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a> | null
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The data of this code as a unicode string.</p>
+<p>For some types of barcodes/2d codes (for example Data Matrix, Aztec, Pdf417), the data may contain non-printable characters, characters that can not be represented as unicode code points, or nul-bytes in the middle of the string. <a class="reference internal" href="#property-scandit.datacapture.barcode.Barcode.Data" title="data property">data</a> may be <em>null</em> for such codes. How invalid code points are handled is platform-specific and should not be relied upon. If your applications relies on scanning of such codes, use <a class="reference internal" href="#property-scandit.datacapture.barcode.Barcode.RawData" title="rawData property">rawData</a> instead which is capable of representing this data without loss of information.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.Barcode.RawData">
+<code class="sig-name descname">rawData</code><a class="headerlink" href="#property-scandit.datacapture.barcode.Barcode.RawData" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get rawData(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The raw data contained in the barcode.</p>
+<p>Use this property instead of <a class="reference internal" href="#property-scandit.datacapture.barcode.Barcode.Data" title="data property">data</a> if you are relying on binary-encoded data that can not be represented as unicode strings.</p>
+<p>Unlike <a class="reference internal" href="#property-scandit.datacapture.barcode.Barcode.Data" title="data property">data</a> which returns the data in Unicode representation, the <a class="reference internal" href="#property-scandit.datacapture.barcode.Barcode.RawData" title="rawData property">rawData</a> returns the data with the encoding that was used in the barcode. See <a class="reference internal" href="#property-scandit.datacapture.barcode.Barcode.EncodingRanges" title="encodingRanges property">encodingRanges</a> for more information.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.Barcode.EncodingRanges">
+<code class="sig-name descname">encodingRanges</code><a class="headerlink" href="#property-scandit.datacapture.barcode.Barcode.EncodingRanges" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get encodingRanges(): <a class="reference internal" href="../../core/api/common.html#class-scandit.datacapture.core.EncodingRange" title="EncodingRange class">EncodingRange</a>[]
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Array of encoding ranges. Each entry of the returned encoding array points into bytes of <a class="reference internal" href="#property-scandit.datacapture.barcode.Barcode.RawData" title="rawData property">rawData</a> and indicates what encoding is used for these bytes. This information can then be used to convert the bytes to unicode, or other representations. For most codes, a single encoding range covers the whole data, but certain 2d symbologies, such as <a class="reference internal" href="symbology.html#value-scandit.datacapture.barcode.Symbology.Qr" title="Symbology.QR value">Symbology.QR</a> allow to switch the encoding in the middle of the code.</p>
+<p>The returned encoding ranges are sorted from lowest to highest index. Each byte in <a class="reference internal" href="#property-scandit.datacapture.barcode.Barcode.RawData" title="rawData property">rawData</a> is contained in exactly one range, e.g. there are no holes or overlapping ranges.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.Barcode.Location">
+<code class="sig-name descname">location</code><a class="headerlink" href="#property-scandit.datacapture.barcode.Barcode.Location" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get location(): <a class="reference internal" href="../../core/api/common.html#struct-scandit.datacapture.core.Quadrilateral" title="Quadrilateral struct">Quadrilateral</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The location of the code. The coordinates are in image-space, meaning that the coordinates correspond to actual pixels in the image. For display, the coordinates need first to be converted into screen-space using the <a class="reference internal" href="../../core/api/ui/data-capture-view.html#method-scandit.datacapture.core.ui.DataCaptureView.MapFrameQuadrilateralToView" title="data capture view method">data capture view</a>.</p>
+<p>The meaning of the values of <a class="reference internal" href="../../core/api/common.html#property-scandit.datacapture.core.Quadrilateral.TopLeft" title="Quadrilateral.topLeft property">Quadrilateral.topLeft</a> etc is such that the top left point corresponds to the top left corner of the barcode, independent of how the code is oriented in the image.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In case the feature is not licensed, a quadrilateral with all corners set to 0, 0 is returned.</p>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>SDK-11002 add link to section describing coordinate conversions.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.Barcode.IsGs1DataCarrier">
+<code class="sig-name descname">isGS1DataCarrier</code><a class="headerlink" href="#property-scandit.datacapture.barcode.Barcode.IsGs1DataCarrier" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get isGS1DataCarrier(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean" title="boolean">boolean</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p><em>True</em> for codes that carry GS1 data.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.Barcode.CompositeFlag">
+<code class="sig-name descname">compositeFlag</code><a class="headerlink" href="#property-scandit.datacapture.barcode.Barcode.CompositeFlag" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get compositeFlag(): <a class="reference internal" href="composite-flag.html#enum-scandit.datacapture.barcode.CompositeFlag" title="CompositeFlag enum">CompositeFlag</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Flag to hint whether the barcode is part of a composite code.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.Barcode.IsColorInverted">
+<code class="sig-name descname">isColorInverted</code><a class="headerlink" href="#property-scandit.datacapture.barcode.Barcode.IsColorInverted" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get isColorInverted(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean" title="boolean">boolean</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Whether the recognized code is color inverted (printed bright on dark background).</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.Barcode.SymbolCount">
+<code class="sig-name descname">symbolCount</code><a class="headerlink" href="#property-scandit.datacapture.barcode.Barcode.SymbolCount" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get symbolCount(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The symbol count of this barcode. Use this value to determine the symbol count of a particular barcode, e.g. to configure the active symbol counts.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.Barcode.FrameId">
+<code class="sig-name descname">frameID</code><a class="headerlink" href="#property-scandit.datacapture.barcode.Barcode.FrameId" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get frameID(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Id of the frame from which this barcode information was obtained.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

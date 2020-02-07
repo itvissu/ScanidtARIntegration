@@ -1,0 +1,119 @@
+Design Overview
+================
+
+Goals/Non-goals
+---------------------------------
+
+Goals
+^^^^^^^^^^^^^^
+
+- The new API should be flexible and allow for non-barcode-centric use cases.
+- Avoid god objects like the barcode picker. Each component of the system should only do so much.
+- The wrapping process for cordova, xamarin and rect native (no, no Titanium) should require as little code as possible.
+
+Non-Goals
+^^^^^^^^^^^^^^
+
+- Allowing users to add their own capture modes is currently a non-goal.
+
+API Rules
+---------------------------------
+
+- The barcode picker API typically restricted listeners to just one per event and instance. The new API should allow for multiple listeners/listeners for each of the events. The bundled UI components should wherever possible be based on the same events that the public API exposes.
+- Strive for consistency between platforms. Deviate only where it's absolutely necessary.
+- Settings should all be serializable from/to JSON.
+- Avoid using exceptions wherever possible.
+
+|sdk| structure
+----------------------------------
+
+There are different ways how the functionality of the data capture library could be bundled.
+
+Monolithic
+^^^^^^^^^^
+
+Everything lives in the same library/package. This is more or less how the current |sdk| is structured on all platforms except windows. Everything is contained in one framework/AAR file.
+
+For windows, we would still need the separation of UI/non-UI  parts because of the different UI framework choices.
+
+**Advantages**:
+
+- Easy to install, easy to deploy
+
+**Disadvantage**
+
+- It couples things that should not be coupled.
+- Users have to pay the size footprint for one feature even if they don't need it. This makes the apps larger.
+
+Vertical split
+^^^^^^^^^^^^^^^^
+
+In this structure, the |sdk| is split into multiple libraries, one for each type of capture feature. The structure would then look something like this:
+
+- **core** contains the functionality shared by all data capture features such as license management, common interfaces etc.
+- **barcode** contains the barcode-scanner functionality.
+- **ocr** contains the ocr functionality.
+- **parser** contains the parser functionality
+
+Each of these libraries contains both the recognition part, plus the UI part. Alternatively, the UI, non-ui part could be split into separate libraries as well, but that's probably overkill.
+
+**Advantages**
+
+- Doesn't bundle things that don't belong together
+- Makes it possible to use parts without paying the price for increased app size for things that are not required
+- Additional advantage: Support for a plugin architecture with dynamic feature detection could be added in the future.
+
+**Disadvantages**
+
+- Slightly more complicated to setup for the users, since they will have to install multiple packages.
+
+Horizontal split
+^^^^^^^^^^^^^^^^
+
+Like in the vertical split, the |sdk| is split into multiple libraries.
+
+- **capture** contains the capture part only
+- **ui** contains the UI part
+
+This structure arguably doesn't make a lot of sense except for windows where there is a choice for a plethora of different ui frameworks that can be chosen. On Android, iOS there is only one.
+
+
+Usage samples
+--------------------------
+
+This is a usage example for C# (Windows Desktop)
+
+.. code-block:: csharp
+
+   var ctx = new DataCaptureContext(licenseKey);
+
+   // setup barcode recognition
+   var settings = new BarcodeCaptureSettings {
+       // disable code duplicate filter
+       CodeDuplicateFilter = 0,
+   };
+   // enable symbologies
+   settings.Symbologies[Symbology.Qr].Enabled = true;
+
+   var barcodeCapture = new BarcodeCapture(settings);
+   ctx.AddMode(barcodeCapture);
+
+   // this part doesn't have to be done here, but can be done in Xaml as well.
+   // just displays the camera preview, plus the viewfinder.
+   var view = new DataCaptureView(ctx);
+
+   // returns null in case no such camera exists.
+   var camera = Camera.GetCameraOrNull(CameraPosition.WorldFacing);
+
+   // instead can also be configured in Xaml
+   var bco = new BarcodeCaptureOverlay(barcodeCapture);
+   bco.Brush = new Brush {
+            FillColor = ...,
+            StrokeColor = ...,
+            StrokeWidth = ...
+   };
+
+   view.AddOverlay(bco);
+
+   await ctx.SetFrameSourceAsync(camera);
+   await camera.SetDesiredState(State.On);

@@ -1,0 +1,96 @@
+Barcode
+=======
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.data
+
+.. class:: Barcode
+  @objc@ SDCBarcode : NSObject
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  A recognized barcode.
+
+  .. property:: Symbology Symbology { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The symbology of the barcode.
+
+  .. property:: string? Data { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The data of this code as a unicode string.
+
+    For some types of barcodes/2d codes (for example Data Matrix, Aztec, Pdf417), the data may contain non-printable characters, characters that can not be represented as unicode code points, or nul-bytes in the middle of the string. :prop:`Data` may be |null| for such codes. How invalid code points are handled is platform-specific and should not be relied upon. If your applications relies on scanning of such codes, use :prop:`RawData` instead which is capable of representing this data without loss of information.
+
+  .. property:: Data RawData { get; }
+    @java@ byte[] RawData { get; }
+    @javascript@ get rawData(): string
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The raw data contained in the barcode.
+
+    Use this property instead of :prop:`Data` if you are relying on binary-encoded data that can not be represented as unicode strings.
+
+    Unlike :prop:`Data` which returns the data in Unicode representation, the :prop:`RawData` returns the data with the encoding that was used in the barcode. See :prop:`EncodingRanges` for more information.
+
+  .. property:: IList<core.EncodingRange> EncodingRanges { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Array of encoding ranges. Each entry of the returned encoding array points into bytes of :prop:`RawData` and indicates what encoding is used for these bytes. This information can then be used to convert the bytes to unicode, or other representations. For most codes, a single encoding range covers the whole data, but certain 2d symbologies, such as :enum:`Symbology.Qr` allow to switch the encoding in the middle of the code.
+
+    The returned encoding ranges are sorted from lowest to highest index. Each byte in :prop:`RawData` is contained in exactly one range, e.g. there are no holes or overlapping ranges.
+
+  .. property:: core.Quadrilateral Location { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The location of the code. The coordinates are in image-space, meaning that the coordinates correspond to actual pixels in the image. For display, the coordinates need first to be converted into screen-space using the :meth:`data capture view<core.ui.DataCaptureView.MapFrameQuadrilateralToView>`.
+
+    The meaning of the values of :prop:`core.Quadrilateral.TopLeft` etc is such that the top left point corresponds to the top left corner of the barcode, independent of how the code is oriented in the image.
+    
+    .. warning::
+    
+      In case the feature is not licensed, a quadrilateral with all corners set to 0, 0 is returned.
+
+    .. todo:: SDK-11002 add link to section describing coordinate conversions.
+
+  .. property:: bool IsGs1DataCarrier { get; }
+    @objc@ @property (nonatomic, readonly) BOOL isGS1DataCarrier
+    @javascript@ get isGS1DataCarrier(): boolean
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    |True| for codes that carry GS1 data.
+
+  .. property:: CompositeFlag CompositeFlag { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Flag to hint whether the barcode is part of a composite code.
+
+  .. property:: bool IsColorInverted { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Whether the recognized code is color inverted (printed bright on dark background).
+
+  .. property:: int SymbolCount { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The symbol count of this barcode. Use this value to determine the symbol count of a particular barcode, e.g. to configure the active symbol counts.
+
+  .. property:: uint FrameId { get; }
+    @javascript@ get frameID(): number
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Id of the frame from which this barcode information was obtained.
+
+  .. property:: Checksum UsedChecksum { get; }
+    :available: none
+
+    Any optional checksum that was used when this code was scanned.
+
+    .. todo:: need to represent no checksum used somehow. There is no Checksum.None value.
+
+  .. method:: string ToJson()
+    @objc@ -(nonnull NSString *)JSONString
+    :available: ios=6.1, android=6.1
+
+    Returns the JSON representation of the barcode.
+

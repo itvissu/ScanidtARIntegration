@@ -1,0 +1,230 @@
+|sdk| 6.1 Release Notes
+=======================
+
+.. module:: scandit.datacapture.core
+  :hidden:
+
+Compatibility
+-------------
+
+.. list-table::
+  :header-rows: 1
+  :widths: 5 5
+
+  * - Platform
+    - Minimum Version
+
+  * - Android
+    - Android 4.4 (API level 19)
+
+  * - iOS
+    - iOS 9.0
+
+  * - Cordova
+    -  - `cordova <https://www.npmjs.com/package/cordova>`_ 8.0.0
+       - `cordova-ios <https://www.npmjs.com/package/cordova-ios>`_ 4.5.5
+       - `cordova-android <https://www.npmjs.com/package/cordova-android>`_ 7.0.0
+       - iOS 9.0
+       - Android 5.0 (API level 20)
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  Version 6.1 marks the initial release of |sdk| for Cordova. It is a major update over the 5.x Scandit SDK and introduces new APIs and additional features. This release is not compatible with 5.x and will require code changes in your application. Take a look at our :doc:`migration guide </migrate-to-6>` for how to upgrade your app from 5.x to 6.x.
+
+New Features
+------------
+
+.. eager-ifconfig:: platform == 'android'
+
+  * Added :type:`text.TextCapture` as a new capture mode for text recognition. Read up on :doc:`how to get started with text capture</get-started-text-capture>`. As the text recognition was previously part of the Label Capture module, this split means that the Label Capture module now depends on Text Capture.
+  * Added :type:`parser.Parser` for parsing many :doc:`data formats</parser/formats>` data formats. Read up on :doc:`how to get started with the parser</get-started-parser>`.
+  * Lowered minimum supported Android version to 4.4 (API Level 19). The prior minimum version was 5.0 (API Level 21).
+  * The camera now focuses and adjusts exposure on the :prop:`point of interest<core.ui.DataCaptureView.PointOfInterest>` for all devices that support it, previously it always focused on the center.
+  * Added :prop:`barcode.BarcodeCapture.PointOfInterest` to overwrite the :prop:`data capture view's point of interest<core.ui.DataCaptureView.PointOfInterest>` in cases where multiple capture modes are used that need individual points of interest.
+  * Added :meth:`ImageBuffer.ToBitmap` method for converting the video frame to an RGB bitmap.
+  * Added the possibility to set an :meth:`external ID<core.DataCaptureContextBuilder.ExternalId>` for resellers of the |sdk|.
+  * Added a MRZScannerSample demonstrating how to capture text and parse it with the :type:`parser.Parser` in order to reject occasional false positive reads returned by :type:`text.TextCapture`.
+  * Added a TextRecognitionSample demonstrating how to capture text for different text types and different recognition area positions.
+  * SwissQr parser: Added support for parsing standard 2.0 and 2.1 codes.
+  * The creation of capture modes like :type:`barcode capture<barcode.BarcodeCapture>`, :type:`barcode tracking<barcode.tracking.BarcodeTracking>`, :type:`label capture<label.LabelCapture>` and :type:`text capture<text.TextCapture>` no longer expects a non-null :type:`data capture context<DataCaptureContext>`. If a null context is provided, the capture mode is created without immediately being added to a context.
+
+.. eager-ifconfig:: platform == 'ios'
+
+  * Added :type:`text.TextCapture` as a new capture mode for text recognition. Read up on :doc:`how to get started with text capture</get-started-text-capture>`. As the text recognition was previously part of the Label Capture framework, this split means that the Label Capture framework now depends on Text Capture.
+  * Added :type:`parser.Parser` for parsing many :doc:`data formats</parser/formats>` data formats. Read up on :doc:`how to get started with the parser</get-started-parser>`.
+  * Added method to retrieve the recommended camera settings for each capture mode:
+
+    - :meth:`barcode.BarcodeCapture.CreateRecommendedCameraSettings`
+    - :meth:`barcode.tracking.BarcodeTracking.CreateRecommendedCameraSettings`,
+    - :meth:`label.LabelCapture.CreateRecommendedCameraSettings`
+
+  * The camera now focuses and adjusts exposure on the :prop:`point of interest<core.ui.DataCaptureView.PointOfInterest>`, previously it always focused on the center.
+  * Added :prop:`barcode.BarcodeCapture.PointOfInterest` to overwrite the :prop:`data capture view's point of interest<core.ui.DataCaptureView.PointOfInterest>` in cases where multiple capture modes are used that need individual points of interest.
+  * Added :meth:`ImageBuffer.ToBitmap` method for converting the video frame to a UIImage.
+  * Added the possibility to set an :meth:`external ID<core.DataCaptureContext.ForLicenseKeyAndExternalId>` for resellers of the |sdk|.
+  * Added a MRZScannerSample demonstrating how to capture text and parse it with the :type:`parser.Parser` in order to reject occasional false positive reads returned by :type:`text.TextCapture`.
+  * Added a TextRecognitionSample demonstrating how to capture text for different text types and different recognition area positions.
+  * SwissQr parser: Added support for parsing standard 2.0 and 2.1 codes.
+  * The creation of capture modes like :type:`barcode capture<barcode.BarcodeCapture>`, :type:`barcode tracking<barcode.tracking.BarcodeTracking>`, :type:`label capture<label.LabelCapture>` and :type:`text capture<text.TextCapture>` no longer expects a non-null :type:`data capture context<DataCaptureContext>`. If a null context is provided, the capture mode is created without immediately being added to a context.
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  * Modernized and modularized API for more fine-grained control and better extensibility for future data capture technologies.
+  * Improved use of multi core architectures of mobile devices with speedup of 2-3x depending on settings and number of cores.
+  * Simplified interface for :doc:`configuring the scan area and code selection </scan-area>`.
+
+
+.. eager-ifconfig:: internal
+
+  Internal
+  ^^^^^^^^
+
+  * Added :meth:`ui.Brush.Transparent`
+  * All capture modes may be now be created with a null DataCaptureContext.
+
+Behavioral Changes
+------------------
+
+.. eager-ifconfig:: platform != 'cordova'
+
+  None
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  This section contains a list of behavioral changes between 5.x and 6.0.
+
+  * The short 43 character legacy app keys supported in 4.x and 5.x have been deprecated and are not compatible with 6.0 anymore. Please contact support@scandit.com to get your new license keys.
+  * It is now an error to enable symbologies that are not supported by your app key. In 5.x, these symbologies would silently be disabled without any warning.
+  * EAN13 and UPCA used to be separate symbologies in Scandit SDK 5.x, but are now merged into one symbology called :enum:`EAN13/UPCA <barcode.Symbology.Ean13Upca>`.
+  * Barcode capture: The default :prop:`code duplicate filter <barcode.BarcodeCaptureSettings.CodeDuplicateFilter>` has been changed from 500ms to 0ms, meaning that codes that are scanned are reported every frame.
+
+Performance Improvements
+------------------------
+
+* Improved Data Matrix scan performance in case of rotations and damaged borders.
+* Improved highlighting accuracy for 1d barcodes.
+
+Bug Fixes
+---------
+
+.. eager-ifconfig:: platform == 'android'
+
+  * Fixed a rare crash caused by a division-by-zero.
+  * All overlays are now frame source aware and reset themselves if the frame source is stopped and restarted.
+  * Fixed an issue where the camera preview could be rotated when switching between fragments that both contain a data capture view.
+  * :meth:`DataCaptureContext.Dispose` now frees all memory allocated by the |sdk|.
+  * Fixed an issue, where sometimes :type:`core.ui.DataCaptureView` would draw a black camera preview after returning to a screen.
+  * Fixed a bug that caused a crash when calling :prop:`barcode.Barcode.CompositeFlag` on a barcode that had a non-NONE composite flag.
+  * VIN parser: Fixed issue with parsing VIN codes with optional prefix/suffix added to Code39 codes.
+  * Fixed a flickering of the camera preview seen on Nokia 7.2 devices.
+  * Fixed a bug that caused upside down barcodes not to be recognized when using the front facing camera.
+
+.. eager-ifconfig:: platform == 'ios'
+
+  * Fixed a rare crash caused by a division-by-zero.
+  * All overlays are now frame source aware and reset themselves if the frame source is stopped and restarted.
+  * Fixed an issue in :type:`barcode.tracking.ui.BarcodeTrackingAdvancedOverlay` that could cause animations between unrelated tracks when the camera was stopped and started again shortly after.
+  * Fixed an issue where the desired torch state was ignored if set while changing the camera state.
+  * :meth:`DataCaptureContext.Dispose` now frees all memory allocated by the |sdk|.
+  * Fixed an issue that could prevent uploading applications to the iTunes Store using beta versions of the frameworks.
+    It is not recommended to use beta builds for production ready applications.
+  * VIN parser: Fixed issue with parsing VIN codes with optional prefix/suffix added to Code39 codes.
+  * Fixed a bug that caused upside down barcodes not to be recognized when using the front facing camera.
+
+.. eager-ifconfig:: internal
+
+  Internal
+  ^^^^^^^^
+
+  .. eager-ifconfig:: platform == 'android'
+
+    * Fix a bug that caused upside-down barcodes not to be scanned properly
+    * Fix externalId  from DataCaptureContext  constructor not being passed correctly to the engine.
+    * Fix flickering preview seen on Nokia 7.2 devices.
+    * Fixed but when listeners attached to multiple objects would report only the first object in their callbacks. This could manifest in variety of weird scenarios, for example barcodes which are no longer visible on the screen being reported as tracked.
+    * Fixed continuous autofocus issues on Galaxy Tab Active 2.
+    * Fixed a bug that caused a crash when calling :prop:`barcode.Barcode.CompositeFlag` on a barcode that had a non-NONE composite flag.
+    * BlinkInput's `isImageProcessingEnabled` was erroneously flipped to false during the migration from 3.4 to 4.1. This is now fixed, so increase in OCR performance may be observed.
+    * Fix: several cases DataCaptureView displayed black preview when returning to a screen containing it.
+    * Fix: externalId is now properly deserialized when deserializing a DataCaptureContext.
+
+  .. eager-ifconfig:: platform == 'ios'
+
+    * Fix a bug that caused upside-down barcodes not to be scanned properly
+    * Fixed a bug that caused a crash when calling :prop:`barcode.Barcode.CompositeFlag` on a barcode that had a non-NONE composite flag.
+    * TextCapture won't return anymore results from previous frames when enabling again the mode.
+    * Fix: exposure point is now set in iOS.
+
+Deprecations
+------------
+
+.. eager-ifconfig:: platform == 'android'
+
+  * Deprecated :meth:`core.DataCaptureContext.ForLicenseKeyAndDeviceName` in favor of a :type:`builder<core.DataCaptureContextBuilder>` to set additional properties on the context. It is constructed through :meth:`core.DataCaptureContext.Builder`.
+  * Deprecated :meth:`barcode.SymbologyDescription.SymbologyFromIdentifier` in favor of :meth:`barcode.SymbologyDescription.ForIdentifier` and :prop:`barcode.SymbologyDescription.Symbology`.
+  * Deprecated :prop:`core.Vibration.VibrateTime` in favor of :prop:`core.Vibration.Duration`.
+
+.. eager-ifconfig:: platform == 'ios'
+
+  * Deprecated :meth:`barcode.SymbologyDescription.SymbologyFromIdentifier` in favor of :meth:`barcode.SymbologyDescription.ForIdentifier` and :prop:`barcode.SymbologyDescription.Symbology`.
+
+Updates
+-----------------------
+
+Bugfixes in |sdk| 6.1.1
+-----------------------
+
+.. eager-ifconfig:: platform == 'ios'
+
+  * Setting a :type:`rectangular location selection<core.RectangularLocationSelection>` with width or height of zero no longer causes a crash.
+  * Fixed an issue where :meth:`core.ImageBuffer.ToBitmap` would return invalid images.
+  * Fixed an issue where tracked barcodes are not removed immediately after disabling and enabling the :type:`barcode.tracking.BarcodeTracking`.
+
+.. eager-ifconfig:: platform == 'android'
+
+  * Setting a :type:`rectangular location selection<core.RectangularLocationSelection>` with width or height of zero no longer causes a crash.
+  * Fixed a crash when calling :meth:`core.Camera.GetDefaultCamera` if the device reported no available cameras.
+  * Fixed setting the device name and external id on the :type:`core.DataCaptureContextBuilder`, setting the device name would set the external id and vice versa.
+  * Fixed an issue where tracked barcodes are not removed immediately after disabling and enabling the :type:`barcode.tracking.BarcodeTracking`.
+  * Fixed an issue with the :type:`barcode.tracking.ui.BarcodeTrackingAdvancedOverlay` trying to add a view twice or never removing a view.
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  * Setting a :type:`rectangular location selection<core.RectangularLocationSelection>` with width or height of zero no longer causes a crash.
+
+.. eager-ifconfig:: internal
+
+  Internal
+  ^^^^^^^^
+
+  .. eager-ifconfig:: platform == 'android'
+
+    * Fixed a crash when using camera API 2 with an app that does not yet have camera permission.
+    * Fixed a bug that was causing properties set to the BarcodeTrackingSettings not to be passed to the ObjectTracker when the settings where used for the construction of BarcodeTracking. An example: you created a BarcodeTrackingSettings, enabled the new tracker, and constructed a BarcodeTracking with such settings: the result would be that the old tracker would still be used. Please note that applySettings() was working fine.
+
+  .. eager-ifconfig:: platform != 'android'
+
+    * Fixed a bug that was causing properties set to the BarcodeTrackingSettings not to be passed to the ObjectTracker when the settings where used for the construction of BarcodeTracking. An example: you created a BarcodeTrackingSettings, enabled the new tracker, and constructed a BarcodeTracking with such settings: the result would be that the old tracker would still be used. Please note that applySettings() was working fine.
+    
+-----------------------
+
+Bugfixes in |sdk| 6.1.2
+-----------------------
+
+.. eager-ifconfig:: platform == 'ios'
+
+  * Fixed an issue causing the camera preview to be rotated when switching the camera.
+
+.. eager-ifconfig:: internal
+
+  Internal
+  ^^^^^^^^
+
+  .. eager-ifconfig:: platform == 'android'
+
+    * Fixed a bug that was causing :type:`barcode.tracking.BarcodeTracking` to sometimes crash if :type:`barcode.tracking.BarcodeTracking` is deallocated without being disabled first.
+
+  .. eager-ifconfig:: platform == 'ios'
+
+    * Fixed a bug that was causing :type:`barcode.tracking.BarcodeTracking` to sometimes crash if :type:`barcode.tracking.BarcodeTracking` is deallocated without being disabled first.
+    * Fixed a bug that was sometimes causing the camera preview to be in landscape instead of portait the first time it's presented.

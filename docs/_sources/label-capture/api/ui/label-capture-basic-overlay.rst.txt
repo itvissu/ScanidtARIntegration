@@ -1,0 +1,77 @@
+Label Capture Basic Overlay
+===========================
+
+.. module:: scandit.datacapture.label.ui
+  :android-package: com.scandit.datacapture.label.ui.overlay
+
+.. class:: LabelCaptureBasicOverlay : core.ui.IDataCaptureOverlay
+  @objc@ SDCLabelCaptureBasicOverlay : NSObject <SDCDataCaptureOverlay>
+  :available: android=6.0, ios=6.0
+
+  Overlay for label capture that displays captured labels and their fields on top of the frames. When labels are successfully recognized, the label background as well as the fields are highlighted. Fields are highlighted using a default brush (:prop:`LabelCaptureBasicOverlay.DefaultCapturedFieldBrush`, :prop:`LabelCaptureBasicOverlay.DefaultPredictedFieldBrush`), a brush set through a user-defined :type:`ILabelCaptureBasicOverlayListener` or calls to :meth:`SetBrushForField`.
+
+  .. method:: static LabelCaptureBasicOverlay NewInstance(LabelCapture labelCapture, core.ui.DataCaptureView? view)
+    @objc@ + (instancetype)overlayWithLabelCapture:(nonnull SDCLabelCapture *)labelCapture forDataCaptureView:(nullable SDCDataCaptureView *)view
+    :available: android=6.0, ios=6.0
+
+    Constructs a new overlay to visualize the process of label capture. When **view** is non-|null|, the overlay is automatically added to the view. Otherwise, the overlay needs to be added through a call to :meth:`core.ui.DataCaptureView.AddOverlay`.
+
+  .. method:: LabelCaptureBasicOverlay(LabelCapture labelCapture)
+    @objc@ + (instancetype)overlayWithLabelCapture:(nonnull SDCLabelCapture *)labelCapture
+    :available: ios=6.0
+
+    Constructs a new overlay to visualize the process of label capture. The overlay needs to be added through a call to :meth:`core.ui.DataCaptureView.AddOverlay`.
+
+  .. property:: ILabelCaptureBasicOverlayListener? Listener { get; set; }
+    @objc@ @property (nonatomic, weak, nullable) id<SDCLabelCaptureBasicOverlayDelegate> delegate
+    :available: android=6.0, ios=6.0
+
+  .. method:: void SetBrushForField(core.ui.Brush? brush, LabelField field, CapturedLabel label)
+    @objc@ - (void)setBrush:(SDCBrush *)brush forField:(SDCLabelField *)field ofLabel:(SDCCapturedLabel *)label
+    :available: android=6.0, ios=6.0
+
+    The method can be called to change the visualization style of a field. This method is thread-safe; it can be called from any thread.
+
+    When :prop:`Listener` is set to a non-|null| instance, the |delegate| continues to be asked for the brush to use for this field whenever the state changes, thereby replacing any brushes set by calling :meth:`SetBrushForField`.
+
+  .. method:: void SetBrushForLabel(core.ui.Brush? brush, CapturedLabel label)
+    @objc@ - (void)setBrush:(SDCBrush *)brush forLabel:(SDCCapturedLabel *)label
+    :available: android=6.0, ios=6.0
+
+    The method can be called to change the visualization style of a label. This method is thread-safe; it can be called from any thread.
+
+    When :prop:`Listener` is set to a non-|null| instance, the |delegate| continues to be asked for the brush to use for this label whenever the state of one its fields changes, thereby replacing any brushes set by calling :meth:`SetBrushForLabel`.
+
+  .. property:: core.ui.Brush? DefaultPredictedFieldBrush { get; set; }
+    @objc@ @property (nonatomic, strong, nonnull) SDCBrush *defaultPredictedFieldBrush
+    :available: android=6.0, ios=6.0
+    
+    The default brush applied to predicted fields. This is the brush used if :type:`ILabelCaptureBasicOverlayListener` is not set.
+  
+  .. property:: core.ui.Brush? DefaultCapturedFieldBrush { get; set; }
+    @objc@ @property (nonatomic, strong, nonnull) SDCBrush *defaultCapturedFieldBrush
+    :available: android=6.0, ios=6.0
+    
+    The default brush applied to captured fields. This is the brush used if :type:`ILabelCaptureBasicOverlayListener` is not set.
+
+  .. property:: core.ui.Brush? DefaultLabelBrush { get; set; }
+    @objc@ @property (nonatomic, strong, nonnull) SDCBrush *defaultLabelBrush
+    :available: android=6.0, ios=6.0
+    
+    The default brush used for drawing labels. This brush is used when no :prop:`Listener` is set, or the :meth:`ILabelCaptureBasicOverlayListener.BrushForLabel` returns a |null| brush.
+
+  .. method:: core.ui.Brush? GetDefaultFieldBrush(LabelFieldState state)
+    :available: android=6.0
+
+    Returns the default brush to draw fields of the provided state. Valid values for state are :enum:`LabelFieldState.Predicted` and :enum:`LabelFieldState.Captured`. See :prop:`DefaultPredictedFieldBrush`, and :prop:`DefaultCapturedFieldBrush` for details.
+
+  .. method:: void SetDefaultFieldBrush(LabelFieldState state, core.ui.Brush? brush)
+    :available: android=6.0
+
+    Sets the default brush to draw fields of the provided state. Valid values for state are :enum:`LabelFieldState.Predicted` and :enum:`LabelFieldState.Captured`. See :prop:`DefaultPredictedFieldBrush`, and :prop:`DefaultCapturedFieldBrush` for details.
+
+  .. property:: bool ShouldShowScanAreaGuides { get; set; }
+    :available: android=6.0, ios=6.0
+
+    Whether to show scan area guides on top of the preview. This property is useful during development to visualize the current scan areas on screen. It is not meant to be used for production. By default this property is |false|.
+

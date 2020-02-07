@@ -1,0 +1,48 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Barcode Tracking Session
+========================
+
+.. module:: scandit.datacapture.barcode.tracking
+  :android-package: com.scandit.datacapture.barcode.tracking.capture
+
+.. class:: BarcodeTrackingSession
+  @objc@ SDCBarcodeTrackingSession : NSObject
+  :available: android=6.0, ios=6.0
+  
+  .. property:: IList<TrackedBarcode> AddedTrackedBarcodes { get; }
+    :available: android=6.0, ios=6.0
+  
+    Newly tracked barcodes.
+  
+  .. property:: IList<int32> RemovedTrackedBarcodes { get; }
+    @objc@ @property (nonatomic, nonnull, readonly) NSArray<NSNumber *> *removedTrackedBarcodes
+    :available: android=6.0, ios=6.0
+  
+    The identifiers of lost tracked barcodes that were removed.
+    
+    .. implnote:: We probably need to change this to removedIdentifiers because underlying tracked barcode can be gone.
+  
+  .. property:: IList<TrackedBarcode> UpdatedTrackedBarcodes { get; }
+    :available: android=6.0, ios=6.0
+  
+    Updated tracked barcodes (new location).
+
+  .. property:: IDictionary<int32, TrackedBarcode> TrackedBarcodes { get; }
+    @objc@ @property (nonatomic, strong, readonly) NSDictionary<NSNumber *, SDCTrackedBarcode *> *trackedBarcodes
+    :available: android=6.0, ios=6.0
+    
+    A map from identifiers to tracked barcodes. It contains all currently tracked barcodes.
+
+  .. property:: long FrameSequenceId { get; }
+    @objc@ @property (nonatomic, readonly) NSInteger frameSequenceId
+    :available: ios=6.1, android=6.1
+
+    The identifier of the current frame sequence.
+
+    .. important::
+      As long as there is no interruptions of frames coming from the camera, the :prop:`BarcodeTrackingSession.FrameSequenceId` will stay the same.
+
+

@@ -1,0 +1,129 @@
+Symbology Description
+=====================
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.data
+
+.. struct:: Range
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  .. method:: Range(int min, int max, int step)
+    :available: android=6.0
+
+    Creates a new range object.
+
+  .. property:: int Minimum { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Minimum of the range.
+
+  .. property:: int Maximum { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Maximum of the range.
+
+  .. property:: int Step { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Step of the range.
+
+  .. property:: boolean IsFixed { get; }
+    :available: cordova=6.1
+
+    If the range is fixed.
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. class:: SymbologyDescription
+  @objc@ SDCSymbologyDescription : NSObject
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Description specific to a particular :type:`barcode symbology<Symbology>`.
+
+  .. method:: SymbologyDescription(Symbology symbology)
+    @java@ static SymbologyDescription create(Symbology symbology)
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Creates a new symbology description for a given :type:`barcode symbology<Symbology>`.
+
+  .. method:: static Symbology SymbologyFromIdentifier(string identifier)
+    :available: android=6.0, ios=6.0
+
+    Gets the symbology for a given :prop:`Identifier`.
+
+    .. deprecated:: 6.1.0
+      Use :meth:`ForIdentifier` and :prop:`Symbology` instead.
+
+  .. method:: static SymbologyDescription ForIdentifier(string identifier)
+    @objc@ +(nonnull SDCSymbologyDescription *)symbologyDescriptionFromIdentifier:(nonnull NSString *)identifier
+    :available: android=6.1, ios=6.1, cordova=6.1
+
+    Gets the symbology description for a given :prop:`Identifier`.
+
+  .. method:: static ISet<SymbologyDescription> All()
+    @objc@ @property (class, nonatomic, nonnull, readonly) NSArray<SDCSymbologyDescription *> *allSymbologyDescriptions
+    @java@ static List<SymbologyDescription> all()
+    @javascript@ static get all(): SymbologyDescription[]
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Gets a description of each available :type:`barcode symbology<Symbology>`.
+
+  .. property:: string Identifier { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Identifier of the :type:`symbology<Symbology>` associated with this description.
+
+  .. property:: string ReadableName { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The human readable name of the :type:`symbology<Symbology>` associated with this description.
+
+  .. property:: bool IsAvailable { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Determines whether the :type:`symbology<Symbology>` associated with this description is available.
+
+  .. property:: bool IsColorInvertible { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Determines whether decoding of color-inverted (bright on dark) codes for the :type:`symbology<Symbology>` associated with this description is available.
+
+  .. property:: Range ActiveSymbolCountRange { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The supported active symbol count range for the :type:`symbology<Symbology>` associated with this description.
+
+  .. property:: Range DefaultSymbolCountRange { get; }
+    :available: android=6.1, ios=6.0, cordova=6.1
+
+    The default symbol count range for the :type:`symbology<Symbology>` associated with this description.
+
+  .. property:: ISet<string> SupportedExtensions { get; }
+    @javascript@ get supportedExtensions(): string[]
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    A list of extensions supported by the :type:`symbology<Symbology>` associated with this description.
+
+  .. property:: Symbology Symbology { get; }
+    :available: android=6.1, ios=6.1, cordova=6.1
+
+    The :type:`symbology<Symbology>` associated with this description.
+
+  .. method:: string ToJson()
+    @objc@ -(nonnull NSString *)JSONString
+    :available: ios=6.1, android=6.1
+
+    Returns the JSON representation of the symbology description.
+
+.. method:: bool RangeIsFixed(Range range)
+  :available: ios=6.0
+
+  Checks if a given range is fixed.

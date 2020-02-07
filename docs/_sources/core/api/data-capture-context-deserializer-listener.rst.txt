@@ -1,0 +1,27 @@
+Data Capture Context Deserializer Listener
+==========================================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.capture.serialization
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. interface:: IDataCaptureContextDeserializerListener
+  @objc@ SDCDataCaptureContextDeserializerDelegate <NSObject>
+  :available: ios=6.1, android=6.1
+
+  The listener for the frame source deserializer.
+
+  .. method:: void OnContextDeserializationStarted(DataCaptureContextDeserializer deserializer, DataCaptureContext dataCaptureContext, JsonValue json)
+    @objc@ - (void)contextDeserializer:(SDCDataCaptureContextDeserializer *)deserializer didStartDeserializingContext:(SDCDataCaptureContext *)context fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called before the deserialization of the context started. This is the point to overwrite defaults before the deserialization is performed. 
+
+  .. method:: void OnContextDeserializationFinished(DataCaptureContextDeserializer deserializer, DataCaptureContext dataCaptureContext, JsonValue json)
+    @objc@ - (void)contextDeserializer:(SDCDataCaptureContextDeserializer *)deserializer didFinishDeserializingContext:(SDCDataCaptureContext *)context fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called when the deserialization of the context finished. This is the point to do additional deserialization.

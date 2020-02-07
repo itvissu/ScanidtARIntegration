@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Camera &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Camera Settings" href="camera-settings.html" />
+    <link rel="prev" title="Anchor" href="anchor.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../overview.html">ScanditCaptureCore</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">Core Concepts of the Scandit Data Capture SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../serialization.html">Serialization</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="anchor.html">Anchor</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera-settings.html">Camera Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="context-status.html">Context Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context.html">Data Capture Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-builder.html">Data Capture Context Builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer.html">Data Capture Context Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer-listener.html">Data Capture Context Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer-result.html">Data Capture Context Deserializer Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-frame-listener.html">Data Capture Context Frame Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-listener.html">Data Capture Context Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-mode.html">Data Capture Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-mode-deserializer.html">Data Capture Mode Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-view-deserializer.html">Data Capture View Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-view-deserializer-listener.html">Data Capture View Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="direction.html">Direction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="feedback.html">Feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-data.html">Frame Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source.html">Frame Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-deserializer.html">Frame Source Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-deserializer-listener.html">Frame Source Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-listener.html">Frame Source Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="json-value.html">Json Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laserline-viewfinder.html">Laserline Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="location-selection.html">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radius-location-selection.html">Radius Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rectangular-location-selection.html">Rectangular Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rectangular-viewfinder.html">Rectangular Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spotlight-viewfinder.html">Spotlight Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewfinder.html">Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/brush.html">Brush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-overlay.html">Data Capture Overlay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-view.html">Data Capture View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-view-listener.html">Data Capture View Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/torch-switch-control.html">Torch Switch Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#camera-and-frame-sources">Camera and Frame Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#context-and-capture-modes">Context and Capture Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#location-selection">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#user-interface">User Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#misc-data-structures">Misc Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#deserialization">Deserialization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../overview.html">ScanditCaptureCore</a> &raquo;</li>
+        
+          <li><a href="../api.html">ScanditCaptureCore API</a> &raquo;</li>
+        
+      <li>Camera</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="camera">
+<h1>Camera<a class="headerlink" href="#camera" title="Permalink to this headline">#</a></h1>
+<p>Defined under the namespace <em>Scandit.Datacapture.Core</em></p>
+<dl class="enum">
+<dt id="enum-scandit.datacapture.core.TorchState">
+<code class="sig-name descname">TorchState</code><a class="headerlink" href="#enum-scandit.datacapture.core.TorchState" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Possible values for the torch state.</p>
+<dl class="value">
+<dt id="value-scandit.datacapture.core.TorchState.On">
+<code class="sig-name descname">On</code><a class="headerlink" href="#value-scandit.datacapture.core.TorchState.On" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Value to indicate that the torch is turned on.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.TorchState.Off">
+<code class="sig-name descname">Off</code><a class="headerlink" href="#value-scandit.datacapture.core.TorchState.Off" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Value to indicate that the torch is turned off.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="class-scandit.datacapture.core.Camera">
+<code class="sig-name descname">Camera</code><a class="headerlink" href="#class-scandit.datacapture.core.Camera" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class Camera</code> : <a class="reference internal" href="frame-source.html#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Gives access to the built-in camera on Cordova. It implements the <a class="reference internal" href="frame-source.html#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a> interface, and, as such can be set as the <a class="reference internal" href="data-capture-context.html#method-scandit.datacapture.core.DataCaptureContext.SetFrameSourceAsync" title="frame source method">frame source</a> for the <a class="reference internal" href="data-capture-context.html#class-scandit.datacapture.core.DataCaptureContext" title="DataCaptureContext class">DataCaptureContext</a>.</p>
+<p>Instances of this class are created through one of the factory methods <a class="reference internal" href="#method-scandit.datacapture.core.Camera.GetDefaultCamera" title="default() method">default()</a>, or <a class="reference internal" href="#method-scandit.datacapture.core.Camera.GetCamera" title="atPosition() method">atPosition()</a>.</p>
+<p>The camera is started by changing the <a class="reference internal" href="frame-source.html#method-scandit.datacapture.core.IFrameSource.SwitchToDesiredStateAsync" title="desired state method">desired state</a> to <a class="reference internal" href="frame-source.html#value-scandit.datacapture.core.FrameSourceState.On" title="FrameSourceState.On value">FrameSourceState.On</a>.</p>
+<p>By default, the resolution of captured frames as well as auto-focus and exposure settings are chosen such that they work best for a variety of use cases. To fine-tune recognition, the camera settings can be changed through applying new <a class="reference internal" href="camera-settings.html#class-scandit.datacapture.core.CameraSettings" title="camera settings class">camera settings</a>.</p>
+<div class="admonition" id="implnote-0">
+<p class="admonition-title">Internal</p>
+<p>In the future, we may need to distinguish between different cameras at the same position, such as wide angle and telephoto cameras. In that case, we should introduce a new enum that allows to distinguish these cameras.</p>
+</div>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Camera.DesiredState">
+<code class="sig-name descname">desiredState</code><a class="headerlink" href="#property-scandit.datacapture.core.Camera.DesiredState" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get desiredState(): <a class="reference internal" href="frame-source.html#enum-scandit.datacapture.core.FrameSourceState" title="FrameSourceState enum">FrameSourceState</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Implemented from <a class="reference internal" href="frame-source.html#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a>. See <a class="reference internal" href="frame-source.html#property-scandit.datacapture.core.IFrameSource.DesiredState" title="FrameSource.desiredState property">FrameSource.desiredState</a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Camera.CurrentState">
+<code class="sig-name descname">getCurrentState()</code><a class="headerlink" href="#property-scandit.datacapture.core.Camera.CurrentState" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">getCurrentState</code>(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" title="Promise">Promise</a>&lt;<a class="reference internal" href="frame-source.html#enum-scandit.datacapture.core.FrameSourceState" title="FrameSourceState enum">FrameSourceState</a>&gt;</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Implemented from <a class="reference internal" href="frame-source.html#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a>. See <a class="reference internal" href="frame-source.html#property-scandit.datacapture.core.IFrameSource.CurrentState" title="FrameSource.getCurrentState property">FrameSource.getCurrentState</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.Camera.AddListener">
+<code class="sig-name descname">addListener(listener)</code><a class="headerlink" href="#method-scandit.datacapture.core.Camera.AddListener" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">addListener</code>(<em>listener</em>: <a class="reference internal" href="frame-source-listener.html#interface-scandit.datacapture.core.IFrameSourceListener" title="FrameSourceListener interface">FrameSourceListener</a> | null): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Implemented from <a class="reference internal" href="frame-source.html#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a>. See <a class="reference internal" href="frame-source.html#method-scandit.datacapture.core.IFrameSource.AddListener" title="FrameSource.addListener() method">FrameSource.addListener()</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.Camera.RemoveListener">
+<code class="sig-name descname">removeListener(listener)</code><a class="headerlink" href="#method-scandit.datacapture.core.Camera.RemoveListener" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">removeListener</code>(<em>listener</em>: <a class="reference internal" href="frame-source-listener.html#interface-scandit.datacapture.core.IFrameSourceListener" title="FrameSourceListener interface">FrameSourceListener</a> | null): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Implemented from <a class="reference internal" href="frame-source.html#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a>. See <a class="reference internal" href="frame-source.html#method-scandit.datacapture.core.IFrameSource.RemoveListener" title="FrameSource.removeListener() method">FrameSource.removeListener()</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.Camera.GetDefaultCamera">
+<code class="sig-name descname">default()</code><a class="headerlink" href="#method-scandit.datacapture.core.Camera.GetDefaultCamera" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">static get <code class="sig-name descname">default</code>(): <a class="reference internal" href="#class-scandit.datacapture.core.Camera" title="Camera class">Camera</a> | null</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Gets the default camera of the device. This method is identical to calling <a class="reference internal" href="#method-scandit.datacapture.core.Camera.GetCamera" title="atPosition() method">atPosition()</a> repeatedly, first with <a class="reference internal" href="camera-settings.html#value-scandit.datacapture.core.CameraPosition.WorldFacing" title="CameraPosition.WorldFacing value">CameraPosition.WorldFacing</a>, then with <a class="reference internal" href="camera-settings.html#value-scandit.datacapture.core.CameraPosition.UserFacing" title="CameraPosition.UserFacing value">CameraPosition.UserFacing</a> followed by <a class="reference internal" href="camera-settings.html#value-scandit.datacapture.core.CameraPosition.Unspecified" title="CameraPosition.Unspecified value">CameraPosition.Unspecified</a>, stopping after the first of these calls returns a non-<em>null</em> instance.</p>
+<p>See <a class="reference internal" href="#method-scandit.datacapture.core.Camera.GetCamera" title="atPosition() method">atPosition()</a> for a more detailed description of the method behavior.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.Camera.GetCamera">
+<code class="sig-name descname">atPosition(cameraPosition)</code><a class="headerlink" href="#method-scandit.datacapture.core.Camera.GetCamera" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">static <code class="sig-name descname">atPosition</code>(<em>cameraPosition</em>: <a class="reference internal" href="camera-settings.html#enum-scandit.datacapture.core.CameraPosition" title="CameraPosition enum">CameraPosition</a>): <a class="reference internal" href="#class-scandit.datacapture.core.Camera" title="Camera class">Camera</a> | null</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Retrieves the camera instance of the first camera at the provided position. In case the system does not have a camera at the provided position, <em>null</em> is returned.</p>
+<p>When this method is called multiple times with the same argument, the same <a class="reference internal" href="#class-scandit.datacapture.core.Camera" title="Camera class">Camera</a> instance is returned. The <a class="reference internal" href="frame-source.html#property-scandit.datacapture.core.IFrameSource.CurrentState" title="FrameSource.getCurrentState property">FrameSource.getCurrentState</a> of the camera as well as the settings depend on previous invocations. For example, if the camera is currently in use and is active, the camera’s <a class="reference internal" href="frame-source.html#property-scandit.datacapture.core.IFrameSource.CurrentState" title="FrameSource.getCurrentState property">FrameSource.getCurrentState</a> will be <a class="reference internal" href="frame-source.html#value-scandit.datacapture.core.FrameSourceState.On" title="FrameSourceState.On value">FrameSourceState.On</a>. The only guarantee about the state and settings is that when instance is initially created, the <a class="reference internal" href="frame-source.html#property-scandit.datacapture.core.IFrameSource.CurrentState" title="FrameSource.getCurrentState property">FrameSource.getCurrentState</a> is <a class="reference internal" href="frame-source.html#value-scandit.datacapture.core.FrameSourceState.Off" title="FrameSourceState.Off value">FrameSourceState.Off</a> and has the default <a class="reference internal" href="camera-settings.html#class-scandit.datacapture.core.CameraSettings" title="CameraSettings class">CameraSettings</a>.</p>
+<p>The camera object is returned if present, regardless whether the application has permissions to use it or not.</p>
+<div class="admonition" id="implnote-1">
+<p class="admonition-title">Internal</p>
+<p>The camera objects are effectively singletons that are alive for the whole existence of the application. While typically singletons should be avoided, in this particular case a singleton design is closest to how the underlying hardware operates.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.Camera.SwitchToDesiredStateAsync">
+<code class="sig-name descname">switchToDesiredState(state)</code><a class="headerlink" href="#method-scandit.datacapture.core.Camera.SwitchToDesiredStateAsync" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">switchToDesiredState</code>(<em>state</em>: <a class="reference internal" href="frame-source.html#enum-scandit.datacapture.core.FrameSourceState" title="FrameSourceState enum">FrameSourceState</a>): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" title="Promise">Promise</a>&lt;<code class="docutils literal notranslate"><span class="pre">void</span></code>&gt;</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Implemented from <a class="reference internal" href="frame-source.html#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a>. See <a class="reference internal" href="frame-source.html#method-scandit.datacapture.core.IFrameSource.SwitchToDesiredStateAsync" title="FrameSource.switchToDesiredState() method">FrameSource.switchToDesiredState()</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.Camera.ApplySettingsAsync">
+<code class="sig-name descname">applySettings(settings)</code><a class="headerlink" href="#method-scandit.datacapture.core.Camera.ApplySettingsAsync" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">applySettings</code>(<em>settings</em>: <a class="reference internal" href="camera-settings.html#class-scandit.datacapture.core.CameraSettings" title="CameraSettings class">CameraSettings</a>): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" title="Promise">Promise</a>&lt;<code class="docutils literal notranslate"><span class="pre">void</span></code>&gt;</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Applies the camera settings to the camera. The task will complete when the settings have been applied and the camera has switched to use the new settings. If the camera is currently in <a class="reference internal" href="frame-source.html#value-scandit.datacapture.core.FrameSourceState.Off" title="FrameSourceState.Off value">FrameSourceState.Off</a> state, the task will complete immediately. If, on the other hand, the camera is currently in <a class="reference internal" href="frame-source.html#value-scandit.datacapture.core.FrameSourceState.On" title="FrameSourceState.On value">FrameSourceState.On</a> state, the settings will be modified on the fly.</p>
+<div class="admonition" id="implnote-2">
+<p class="admonition-title">Internal</p>
+<p>Applying new settings must also work when the camera is currently transitioning from off to on, or from on to off.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Camera.IsTorchAvailable">
+<code class="sig-name descname">isTorchAvailable</code><a class="headerlink" href="#property-scandit.datacapture.core.Camera.IsTorchAvailable" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get isTorchAvailable(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean" title="boolean">boolean</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Camera.DesiredTorchState">
+<code class="sig-name descname">desiredTorchState</code><a class="headerlink" href="#property-scandit.datacapture.core.Camera.DesiredTorchState" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">desiredTorchState: <a class="reference internal" href="#enum-scandit.datacapture.core.TorchState" title="TorchState enum">TorchState</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The desired torch state for this camera. By default, the torch state is <a class="reference internal" href="#value-scandit.datacapture.core.TorchState.Off" title="TorchState.Off value">TorchState.Off</a>. When setting the desired torch state to <a class="reference internal" href="#value-scandit.datacapture.core.TorchState.On" title="TorchState.On value">TorchState.On</a>, the torch will be on as long as the camera is running (the camera’s state is <a class="reference internal" href="frame-source.html#value-scandit.datacapture.core.FrameSourceState.On" title="FrameSourceState.On value">FrameSourceState.On</a>) and off otherwise.</p>
+<p>When setting the desired torch state for a camera that does not have a torch (see <a class="reference internal" href="#property-scandit.datacapture.core.Camera.IsTorchAvailable" title="isTorchAvailable property">isTorchAvailable</a>), this call has no effect.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

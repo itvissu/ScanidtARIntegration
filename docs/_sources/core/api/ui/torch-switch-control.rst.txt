@@ -1,0 +1,19 @@
+Torch Switch Control
+====================
+
+.. module:: scandit.datacapture.core.ui
+  :android-package: com.scandit.datacapture.core.ui.control
+
+.. class:: TorchSwitchControl : IControl
+  @objc@ SDCTorchSwitchControl : NSObject <SDCControl>
+  :available: android=6.0, ios=6.0
+  
+  Control that allows to toggle the torch on an off. The torch switch control hides itself automatically in case the active frame source doesn't have a torch.
+
+  You can add this control to a view by calling :meth:`DataCaptureView.AddControl`.
+
+
+  .. method:: TorchSwitchControl(Context context)
+    :available: android=6.0
+
+    Constructor.

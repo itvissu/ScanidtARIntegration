@@ -1,0 +1,111 @@
+******
+GS1 AI
+******
+
+Overview
+========
+
+The parser supports version 19.0 of the GS1 Application Identifier (AI) definitions standard. The latest version of the AI definitions is available in `Section 3 GS1 Application Identifier definitions <http://www.gs1.org/docs/barcodes/GS1_General_Specifications.pdf>`_.
+
+Examples
+========
+
+Parsing the following code (without the quotes):
+
+::
+
+    "1719060010SCANDIT123"
+
+will result in the following JSON output:
+
+.. code-block:: javascript
+
+    [
+        {
+            "name" : "17",
+            "parsed" : {
+                "month" : 6,
+                "year" : 2019
+            },
+            "rawString" : "190600"
+        },
+        {
+            "name" : "10",
+            "parsed" : "SCANDIT123",
+            "rawString" : "SCANDIT123"
+        }
+    ]
+
+And parsing the following code with `strictMode` disabled:
+
+::
+
+    "00001834560000000018"
+
+will result in the following JSON output:
+
+.. code-block:: javascript
+
+    [
+        {
+            "name" : "00",
+            "parsed" : "001834560000000018",
+            "issues" : ["check digit mismatch. Expected 8 but got 2."],
+            "rawString" : "001834560000000018"
+        }
+    ]
+
+
+Exposed Fields
+==============
+
+The name of the fields correspond to the AI number. The following fields have their content parsed. Fields which are not in this list can still be accessed, but only the raw string is available.
+
+* "00": parsed data is a dictionary, always contains alphanumeric subfield "extensionDigit", "serialReference", might also contain alphanumeric subfield "companyPrefix"
+* "01", "02": parsed data is a dictionary, always contains numeric subfields "companyPrefix" and "itemReference" and sometimes also integer field "indicator" (if non-0)
+* "10": parsed data is a string (batch/lot number)
+* "11", "12", "13", "15", "16", "17": parsed data is a dictionary, always contains integer fields "year" (YYYY), "month" (MM) and sometimes "day" (DD)
+* "20": parsed data is an integer (the variant)
+* "21": parsed data is a string (the serial number)
+* "30": parsed data is an integer (count of items, between 0 and 99999999)
+* "31ab", "32ab", "33ab", "34ab", "35ab", "36ab" for some numbers a and b:
+  These AI's are represented by two fields in our result: The field "31ab" and the fields "31ax". For example: The AI "3222" has the fields "3222" and "322x"
+  The parsed data is a string of the floating point number (e.g. "3202000150" has the parsed data "1.50")
+* "37": parsed data is an integer (count of items, between 0 and 99999999)
+* "400": parsed data is a string (customer's purchase order number)
+* "401": parsed data is a string (the GINC)
+* "420": parsed data is a string (postal code)
+* "422": parsed data is a 3-digit string (ISO3166 country of origin)
+* "7003": parsed data is a dictionary, always contains integer fields "year" (YYYY), "month" (MM), "day" (DD), "hour" (HH), "minute" (MM).
+* "8017": parsed data is a dictionary, always contains string subfields "companyPrefix" and "serviceReference".
+* "8018": parsed data is a dictionary, always contains string subfields "companyPrefix" and "serviceReference".
+* "91"-"99": parsed data is a string (when standardExtension option is not set)
+
+Extensions
+==========
+
+NHS
+---
+
+Based on Automatic Identification and Data Capture (AIDC) for Patient Identification. Standard Number: ISB 1077.
+When the standardExtension option is set to "nhs" we parse the following specific fields:
+
+* "91": parsed data is a dictionary, always contains alphanumeric subfield "organisationCode", "patientHospitalNumber". Might also contain numeric subfied "organisationPrefix".
+* "92": parsed data is a dictionary, always contains alphanumeric subfield "numberOfBabiesIndicator" and alphabetic subfields "babyOfLastName" and "babyOfFirstName".
+* "93": parsed data is a dictionary, always contains alphabetic subfield "lastName", "firstName" and alphanumeric "dateOfBirth". Might also contain alphanumeric "timeOfBirth".
+
+Parser Options
+==============
+
+Following options can be set to fine-tune the behaviour of the parser:
+
+* "strictMode": boolean (default:true)
+   Controls the strictness of the parser. When strictMode is set to true, every error in the input (invalid checksum, invalid characters etc.) is treated as an error. Parsing is aborted upon encountering the first error. When strictMode is set to false, parsing continues for non-critical errors. The encountered problems can be queried for each field separately via the issues property.
+* "standardExtension": string (no default value)
+   Option to enable extensions of the GS1 standard. This configures how certain AIs are interpreted (e.g, 'company internal information' on AIs 91 to 99). See section 'Extensions' for more details. Currently only "nhs" is supported.
+* "allowMachineReadableCodes": boolean (default:true)
+   Makes the parser accept codes which are encoded in machine readable format (i.e. AI numbers not encapsulated in parenthesis).
+* "allowHumanReadableCodes": boolean (default:false)
+   Makes the parser accept codes which are encoded in human readable format (i.e. AI numbers encapsulated in parenthesis).
+* "outputHumanReadableString": boolean (default: false)
+   Adds the additional field "humanReadableString" at the end of the resulting JSON string. This field contains the code in human readable form (i.e. AI number encapsulated in parenthesis).

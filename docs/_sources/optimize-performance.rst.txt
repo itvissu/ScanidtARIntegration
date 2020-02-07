@@ -1,0 +1,41 @@
+Optimize Scanning Performance
+======================================
+
+In this guide, you will learn how to optimize performance by adapting barcode capture to your use case.
+
+.. admonition:: Before you start...
+
+  To get the most out of this guide, we recommend that you first take a look at the following guides:
+
+  * :doc:`/add-sdk`
+  * :doc:`/get-started-barcode`
+
+Restrict the Scanning Area
+--------------------------
+
+The |sdk| allows to restrict the area of the screen in which it is looking for barcodes and entirely ignoring the area outside of it. This can significantly improve decoding speed (especially) on slower devices. While the |sdk| usually takes into consideration the entire screen by default, it might not actually be needed for some use cases or the performance gain might be worth the loss of some convenience in the form of scan area.
+
+Take a look at :doc:`how to set up the active scan area</scan-area>` for an in-depth explanation of what can be changed. Point your attention especially towards the section about :ref:`margins<scan_area_margins>` and the :ref:`RectangularLocationSelection<scan_area_rectangular_location_selection>` for a high performance gain and :ref:`RadiusLocationSelection<scan_area_radius_location_selection>` for a lower but still relevant performance gain.
+
+Optimizing for Scan Distance
+----------------------------
+
+The |sdk| lets you choose from different :type:`resolutions<scandit.datacapture.core.VideoResolution>` ( :enum:`HD<scandit.datacapture.core.VideoResolution.Hd>` , :enum:`full HD<scandit.datacapture.core.VideoResolution.FullHd>`, :enum:`4k<scandit.datacapture.core.VideoResolution.Uhd4k>`) for the video feed. Increasing the resolution typically leads to better decoding range and reading of small elements. However, it can also result in a lower framerate as more pixels need to be processed. When optimizing for your use case, you should use the lowest resolution that allows for good reading performance.
+
+The |sdk| also allows to set a default :prop:`zoom<scandit.datacapture.core.CameraSettings.ZoomFactor>` when opening the camera preview. This can be especially useful to read barcodes from further away, and is usually coupled with the usage of a higher resolution.
+
+.. eager-ifconfig:: platform == 'android'
+
+Note: :enum:`4k<scandit.datacapture.core.VideoResolution.Uhd4k>` is currently unavailable on Android. If :enum:`4k<scandit.datacapture.core.VideoResolution.Uhd4k>` is selected, :enum:`full HD<scandit.datacapture.core.VideoResolution.FullHd>` is used (if supported).
+
+Restrict the Active Symbologies
+-------------------------------
+
+The type of a barcode is referred to as its symbology, e.g :enum:`QR Code<scandit.datacapture.barcode.Symbology.Qr>` or :enum:`Code 128<scandit.datacapture.barcode.Symbology.Code128>`. The |sdk| supports numerous such symbologies and they are all disabled by default. To enable scanning of a particular barcode, its symbology must be enabled. To optimize performance you should always make sure that only the symbologies that you actually want to scan are enabled as every additionally enabled symbology will decrease the scanning performance slightly.
+
+On top of this each symbology has additional properties, such as the :prop:`active symbol counts<scandit.datacapture.barcode.SymbologySettings.ActiveSymbolCounts>` (which reflects the length of the barcode) or :prop:`color of the barcode<scandit.datacapture.barcode.SymbologySettings.IsColorInvertedEnabled>` (bright on dark or dark on bright). To optimize performance you should enable only the properties you need for each symbology as otherwise unnecessary processing might slow down the scanning.
+
+Enable the Torch in Low Light
+-----------------------------
+
+Getting additional light from the torch (the LED next to the camera, often used as a flashlight) can greatly improve the scanning performance in low-light environments. The |sdk| can provide the user with a :type:`button to manually control the torch<scandit.datacapture.core.ui.TorchSwitchControl>` and also allows to :prop:`turn the torch on/off programmatically<scandit.datacapture.core.Camera.DesiredTorchState>`.

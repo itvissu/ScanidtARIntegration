@@ -1,0 +1,64 @@
+Anchor
+===============================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.common.geometry
+
+.. enum:: Anchor
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  An enumeration of possible anchoring points in a geometric object such as :type:`rectangles<Rect>` or :type:`quadrilaterals<Quadrilateral>`. Values of this enumeration are typically used to determine where elements are placed on the screen. For example, it is used to place the logo on screen.
+
+  .. value:: TopLeft
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will use the top left corner as the anchor point.
+
+  .. value:: TopCenter
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will will use the center of the top edge as the anchor point.
+
+  .. value:: TopRight
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will use the top right corner as the anchor point.
+
+  .. value:: CenterLeft
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will use the center left corner as the anchor point.
+
+  .. value:: Center
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will use the center as the anchor point.
+
+  .. value:: CenterRight
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will use the center of the right edge as the anchor point.
+
+  .. value:: BottomLeft
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will use the bottom left corner as the anchor point.
+
+  .. value:: BottomCenter
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will use the center of the bottom edge as the anchor point.
+
+  .. value:: BottomRight
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will use the bottom right corner as the anchor point.
+
+.. method:: string StringFromAnchor(Anchor anchor)
+  @objc@ NSString *_Nonnull NSStringFromAnchor(SDCAnchor anchor)
+  :available: ios=6.1
+
+
+.. method:: Anchor AnchorFromJSONString(string JSONString)
+  @objc@ BOOL SDCAnchorFromJSONString(NSString *_Nonnull JSONString, SDCAnchor *_Nonnull anchor)
+  :available: ios=6.1

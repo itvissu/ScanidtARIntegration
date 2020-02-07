@@ -1,0 +1,646 @@
+Common Data Structures
+===============================
+
+.. module:: scandit.datacapture.core
+
+Geometric Types
+---------------
+
+.. enum:: MeasureUnit
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  Specifies in what units the value has been specified (fraction, device-independent pixels, pixels).
+
+  .. value:: Dip
+    @objc@ SDCMeasureUnitDIP
+    @javascript@ DIP
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Value is measured in device-independent pixels.
+
+  .. value:: Pixel
+    @objc@ SDCMeasureUnitPixel
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Value is measured in pixels.
+
+  .. value:: Fraction
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Value is measured as a fraction. Valid values range from 0 to 1. This can be used to specify values in relative coordinates with respect to a reference, e.g. the view width or height.
+
+.. enum:: SizingMode
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  An enumeration of possible ways to define a rectangular size.
+
+  .. value:: WidthAndHeight
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will use a :type:`SizeWithUnit` to determine width and the height.
+
+  .. value:: WidthAndAspectRatio
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will use a :type:`FloatWithUnit` to determine the width and a float multiplier to determine the height.
+
+  .. value:: HeightAndAspectRatio
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This value will use a :type:`FloatWithUnit` to determine the height and a float multiplier to determine the width.
+
+.. struct:: Point
+  :available: android=6.0, cordova=6.1
+
+  .. method:: Point(float x, float x)
+    :available: android=6.0
+
+    Construct a new point at position *x* and *y*.
+
+  .. property:: float X { get; }
+    :available: android=6.0, cordova=6.1
+
+    X coordinate of the point.
+
+  .. property:: float Y { get; }
+    :available: android=6.0, cordova=6.1
+
+    Y coordinate of the point.
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. struct:: PointWithUnit
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  .. method:: PointWithUnit(FloatWithUnit x, FloatWithUnit y)
+    :available: android=6.0
+
+    Construct a new point at position *x* and *y*.
+
+  .. property:: FloatWithUnit X { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    X coordinate of the point.
+
+  .. property:: FloatWithUnit Y { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Y coordinate of the point.
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. struct:: Rect
+  :available: android=6.0
+
+  .. method:: Rect(Point origin, Size2 size)
+    :available: android=6.0
+
+    Construct a new rectangle.
+
+  .. property:: Point Origin { get; }
+    :available: android=6.0
+
+    The origin (top-left corner) of the rectangle.
+
+  .. property:: Size2 Size { get; }
+    :available: android=6.0
+
+    The size of the rectangle.
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. struct:: RectWithUnit
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  .. method:: RectWithUnit(PointWithUnit point, SizeWithUnit size)
+    :available: android=6.0
+
+    Construct a new rectangle with unit.
+
+  .. property:: PointWithUnit Origin { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The origin (top-left corner) of the rectangle.
+
+  .. property:: SizeWithUnit Size { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The size of the rectangle.
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. struct:: Size2
+  :available: android=6.0
+
+  .. method:: Size2(float width, float height)
+    :available: android=6.0
+
+    Construct a new Size2 instance.
+
+  .. property:: float Width { get; }
+    :available: android=6.0
+
+    The width.
+
+  .. property:: float Height { get; }
+    :available: android=6.0
+
+    The height.
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. struct:: SizeWithUnit
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  .. method:: SizeWithUnit(FloatWithUnit width, FloatWithUnit height)
+    :available: android=6.0
+
+    Construct a new size with unit.
+
+  .. property:: FloatWithUnit Width { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The width.
+
+  .. property:: FloatWithUnit Height { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The height.
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. struct:: SizeWithAspect
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Holds values to define a rectangular size using a dimension and an aspect ratio multiplier.
+
+  .. method:: SizeWithAspect(FloatWithUnit size, float aspect)
+    :available: android=6.0
+
+    Construct a new size with aspect.
+
+  .. property:: FloatWithUnit Size { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The size of one dimension.
+
+  .. property:: float Aspect { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The aspect ratio for the other dimension.
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. struct:: FloatWithUnit
+  @javascript@ NumberWithUnit
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Holds a floating-point value plus a measure unit.
+
+  .. method:: FloatWithUnit(float value, MeasureUnit unit)
+    :available: android=6.0
+
+    Construct a new float with unit.
+
+  .. property:: float Value { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+  .. property:: MeasureUnit Unit { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. struct:: MarginsWithUnit
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  Holds margin values (left, top, right, bottom) that can each be expressed with a different measure unit.
+
+  .. method:: MarginsWithUnit(FloatWithUnit left, FloatWithUnit top, FloatWithUnit right, FloatWithUnit bottom)
+    :available: android=6.0
+
+    Constructs a new MarginsWithUnit instance.
+
+  .. property:: FloatWithUnit Left { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Left margin.
+
+  .. property:: FloatWithUnit Right { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Right margin.
+
+  .. property:: FloatWithUnit Top { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Top margin.
+
+  .. property:: FloatWithUnit Bottom { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Bottom margin.
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. struct:: Quadrilateral
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  Polygon represented by 4 corners.
+
+  .. method:: Quadrilateral(Point topLeft, Point topRight, Point bottomRight, Point bottomLeft)
+    :available: android=6.0
+
+    Constructs a new Quadrilateral instance.
+
+  .. property:: Point TopLeft { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+  .. property:: Point TopRight { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+  .. property:: Point BottomRight { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+  .. property:: Point BottomLeft { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. struct:: Size
+  :available: cordova=6.1
+
+  .. property:: float Width { get; }
+    :available: cordova=6.1
+
+    The width.
+
+  .. property:: float Height { get; }
+    :available: cordova=6.1
+
+    The height.
+
+.. class:: SizeWithUnitAndAspect
+  @objc@ SDCSizeWithUnitAndAspect : NSObject
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Holds a :type:`SizingMode` - and corresponding required values - to define a rectangular size.
+
+  .. ifconfig:: platform != 'ios'
+
+    .. note: Depending on the value of :prop:`SizeWithUnitAndAspect.SizingMode`, all but one of the following properties will be |null|: :prop:`SizeWithUnitAndAspect.WidthAndHeight`, :prop:`SizeWithUnitAndAspect.WidthAndAspectRatio` and :prop:`SizeWithUnitAndAspect.HeightAndAspectRatio`.
+
+  .. property:: SizeWithUnit? WidthAndHeight { get; }
+    @objc@ @property (nonatomic, readonly) SDCSizeWithUnit widthAndHeight
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The values for width and height.
+
+    .. ifconfig:: platform == 'ios'
+
+      .. note:: This value will always be `SDCSizeWithUnitZero` unless :prop:`SizeWithUnitAndAspect.SizingMode` is :enum:`SizingMode.WidthAndHeight`.
+
+    .. ifconfig:: platform != 'ios'
+
+      .. note:: This value will always be |null| unless :prop:`SizeWithUnitAndAspect.SizingMode` is :enum:`SizingMode.WidthAndHeight`.
+
+  .. property:: SizeWithAspect? WidthAndAspectRatio { get; }
+    @objc@ @property (nonatomic, readonly) SDCSizeWithAspect widthAndAspectRatio
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The value for width and the aspect ratio for height.
+
+    .. ifconfig:: platform == 'ios'
+
+      .. note:: This value will always be `SDCSizeWithAspectZero` unless :prop:`SizeWithUnitAndAspect.SizingMode` is :enum:`SizingMode.WidthAndAspectRatio`.
+
+    .. ifconfig:: platform != 'ios'
+
+      .. note:: This value will always be |null| unless :prop:`SizeWithUnitAndAspect.SizingMode` is :enum:`SizingMode.WidthAndAspectRatio`.
+
+  .. property:: SizeWithAspect? HeightAndAspectRatio { get; }
+    @objc@ @property (nonatomic, readonly) SDCSizeWithAspect heightAndAspectRatio
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The value for height and the aspect ratio for width.
+
+    .. ifconfig:: platform == 'ios'
+
+      .. note:: This value will always be `SDCSizeWithAspectZero` unless :prop:`SizeWithUnitAndAspect.SizingMode` is :enum:`SizingMode.HeightAndAspectRatio`.
+
+    .. ifconfig:: platform != 'ios'
+
+      .. note:: This value will always be |null| unless :prop:`SizeWithUnitAndAspect.SizingMode` is :enum:`SizingMode.HeightAndAspectRatio`.
+
+  .. property:: SizingMode SizingMode { get; }
+    @objc@ @property (nonatomic, readonly) SDCSizingMode sizingMode
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The sizing mode.
+
+  .. method:: string ToJson()
+    @objc@ @property (nonatomic, nonnull, readonly) NSString *JSONString
+    :available: ios=6.1, android=6.1
+
+.. class:: TimeInterval
+  :available: android=6.0
+
+  Represents a duration/time interval.
+
+  .. method:: static TimeInterval Millis(long value)
+    :available: android=6.0
+
+    Returns a new time interval from the provided duration in milliseconds.
+
+  .. method:: static TimeInterval Seconds(float value)
+    :available: android=6.0
+
+    Returns a new time interval from the provided duration in seconds.
+
+  .. method:: float AsSeconds()
+    :available: android=6.0
+
+    Returns the duration in seconds.
+
+  .. method:: long AsMillis()
+    :available: android=6.0
+
+    Returns the duration in milliseconds
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. method:: bool PointWithUnitIsNull(PointWithUnit pointWithUnit)
+  @objc@ BOOL SDCPointWithUnitIsNull(SDCPointWithUnit pointWithUnit);
+  :available: ios=6.1
+
+.. method:: string StringFromPointWithUnit(PointWithUnit pointWithUnit)
+  @objc@ NSString *_Nonnull NSStringFromPointWithUnit(SDCPointWithUnit pointWithUnit)
+  :available: ios=6.1
+
+.. method:: string StringFromRectWithUnit(RectWithUnit rectWithUnit)
+  @objc@ NSString *_Nonnull NSStringFromRectWithUnit(SDCRectWithUnit rectWithUnit)
+  :available: ios=6.1
+
+.. method:: string StringFromSizeWithUnit(SizeWithUnit sizeWithUnit)
+  @objc@ NSString *_Nonnull NSStringFromSizeWithUnit(SDCSizeWithUnit sizeWithUnit)
+  :available: ios=6.1
+
+.. method:: string StringFromSizeWithAspect(SizeWithAspect sizeWithAspect)
+  @objc@ NSString *_Nonnull NSStringFromSizeWithAspect(SDCSizeWithAspect sizeWithAspect)
+  :available: ios=6.1
+
+.. method:: bool FloatWithUnitIsNull(FloatWithUnit floatWithUnit)
+  @objc@ BOOL SDCFloatWithUnitIsNull(SDCFloatWithUnit floatWithUnit);
+  :available: ios=6.1
+
+.. method:: string StringFromFloatWithUnit(FloatWithUnit floatWithUnit)
+  @objc@ NSString *_Nonnull NSStringFromFloatWithUnit(SDCFloatWithUnit floatWithUnit)
+  :available: ios=6.1
+
+.. method:: string StringFromMarginsWithUnit(MarginsWithUnit marginsWithUnit)
+  @objc@ NSString *_Nonnull NSStringFromMarginsWithUnit(SDCMarginsWithUnit marginsWithUnit)
+  :available: ios=6.1
+
+.. method:: string StringFromQuadrilateral(Quadrilateral quadrilateral)
+  @objc@ NSString *_Nonnull NSStringFromQuadrilateral(SDCQuadrilateral quadrilateral)
+  :available: ios=6.1
+
+.. method:: Quadrilateral QuadrilateralFromJSONString(string JSONString)
+  @objc@ BOOL SDCQuadrilateralFromJSONString(NSString *_Nonnull JSONString, SDCQuadrilateral *_Nonnull quadrilateral)
+  :available: ios=6.1
+
+.. method:: Color ColorFromHexString(string hexString)
+  @objc@ UIColor *_Nullable SDCColorFromHexString(NSString *_Nonnull hexString)
+  :available: ios=6.1
+
+.. method:: string StringFromColor(Color color)
+  @objc@ NSString *_Nonnull SDCStringFromColor(UIColor *_Nonnull color)
+  :available: ios=6.1
+
+Misc Types
+----------------------
+
+.. eager-ifconfig:: platform == 'android'
+
+  .. interface:: ICallback<T>
+    :available: android=6.0
+
+    Interface for a callback/callable accepting a generic parameter of type *T*.
+
+    .. method:: void Run(T value)
+      :available: android=6.0
+
+      Called when the callback is invoked.
+
+.. class:: EncodingRange
+  @objc@ SDCEncodingRange : NSObject
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  Defines the encoding of a range of bytes.
+
+  .. method:: EncodingRange(String ianaName, int startIndex, int endIndex)
+    :available: android=6.0
+
+    Construct a new encoding range.
+
+  .. property:: string IanaName { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Charset encoding name as defined by `IANA <http://www.iana.org/assignments/character-sets/character-sets.xhtml>`_.
+
+  .. property:: uint StartIndex { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Start index of this encoding range.
+
+  .. property:: uint EndIndex { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    End index (first index after the last) of this encoding range.
+
+  .. method:: string toJson()
+    @objc@ @property (nonatomic, nonnull, readonly) NSString *JSONString
+    :available: ios=6.1
+
+  .. method:: bool Equals(Object? obj)
+    :available: android=6.1
+
+    Indicates whether some other object is equal to this one.
+
+  .. method:: int HashCode()
+    :available: android=6.1
+
+    Returns a hash code value for the object.
+
+.. enum:: Orientation
+  :available: cordova=6.1
+
+  .. value:: Unknown
+    :available: cordova=6.1
+
+  .. value:: Portrait
+    :available: cordova=6.1
+
+  .. value:: PortraitUpsideDown
+    :available: cordova=6.1
+
+  .. value:: LandscapeRight
+    :available: cordova=6.1
+
+  .. value:: LandscapeLeft
+    :available: cordova=6.1
+
+.. class:: Color
+  :available: cordova=6.1
+
+  .. method:: static Color FromHex(string hex)
+    :available: cordova=6.1
+
+    Create a color from a hexadecimal string. Colors can be represented by hexadecimal strings in the following formats (R = red, G = green, B = blue, A = alpha) with an optional # prefix. The characters can be upper or lower case:
+
+    - RRGGBB
+    - RRGGBBAA
+    - #RRGGBB
+    - #RRGGBBAA
+    - RGB
+    - RGBA
+    - #RGB
+    - #RGBA
+
+  .. method:: static Color FromRGBA(int red, int green, int blue, int alpha)
+    :available: cordova=6.1
+
+    Create a color from numerical color components.
+
+  .. method:: Color WithAlpha(int alpha)
+    :available: cordova=6.1
+
+    Create a color that only differs in it's alpha component.
+
+  .. property:: string RedComponent { get; }
+    :available: cordova=6.1
+
+    Red component of the color as a hexadecimal string.
+
+  .. property:: string GreenComponent { get; }
+    :available: cordova=6.1
+
+    Green component of the color as a hexadecimal string.
+
+  .. property:: string BlueComponent { get; }
+    :available: cordova=6.1
+
+    Blue component of the color as a hexadecimal string.
+
+  .. property:: string AlphaComponent { get; }
+    :available: cordova=6.1
+
+    Alpha component of the color as a hexadecimal string.
+
+  .. property:: int Red { get; }
+    :available: cordova=6.1
+
+    Red component of the color as a decimal value.
+
+  .. property:: int Green { get; }
+    :available: cordova=6.1
+
+    Green component of the color as a decimal value.
+
+  .. property:: int Blue { get; }
+    :available: cordova=6.1
+
+    Blue component of the color as a decimal value.
+
+  .. property:: int Alpha { get; }
+    :available: cordova=6.1
+
+    Alpha component of the color as a decimal value.
+

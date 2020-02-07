@@ -1,0 +1,29 @@
+Frame Source Listener
+===========================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.source
+
+.. interface:: IFrameSourceListener
+  @objc@ SDCFrameSourceListener <NSObject>
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  .. method:: void OnStateChanged(IFrameSource source, FrameSourceState newState)
+    @objc@ -(void)frameSource:(id<SDCFrameSource>)source didChangeState:(SDCFrameSourceState)newState
+    @javascript@ didChangeState(frameSource: FrameSource, newState: FrameSourceState): void
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+  .. method:: void OnObservationStarted(IFrameSource source)
+    @objc@ -(void)didStartObservingFrameSource:(id<SDCFrameSource>)source
+    :available: ios=6.0, android=6.0
+
+  .. method:: void OnObservationStopped(IFrameSource source)
+    @objc@ -(void)didStopObservingFrameSource:(id<SDCFrameSource>)source
+    :available: ios=6.0, android=6.0
+
+  .. method:: void OnFrameOutput(IFrameSource source, IFrameData frame)
+    @objc@ -(void)frameSource:(id<SDCFrameSource>)source didOutputFrame:(id<SDCFrameData>)frame
+    :available: ios=6.0, android=6.0
+
+    Event that is emitted whenever a new frame is available. Consumers of this frame source can listen to this event to receive the frames produced by the frame source. The frames are reference counted, if the consumers require access to the frames past the lifetime of the callback, they need to increment the reference count of the frame by one and release it once they are done processing it.
+

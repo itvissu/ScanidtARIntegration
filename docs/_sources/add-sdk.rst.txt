@@ -1,0 +1,368 @@
+Add the SDK to Your App
+============================================
+
+This guide shows you how to add the |sdk| to current existing project.
+
+Prerequisites
+-------------
+
+.. eager-ifconfig:: platform == 'android'
+
+  * The latest stable version of the Android SDK (for example through the latest Android Studio).
+  * An Android project with target SDK version |min-android-version| or higher.
+  * A valid |sdk| license key. You can sign up for a free test account at `ssl.scandit.com <https://ssl.scandit.com/customers/new?p=test>`_.
+
+  .. note::
+
+    Devices running the |sdk| need to have a GPU or the performance will drastically decrease.
+
+.. eager-ifconfig:: platform == 'ios'
+
+  * The latest stable version of Xcode.
+  * An iOS project with minimum iOS deployment target of |min-ios-version| or higher.
+  * A valid |sdk| license key. You can sign up for a free test account at `ssl.scandit.com/customers/new?p=test <https://ssl.scandit.com/customers/new?p=test>`_.
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  * The latest stable version of `Cordova <https://github.com/apache/cordova-cli#installation>`_, `Node.js and npm <https://nodejs.org/en/download/>`_.
+  * A project with minimum iOS deployment target of |min-ios-version| or higher. Or an Android project with target SDK version |min-android-version| or higher.
+  * A valid |sdk| license key. You can sign up for a free test account at `ssl.scandit.com/customers/new?p=test <https://ssl.scandit.com/customers/new?p=test>`_.
+
+  .. note::
+
+    Android devices running the |sdk| need to have a GPU or the performance will drastically decrease.
+
+Get a License Key
+-----------------
+
+1. If you don't have a scandit account yet, create a free test account at `ssl.scandit.com/customers/new?p=test <https://ssl.scandit.com/customers/new?p=test>`_.
+
+2. Sign in to your account at `ssl.scandit.com/sessions/new <https://ssl.scandit.com/sessions/new/>`_.
+
+3. Select "License Keys" from the left-hand menu
+
+4. If you don't have a license key for your app yet, click "Create native SDK license key" and enter the `bundle ID <https://support.scandit.com/hc/en-us/articles/115003452432-How-can-I-know-my-application-ID-Bundle-ID-to-create-a-License-Key->`_ for your project.
+
+5. Copy the license key.
+
+Should you have a paid subscription, please reach out to support@scandit.com if you need a new license key.
+
+Add the SDK
+-----------
+
+.. eager-ifconfig:: platform == 'android'
+
+  |sdk| is distributed as `AAR libraries <https://developer.android.com/studio/projects/android-library#aar-contents>`_ in the `official Scandit maven repository <https://bintray.com/scandit/DataCapture>`_.
+
+  You will always need to add a reference to `com.scandit.datacapture:core`, which contains the shared functionality used by the other data capture modules. In addition, depending on the data capture task, you will need a reference to:
+
+  * `com.scandit.datacapture:barcode` (:doc:`barcode-capture/api`) if you want to use barcode-related functionality such as barcode capture or MatrixScan.
+  * `com.scandit.datacapture:parser` (:doc:`parser/api`) if you want to parse data strings, e.g. as found in barcodes, into a set of key-value mappings.
+
+  You can safely remove `barcode` or `parser` dependencies if you are not going to use their features.
+
+  Gradle
+  ^^^^^^
+
+  Add `jcenter` repository in `build.gradle` file:
+
+  .. code-block:: groovy
+
+    repositories {
+      jcenter()
+    }
+
+  Alternatively, you can just add a link to the official Scandit maven repository on `jcenter`:
+
+  .. code-block:: groovy
+
+    repositories {
+      maven { url 'https://scandit.bintray.com/DataCapture' }
+    }
+
+  Add the necessary artifacts as dependencies to the app's `build.gradle`:
+
+  .. code-block:: groovy
+
+    dependencies {
+      implementation "com.scandit.datacapture:core:[version]"
+      implementation "com.scandit.datacapture:barcode:[version]"
+      implementation "com.scandit.datacapture:parser:[version]"
+    }
+
+  Latest [version] is |version| and can be found on `Bintray <https://bintray.com/scandit/DataCapture>`_.
+
+  Maven
+  ^^^^^
+
+  Add the `jcenter` repository in `pom.xml` file:
+
+  .. code-block:: xml
+
+    <repositories>
+      <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>bintray</name>
+          <url>http://jcenter.bintray.com</url>
+      </repository>
+    </repositories>
+
+  If you prefer to only add the official Scandit `jcenter` repo, provide the following config instead:
+
+  .. code-block:: xml
+
+    <repositories>
+      <repository>
+        <snapshots>
+          <enabled>false</enabled>
+        </snapshots>
+        <id>bintray-scandit-DataCapture</id>
+        <name>bintray</name>
+        <url>https://scandit.bintray.com/DataCapture</url>
+      </repository>
+    </repositories>
+
+  Add the necessary artifacts as dependencies:
+
+  .. code-block:: xml
+
+    <dependency>
+      <groupId>com.scandit.datacapture</groupId>
+      <artifactId>core</artifactId>
+      <version>[version]</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.scandit.datacapture</groupId>
+      <artifactId>barcode</artifactId>
+      <version>[version]</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.scandit.datacapture</groupId>
+      <artifactId>parser</artifactId>
+      <version>[version]</version>
+    </dependency>
+
+  `Latest [version] can be found here <https://bintray.com/scandit/DataCapture>`_.
+
+  Manually Add the Library to your Project
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  You will always need to add a reference to ScanditCaptureCore.aar, which contains the shared functionality used by the other data capture modules. In addition, depending on the data capture task, you will need a reference to:
+
+  * :doc:`barcode-capture/api` if you want to use barcode-related functionality such as barcode capture or MatrixScan.
+  * :doc:`parser/api` if you want to parse data strings, e.g. as found in barcodes, into a set of key-value mappings.
+
+  If your project already has a local flatDir repository, add the AAR files to that folder. If you do not have a flatDir respository yet, create a new one in your build.gradle file as illustrated below:
+
+  .. code-block:: groovy
+
+    repositories {
+      flatDir {
+        dirs '/path/to/folder/containing/the/aar/file'
+      }
+    }
+
+  Add the ScanditBarcodeScanner as a dependency to your build.gradle file:
+
+  .. code-block:: groovy
+
+    dependencies {
+      api(name:'ScanditBarcodeScanner', ext:'aar')
+    }
+
+  Dependent libraries
+  ^^^^^^^^^^^^^^^^^^^
+
+  The |sdk| modules depend on a few standard libraries that you can find listed below. If you are including the |sdk| through Gradle or Maven, all of these dependencies are automatically pulled in and there is no need for you to do anything further. If on the other hand you are directly adding the AAR files to the project, you will have to add these dependencies yourself.
+
+  * `ScanditCaptureCore.aar` depends on:
+
+    * org.jetbrains.kotlin:kotlin-stdlib:[version],
+    * org.jetbrains.kotlin:kotlin-reflect:[version],
+    * androidx.annotation:annotation:[version].
+
+  * `ScanditBarcodeCore.aar` depends on:
+
+    * org.jetbrains.kotlin:kotlin-stdlib:[version],
+    * org.jetbrains.kotlin:kotlin-reflect:[version].
+
+  * `ScanditParser.aar` depends on:
+
+    * org.jetbrains.kotlin:kotlin-stdlib:[version],
+    * org.jetbrains.kotlin:kotlin-reflect:[version],
+    * androidx.appcompat:appcompat:[version].
+
+.. eager-ifconfig:: platform == 'ios'
+
+  Currently we support two ways to integrate the |sdk|. The simplest way is to use CocoaPods, alternatively you can manually add the dynamic framework to your project.
+
+  Add the Frameworks via CocoaPods
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  Add the frameworks you want to add in your `Podfile`. For instance, to add :doc:`barcode-capture/api` add
+
+  .. sample:: ruby
+
+    pod 'ScanditBarcodeCapture', '~> |shortversion|'
+
+  The previous line will also download :doc:`core/api`, since :doc:`barcode-capture/api` depends on it.
+
+  If you want to install a specific version, you can do so by specifying the version explicitly. For instance:
+
+  .. sample:: ruby
+
+    pod 'ScanditBarcodeCapture', '|version|'
+
+  Using a specific version is necessary when you want to install a beta version.
+
+  Add the Frameworks Manually
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  Adding the frameworks manually is a three step process. First you need to add the frameworks to your project.
+  Drag the frameworks into the Embedded Binaries section of your target. Please note that you will always need at least ScanditCaptureCore.framework which contains the shared functionality used by the other data capture modules.
+
+  .. image:: /_static/getting-started/ios/embedded-binaries.png
+
+  The next step is to strip some invalid architectures.
+  Usually, iOS frameworks contain a fat binary with simulator (i386/x86_64) and device (ARM) slices.
+  When you want to submit your app to the App Store, you should strip the simulator slices.
+  In this step we will be stripping these slices. Add a new `Run Script Phase` in your target's `Build Phases` (make sure it's below the `Embed Frameworks` build phase).
+
+  Paste the following line in the script text field of Run Script Phase:
+
+  .. code-block:: text
+
+    bash "$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/ScanditCaptureCore.framework/strip-frameworks.sh"
+
+  .. image:: /_static/getting-started/ios/strip-frameworks.png
+
+  The last step is optional, but it is recommended for debugging and crash reporting.
+  For each framework, add the corresponding dSYM file to the project (i.e. ScanditCaptureCore.framework.dSYM).
+  Please note that the dSYM files should not be added to any target.
+
+  .. image:: /_static/getting-started/ios/add-dSYMs.png
+
+  Add the dSYM files as input files of the `Run Script Phase`. Make sure you specify the correct path (`$(SRCROOT)` is the path to the directory containing the Xcode project).
+
+  .. image:: /_static/getting-started/ios/copy-dSYMs.png
+
+  Now the debug symbols will be part of the final archive.
+  
+  .. note::
+    
+    When building the project, by default XCode will look for the frameworks in the root folder of the project. 
+    
+    If you choose to copy the frameworks in a different location, don't forget to update the `FRAMEWORK_SEARCH_PATHS` build setting accordingly.
+    
+    .. image:: /_static/getting-started/ios/update-framework-search-paths.png
+
+  Import the Frameworks in your Source Code
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  In the files in which you need to use the frameworks, add the import statements at the top.
+  In Swift:
+
+  .. code-block:: swift
+
+   import ScanditCaptureCore
+   import ScanditBarcodeCapture
+
+  In Objective-C:
+
+  .. this should be objc, but it's not because syntax highlighting doesn't work
+  .. code-block:: objc
+
+   @import ScanditCaptureCore;
+   @import ScanditBarcodeCapture;
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  Currently we support adding the |sdk| Cordova plugins to you project by manually downloading the plugins and adding them to your Cordova project. Let's take a look at the steps needed to do this.
+
+  Get the |sdk|
+  ^^^^^^^^^^^^^
+
+  After you downloaded the archive containing all the plugins at `ssl.scandit.com/sdk <https://ssl.scandit.com/sdk>`_, unzip the archive. It includes the available Cordova plugins, including the scandit-cordova-datacapture-core plugin that all other plugins depend on.
+
+  Create a new project (optional)
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  If you do not have a Cordova project yet that you'll use, you should create a new one.
+
+  .. code-block:: bash
+
+    > cordova create helloscandit --id "com.scandit.helloscandit"
+    > cd helloscandit
+    > cordova platform add [ios | android]
+
+  Add the plugin to your project
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  Use the Cordova CLI to add the plugin(s) to your already existing project.
+
+  You should first always add the scandit-cordova-datacapture-core plugin, as all other plugins depend on it:
+
+  .. code-block:: bash
+
+    cordova plugin add <path to scandit-cordova-datacapture-core plugin>
+
+  Once this is done, you can continue with adding the plugin for your desired functionality, e.g. for barcode capture, add the scandit-cordova-datacapture-barcode plugin:
+
+  .. code-block:: bash
+
+    cordova plugin add <path to scandit-cordova-datacapture-barcode plugin>
+
+  To update plugins, make sure to follow Cordova best practices and remove the plugin before adding the new version:
+
+  .. code-block:: bash
+
+    cordova plugin remove <id of the plugin being updated>
+    cordova plugin add <path to the newer version of the plugin>
+
+
+Create a Test License Key
+-----------------------------
+
+1. Sign in to your account at `ssl.scandit.com/sessions/new <https://ssl.scandit.com/sessions/new/>`_.
+
+2. Select "License Keys" from the left-hand menu
+
+3. Click "Create native SDK license key" and enter the `bundle ID <https://support.scandit.com/hc/en-us/articles/115003452432-How-can-I-know-my-application-ID-Bundle-ID-to-create-a-License-Key->`_ for your project.
+
+Should you have a paid subscription, please reach out to support@scandit.com if you need a new license key.
+
+Additional Information
+----------------------
+
+.. eager-ifconfig:: platform == 'ios'
+
+  * Remember that, if you want to use the camera as the frame source for barcode, text and label capture, you need to set the "Privacy - Camera Usage Description" field in the Info.plist file.
+
+.. eager-ifconfig:: platform == 'android'
+
+  * When using the |sdk| you will want to set the camera as the frame source for barcode, text and label capture. Thanks to the `manifest merge feature <https://developer.android.com/studio/build/manifest-merge>`_ `android.permission.CAMERA` permission is added to your final `AndroidManifest.xml`. You don't need to add it explicitly.
+  * The |sdk| might not work correctly when you use ProGuard. To avoid issues, add the following line to the proguard configuration:
+
+  .. code-block:: text
+
+    -keep class com.scandit.datacapture.** { *; }
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  * When using the |sdk| you will want to set the camera as the frame source for barcode capture. The camera permissions are handled by the plugins, so you don't need to specify anything explicitly.
+
+Next steps
+----------
+
+You are now ready to tackle the following guides:
+
+  - :doc:`/get-started-barcode`: guides you through the process of adding barcode scanning to your app
+
+  .. ifconfig:: platform != 'cordova'
+
+    - :doc:`/get-started-matrixscan`: guides you through the process of scanning multiple barcodes at once and use AR overlays in your app

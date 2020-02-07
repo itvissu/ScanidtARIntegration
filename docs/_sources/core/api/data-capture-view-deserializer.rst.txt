@@ -1,0 +1,55 @@
+Data Capture View Deserializer
+==============================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.capture.serialization
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. note::
+
+  This deserializer is not thread-safe, subsequent calls for the same view have to be called on the same thread.
+
+.. class:: DataCaptureViewDeserializer
+  @objc@ SDCDataCaptureViewDeserializer : NSObject
+  :available: ios=6.1, android=6.1
+
+  A deserializer to construct frame sources from JSON. For most use cases it is enough to use :meth:`core.Camera.FromJson` which internally uses this deserializer. Using the deserializer gives the advantage of being able to listen to the deserialization events as they happen and potentially influence them. Additonally warnings can be read from the deserializer that would otherwise not be available.
+
+  **Related topics**: :doc:`/core/serialization`.
+
+  .. method:: DataCaptureViewDeserializer(Context context, IList<IDataCaptureModeDeserializer> modeDeserializers)
+    @objc@ + (instancetype)dataCaptureViewDeserializerWithDeserializerModes:(NSArray<id<SDCDataCaptureModeDeserializer>> *)modeDeserializers
+    :available: ios=6.1, android=6.1
+
+    Creates a new deserializer object.
+
+  .. property:: IDataCaptureViewDeserializerListener Listener { get; set; }
+    @objc@ @property (nonatomic, weak, nullable) id<SDCDataCaptureViewDeserializerDelegate> delegate
+    :available: ios=6.1, android=6.1
+
+    The object informed about deserialization events.
+
+  .. property:: IList<String> Warnings { get; }
+    @objc@ @property (nonatomic, readonly) NSArray<NSString *> *warnings
+    :available: ios=6.1, android=6.1
+
+    The warnings produced during deserialization, for example which properties were not used during deserialization.
+
+  .. method:: ui.DataCaptureView ViewFromJson(DataCaptureContext dataCaptureContext, String jsonData)
+    @objc@ - (nullable SDCDataCaptureView *)viewFromJSONString:(NSString *)JSONString withContext:(SDCDataCaptureContext *)context error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Deserializes a data capture view from JSON. 
+
+    .. include:: /core/deserialization-exception.txt
+
+  .. method:: ui.DataCaptureView UpdateViewFromJson(ui.DataCaptureView view, String jsonData)
+    @objc@ - (nullable SDCDataCaptureView *)updateView:(SDCDataCaptureView *)view fromJSONString:(NSString *)JSONString error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Takes an existing data capture view and updates it by deserializing new or changed properties from JSON. See :ref:`serialization_update_from_json` for details of how updates are being done.
+
+    .. include:: /core/deserialization-exception.txt

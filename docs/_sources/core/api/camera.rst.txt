@@ -1,0 +1,241 @@
+Camera
+======
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.source
+
+.. enum:: TorchState
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Possible values for the torch state.
+
+  .. value:: On
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Value to indicate that the torch is turned on.
+
+  .. value:: Off
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Value to indicate that the torch is turned off.
+
+.. class:: Camera : IFrameSource
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Gives access to the built-in camera on |platform|. It implements the :type:`IFrameSource` |interface|, and, as such can be set as the :meth:`frame source <DataCaptureContext.SetFrameSourceAsync>` for the :type:`DataCaptureContext`.
+
+  Instances of this class are created through one of the factory methods :meth:`GetDefaultCamera`, or :meth:`GetCamera`.
+
+  The camera is started by changing the :meth:`desired state<IFrameSource.SwitchToDesiredStateAsync>` to :enum:`FrameSourceState.On`.
+
+  By default, the resolution of captured frames as well as auto-focus and exposure settings are chosen such that they work best for a variety of use cases. To fine-tune recognition, the camera settings can be changed through applying new :type:`camera settings <CameraSettings>`.
+
+  .. eager-ifconfig:: platform == 'android'
+
+     **Runtime permissions**
+
+     Starting from Android 6.0 (API level 23), the camera permissions can no longer be requested during app installation. Instead, permissions are requested at runtime. If your application targets API level 23 and higher, you will need to add logic to handle camera permissions before turning it on.
+  
+     To achieve this, you need to check system version and if camera permission is already granted. If it's not, you have to ask for the `Manifest.permission.CAMERA` permission from your `Fragment` or `Activity`. If permission has already been granted, you can enable the camera by calling :meth:`desired state<IFrameSource.SwitchToDesiredStateAsync>` with :enum:`FrameSourceState.On`.
+     When the answer was negative, invoke `requestPermissions` and try again on `onRequestPermissionsResult` callback.
+
+     .. sample:: java
+ 
+         private void turnOnCamera() {
+             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                 && checkSelfPermission(Manifest.permission.CAMERA) != PERMISSION_GRANTED) {
+                 requestPermissions(
+                     new String[]{Manifest.permission.CAMERA},
+                     CAMERA_PERMISSION_REQUEST
+                 );
+             } else {
+                 camera.switchToDesiredState(FrameSourceState.ON, null);
+             }
+         }
+  
+         @Override
+         public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, 
+                                                @NonNull int[] grantResults) {
+             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+ 
+             if (requestCode == CAMERA_PERMISSION_REQUEST
+                 && grantResults.length > 0
+                 && grantResults[0] == PERMISSION_GRANTED) {
+                 turnOnCamera();
+             } else {
+                 // Show message about denied Camera permission.
+             }
+         }
+  
+     In your application, you will most likely want to rely on the functionality implemented by the app compat library for handling the diffences between API versions. For more information on the permissions system introduced in Android 23, take a look at the `Android Permission Documentation <https://developer.android.com/guide/topics/permissions/overview>`_.
+
+  .. implnote::
+
+    In the future, we may need to distinguish between different cameras at the same position, such as wide angle and telephoto cameras. In that case, we should introduce a new enum that allows to distinguish these cameras.
+
+  .. property:: FrameSourceState DesiredState { get; }
+    :available: android=6.0, cordova=6.1
+
+    Implemented from :type:`IFrameSource`. See :prop:`IFrameSource.DesiredState`.
+
+  .. property:: FrameSourceState CurrentState { get; }
+    @javascript@ getCurrentState(): Promise<FrameSourceState>
+    :available: android=6.0, cordova=6.1
+
+    Implemented from :type:`IFrameSource`. See :prop:`IFrameSource.CurrentState`.
+
+  .. property:: CameraPosition Position { get; }
+    :available: android=6.0, ios=6.0
+
+    The direction that the camera faces.
+
+  .. method:: void AddListener(IFrameSourceListener? listener)
+    :available: android=6.0, cordova=6.1
+
+    Implemented from :type:`IFrameSource`. See :meth:`IFrameSource.AddListener`.
+
+  .. method:: void RemoveListener(IFrameSourceListener? listener)
+    :available: android=6.0, cordova=6.1
+
+    Implemented from :type:`IFrameSource`. See :meth:`IFrameSource.RemoveListener`.
+
+  .. method:: static Camera? GetDefaultCamera()
+    @objc@ @property (class, nonatomic, nullable, readonly) SDCCamera *defaultCamera
+    @javascript@ static get default(): Camera?
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Gets the default camera of the device. This method is identical to calling :meth:`GetCamera` repeatedly, first with :enum:`CameraPosition.WorldFacing`, then with :enum:`CameraPosition.UserFacing` followed by :enum:`CameraPosition.Unspecified`, stopping after the first of these calls returns a non-|null| instance.
+
+    See :meth:`GetCamera` for a more detailed description of the method behavior.
+
+  .. method:: static Camera? GetDefaultCamera(CameraSettings? settings)
+    :available: android=6.0
+
+    This method is identical to calling :meth:`GetDefaultCamera` and :meth:`Camera.ApplySettings` consecutively.
+
+  .. method:: static Camera? GetCamera(CameraPosition position)
+    @objc@ +(nullable SDCCamera*)cameraAtPosition:(SDCCameraPosition)position
+    @javascript@ static atPosition(cameraPosition: CameraPosition): Camera?
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Retrieves the camera instance of the first camera at the provided position. In case the system does not have a camera at the provided position, |null| is returned.
+
+    When this method is called multiple times with the same argument, the same :type:`Camera` instance is returned. The :prop:`IFrameSource.CurrentState` of the camera as well as the settings depend on previous invocations. For example, if the camera is currently in use and is active, the camera's :prop:`IFrameSource.CurrentState` will be :enum:`FrameSourceState.On`. The only guarantee about the state and settings is that when instance is initially created, the :prop:`IFrameSource.CurrentState` is :enum:`FrameSourceState.Off` and has the default :type:`CameraSettings`.
+
+    .. eager-ifconfig:: platform != 'cordova'
+
+      .. important::
+
+        In case parts of your app use custom camera settings and others use the default settings, make sure to reset the camera to use the default settings when you need them by passing the default camera settings to :meth:`ApplySettingsAsync` to ensure that you don't have any other settings when you'd expect the defaults to be active.
+
+    The camera object is returned if present, regardless whether the application has permissions to use it or not.
+
+    .. eager-ifconfig:: 'android' == platform
+
+      The camera will use application context and the same camera object can be reused with different activities.
+
+      Starting from Android 6.0, permission to use the camera will have to be requested at runtime. This will have to be implemented in the activity itself. Consult the `runtime permission documentation <https://developer.android.com/training/permissions/requesting.html>`_ for details.
+
+    .. implnote:: The camera objects are effectively singletons that are alive for the whole existence of the application. While typically singletons should be avoided, in this particular case a singleton design is closest to how the underlying hardware operates.
+
+  .. method:: static Camera? GetCameraWithSettings(CameraPosition position, CameraSettings settings)
+    @java@ static Camera? getCamera(CameraPosition position, CameraSettings settings)
+    :available: android=6.0
+
+    This method is identical to calling :meth:`GetCamera` and then :meth:`Camera.ApplySettings` consecutively.
+
+  .. method:: static Camera? FromJson(String jsonData)
+    @objc@ + (nullable instancetype)cameraFromJSONString:(nonnull NSString *)jsonString error:(NSError **)error
+    :available: android=6.0, ios=6.0
+
+    Constructs a new camera with the provided JSON serialization. See :doc:`/core/serialization` for details.
+
+  .. method:: Task<bool> SwitchToDesiredStateAsync(FrameSourceState state)
+    @javascript@ switchToDesiredState(state: FrameSourceState): Promise<void>
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Implemented from :type:`IFrameSource`. See :meth:`IFrameSource.SwitchToDesiredStateAsync`.
+
+  .. method:: void SwitchToDesiredState(FrameSourceState state)
+    :available: android=6.0
+
+    Same as :meth:`Camera.SwitchToDesiredStateAsync` with the second argument set to |null|.
+
+  .. method:: void SwitchToDesiredState(FrameSourceState state)
+    :available: ios=6.0
+
+    Convenience method for :meth:`IFrameSource.SwitchToDesiredStateAsync`
+
+  .. method:: Task ApplySettingsAsync(CameraSettings settings)
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Applies the camera settings to the camera. The task will complete when the settings have been applied and the camera has switched to use the new settings. If the camera is currently in :enum:`FrameSourceState.Off` state, the task will complete immediately. If, on the other hand, the camera is currently in :enum:`FrameSourceState.On` state, the settings will be modified on the fly.
+
+    .. eager-ifconfig:: platform == 'android'
+
+      Beware, that changing the camera resolution only works if the settings are applied on a camera in :enum:`FrameSourceState.Off` state.
+
+    .. implnote:: Applying new settings must also work when the camera is currently transitioning from off to on, or from on to off.
+
+  .. method:: void ApplySettings(CameraSettings settings)
+    :available: android=6.0
+
+    Same as :meth:`Camera.ApplySettingsAsync` with the second argument set to |null|.
+
+  .. property:: bool IsTorchAvailable { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    .. eager-ifconfig:: platform == 'ios'
+
+      Whether the torch is available for the given camera.
+
+    .. eager-ifconfig:: platform == 'android'
+
+      Whether the torch is available for the given camera. When the camera is off, this method always returns false. When the camera is on, it returns true for cameras that support the torch, false otherwise.
+
+  .. property:: TorchState DesiredTorchState { get; set; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The desired torch state for this camera. By default, the torch state is :enum:`TorchState.Off`. When setting the desired torch state to :enum:`TorchState.On`, the torch will be on as long as the camera is running (the camera's state is :enum:`FrameSourceState.On`) and off otherwise.
+
+    When setting the desired torch state for a camera that does not have a torch (see :prop:`IsTorchAvailable`), this call has no effect.
+
+  .. method:: void AddListener(ICameraListener listener)
+    :available: none
+
+    Adds the listener to this camera.
+    
+    |add-listener|
+
+    .. todo:: The declaration of this method shadows the method of the same name in the FrameSource protocol. On iOS, they will have to use different names. Instead of having two separate addListener methods, we could instead just implement the method of the base interface and check if the :type:`IFrameSourceListener` is implementing the :type:`ICameraListener` |interface| when a new listener gets added.
+
+  .. method:: void RemoveListener(ICameraListener listener)
+    :available: none
+
+    Removes a previously added listener from this camera.
+    
+    |remove-listener|
+
+    .. todo:: See comment in :meth:`AddListener`.
+
+  .. method:: void UpdateFromJson(String jsonData)
+    @objc@ - (BOOL)updateFromJSONString:(nonnull NSString *)jsonString error:(NSError **)error
+    :available: android=6.0, ios=6.0
+
+    Updates the camera according to a JSON serialization. See :doc:`/core/serialization` for details.
+
+.. method:: string StringFromCameraPosition(CameraPosition cameraPosition)
+  @objc@ NSString *_Nonnull NSStringFromCameraPosition(SDCCameraPosition cameraPosition)
+  :available: ios=6.1
+
+.. method:: CameraPosition CameraPositionFromJSONString(string JSONString)
+  @objc@ BOOL SDCCameraPositionFromJSONString(NSString *_Nonnull JSONString, SDCCameraPosition *_Nonnull cameraPosition)
+  :available: ios=6.1
+
+.. method:: string StringFromTorchState(TorchState torchState)
+  @objc@ NSString *_Nonnull NSStringFromTorchState(SDCTorchState torchState)
+  :available: ios=6.1
+
+.. method:: TorchState TorchStateFromJSONString(string JSONString)
+  @objc@ BOOL SDCTorchStateFromJSONString(NSString *_Nonnull JSONString, SDCTorchState *_Nonnull torchState)
+  :available: ios=6.1

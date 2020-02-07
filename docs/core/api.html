@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ScanditCaptureCore API &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Anchor" href="api/anchor.html" />
+    <link rel="prev" title="Serialization" href="serialization.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">ScanditCaptureCore</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="concepts.html">Core Concepts of the Scandit Data Capture SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serialization.html">Serialization</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/anchor.html">Anchor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/camera-settings.html">Camera Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/common.html">Common Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/context-status.html">Context Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data-capture-context.html">Data Capture Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data-capture-context-builder.html">Data Capture Context Builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data-capture-context-deserializer.html">Data Capture Context Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data-capture-context-deserializer-listener.html">Data Capture Context Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data-capture-context-deserializer-result.html">Data Capture Context Deserializer Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data-capture-context-frame-listener.html">Data Capture Context Frame Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data-capture-context-listener.html">Data Capture Context Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data-capture-mode.html">Data Capture Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data-capture-mode-deserializer.html">Data Capture Mode Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data-capture-view-deserializer.html">Data Capture View Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/data-capture-view-deserializer-listener.html">Data Capture View Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/direction.html">Direction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/feedback.html">Feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/frame-data.html">Frame Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/frame-source.html">Frame Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/frame-source-deserializer.html">Frame Source Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/frame-source-deserializer-listener.html">Frame Source Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/frame-source-listener.html">Frame Source Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/json-value.html">Json Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/laserline-viewfinder.html">Laserline Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/location-selection.html">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/radius-location-selection.html">Radius Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/rectangular-location-selection.html">Rectangular Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/rectangular-viewfinder.html">Rectangular Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/spotlight-viewfinder.html">Spotlight Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/viewfinder.html">Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/ui/brush.html">Brush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/ui/control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/ui/data-capture-overlay.html">Data Capture Overlay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/ui/data-capture-view.html">Data Capture View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/ui/data-capture-view-listener.html">Data Capture View Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/ui/torch-switch-control.html">Torch Switch Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#camera-and-frame-sources">Camera and Frame Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#context-and-capture-modes">Context and Capture Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#location-selection">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-interface">User Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#misc-data-structures">Misc Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deserialization">Deserialization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="overview.html">ScanditCaptureCore</a> &raquo;</li>
+        
+      <li>ScanditCaptureCore API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scanditcapturecore-api">
+<h1>ScanditCaptureCore API<a class="headerlink" href="#scanditcapturecore-api" title="Permalink to this headline">#</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="camera-and-frame-sources">
+<h2>Camera and Frame Sources<a class="headerlink" href="#camera-and-frame-sources" title="Permalink to this headline">#</a></h2>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p><a class="reference internal" href="api/camera.html#class-scandit.datacapture.core.Camera" title="Camera class">Camera</a></p></li>
+<li><p><a class="reference internal" href="api/frame-source.html#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference internal" href="api/frame-source.html#enum-scandit.datacapture.core.FrameSourceState" title="FrameSourceState enum">FrameSourceState</a></p></li>
+</ul>
+</td></tr></table>
+</div>
+<div class="section" id="context-and-capture-modes">
+<h2>Context and Capture Modes<a class="headerlink" href="#context-and-capture-modes" title="Permalink to this headline">#</a></h2>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p><a class="reference internal" href="api/data-capture-context.html#class-scandit.datacapture.core.DataCaptureContext" title="DataCaptureContext class">DataCaptureContext</a></p></li>
+<li><p><a class="reference internal" href="api/data-capture-context-listener.html#interface-scandit.datacapture.core.IDataCaptureContextListener" title="DataCaptureContextListener interface">DataCaptureContextListener</a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference internal" href="api/data-capture-mode.html#interface-scandit.datacapture.core.IDataCaptureMode" title="DataCaptureMode interface">DataCaptureMode</a></p></li>
+<li><p><a class="reference internal" href="api/context-status.html#class-scandit.datacapture.core.ContextStatus" title="ContextStatus class">ContextStatus</a></p></li>
+</ul>
+</td></tr></table>
+</div>
+<div class="section" id="location-selection">
+<h2>Location Selection<a class="headerlink" href="#location-selection" title="Permalink to this headline">#</a></h2>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p><a class="reference internal" href="api/location-selection.html#interface-scandit.datacapture.core.ILocationSelection" title="LocationSelection interface">LocationSelection</a></p></li>
+<li><p><a class="reference internal" href="api/radius-location-selection.html#class-scandit.datacapture.core.RadiusLocationSelection" title="RadiusLocationSelection class">RadiusLocationSelection</a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference internal" href="api/rectangular-location-selection.html#class-scandit.datacapture.core.RectangularLocationSelection" title="RectangularLocationSelection class">RectangularLocationSelection</a></p></li>
+</ul>
+</td></tr></table>
+</div>
+<div class="section" id="user-interface">
+<h2>User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline">#</a></h2>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p><a class="reference internal" href="api/ui/data-capture-overlay.html#interface-scandit.datacapture.core.ui.IDataCaptureOverlay" title="DataCaptureOverlay interface">DataCaptureOverlay</a></p></li>
+<li><p><a class="reference internal" href="api/ui/data-capture-view.html#class-scandit.datacapture.core.ui.DataCaptureView" title="DataCaptureView class">DataCaptureView</a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference internal" href="api/laserline-viewfinder.html#class-scandit.datacapture.core.ui.LaserlineViewfinder" title="LaserlineViewfinder class">LaserlineViewfinder</a></p></li>
+<li><p><a class="reference internal" href="api/rectangular-viewfinder.html#class-scandit.datacapture.core.ui.RectangularViewfinder" title="RectangularViewfinder class">RectangularViewfinder</a></p></li>
+</ul>
+</td></tr></table>
+</div>
+<div class="section" id="misc-data-structures">
+<h2>Misc Data Structures<a class="headerlink" href="#misc-data-structures" title="Permalink to this headline">#</a></h2>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p><a class="reference internal" href="api/anchor.html#enum-scandit.datacapture.core.Anchor" title="Anchor enum">Anchor</a></p></li>
+<li><p><a class="reference internal" href="api/common.html#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a></p></li>
+<li><p><a class="reference internal" href="api/common.html#struct-scandit.datacapture.core.MarginsWithUnit" title="MarginsWithUnit struct">MarginsWithUnit</a></p></li>
+<li><p><a class="reference internal" href="api/common.html#struct-scandit.datacapture.core.PointWithUnit" title="PointWithUnit struct">PointWithUnit</a></p></li>
+<li><p><a class="reference internal" href="api/common.html#struct-scandit.datacapture.core.RectWithUnit" title="RectWithUnit struct">RectWithUnit</a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference internal" href="api/common.html#struct-scandit.datacapture.core.SizeWithUnit" title="SizeWithUnit struct">SizeWithUnit</a></p></li>
+<li><p><a class="reference internal" href="api/common.html#struct-scandit.datacapture.core.SizeWithAspect" title="SizeWithAspect struct">SizeWithAspect</a></p></li>
+<li><p><a class="reference internal" href="api/common.html#enum-scandit.datacapture.core.SizingMode" title="SizingMode enum">SizingMode</a></p></li>
+<li><p><a class="reference internal" href="api/common.html#class-scandit.datacapture.core.SizeWithUnitAndAspect" title="SizeWithUnitAndAspect class">SizeWithUnitAndAspect</a></p></li>
+</ul>
+</td></tr></table>
+</div>
+<div class="section" id="deserialization">
+<h2>Deserialization<a class="headerlink" href="#deserialization" title="Permalink to this headline">#</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The deserialization API is not yet stable and will still change over the coming releases.</p>
+</div>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DataCaptureContextDeserializer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DataCaptureViewDeserializer</span></code></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FrameSourceDeserializer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">JsonValue</span></code></p></li>
+</ul>
+</td></tr></table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Optimize Scanning Performance &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced Camera Functionality" href="camera-advanced.html" />
+    <link rel="prev" title="Barcode Symbologies" href="barcode-symbologies.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Optimize Scanning Performance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#restrict-the-scanning-area">Restrict the Scanning Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optimizing-for-scan-distance">Optimizing for Scan Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#restrict-the-active-symbologies">Restrict the Active Symbologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enable-the-torch-in-low-light">Enable the Torch in Low Light</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Optimize Scanning Performance</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="optimize-scanning-performance">
+<h1>Optimize Scanning Performance<a class="headerlink" href="#optimize-scanning-performance" title="Permalink to this headline">#</a></h1>
+<p>In this guide, you will learn how to optimize performance by adapting barcode capture to your use case.</p>
+<div class="admonition-before-you-start admonition">
+<p class="admonition-title">Before you start…</p>
+<p>To get the most out of this guide, we recommend that you first take a look at the following guides:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="add-sdk.html"><span class="doc">Add the SDK to Your App</span></a></p></li>
+<li><p><a class="reference internal" href="get-started-barcode.html"><span class="doc">Get Started With Barcode Scanning</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="restrict-the-scanning-area">
+<h2>Restrict the Scanning Area<a class="headerlink" href="#restrict-the-scanning-area" title="Permalink to this headline">#</a></h2>
+<p>The Scandit Data Capture SDK allows to restrict the area of the screen in which it is looking for barcodes and entirely ignoring the area outside of it. This can significantly improve decoding speed (especially) on slower devices. While the Scandit Data Capture SDK usually takes into consideration the entire screen by default, it might not actually be needed for some use cases or the performance gain might be worth the loss of some convenience in the form of scan area.</p>
+<p>Take a look at <a class="reference internal" href="scan-area.html"><span class="doc">how to set up the active scan area</span></a> for an in-depth explanation of what can be changed. Point your attention especially towards the section about <a class="reference internal" href="scan-area.html#scan-area-margins"><span class="std std-ref">margins</span></a> and the <a class="reference internal" href="scan-area.html#scan-area-rectangular-location-selection"><span class="std std-ref">RectangularLocationSelection</span></a> for a high performance gain and <a class="reference internal" href="scan-area.html#scan-area-radius-location-selection"><span class="std std-ref">RadiusLocationSelection</span></a> for a lower but still relevant performance gain.</p>
+</div>
+<div class="section" id="optimizing-for-scan-distance">
+<h2>Optimizing for Scan Distance<a class="headerlink" href="#optimizing-for-scan-distance" title="Permalink to this headline">#</a></h2>
+<p>The Scandit Data Capture SDK lets you choose from different <a class="reference internal" href="core/api/camera-settings.html#enum-scandit.datacapture.core.VideoResolution" title="resolutions enum">resolutions</a> ( <a class="reference internal" href="core/api/camera-settings.html#value-scandit.datacapture.core.VideoResolution.Hd" title="HD value">HD</a> , <a class="reference internal" href="core/api/camera-settings.html#value-scandit.datacapture.core.VideoResolution.FullHd" title="full HD value">full HD</a>, <a class="reference internal" href="core/api/camera-settings.html#value-scandit.datacapture.core.VideoResolution.Uhd4k" title="4k value">4k</a>) for the video feed. Increasing the resolution typically leads to better decoding range and reading of small elements. However, it can also result in a lower framerate as more pixels need to be processed. When optimizing for your use case, you should use the lowest resolution that allows for good reading performance.</p>
+<p>The Scandit Data Capture SDK also allows to set a default <a class="reference internal" href="core/api/camera-settings.html#property-scandit.datacapture.core.CameraSettings.ZoomFactor" title="zoom property">zoom</a> when opening the camera preview. This can be especially useful to read barcodes from further away, and is usually coupled with the usage of a higher resolution.</p>
+<p>Note: <a class="reference internal" href="core/api/camera-settings.html#value-scandit.datacapture.core.VideoResolution.Uhd4k" title="4k value">4k</a> is currently unavailable on Android. If <a class="reference internal" href="core/api/camera-settings.html#value-scandit.datacapture.core.VideoResolution.Uhd4k" title="4k value">4k</a> is selected, <a class="reference internal" href="core/api/camera-settings.html#value-scandit.datacapture.core.VideoResolution.FullHd" title="full HD value">full HD</a> is used (if supported).</p>
+</div>
+<div class="section" id="restrict-the-active-symbologies">
+<h2>Restrict the Active Symbologies<a class="headerlink" href="#restrict-the-active-symbologies" title="Permalink to this headline">#</a></h2>
+<p>The type of a barcode is referred to as its symbology, e.g <a class="reference internal" href="barcode-capture/api/symbology.html#value-scandit.datacapture.barcode.Symbology.Qr" title="QR Code value">QR Code</a> or <a class="reference internal" href="barcode-capture/api/symbology.html#value-scandit.datacapture.barcode.Symbology.Code128" title="Code 128 value">Code 128</a>. The Scandit Data Capture SDK supports numerous such symbologies and they are all disabled by default. To enable scanning of a particular barcode, its symbology must be enabled. To optimize performance you should always make sure that only the symbologies that you actually want to scan are enabled as every additionally enabled symbology will decrease the scanning performance slightly.</p>
+<p>On top of this each symbology has additional properties, such as the <a class="reference internal" href="barcode-capture/api/symbology-settings.html#property-scandit.datacapture.barcode.SymbologySettings.ActiveSymbolCounts" title="active symbol counts property">active symbol counts</a> (which reflects the length of the barcode) or <a class="reference internal" href="barcode-capture/api/symbology-settings.html#property-scandit.datacapture.barcode.SymbologySettings.IsColorInvertedEnabled" title="color of the barcode property">color of the barcode</a> (bright on dark or dark on bright). To optimize performance you should enable only the properties you need for each symbology as otherwise unnecessary processing might slow down the scanning.</p>
+</div>
+<div class="section" id="enable-the-torch-in-low-light">
+<h2>Enable the Torch in Low Light<a class="headerlink" href="#enable-the-torch-in-low-light" title="Permalink to this headline">#</a></h2>
+<p>Getting additional light from the torch (the LED next to the camera, often used as a flashlight) can greatly improve the scanning performance in low-light environments. The Scandit Data Capture SDK can provide the user with a <code class="docutils literal notranslate"><span class="pre">TorchSwitchControl</span></code> and also allows to <a class="reference internal" href="core/api/camera.html#property-scandit.datacapture.core.Camera.DesiredTorchState" title="turn the torch on/off programmatically property">turn the torch on/off programmatically</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

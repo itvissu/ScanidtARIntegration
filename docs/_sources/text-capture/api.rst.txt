@@ -1,0 +1,26 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+ScanditTextCapture API
+======================
+
+.. module:: scandit.datacapture.text
+  :hidden:
+
+.. toctree::
+  :hidden:
+  :glob:
+
+  api/*
+  api/ui/*
+
+.. hlist::
+
+  * :type:`TextCapture`
+  * :type:`TextCaptureSession`
+  * :type:`ITextCaptureListener`
+  * :type:`TextCaptureSettings`
+  * :type:`ui.TextCaptureOverlay`
+  * :type:`TextCaptureFeedback`
+  * :type:`CapturedText`

@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Context Status &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data Capture Context" href="data-capture-context.html" />
+    <link rel="prev" title="Common Data Structures" href="common.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../overview.html">ScanditCaptureCore</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">Core Concepts of the Scandit Data Capture SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../serialization.html">Serialization</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="anchor.html">Anchor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera-settings.html">Camera Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common Data Structures</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Context Status</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#status-codes">Status Codes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context.html">Data Capture Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-builder.html">Data Capture Context Builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer.html">Data Capture Context Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer-listener.html">Data Capture Context Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer-result.html">Data Capture Context Deserializer Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-frame-listener.html">Data Capture Context Frame Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-listener.html">Data Capture Context Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-mode.html">Data Capture Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-mode-deserializer.html">Data Capture Mode Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-view-deserializer.html">Data Capture View Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-view-deserializer-listener.html">Data Capture View Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="direction.html">Direction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="feedback.html">Feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-data.html">Frame Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source.html">Frame Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-deserializer.html">Frame Source Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-deserializer-listener.html">Frame Source Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-listener.html">Frame Source Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="json-value.html">Json Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laserline-viewfinder.html">Laserline Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="location-selection.html">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radius-location-selection.html">Radius Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rectangular-location-selection.html">Rectangular Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rectangular-viewfinder.html">Rectangular Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spotlight-viewfinder.html">Spotlight Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewfinder.html">Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/brush.html">Brush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-overlay.html">Data Capture Overlay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-view.html">Data Capture View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-view-listener.html">Data Capture View Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/torch-switch-control.html">Torch Switch Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#camera-and-frame-sources">Camera and Frame Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#context-and-capture-modes">Context and Capture Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#location-selection">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#user-interface">User Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#misc-data-structures">Misc Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#deserialization">Deserialization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../overview.html">ScanditCaptureCore</a> &raquo;</li>
+        
+          <li><a href="../api.html">ScanditCaptureCore API</a> &raquo;</li>
+        
+      <li>Context Status</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="context-status">
+<h1>Context Status<a class="headerlink" href="#context-status" title="Permalink to this headline">#</a></h1>
+<p>Defined under the namespace <em>Scandit.Datacapture.Core</em></p>
+<dl class="class">
+<dt id="class-scandit.datacapture.core.ContextStatus">
+<code class="sig-name descname">ContextStatus</code><a class="headerlink" href="#class-scandit.datacapture.core.ContextStatus" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class ContextStatus</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Holds information on the current context status. This information is available to data capture context listeners (see <a class="reference internal" href="data-capture-context-listener.html#method-scandit.datacapture.core.IDataCaptureContextListener.OnStatusChanged" title="didChangeStatus() method">didChangeStatus()</a> method).</p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.ContextStatus.Message">
+<code class="sig-name descname">message</code><a class="headerlink" href="#property-scandit.datacapture.core.ContextStatus.Message" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get message(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>A human readable representation of the current context status, containing more information about potential issues. In case there are no issues (<a class="reference internal" href="#property-scandit.datacapture.core.ContextStatus.IsValid" title="isValid property">isValid</a> is <em>true</em>), the message is empty.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.ContextStatus.Code">
+<code class="sig-name descname">code</code><a class="headerlink" href="#property-scandit.datacapture.core.ContextStatus.Code" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get code(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The context status code.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.ContextStatus.IsValid">
+<code class="sig-name descname">isValid</code><a class="headerlink" href="#property-scandit.datacapture.core.ContextStatus.IsValid" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get isValid(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean" title="boolean">boolean</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Whether the context is valid.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="status-codes">
+<h2>Status Codes<a class="headerlink" href="#status-codes" title="Permalink to this headline">#</a></h2>
+<div class="section" id="internal-error">
+<h3>2 - Internal Error<a class="headerlink" href="#internal-error" title="Permalink to this headline">#</a></h3>
+<p>Something went wrong internally. Please send the error, device model and Scandit Data Capture SDK version through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a>.</p>
+</div>
+<div class="section" id="inconsistent-image-data">
+<h3>5 - Inconsistent Image Data<a class="headerlink" href="#inconsistent-image-data" title="Permalink to this headline">#</a></h3>
+<p>The image data being fed to the recognizer is inconsistent. This is likely a device issue. Please send the error, device model and Scandit Data Capture SDK version through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a>.</p>
+</div>
+<div class="section" id="no-network-connection">
+<h3>6 - No Network Connection<a class="headerlink" href="#no-network-connection" title="Permalink to this headline">#</a></h3>
+<p>You are using a test license of the Scandit Data Capture SDK which needs a network connection to scan. Please make sure the phone you are testing on is connected to the Internet (an intra net for example might not have a connection to the public Internet).</p>
+</div>
+<div class="section" id="validation-failed">
+<h3>9, 10, 11 - Validation Failed<a class="headerlink" href="#validation-failed" title="Permalink to this headline">#</a></h3>
+<p>The license key validation failed. Make sure you are using a valid license key and check your account for available device activations. If this doesn’t fix the problem, please send the error, device model and Scandit Data Capture SDK version through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a>.</p>
+</div>
+<div class="section" id="license-key-missing">
+<h3>12 - License Key Missing<a class="headerlink" href="#license-key-missing" title="Permalink to this headline">#</a></h3>
+<p>No License key was set. Please set a valid license key when creating your <a class="reference internal" href="data-capture-context.html#class-scandit.datacapture.core.DataCaptureContext" title="DataCaptureContext class">DataCaptureContext</a>.</p>
+</div>
+<div class="section" id="license-key-expired">
+<h3>13 - License Key Expired<a class="headerlink" href="#license-key-expired" title="Permalink to this headline">#</a></h3>
+<p>The license key validation failed. Your license key has expired, please log into your account at www.scandit.com and request an extension or contact support through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a>.</p>
+</div>
+<div class="section" id="invalid-platform">
+<h3>14 - Invalid Platform<a class="headerlink" href="#invalid-platform" title="Permalink to this headline">#</a></h3>
+<p>The license key validation failed. Your license key does not include the platform that you are using it on. Please contact support through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a> to request a different license key.</p>
+</div>
+<div class="section" id="invalid-app-id">
+<h3>15 - Invalid App ID<a class="headerlink" href="#invalid-app-id" title="Permalink to this headline">#</a></h3>
+<p>The license key validation failed. The identifier of your app does not match the license key’s app identifier. Please change the app identifier of your app or acquire a new license key that matches it.</p>
+</div>
+<div class="section" id="invalid-device">
+<h3>16 - Invalid Device<a class="headerlink" href="#invalid-device" title="Permalink to this headline">#</a></h3>
+<p>The license key validation failed. Your license key does not include support for this device. Please contact support through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a> to request a different license key.</p>
+</div>
+<div class="section" id="invalid-sdk-version">
+<h3>17 - Invalid SDK Version<a class="headerlink" href="#invalid-sdk-version" title="Permalink to this headline">#</a></h3>
+<p>The license key validation failed. Your license key does not include support for this SDK version. Please contact support through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a> to request a different license key.</p>
+</div>
+<div class="section" id="invalid-license-key">
+<h3>18 - Invalid License Key<a class="headerlink" href="#invalid-license-key" title="Permalink to this headline">#</a></h3>
+<p>The provided license key is invalid. Please set a valid license key when creating your <a class="reference internal" href="data-capture-context.html#class-scandit.datacapture.core.DataCaptureContext" title="DataCaptureContext class">DataCaptureContext</a>.</p>
+</div>
+<div class="section" id="device-activation-failed">
+<h3>19 - Device Activation Failed<a class="headerlink" href="#device-activation-failed" title="Permalink to this headline">#</a></h3>
+<p>The device activation failed. Please connect to the Internet and restart the app.</p>
+</div>
+<div class="section" id="time-exceeded">
+<h3>20 - Time Exceeded<a class="headerlink" href="#time-exceeded" title="Permalink to this headline">#</a></h3>
+<p>The device activation failed. The number of allowed days to use the SDK has exceeded. Please contact support through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a> to request a different license key.</p>
+</div>
+<div class="section" id="scans-exceeded">
+<h3>21 - Scans Exceeded<a class="headerlink" href="#scans-exceeded" title="Permalink to this headline">#</a></h3>
+<p>The device activation failed. The number of allowed scans was exceeded. Please contact support through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a> to request a different license key.</p>
+</div>
+<div class="section" id="mandatory-registration-not-completed">
+<h3>22 - Mandatory Registration Not Completed<a class="headerlink" href="#mandatory-registration-not-completed" title="Permalink to this headline">#</a></h3>
+<p>The registration of the device is mandatory and must be completed before the recognition context can be used. Please connect to the Internet and restart the app.</p>
+</div>
+<div class="section" id="invalid-external-id">
+<h3>23 - Invalid External ID<a class="headerlink" href="#invalid-external-id" title="Permalink to this headline">#</a></h3>
+<p>The Scandit SDK validation failed. The external id does not match with the license key. Make sure you are setting the right external ID when creating your <a class="reference internal" href="data-capture-context.html#class-scandit.datacapture.core.DataCaptureContext" title="DataCaptureContext class">DataCaptureContext</a> or no external ID at all if your license key is not meant for it.</p>
+</div>
+<div class="section" id="unlicensed-symbology-enabled">
+<h3>24 - Unlicensed Symbology Enabled<a class="headerlink" href="#unlicensed-symbology-enabled" title="Permalink to this headline">#</a></h3>
+<p>Your license does not include a symbology that was enabled through barcode capture or tracking settings. Please disable those symbologies or contact support through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a> to request a license key containing the symbologies.</p>
+</div>
+<div class="section" id="unlicensed-video-resolution">
+<h3>25 - Unlicensed Video Resolution<a class="headerlink" href="#unlicensed-video-resolution" title="Permalink to this headline">#</a></h3>
+<p>Your license does not include the enabled resolution. Please set a different <a class="reference internal" href="camera-settings.html#enum-scandit.datacapture.core.VideoResolution" title="VideoResolution enum">VideoResolution</a> or contact support through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a> to request a license key with higher resolutions enabled.</p>
+</div>
+<div class="section" id="disposed-context">
+<h3>1025 - Disposed Context<a class="headerlink" href="#disposed-context" title="Permalink to this headline">#</a></h3>
+<p>The data capture context has been disposed and cannot be used anymore. Most likely this is happening because a new context was created but the old context is still used in some fashion. To solve this you should no longer use the old context once you create a new one or not re-create the context at all. Please read up on the <a class="reference internal" href="data-capture-context.html#class-scandit.datacapture.core.DataCaptureContext" title="data capture context class">data capture context</a> to understand how exactly it behaves.</p>
+</div>
+<div class="section" id="augmented-reality-features-disabled">
+<h3>1026 - Augmented Reality Features Disabled<a class="headerlink" href="#augmented-reality-features-disabled" title="Permalink to this headline">#</a></h3>
+<p>Your license does not include Augmented Reality functionality. Please contact support through <a class="reference external" href="https://support.scandit.com/hc/en-us/requests/new">this contact form</a> if you would like to use this feature.</p>
+</div>
+<div class="section" id="conflicting-requirements">
+<h3>1028 - Conflicting Requirements<a class="headerlink" href="#conflicting-requirements" title="Permalink to this headline">#</a></h3>
+<p>The added data capture modes have conflicting feature requirements and cannot be used with the same context at the same time. Read up on the conflicting requirements at <a class="reference internal" href="data-capture-context.html#method-scandit.datacapture.core.DataCaptureContext.AddMode" title="DataCaptureContext.addMode() method">DataCaptureContext.addMode()</a>.</p>
+</div>
+<div class="section" id="camera-authorization-required">
+<h3>1032 - Camera Authorization Required<a class="headerlink" href="#camera-authorization-required" title="Permalink to this headline">#</a></h3>
+<p>The Scandit Data Capture SDK was unable to access the device’s camera. Check that your app has permissions to use the camera. In rare cases it is possible that the camera is locked by another app or non-functional because of some other reason, in such cases restarting the phone helps.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

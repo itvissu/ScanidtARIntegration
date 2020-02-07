@@ -1,0 +1,35 @@
+Laserline Viewfinder
+=========================
+
+.. module:: scandit.datacapture.core.ui
+  :android-package: com.scandit.datacapture.core.viewfinder
+
+.. class:: LaserlineViewfinder : IViewfinder
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  A horizontal laser line with a Scandit logo underneath. Toggles color depending on the :prop:`capture mode enabled<core.IDataCaptureMode.IsEnabled>` property. The laserline is centered on the data capture view's :prop:`point of interest<DataCaptureView.PointOfInterest>`.
+
+  To use this viewfinder, create a new instance and assign it to the overlay, e.g. the barcode capture overlay by assigning to the :prop:`barcode.ui.BarcodeCaptureOverlay.Viewfinder` property.
+
+  .. method:: LaserlineViewfinder()
+    @objc@ +(nonnull instancetype)viewfinder
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Returns a new laserline viewfinder with default parameters.
+
+  .. property:: core.FloatWithUnit Width { get; set; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The width of the laser line. The laser line is centered on the :prop:`point of interest<core.ui.DataCaptureView.PointOfInterest>` of the view.  When specifying the width with relative units, the width is measured relative to the view's width minus the horizontal scan area margins.
+
+  .. property:: Color EnabledColor { get; set; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The color to be used when recognition is enabled/active.
+
+  .. property:: Color DisabledColor { get; set; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    The color to be used when recognition is disabled/inactive.
+
+

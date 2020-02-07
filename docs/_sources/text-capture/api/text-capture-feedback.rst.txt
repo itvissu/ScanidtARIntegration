@@ -1,0 +1,46 @@
+Text Capture Feedback
+========================
+
+.. module:: scandit.datacapture.text
+  :android-package: com.scandit.datacapture.text.feedback
+
+.. class:: TextCaptureFeedback
+  @objc@ SDCTextCaptureFeedback : NSObject
+  :available: android=6.1, ios=6.1
+
+  Determines what feedback (vibration, sound) should be emitted when reading text.
+  The feedback is specified for each :type:`TextCapture` instance separately and can be changed
+  through the :prop:`feedback<TextCapture.Feedback>` property by either modifying an existing
+  instance of :type:`TextCaptureFeedback`, or assigning a new one.
+
+  As of now, this class only allows to configure the feedback that gets emitted when a text is read successfully, through the :prop:`Success` property.
+
+  See documentation on the :prop:`TextCapture.Feedback` property for usage samples.
+
+  .. method:: static TextCaptureFeedback DefaultFeedback()
+    @objc@ @property (class, nonatomic, readonly) SDCTextCaptureFeedback *defaultFeedback
+    :available: android=6.1, ios=6.1
+
+    Returns a text capture feedback with default configuration:
+
+    - default beep sound is loaded,
+    - beeping for the success event is enabled,
+    - vibration for the success event is enabled.
+
+  .. method:: TextCaptureFeedback()
+    :available: none
+
+    Empty constructor. Constructs a type:`TextCaptureFeedback` instance that will not emit any sound, nor vibration.
+
+  .. method:: static TextCaptureFeedback FromMap(IDictionary<string, object> obj)
+    @objc@ + (instancetype)feedbackWithDictionary:(NSDictionary *)dict error:(NSError **)error
+    :available: none
+
+    Loads the feedback from the provided |map|. See :doc:`/core/serialization` for details.
+
+    .. todo:: describe the accepted key/value pairs including their type
+
+  .. property:: core.Feedback Success { get; set; }
+    :available: android=6.1, ios=6.1
+
+    A :type:`feedback<core.Feedback>` for a success event.

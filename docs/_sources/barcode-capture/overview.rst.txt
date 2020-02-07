@@ -1,0 +1,19 @@
+ScanditBarcodeCapture
+=====================
+
+.. module:: scandit.datacapture.barcode
+  :hidden:
+
+*ScanditBarcodeCapture* implements the barcode capture capabilities of the |sdk|. It supports reading a large number of different :type:`barcode symbologies<Symbology>`.  
+
+.. note::
+
+  Just getting started? Have a look at :doc:`our samples</run-samples>`, or directly :doc:`get started by adding barcode scanning to your app</get-started-barcode>`.
+
+
+.. toctree::
+  :hidden:
+  :glob:
+
+  symbology-properties
+  API<api>

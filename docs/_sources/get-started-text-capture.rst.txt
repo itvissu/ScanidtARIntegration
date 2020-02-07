@@ -1,0 +1,149 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Get Started With Text Capture
+=============================
+
+.. module:: scandit.datacapture.text
+  :hidden:
+  
+.. note::
+  
+  Please note that Text Capture requires a version of our SDK which isn't publicly available. To get access to the SDK with Text Capture, please contact us at support@scandit.com.
+
+
+In this guide you will learn step by step how to add text capture to your application. Roughly, the steps are:
+
+* Create a new :type:`data capture context<core.DataCaptureContext>` instance, initialized with your license key.
+* Create a :type:`text capture settings<TextCaptureSettings>` instance.
+* Create a new :type:`text capture mode<TextCapture>` instance and initialize it with the settings created above.
+* Register a :type:`text capture listener<ITextCaptureListener>` to receive events when a new text is captured.
+* Obtain a :type:`camera<core.Camera>` instance and set it as the frame source on the data capture context.
+* Display the camera preview by creating a :type:`data capture view<core.ui.DataCaptureView>`.
+* If displaying a preview, optionally create a new :type:`overlay<text.ui.TextCaptureOverlay>` and add it to :type:`data capture view<core.ui.DataCaptureView>`
+
+.. include:: /core/prerequisites.txt
+
+.. include:: /core/create-context.txt
+
+Configure the Text Capture Behavior
+-----------------------------------
+
+Text capture is orchestrated by the :type:`TextCapture` :type:`data capture mode<core.IDataCaptureMode>`. This class is the main entry point for capturing text. It is configured through :type:`TextCaptureSettings` and allows to register one or more :type:`listeners<ITextCaptureListener>` that will get informed whenever a new text has been captured.
+
+For creating a :type:`TextCaptureSettings` instance, you need a JSON containing the necessary configuration for the text capture back-end.
+For details about the format of the JSON check :doc:`text-capture/json-structure`.
+
+First, create a :type:`TextCaptureSettings` instance:
+
+.. sample:: swift
+
+  let settings = try TextCaptureSettings(jsonString: json)
+
+.. sample:: java
+
+  TextCaptureSettings settings = TextCaptureSettings.fromJson(json);
+
+Next, create a :type:`TextCapture` instance with the settings from the previous step:
+
+.. sample:: swift
+
+  self.textCapture = TextCapture(context: context, settings: settings)
+
+.. sample:: java
+
+  this.textCapture = TextCapture.forDataCaptureContext(dataCaptureContext, settings);
+
+Register the Text Capture Listener
+----------------------------------
+
+To get informed whenever a new text has been captured, add a :type:`ITextCaptureListener` through :meth:`TextCapture.AddListener` and implement the listener methods to suit your application's needs.
+
+First |implement| the :type:`ITextCaptureListener` |interface|. For example:
+
+.. sample:: swift
+
+  extension ViewController: TextCaptureListener {
+      func textCapture(_ textCapture: TextCapture,
+                     didCaptureIn session: TextCaptureSession,
+                     frameData: FrameData) {
+          let capturedTexts = session.newlyCapturedTexts
+          for text in capturedTexts {
+              // Do something with the captured text.
+          }
+      }
+  }
+
+.. sample:: java
+
+  @Override
+  public void onTextCaptured(@NonNull TextCapture textCapture,
+          @NonNull TextCaptureSession session, @NonNull FrameData frameData) {
+      List<CapturedText> capturedTexts = session.getNewlyCapturedTexts();
+      // Do something with the captured texts.
+  }
+
+Then add the listener:
+
+.. sample:: swift
+
+  textCapture.addListener(self)
+
+.. sample:: java
+
+  textCapture.addListener(this);
+
+.. include:: /core/use-builtin-camera-start.txt
+
+When using the built-in camera there are recommended settings for each capture mode. These should be used to achieve the best performance and user experience for the respective mode. The following couple of lines show how to get the recommended settings and create the camera from it:
+
+.. sample:: java
+
+  CameraSettings cameraSettings = TextCapture.createRecommendedCameraSettings();
+
+  // Depending on the use case further camera settings adjustments can be made here.
+
+  Camera camera = Camera.getDefaultCamera();
+
+  if (camera != null) {
+      camera.applySettings(cameraSettings);
+  }
+
+.. sample:: swift
+
+  let cameraSettings = TextCapture.recommendedCameraSettings()
+
+  // Depending on the use case further camera settings adjustments can be made here.
+
+  let camera = Camera.default
+  camera?.applySettings(cameraSettings)
+
+.. include:: /core/use-builtin-camera-end.txt
+
+.. include:: /core/display-scan-process.txt
+
+To visualize the results of text capture, the following :type:`overlay<ui.TextCaptureOverlay>` can be added:
+
+.. sample:: swift
+
+  let overlay = TextCaptureOverlay(textCapture: textCapture, view: captureView)
+
+.. sample:: java
+
+  TextCaptureOverlay overlay = TextCaptureOverlay.newInstance(textCapture, dataCaptureView);
+
+
+Disabling Text Capture
+-------------------------
+
+To disable text capture, for instance as a consequence of a text being captured, set :prop:`TextCapture.IsEnabled` to |false|.
+There will not be any new results until the capture mode is enabled again.
+Note that disabling the capture mode does not stop the camera, the camera continues to stream frames until it is turned off.
+
+
+.. admonition:: What's next?
+
+  To dive further into the |sdk| we recommend the following articles:
+
+  * :doc:`scan-area`

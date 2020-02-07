@@ -1,0 +1,91 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Barcode Capture Deserializer
+============================
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.capture.serialization
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. note::
+
+  This deserializer is not thread-safe, subsequent calls for the same settings, mode or overlay have to be called on the same thread.
+
+.. class:: BarcodeCaptureDeserializer : core.IDataCaptureModeDeserializer
+  :available: ios=6.1, android=6.1
+
+  A deserializer to construct barcode capture from JSON. For most use cases it is enough to use :meth:`barcode.BarcodeCapture.FromJson` which internally uses this deserializer. Using the deserializer gives the advantage of being able to listen to the deserialization events as they happen and potentially influence them. Additonally warnings can be read from the deserializer that would otherwise not be available.
+
+  **Related topics**: :doc:`/core/serialization`.
+
+  .. method:: BarcodeCaptureDeserializer()
+    @objc@ + (instancetype)barcodeCaptureDeserializer
+    :available: ios=6.1, android=6.1
+
+    Creates a new deserializer object.
+
+  .. property:: IBarcodeCaptureDeserializerListener Listener { get; set; }
+    @objc@ @property (nonatomic, weak, nullable) id<SDCBarcodeCaptureDeserializerDelegate> delegate
+    :available: ios=6.1, android=6.1
+
+    The object informed about deserialization events.
+
+  .. property:: IList<String> Warnings { get; }
+    @objc@ @property (nonatomic, readonly) NSArray<NSString *> *warnings
+    :available: ios=6.1, android=6.1
+
+    The warnings produced during deserialization, for example which properties were not used during deserialization.
+
+  .. method:: BarcodeCapture ModeFromJson(core.DataCaptureContext context, String jsonData)
+    @java@ barcode.capture.BarcodeCapture ModeFromJson(core.capture.DataCaptureContext dataCaptureContext, String jsonData)
+    @objc@ - (nullable SDCBarcodeCapture *)modeFromJSONString:(NSString *)JSONString withContext:(SDCDataCaptureContext *)context error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Deserializes barcode capture from JSON. 
+
+    .. include:: /core/deserialization-exception.txt
+
+  .. method:: BarcodeCapture UpdateModeFromJson(BarcodeCapture mode, String jsonData)
+    @objc@ - (nullable SDCBarcodeCapture *)updateMode:(SDCBarcodeCapture *)barcodeCapture fromJSONString:(NSString *)JSONString error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Takes an existing barcode capture and updates it by deserializing new or changed properties from JSON. See :ref:`serialization_update_from_json` for details of how updates are being done.
+
+    .. include:: /core/deserialization-exception.txt
+
+  .. method:: BarcodeCaptureSettings SettingsFromJson(String jsonData)
+    @objc@ - (nullable SDCBarcodeCaptureSettings *)settingsFromJSONString:(NSString *)JSONString error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Deserializes barcode capture settings from JSON. 
+    
+    .. include:: /core/deserialization-exception.txt
+
+  .. method:: BarcodeCaptureSettings UpdateSettingsFromJson(BarcodeCaptureSettings settings, String jsonData)
+    @objc@ - (nullable SDCBarcodeCaptureSettings *)updateSettings:(SDCBarcodeCaptureSettings *)settings fromJSONString:(NSString *)JSONString error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Takes existing barcode capture settings and updates them by deserializing new or changed properties from JSON. See :ref:`serialization_update_from_json` for details of how updates are being done.
+
+    .. include:: /core/deserialization-exception.txt
+
+  .. method:: ui.BarcodeCaptureOverlay OverlayFromJson(BarcodeCapture mode, String jsonData)
+    @objc@ - (nullable SDCBarcodeCaptureOverlay *)overlayFromJSONString:(NSString *)JSONString withMode:(SDCBarcodeCapture *)mode error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Deserializes a barcode capture overlay from JSON. 
+    
+    .. include:: /core/deserialization-exception.txt
+
+  .. method:: ui.BarcodeCaptureOverlay UpdateOverlayFromJson(ui.BarcodeCaptureOverlay overlay, String jsonData)
+    @objc@ - (nullable SDCBarcodeCaptureOverlay *)updateOverlay:(SDCBarcodeCaptureOverlay *)overlay fromJSONString:(NSString *)JSONString error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Takes an existing barcode capture overlay and updates it by deserializing new or changed properties from JSON. See :ref:`serialization_update_from_json` for details of how updates are being done.
+
+    .. include:: /core/deserialization-exception.txt

@@ -1,0 +1,23 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+ScanditTextCapture
+==================
+
+.. module:: scandit.datacapture.text
+  :hidden:
+
+*ScanditTextCapture* implements the text capture capabilities of the |sdk|.
+
+.. note::
+
+  Just getting started? Have a look at :doc:`our samples</run-samples>`, or directly :doc:`get started by adding text capture to your app</get-started-text-capture>`.
+  
+
+.. toctree::
+  :hidden:
+  :glob:
+
+  Settings Json Structure<json-structure>
+  API<api>

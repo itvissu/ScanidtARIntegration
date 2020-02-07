@@ -1,0 +1,227 @@
+|sdk| Documentation for |platform|
+==================================
+
+.. module:: scandit.datacapture.core
+  :hidden:
+
+Welcome to the |sdk| Developer Documentation for |platform|. If you are trying out the SDK or you are already integrating it into an app, you've come to the right place.
+
+.. eager-ifconfig:: platform == 'ios'
+
+  If you want to see the SDK in action, take a look at our free `Scandit Barcode Scanner <https://itunes.apple.com/us/app/scandit-barcode-scanner-demo/id453880584?ls=1&mt=8>`_ app in the App Store.
+
+.. eager-ifconfig:: platform == 'android'
+
+  If you want to see the SDK in action, take a look at our free `Scandit Barcode Scanner Demo <https://play.google.com/store/apps/details?id=com.scandit.demoapp>`_ app in the Google Play Store.
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  .. warning::
+  
+    The Scandit Data Capture SDK for Cordova is currently in beta. The stable release is planned for late 2019.
+
+  Known issues:
+    * :type:`DataCaptureContext` instances are not safe to be created shortly after an already existing context was used
+    * :type:`DataCaptureContext` updates might be delayed by :type:`barcode.IBarcodeCaptureListener` callbacks
+    * :type:`ui.DataCaptureView` instances might not hide or resize as expected under certain circumstances
+
+.. toctree::
+  :maxdepth: 1
+  :includehidden:
+  :hidden:
+  :caption: First Steps
+
+  run-samples
+  add-sdk
+
+.. toctree::
+  :maxdepth: 1
+  :hidden:
+  :includehidden:
+  :caption: Barcode Scanning
+
+  get-started-barcode
+  configure-barcodes
+  barcode-symbologies
+  optimize-performance
+
+.. eager-ifconfig:: platform != 'cordova'
+
+  .. toctree::
+    :maxdepth: 1
+    :hidden:
+    :includehidden:
+    :caption: MatrixScan + Augmented Reality
+
+    get-started-matrixscan
+    add-augmented-reality-overlay
+    
+  .. toctree::
+    :maxdepth: 1
+    :hidden:
+    :includehidden:
+    :caption: Text Capture
+
+    get-started-text-capture
+
+.. toctree::
+  :maxdepth: 1
+  :hidden:
+  :includehidden:
+  :caption: All Capture Modes
+
+  camera-advanced
+  Set up the Active Scan Area <scan-area>
+  Choose the Scanner UI<ui-examples>
+
+.. eager-ifconfig:: platform != 'cordova'
+
+  .. toctree::
+    :maxdepth: 1
+    :hidden:
+    :includehidden:
+    :caption: Parser
+
+    get-started-parser
+
+  .. toctree::
+    :maxdepth: 1
+    :hidden:
+    :caption: API Reference
+
+    core/overview
+    barcode-capture/overview
+    text-capture/overview
+    label-capture/overview
+    parser/overview
+    Index <genindex>
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  .. toctree::
+    :maxdepth: 1
+    :hidden:
+    :caption: API Reference
+
+    core/overview
+    barcode-capture/overview
+    Index <genindex>
+
+.. toctree::
+  :maxdepth: 1
+  :hidden:
+  :caption: More Resources
+
+  Release Notes <release-notes>
+  support
+  features-by-platform
+  SDK 5.x Documentation <https://docs.scandit.com/barcode-scanner-sdk.html>
+  migrate-to-6
+  Dashboard <http://ssl.scandit.com>
+
+.. eager-ifconfig:: internal
+
+  Private Documentation
+  ---------------------
+
+   * :doc:`/private/index`
+
+.. eager-ifconfig:: platform == 'ios'
+  
+    .. list-table::
+
+      * - **Samples**
+        - **Frameworks**
+      * - The best way to start with the |sdk|, is trying out our Samples:
+
+          * `Sample Apps on GitHub <https://github.com/Scandit/datacapture-ios-samples>`__
+          * :doc:`run-samples`
+        - To discover how to integrate our frameworks in your app, check the following guide:
+
+          * :doc:`add-sdk`
+      * - **Subscription & Dashboard**
+        - **Support & Contact**
+      * - To develop with the Scandit Data Capture SDK, you need an active subscription and a license key:
+
+          * `Sign up for a free 30 day trial <https://ssl.scandit.com/customers/new?p=test>`_
+          * `Login at scandit.com to create licenses <http://ssl.scandit.com/>`_
+        - Should you have a question which can't be resolved by our documentation, please check out our list of frequently asked questions or reach out to us directly.
+
+          * :doc:`support`
+
+.. eager-ifconfig:: platform == 'android'
+  
+    .. list-table::
+
+      * - **Samples**
+        - **Libraries**
+      * - The best way to start with the |sdk|, is trying out our Samples:
+
+          * `Sample Apps on GitHub <https://github.com/Scandit/datacapture-android-samples>`__
+          * :doc:`run-samples`
+
+        - Our libraries are available on `jcenter <https://bintray.com/scandit/DataCapture>`_:
+
+          * :doc:`add-sdk`
+      * - **Subscription & Dashboard**
+        - **Support & Contact**
+      * - To develop with the Scandit Data Capture SDK, you need an active subscription and a license key to use in your app:
+
+          * `Sign up for a free 30 day trial <https://ssl.scandit.com/customers/new?p=test>`_
+          * `Login at scandit.com to create licenses <http://ssl.scandit.com/>`_
+        - Should you have a question which can't be resolved by our documentation, please check out our list of frequently asked questions or reach out to us directly.
+
+          * :doc:`support`
+
+.. eager-ifconfig:: platform == 'cordova'
+  
+    .. list-table::
+
+      * - **Samples**
+        - **Plugins**
+      * - The best way to start with the |sdk|, is trying out our Samples:
+
+          * :doc:`run-samples`
+        - To discover how to integrate our plugins in your app, check the following guide:
+
+          * :doc:`add-sdk`
+      * - **Subscription & Dashboard**
+        - **Support & Contact**
+      * - To develop with the Scandit Data Capture SDK, you need an active subscription and a license key:
+
+          * `Sign up for a free 30 day trial <https://ssl.scandit.com/customers/new?p=test>`_
+          * `Login at scandit.com to create licenses <http://ssl.scandit.com/>`_
+        - Should you have a question which can't be resolved by our documentation, please check out our list of frequently asked questions or reach out to us directly.
+
+          * :doc:`support`
+
+
+Other Platforms And Frameworks
+------------------------------
+
+.. eager-ifconfig:: platform == 'android'
+
+  * `Data Capture SDK Documentation for iOS <https://docs.scandit.com/data-capture-sdk/ios/index.html>`_
+  * `Data Capture SDK Documentation for Cordova <https://docs.scandit.com/data-capture-sdk/cordova/index.html>`_
+
+.. eager-ifconfig:: platform == 'ios'
+
+  * `Data Capture SDK Documentation for Android <https://docs.scandit.com/data-capture-sdk/android/index.html>`_
+  * `Data Capture SDK Documentation for Cordova <https://docs.scandit.com/data-capture-sdk/cordova/index.html>`_
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  * `Data Capture SDK Documentation for iOS <https://docs.scandit.com/data-capture-sdk/ios/index.html>`_
+  * `Data Capture SDK Documentation for Android <https://docs.scandit.com/data-capture-sdk/android/index.html>`_
+
+For more platforms and frameworks, please refer to the Barcode Scanner 5.x documentation: 
+
+  * `Scandit Barcode Scanner 5.x for Cordova  <https://docs.scandit.com/stable/phonegap/index.html>`_ (including Cordova-based Frameworks like SAP Fiori or Adobe PhoneGap)
+  * `Scandit Barcode Scanner 5.x for Xamarin  <https://docs.scandit.com/stable/xamarin/index.html>`_
+  * `Scandit Barcode Scanner 5.x for React Native  <https://docs.scandit.com/stable/react_native/index.html>`_
+  * `Scandit Barcode Scanner 5.x for Appcelerator Titanium  <https://docs.scandit.com/stable/titanium/index.html>`_
+  * `Scandit Barcode Scanner 5.x for Windows  <https://docs.scandit.com/stable/windows/index.html>`_ 
+  * `Scandit Barcode Scanner 5.x C API for Linux   <https://docs.scandit.com/stable/c_api/index.html>`_
+  * `Scandit Barcode Scanner or the Web   <https://docs.scandit.com/stable/web/index.html>`_
+  * `Overview of all  <https://docs.scandit.com/barcode-scanner-sdk.html>`_ previous releases
+

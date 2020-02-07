@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Symbology Settings &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Symbology" href="symbology.html" />
+    <link rel="prev" title="Symbology Description" href="symbology-description.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../overview.html">ScanditBarcodeCapture</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../symbology-properties.html">Symbology Properties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture.html">Barcode Capture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture-settings.html">Barcode Capture Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture-listener.html">Barcode Capture Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture-session.html">Barcode Capture Session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture-feedback.html">Barcode Capture Feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/barcode-capture-overlay.html">Barcode Capture Overlay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode.html">Barcode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checksum.html">Checksum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="composite-flag.html">Composite Flag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localized-only-barcode.html">Localized Only Barcode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbology-description.html">Symbology Description</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Symbology Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbology.html">Symbology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#traditional-barcode-scanning">Traditional Barcode Scanning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#matrixscan-barcode-tracking">MatrixScan (Barcode Tracking)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#deserialization">Deserialization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../overview.html">ScanditBarcodeCapture</a> &raquo;</li>
+        
+          <li><a href="../api.html">ScanditBarcodeCapture API</a> &raquo;</li>
+        
+      <li>Symbology Settings</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="symbology-settings">
+<h1>Symbology Settings<a class="headerlink" href="#symbology-settings" title="Permalink to this headline">#</a></h1>
+<p>Defined under the namespace <em>Scandit.Datacapture.Barcode</em></p>
+<dl class="class">
+<dt id="class-scandit.datacapture.barcode.SymbologySettings">
+<code class="sig-name descname">SymbologySettings</code><a class="headerlink" href="#class-scandit.datacapture.barcode.SymbologySettings" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class SymbologySettings</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Settings specific to a particular <a class="reference internal" href="symbology.html#enum-scandit.datacapture.barcode.Symbology" title="barcode symbology enum">barcode symbology</a>.</p>
+<p>Learn more on how to use symbology settings in our <a class="reference internal" href="../../configure-barcodes.html"><span class="doc">Configure Which Barcodes Are Read</span></a> guide.</p>
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.SymbologySettings.Symbology">
+<code class="sig-name descname">symbology</code><a class="headerlink" href="#property-scandit.datacapture.barcode.SymbologySettings.Symbology" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get symbology(): <a class="reference internal" href="symbology.html#enum-scandit.datacapture.barcode.Symbology" title="Symbology enum">Symbology</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The symbology that this symbology settings affect.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.SymbologySettings.IsEnabled">
+<code class="sig-name descname">isEnabled</code><a class="headerlink" href="#property-scandit.datacapture.barcode.SymbologySettings.IsEnabled" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">isEnabled: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean" title="boolean">boolean</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>By default decoding of all symbologies is disabled. To enable decoding of a symbology, set this property to <em>true</em>. It is advised to only enable symbologies that are required by the application as every enabled symbology adds processing overhead.</p>
+<p>This property only enables decoding of dark codes on bright background. If color-inverted (bright on dark) codes for this symbology are required, enable them by changing the <a class="reference internal" href="#property-scandit.datacapture.barcode.SymbologySettings.IsColorInvertedEnabled" title="isColorInvertedEnabled property">isColorInvertedEnabled</a> property.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.SymbologySettings.IsColorInvertedEnabled">
+<code class="sig-name descname">isColorInvertedEnabled</code><a class="headerlink" href="#property-scandit.datacapture.barcode.SymbologySettings.IsColorInvertedEnabled" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">isColorInvertedEnabled: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean" title="boolean">boolean</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Determines whether decoding of color-inverted (bright on dark) codes for this symbology is enabled. By default, decoding of color inverted codes is disabled. Currently, the <a class="reference internal" href="#property-scandit.datacapture.barcode.SymbologySettings.IsEnabled" title="isEnabled property">isEnabled</a> property will also have to be set to <em>true</em> for bright on dark codes to be scanned, though this may change in a future release.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.SymbologySettings.Checksums">
+<code class="sig-name descname">checksums</code><a class="headerlink" href="#property-scandit.datacapture.barcode.SymbologySettings.Checksums" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">checksums: <a class="reference internal" href="checksum.html#enum-scandit.datacapture.barcode.Checksum" title="Checksum enum">Checksum</a>[]
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Set of optional checksums to be used for this symbology. The code is accepted if any of the checksums matches in addition to any mandatory checksum of the symbology.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.SymbologySettings.EnabledExtensions">
+<code class="sig-name descname">enabledExtensions</code><a class="headerlink" href="#property-scandit.datacapture.barcode.SymbologySettings.EnabledExtensions" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get enabledExtensions(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>[]
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The set of enabled extensions of this symbology. Extensions allow to configure features that are specific to a small number of symbologies. For example, there is an extension to configure how to treat the leading zero for UPC-A codes. For a list of supported extensions, refer to <a class="reference internal" href="symbology.html#symbology-extensions"><span class="std std-ref">Symbology Extensions</span></a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.barcode.SymbologySettings.ActiveSymbolCounts">
+<code class="sig-name descname">activeSymbolCounts</code><a class="headerlink" href="#property-scandit.datacapture.barcode.SymbologySettings.ActiveSymbolCounts" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">activeSymbolCounts: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>[]
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>This property determines the active symbol counts of the symbology, e.g. the supported length of barcodes to be decoded. Change this property to include symbol counts that are not enabled by default, or to optimize decoding performance for a certain number of symbols.</p>
+<p>The mapping from characters to symbols is symbology-specific. For some symbologies, the start and end characters are included, others include checksums characters in the symbol counts.</p>
+<p>The active symbol count setting is ignored for fixed-size barcodes (the EAN and UPC family of codes) as well as 2d codes. For other symbologies, refer to <a class="reference internal" href="symbology.html#active-symbol-count"><span class="std std-ref">Configuring the Active Symbol Count</span></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.barcode.SymbologySettings.SetExtensionEnabled">
+<code class="sig-name descname">setExtensionEnabled(extension, enabled)</code><a class="headerlink" href="#method-scandit.datacapture.barcode.SymbologySettings.SetExtensionEnabled" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">setExtensionEnabled</code>(<em>extension</em>: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>,
+        <em>enabled</em>: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean" title="boolean">boolean</a>): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Activates/Deactivates a custom extension for the symbology.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

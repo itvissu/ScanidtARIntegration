@@ -1,0 +1,100 @@
+Advanced Camera Functionality
+=============================
+
+In this guide, you will learn about advanced camera functionality not explained in the "Getting Started" guides.
+
+.. admonition:: Before you start...
+
+  To get the most out of this guide, we recommend that you first take a look at the following guides:
+
+  * :doc:`/add-sdk`
+  * One of the "Getting Started" guides for :doc:`barcode capture</get-started-barcode>`, :doc:`barcode tracking</get-started-matrixscan>` or :doc:`text capture</get-started-text-capture>`
+
+
+The data capture context supports using different frame sources to perform recognition on. Most applications will use the built-in camera of the device, e.g. the world-facing camera of a device. The remainder of this guide will assume that you use the built-in camera.
+
+Switching between World-Facing and User-Facing
+----------------------------------------------
+
+In your app you might want to switch between using the world-facing and user-facing camera for different use cases. As these are different cameras entirely switching between them is done by instantiating an entirely new camera and setting it as the :type:`data capture context<scandit.datacapture.core.DataCaptureContext>`'s new frame source.
+
+Let's start with the world facing camera. What we do is very similar to the camera section in the "Getting Started" guides, but here we want to specifically use the world-facing camera. Remember to use the recommended camera settings for whichever data capture mode you are using.
+
+.. sample:: java
+
+  CameraSettings cameraSettings = ...;
+  Camera worldFacingCamera = Camera.getCamera(CameraPosition.WORLD_FACING);
+
+  if (worldFacingCamera != null) {
+    worldFacingCamera.applySettings(cameraSettings);
+
+    // Set the camera as the frame source and turn it on.
+    dataCaptureContext.setFrameSource(worldFacingCamera);
+    worldFacingCamera.switchToDesiredState(FrameSourceState.ON);
+  }
+
+.. sample:: swift
+
+  let cameraSettings = ...
+  if let worldFacingCamera = Camera(position: .worldFacing) {
+    worldFacingCamera.apply(cameraSettings)
+
+    // Set the camera as the frame source and turn it on.
+    context.setFrameSource(worldFacingCamera)
+    worldFacingCamera?.switch(toDesiredState: .on)
+  }
+
+.. sample:: javascript
+
+  const cameraSettings = ...;
+  const worldFacingCamera = Scandit.Camera.atPosition(Scandit.CameraPosition.WorldFacing);
+
+  if (worldFacingCamera != null) {
+    worldFacingCamera.applySettings(cameraSettings);
+
+    // Set the camera as the frame source and turn it on.
+    context.setFrameSource(worldFacingCamera);
+    worldFacingCamera.switchToDesiredState(Scandit.FrameSourceState.On);
+  }
+
+At this point we have a running world-facing camera that is used by the context. Whenever we want to switch to a user-facing camera, we simply turn off the world-facing camera and create a new user-facing camera that we set as the new frame source.
+
+.. sample:: java
+
+  worldFacingCamera.switchToDesiredState(FrameSourceState.OFF);
+
+  Camera userFacingCamera = Camera.getCamera(CameraPosition.USER_FACING);
+
+  if (userFacingCamera != null) {
+    userFacingCamera.applySettings(cameraSettings);
+
+    // Set the new camera as the frame source and turn it on.
+    dataCaptureContext.setFrameSource(userFacingCamera);
+    userFacingCamera.switchToDesiredState(FrameSourceState.ON);
+  }
+
+.. sample:: swift
+
+  worldFacingCamera?.switch(toDesiredState: .off)
+
+  if let userFacingCamera = Camera(position: .userFacing) {
+    userFacingCamera.apply(cameraSettings)
+
+    // Set the camera as the frame source and turn it on.
+    context.setFrameSource(userFacingCamera)
+    userFacingCamera?.switch(toDesiredState: .on)
+  }
+
+.. sample:: javascript
+
+  worldFacingCamera.switchToDesiredState(Scandit.FrameSourceState.Off);
+
+  const userFacingCamera = Scandit.Camera.atPosition(Scandit.CameraPosition.UserFacing);
+
+  if (userFacingCamera != null) {
+    userFacingCamera.applySettings(cameraSettings);
+
+    // Set the camera as the frame source and turn it on.
+    context.setFrameSource(userFacingCamera);
+    userFacingCamera.switchToDesiredState(Scandit.FrameSourceState.On);
+  }

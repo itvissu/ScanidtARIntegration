@@ -1,0 +1,55 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Barcode Tracking Deserializer Listener
+======================================
+
+.. module:: scandit.datacapture.barcode.tracking
+  :android-package: com.scandit.datacapture.barcode.tracking.serialization
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. interface:: IBarcodeTrackingDeserializerListener
+  @objc@ SDCBarcodeTrackingDeserializerDelegate <NSObject>
+  :available: ios=6.1, android=6.1
+
+  The listener for the barcode capture deserializer.
+
+  .. method:: void OnModeDeserializationStarted(BarcodeTrackingDeserializer deserializer, BarcodeTracking mode, core.JsonValue json)
+    @objc@ - (void)barcodeTrackingDeserializer:(SDCBarcodeTrackingDeserializer *)deserializer didStartDeserializingMode:(SDCBarcodeTracking *)mode fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called before the deserialization of barcode tracking started. This is the point to overwrite defaults before the deserialization is performed. 
+
+  .. method:: void OnModeDeserializationFinished(BarcodeTrackingDeserializer deserializer, BarcodeTracking mode, core.JsonValue json)
+    @objc@ - (void)barcodeTrackingDeserializer:(SDCBarcodeTrackingDeserializer *)deserializer didFinishDeserializingMode:(SDCBarcodeTracking *)mode fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called when the deserialization of barcode tracking finished. This is the point to do additional deserialization.
+
+  .. method:: void OnSettingsDeserializationStarted(BarcodeTrackingDeserializer deserializer, BarcodeTrackingSettings settings, core.JsonValue json)
+    @objc@ - (void)barcodeTrackingDeserializer:(SDCBarcodeTrackingDeserializer *)deserializer didStartDeserializingSettings:(SDCBarcodeTrackingSettings *)settings fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called before the deserialization of the barcode tracking settings started. This is the point to overwrite defaults before the deserialization is performed. 
+
+  .. method:: void OnSettingsDeserializationFinished(BarcodeTrackingDeserializer deserializer, BarcodeTrackingSettings settings, core.JsonValue json)
+    @objc@ - (void)barcodeTrackingDeserializer:(SDCBarcodeTrackingDeserializer *)deserializer didFinishDeserializingSettings:(SDCBarcodeTrackingSettings *)settings fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called when the deserialization of the barcode tracking settings finished. This is the point to do additional deserialization.
+
+  .. method:: void OnBasicOverlayDeserializationStarted(BarcodeTrackingDeserializer deserializer, ui.BarcodeTrackingBasicOverlay overlay, core.JsonValue json)
+    @objc@ - (void)barcodeTrackingDeserializer:(SDCBarcodeTrackingDeserializer *)deserializer didStartDeserializingBasicOverlay:(SDCBarcodeTrackingBasicOverlay *)overlay fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called before the deserialization of the barcode tracking basic overlay started. This is the point to overwrite defaults before the deserialization is performed. 
+
+  .. method:: void OnBasicOverlayDeserializationFinished(BarcodeTrackingDeserializer deserializer, ui.BarcodeTrackingBasicOverlay overlay, core.JsonValue json)
+    @objc@ - (void)barcodeTrackingDeserializer:(SDCBarcodeTrackingDeserializer *)deserializer didFinishDeserializingBasicOverlay:(SDCBarcodeTrackingBasicOverlay *)overlay fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called when the deserialization of the barcode tracking basic overlay finished. This is the point to do additional deserialization.

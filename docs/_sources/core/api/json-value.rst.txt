@@ -1,0 +1,292 @@
+Json Value
+==========
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.json
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. class:: JsonValue
+  @objc@ SDCJSONValue : NSObject
+  :available: ios=6.0, android=6.0
+
+  JSON representation for use with the |sdk|. It provides a lot of convenience functions for deserialization of base classes. It also tracks the usage of properties to be able to later report those that were not used for deserialization (potentially because they were misspelled or are outdated). 
+
+  .. method:: JsonValue(String jsonString)
+    :available: android=6.1
+
+    Returns a new JSON Value for the given json string. An exception is thrown if the string is not a valid JSON representation.
+
+  .. method:: static JsonValue NewInstance(String jsonString)
+    @objc@ + (instancetype)JSONValueWithString:(nonnull NSString *)string
+    :available: ios=6.1
+
+    Returns a new JSON Value for the given json string. An exception is thrown if the string is not a valid JSON representation.
+
+  .. method:: String JsonString()
+    @objc@ - (nonnull NSString *)jsonString
+    :available: android=6.1, ios=6.1
+
+    Returns the string representation of the JSON value.
+
+  .. method:: bool AsBoolean()
+    @objc@ - (BOOL)asBOOL
+    :available: android=6.1, ios=6.1
+
+    Returns the value as a boolean. An exception is thrown if the conversion is not possible.
+
+  .. method:: bool GetBoolForKey()
+    @java@ bool requireByKeyAsBoolean(String key)
+    @objc@ - (BOOL)BOOLForKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a boolean. An exception is thrown if this JSON Value is not an object, it does not contain a value for the given key or the value for the given key is not a boolean.
+
+  .. method:: bool GetBoolForKeyOrDefault(String key, bool defaultValue)
+    @java@ bool getByKeyAsBoolean(String key, bool defaultValue)
+    @objc@ - (BOOL)BOOLForKey:(nonnull NSString *)key default:(BOOL)defaultValue
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a boolean. The default value is returned if there is no value for the given key. An exception is thrown if this JSON Value is not an object or the value for the given key is not a boolean.
+
+  .. method:: int AsInt()
+    @objc@ - (NSInteger)asInteger
+    :available: android=6.1, ios=6.1
+
+    Returns the value as an integer. An exception is thrown if the conversion is not possible.
+
+  .. method:: int GetIntForKey()
+    @java@ int requireByKeyAsInt(String key)
+    @objc@ - (NSInteger)integerForKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as an integer. An exception is thrown if this JSON Value is not an object, it does not contain a value for the given key or the value for the given key is not an integer.
+
+  .. method:: int GetIntForKeyOrDefault(String key, int defaultValue)
+    @java@ int getByKeyAsInt(String key, int defaultValue)
+    @objc@ - (NSInteger)integerForKey:(nonnull NSString *)key default:(NSInteger)defaultValue
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as an integer. The default value is returned if there is no value for the given key. An exception is thrown if this JSON Value is not an object or the value for the given key is not an integer.
+
+  .. method:: float AsFloat()
+    @objc@ - (CGFloat)asCGFloat
+    :available: android=6.1, ios=6.1
+
+    Returns the value as a float. An exception is thrown if the conversion is not possible.
+
+  .. method:: float GetFloatForKey()
+    @java@ double requireByKeyAsFloat(String key)
+    @objc@ - (CGFloat)CGFloatForKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a float. An exception is thrown if this JSON Value is not an object, it does not contain a value for the given key or the value for the given key is not a float.
+
+  .. method:: float GetFloatForKeyOrDefault(String key, float defaultValue)
+    @java@ double getByKeyAsFloat(String key, float defaultValue)
+    @objc@ - (CGFloat)CGFloatForKey:(nonnull NSString *)key default:(CGFloat)defaultValue
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a float. The default value is returned if there is no value for the given key. An exception is thrown if this JSON Value is not an object or the value for the given key is not a float.
+
+  .. method:: String AsString()
+    @objc@ - (nonnull NSString *)asString
+    :available: android=6.1, ios=6.1
+
+    Returns the value as a string. An exception is thrown if the conversion is not possible.
+
+  .. method:: String GetStringForKey()
+    @java@ String requireByKeyAsString(String key)
+    @objc@ - (nonnull NSString *)stringForKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a string. An exception is thrown if this JSON Value is not an object, it does not contain a value for the given key or the value for the given key is not a string.
+
+  .. method:: String GetStringForKeyOrDefault(String key, String defaultValue)
+    @java@ String getByKeyAsString(String key, String defaultValue)
+    @objc@ - (nonnull NSString *)stringForKey:(nonnull NSString *)key default:(nonnull NSString *)defaultValue
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a string. The default value is returned if there is no value for the given key. An exception is thrown if this JSON Value is not an object or the value for the given key is not a string.
+
+  .. method:: Color AsColor()
+    :available: android=6.1, ios=6.1
+
+    Returns the value as a color. An exception is thrown if the conversion is not possible.
+
+  .. method:: Color GetColorForKey()
+    @java@ int requireByKeyAsColor(String key)
+    @objc@ - (nonnull UIColor *)colorForKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a color. An exception is thrown if this JSON Value is not an object, it does not contain a value for the given key or the value for the given key is not a color.
+
+  .. method:: Color GetColorForKeyOrDefault(String key, Color defaultValue)
+    @java@ int getByKeyAsColor(String key, int defaultValue)
+    @objc@ - (nonnull UIColor *)colorForKey:(nonnull NSString *)key default:(nonnull UIColor *)defaultValue
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a color. The default value is returned if there is no value for the given key. An exception is thrown if this JSON Value is not an object or the value for the given key is not a color.
+
+  .. method:: ui.Brush AsBrush()
+    @objc@ - (nonnull SDCBrush *)asBrush
+    :available: android=6.1, ios=6.1
+
+    Returns the value as a :type:`ui.Brush`. An exception is thrown if the conversion is not possible.
+
+  .. method:: ui.Brush GetBrushForKey()
+    @java@ ui.style.Brush requireByKeyAsBrush(String key)
+    @objc@ - (nonnull SDCBrush *)brushForKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a :type:`ui.Brush`. An exception is thrown if this JSON Value is not an object, it does not contain a value for the given key or the value for the given key is not a :type:`ui.Brush`.
+
+  .. method:: ui.Brush? GetBrushForKeyOrDefault(String key, ui.Brush? defaultValue)
+    @java@ ui.style.Brush? getByKeyAsBrush(String key, ui.style.Brush? defaultValue)
+    @objc@ - (nullable SDCBrush *)brushForKey:(nonnull NSString *)key default:(nullable SDCBrush *)defaultValue
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a :type:`ui.Brush`. The default value is returned if there is no value for the given key. An exception is thrown if this JSON Value is not an object or the value for the given key is not a :type:`ui.Brush`.
+
+  .. method:: FloatWithUnit AsFloatWithUnit()
+    @objc@ - (SDCFloatWithUnit)asFloatWithUnit
+    :available: android=6.1, ios=6.1
+
+    Returns the value as a :type:`FloatWithUnit`. An exception is thrown if the conversion is not possible.
+
+  .. method:: FloatWithUnit GetFloatWithUnitForKey()
+    @java@ FloatWithUnit requireByKeyAsFloatWithUnit(String key)
+    @objc@ - (SDCFloatWithUnit)floatWithUnitForKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a :type:`FloatWithUnit`. An exception is thrown if this JSON Value is not an object, it does not contain a value for the given key or the value for the given key is not a :type:`FloatWithUnit`.
+
+  .. method:: FloatWithUnit? GetFloatWithUnitForKeyOrDefault(String key, FloatWithUnit? defaultValue)
+    @java@ FloatWithUnit? getByKeyAsFloatWithUnit(String key, FloatWithUnit? defaultValue)
+    @objc@ - (SDCFloatWithUnit)floatWithUnitForKey:(nonnull NSString *)key default:(SDCFloatWithUnit)defaultValue
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a :type:`FloatWithUnit`. The default value is returned if there is no value for the given key. An exception is thrown if this JSON Value is not an object or the value for the given key is not a :type:`FloatWithUnit`.
+
+  .. method:: PointWithUnit AsPointWithUnit()
+    @objc@ - (SDCPointWithUnit)asPointWithUnit
+    :available: android=6.1, ios=6.1
+
+    Returns the value as a :type:`PointWithUnit`. An exception is thrown if the conversion is not possible.
+
+  .. method:: PointWithUnit GetPointWithUnitForKey()
+    @java@ PointWithUnit requireByKeyAsPointWithUnit(String key)
+    @objc@ - (SDCPointWithUnit)pointWithUnitForKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a :type:`PointWithUnit`. An exception is thrown if this JSON Value is not an object, it does not contain a value for the given key or the value for the given key is not a :type:`PointWithUnit`.
+
+  .. method:: PointWithUnit? GetFloatWithUnitForKeyOrDefault(String key, PointWithUnit? defaultValue)
+    @java@ PointWithUnit? getByKeyAsPointWithUnit(String key, PointWithUnit? defaultValue)
+    @objc@ - (SDCPointWithUnit)pointWithUnitForKey:(nonnull NSString *)key default:(SDCPointWithUnit)defaultValue
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a :type:`PointWithUnit`. The default value is returned if there is no value for the given key. An exception is thrown if this JSON Value is not an object or the value for the given key is not a :type:`PointWithUnit`.
+
+  .. method:: MarginsWithUnit AsMarginsWithUnit()
+    @objc@ - (SDCMarginsWithUnit)asMarginsWithUnit
+    :available: android=6.1, ios=6.1
+
+    Returns the value as a :type:`MarginsWithUnit`. An exception is thrown if the conversion is not possible.
+
+  .. method:: MarginsWithUnit GetMarginsWithUnitForKey()
+    @java@ MarginsWithUnit requireByKeyAsMarginsWithUnit(String key)
+    @objc@ - (SDCMarginsWithUnit)marginsWithUnitForKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a :type:`MarginsWithUnit`. An exception is thrown if this JSON Value is not an object, it does not contain a value for the given key or the value for the given key is not a :type:`MarginsWithUnit`.
+
+  .. method:: MarginsWithUnit? GetFloatWithUnitForKeyOrDefault(String key, MarginsWithUnit? defaultValue)
+    @java@ MarginsWithUnit? getByKeyAsMarginsWithUnit(String key, MarginsWithUnit? defaultValue)
+    @objc@ - (SDCMarginsWithUnit)marginsWithUnitForKey:(nonnull NSString *)key default:(SDCMarginsWithUnit)defaultValue
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as a :type:`MarginsWithUnit`. The default value is returned if there is no value for the given key. An exception is thrown if this JSON Value is not an object or the value for the given key is not a :type:`MarginsWithUnit`.
+
+  .. method:: JsonValue AsArray()
+    :available: android=6.1, ios=6.1
+
+    Returns the value if it is an array. An exception is thrown if the conversion is not possible.
+
+  .. method:: JsonValue GetArrayForKey(String key)
+    @java@ JsonValue requireByKeyAsArray(String key)
+    @objc@ - (nonnull SDCJSONValue *)arrayForKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as an array. An exception is thrown if this JSON Value is not an object, it does not contain a value for the given key or the value for the given key is not an array.
+
+  .. method:: JsonValue? GetArrayForKeyOrDefault(String key, JsonValue? defaultValue)
+    @java@ JsonValue? getByKeyAsArray(String key, JsonValue? defaultValue)
+    @objc@ - (nullable SDCJSONValue *)arrayForKey:(nonnull NSString *)key default:(nullable SDCJSONValue *)defaultValue
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as an array. The default value is returned if there is no value for the given key. An exception is thrown if this JSON Value is not an object or the value for the given key is not an array.
+
+  .. property:: long Size { get; }
+    :available: android=6.1
+
+    The size of the array. An exception is thrown if this JSON value is not an array.
+
+  .. method:: long GetSize()
+    @objc@ - (NSUInteger)count
+    :available: ios=6.1
+
+    The size of the array. An exception is thrown if this JSON value is not an array.
+
+  .. method:: JsonValue GetForIndex()
+    @java@ JsonValue requireByIndex(int index)
+    @objc@ - (nonnull SDCJSONValue *)JSONValueAtIndex:(NSUInteger)index
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given index. An exception is thrown if this JSON Value is not an array or the given index is out of bounds.
+
+  .. method:: JsonValue AsObject()
+    :available: android=6.1, ios=6.1
+
+    Returns the value if it is an object. An exception is thrown if the conversion is not possible.
+
+  .. method:: JsonValue GetObjectForKey(String key)
+    @java@ JsonValue requireByKeyAsObject(String key)
+    @objc@ - (nonnull SDCJSONValue *)objectForKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as an object. An exception is thrown if this JSON Value is not an object, it does not contain a value for the given key or the value for the given key is not an object.
+
+  .. method:: JsonValue? GetObjectForKeyOrDefault(String key, JsonValue? defaultValue)
+    @java@ JsonValue? getByKeyAsObject(String key, JsonValue? defaultValue)
+    @objc@ - (nullable SDCJSONValue *)objectForKey:(nonnull NSString *)key default:(nullable SDCJSONValue *)defaultValue
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key as an object. The default value is returned if there is no value for the given key. An exception is thrown if this JSON Value is not an object or the value for the given key is not an object.
+
+  .. method:: bool Contains(String key)
+    @objc@ - (BOOL)containsKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns whether a value for the given key exists. An exception is thrown if this JSON Value is not an object.
+
+  .. method:: JsonValue GetForKey()
+    @java@ JsonValue requireByKey(String key)
+    @objc@ - (BOOL)containsKey:(nonnull NSString *)key
+    :available: android=6.1, ios=6.1
+
+    Returns the value for the given key. An exception is thrown if this JSON Value is not an object or it does not contain a value for the given key.
+
+  .. property:: String AbsolutePath { get; }
+    @objc@ @property (nonatomic, strong, readonly) NSString *absolutePath
+    :available: ios=6.1, android=6.1
+
+    The path from the root to this JSON value.
+
+  .. property:: bool Used { get; }
+    @objc@ @property (nonatomic, assign, getter=isUsed) BOOL used
+    :available: ios=6.1, android=6.1
+
+    Whether this JSON value was used during deserialization.

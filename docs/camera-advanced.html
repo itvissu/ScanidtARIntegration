@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Advanced Camera Functionality &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Set up the Active Scan Area and Location Selection" href="scan-area.html" />
+    <link rel="prev" title="Optimize Scanning Performance" href="optimize-performance.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Camera Functionality</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#switching-between-world-facing-and-user-facing">Switching between World-Facing and User-Facing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Advanced Camera Functionality</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="advanced-camera-functionality">
+<h1>Advanced Camera Functionality<a class="headerlink" href="#advanced-camera-functionality" title="Permalink to this headline">#</a></h1>
+<p>In this guide, you will learn about advanced camera functionality not explained in the “Getting Started” guides.</p>
+<div class="admonition-before-you-start admonition">
+<p class="admonition-title">Before you start…</p>
+<p>To get the most out of this guide, we recommend that you first take a look at the following guides:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="add-sdk.html"><span class="doc">Add the SDK to Your App</span></a></p></li>
+<li><p>One of the “Getting Started” guides for <a class="reference internal" href="get-started-barcode.html"><span class="doc">barcode capture</span></a>, <a class="reference internal" href="get-started-matrixscan.html"><span class="doc">barcode tracking</span></a> or <a class="reference internal" href="get-started-text-capture.html"><span class="doc">text capture</span></a></p></li>
+</ul>
+</div>
+<p>The data capture context supports using different frame sources to perform recognition on. Most applications will use the built-in camera of the device, e.g. the world-facing camera of a device. The remainder of this guide will assume that you use the built-in camera.</p>
+<div class="section" id="switching-between-world-facing-and-user-facing">
+<h2>Switching between World-Facing and User-Facing<a class="headerlink" href="#switching-between-world-facing-and-user-facing" title="Permalink to this headline">#</a></h2>
+<p>In your app you might want to switch between using the world-facing and user-facing camera for different use cases. As these are different cameras entirely switching between them is done by instantiating an entirely new camera and setting it as the <a class="reference internal" href="core/api/data-capture-context.html#class-scandit.datacapture.core.DataCaptureContext" title="data capture context class">data capture context</a>’s new frame source.</p>
+<p>Let’s start with the world facing camera. What we do is very similar to the camera section in the “Getting Started” guides, but here we want to specifically use the world-facing camera. Remember to use the recommended camera settings for whichever data capture mode you are using.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">cameraSettings</span> <span class="o">=</span> <span class="p">...;</span>
+<span class="kr">const</span> <span class="nx">worldFacingCamera</span> <span class="o">=</span> <span class="nx">Scandit</span><span class="p">.</span><span class="nx">Camera</span><span class="p">.</span><span class="nx">atPosition</span><span class="p">(</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">CameraPosition</span><span class="p">.</span><span class="nx">WorldFacing</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">worldFacingCamera</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">worldFacingCamera</span><span class="p">.</span><span class="nx">applySettings</span><span class="p">(</span><span class="nx">cameraSettings</span><span class="p">);</span>
+
+  <span class="c1">// Set the camera as the frame source and turn it on.</span>
+  <span class="nx">context</span><span class="p">.</span><span class="nx">setFrameSource</span><span class="p">(</span><span class="nx">worldFacingCamera</span><span class="p">);</span>
+  <span class="nx">worldFacingCamera</span><span class="p">.</span><span class="nx">switchToDesiredState</span><span class="p">(</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">FrameSourceState</span><span class="p">.</span><span class="nx">On</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>At this point we have a running world-facing camera that is used by the context. Whenever we want to switch to a user-facing camera, we simply turn off the world-facing camera and create a new user-facing camera that we set as the new frame source.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">worldFacingCamera</span><span class="p">.</span><span class="nx">switchToDesiredState</span><span class="p">(</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">FrameSourceState</span><span class="p">.</span><span class="nx">Off</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">userFacingCamera</span> <span class="o">=</span> <span class="nx">Scandit</span><span class="p">.</span><span class="nx">Camera</span><span class="p">.</span><span class="nx">atPosition</span><span class="p">(</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">CameraPosition</span><span class="p">.</span><span class="nx">UserFacing</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">userFacingCamera</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">userFacingCamera</span><span class="p">.</span><span class="nx">applySettings</span><span class="p">(</span><span class="nx">cameraSettings</span><span class="p">);</span>
+
+  <span class="c1">// Set the camera as the frame source and turn it on.</span>
+  <span class="nx">context</span><span class="p">.</span><span class="nx">setFrameSource</span><span class="p">(</span><span class="nx">userFacingCamera</span><span class="p">);</span>
+  <span class="nx">userFacingCamera</span><span class="p">.</span><span class="nx">switchToDesiredState</span><span class="p">(</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">FrameSourceState</span><span class="p">.</span><span class="nx">On</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

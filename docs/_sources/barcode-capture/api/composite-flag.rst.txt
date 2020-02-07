@@ -1,0 +1,55 @@
+Composite Flag
+==============
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.tracking.capture
+
+.. enum:: CompositeFlag
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Indicates whether the code is part of a composite code.
+
+  .. value:: None
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Code is not part of a composite code.
+
+  .. value:: Unknown
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Code could be part of a composite code. This flag is set by linear (1d) symbologies that have no composite flag support but can be part of a composite code like the EAN/UPC symbology family.
+
+  .. value:: Linked
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Code is the linear component of a composite code. This flag can be set by :enum:`GS1 DataBar<Symbology.Gs1Databar>` or GS1-128 (:enum:`Code 128<Symbology.Code128>`).
+
+  .. value:: Gs1TypeA
+    @objc@ SDCCompositeFlagGS1TypeA
+    @javascript@ GS1TypeA
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Code is a GS1 Composite Code Type A (CC-A). This flag can be set by :enum:`MicroPDF417<Symbology.MicroPdf417>` codes.
+
+  .. value:: Gs1TypeB
+    @objc@ SDCCompositeFlagGS1TypeB
+    @javascript@ GS1TypeB
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Code is a GS1 Composite Code Type B (CC-B). This flag can be set by :enum:`MicroPDF417<Symbology.MicroPdf417>` codes.
+
+  .. value:: Gs1TypeC
+    @objc@ SDCCompositeFlagGS1TypeC
+    @javascript@ GS1TypeC
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Code is a GS1 Composite Code Type C (CC-C). This flag can be set by :enum:`PDF417<Symbology.Pdf417>` codes.
+
+.. method:: string StringFromCompositeFlag(CompositeFlag compositeFlag)
+  :available: none
+
+
+.. method:: CompositeFlag CompositeFlagFromJSONString(string JSONString)
+  :available: none
+
+

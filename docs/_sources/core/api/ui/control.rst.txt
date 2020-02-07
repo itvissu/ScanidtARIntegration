@@ -1,0 +1,11 @@
+Control
+=======
+
+.. module:: scandit.datacapture.core.ui
+  :android-package: com.scandit.datacapture.core.ui.control
+
+.. interface:: IControl
+  @objc@ SDCControl <NSObject>
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  |Interface| for custom controls on top of the data capture view. Controls are restricted to the set of controls provided by the |sdk|, it is not possible for customers to |implement| this |interface| and provide custom control implementations. This |interface| does not expose any methods or properties, it just serves as a tag for different controls.

@@ -1,0 +1,24 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+ScanditParser
+=============
+
+.. module:: scandit.datacapture.parser
+  :hidden:
+
+*ScanditParser* implements the parsing capabilities of the |sdk|. It supports parsing a large number of different :doc:`data formats<formats>`. 
+
+.. note::
+
+  Just getting started? Have a look at :doc:`our samples</run-samples>`, or directly :doc:`get started by adding parsing to your app</get-started-parser>`.
+  
+
+.. toctree::
+  :hidden:
+  :glob:
+
+  formats
+  result-object
+  API<api>

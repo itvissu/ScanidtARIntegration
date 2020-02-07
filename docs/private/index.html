@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Specifications/Docs for Unreleased Features &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Specifications/Docs for Unreleased Features</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="specifications-docs-for-unreleased-features">
+<h1>Specifications/Docs for Unreleased Features<a class="headerlink" href="#specifications-docs-for-unreleased-features" title="Permalink to this headline">#</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="custom-controls-on-views.html">Custom Controls on DataCaptureView</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom-controls-on-views.html#adding-ui-elements">Adding UI Elements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="label-capture/get-started-labelcapture.html">Getting Started With Label Capture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="label-capture/get-started-labelcapture.html#integrating-label-capture-into-your-app">Integrating Label Capture Into Your App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="label-capture/get-started-labelcapture.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="label-capture/get-started-labelcapture.html#create-the-data-capture-context">Create the Data Capture Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="label-capture/get-started-labelcapture.html#load-the-label-blueprint">Load the Label Blueprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="label-capture/get-started-labelcapture.html#configure-the-label-capture-behavior">Configure the Label Capture Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="label-capture/get-started-labelcapture.html#register-the-label-capture-listener">Register the Label Capture Listener</a></li>
+<li class="toctree-l2"><a class="reference internal" href="label-capture/get-started-labelcapture.html#use-a-capture-view-to-visualize-the-scan-process">Use a Capture View to Visualize the Scan Process</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="other-documentation">
+<h1>Other Documentation<a class="headerlink" href="#other-documentation" title="Permalink to this headline">#</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="internal.html">Unilang</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="internal.html#pro">Pro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal.html#cons">Cons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal.html#open-tasks">Open Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal.html#documenting-with-unilang">Documenting with Unilang</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Design Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#goals-non-goals">Goals/Non-goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#api-rules">API Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#sdk-structure">Scandit Data Capture SDK structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#usage-samples">Usage samples</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="todos">
+<h1>Todos<a class="headerlink" href="#todos" title="Permalink to this headline">#</a></h1>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>SDK-11002 add link to section describing coordinate conversions.</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../barcode-capture/api/barcode.html#id1"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/barcode-capture/api/barcode.rst, line 54.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>SDK-11002 add link to section describing coordinate conversions.</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../barcode-capture/api/localized-only-barcode.html#id1"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/barcode-capture/api/localized-only-barcode.rst, line 24.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>TBD when scaling is needed</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../barcode-capture/api/ui/barcode-tracking-advanced-overlay.html#id1"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/barcode-capture/api/ui/barcode-tracking-advanced-overlay.rst, line 71.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>define CurrentZoomFactor and create link to it.</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../core/api/camera-settings.html#id1"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/core/api/camera-settings.rst, line 139.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>Expose exposure and focus options.</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../core/api/camera-settings.html#id2"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/core/api/camera-settings.rst, line 143.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>Decide how to propagate error in case of failure.</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../core/api/data-capture-context.html#id1"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/core/api/data-capture-context.rst, line 151.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>add this to the sample</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../core/api/data-capture-mode.html#id1"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/core/api/data-capture-mode.rst, line 27.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>To be written</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="label-capture/get-started-labelcapture.html#id1"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/private/label-capture/get-started-labelcapture.rst, line 11.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>Reference a guide about code selection UIs</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../scan-area.html#id1"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/scan-area.rst, line 139.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>Add Code snippet</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../ui-examples.html#id1"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/ui-examples.rst, line 34.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>Add Code snippet</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../ui-examples.html#id2"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/ui-examples.rst, line 51.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>Add Code snippet</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../ui-examples.html#id3"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/ui-examples.rst, line 68.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<p>Add Code snippet</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="../ui-examples.html#id4"><em>original entry</em></a> is located in /builds/mobile/data-capture-sdk/docs/source/ui-examples.rst, line 110.)</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

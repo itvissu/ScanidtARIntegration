@@ -1,0 +1,27 @@
+Data Capture View Deserializer Listener
+=======================================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.capture.serialization
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. interface:: IDataCaptureViewDeserializerListener
+  @objc@ SDCDataCaptureViewDeserializerDelegate <NSObject>
+  :available: ios=6.1, android=6.1
+
+  The listener for the data capture view deserializer.
+
+  .. method:: void OnViewDeserializationStarted(DataCaptureViewDeserializer deserializer, ui.DataCaptureView view, JsonValue json)
+    @objc@ - (void)viewDeserializer:(SDCDataCaptureViewDeserializer *)deserializer didStartDeserializingView:(SDCDataCaptureView *)view fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called before the deserialization of the view started. This is the point to overwrite defaults before the deserialization is performed. 
+
+  .. method:: void OnViewDeserializationFinished(DataCaptureViewDeserializer deserializer, ui.DataCaptureView view, JsonValue json)
+    @objc@ - (void)viewDeserializer:(SDCDataCaptureViewDeserializer *)deserializer didFinishDeserializingView:(SDCDataCaptureView *)view fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called when the deserialization of the view finished. This is the point to do additional deserialization.

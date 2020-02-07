@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GS1 AI &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>GS1 AI</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gs1-ai">
+<h1>GS1 AI<a class="headerlink" href="#gs1-ai" title="Permalink to this headline">#</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<p>The parser supports version 19.0 of the GS1 Application Identifier (AI) definitions standard. The latest version of the AI definitions is available in <a class="reference external" href="http://www.gs1.org/docs/barcodes/GS1_General_Specifications.pdf">Section 3 GS1 Application Identifier definitions</a>.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h2>
+<p>Parsing the following code (without the quotes):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;1719060010SCANDIT123&quot;</span>
+</pre></div>
+</div>
+<p>will result in the following JSON output:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;17&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;month&quot;</span> <span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+            <span class="s2">&quot;year&quot;</span> <span class="o">:</span> <span class="mi">2019</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;190600&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;SCANDIT123&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;SCANDIT123&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>And parsing the following code with <cite>strictMode</cite> disabled:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;00001834560000000018&quot;</span>
+</pre></div>
+</div>
+<p>will result in the following JSON output:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;00&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;001834560000000018&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;issues&quot;</span> <span class="o">:</span> <span class="p">[</span><span class="s2">&quot;check digit mismatch. Expected 8 but got 2.&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;001834560000000018&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exposed-fields">
+<h2>Exposed Fields<a class="headerlink" href="#exposed-fields" title="Permalink to this headline">#</a></h2>
+<p>The name of the fields correspond to the AI number. The following fields have their content parsed. Fields which are not in this list can still be accessed, but only the raw string is available.</p>
+<ul class="simple">
+<li><p>“00”: parsed data is a dictionary, always contains alphanumeric subfield “extensionDigit”, “serialReference”, might also contain alphanumeric subfield “companyPrefix”</p></li>
+<li><p>“01”, “02”: parsed data is a dictionary, always contains numeric subfields “companyPrefix” and “itemReference” and sometimes also integer field “indicator” (if non-0)</p></li>
+<li><p>“10”: parsed data is a string (batch/lot number)</p></li>
+<li><p>“11”, “12”, “13”, “15”, “16”, “17”: parsed data is a dictionary, always contains integer fields “year” (YYYY), “month” (MM) and sometimes “day” (DD)</p></li>
+<li><p>“20”: parsed data is an integer (the variant)</p></li>
+<li><p>“21”: parsed data is a string (the serial number)</p></li>
+<li><p>“30”: parsed data is an integer (count of items, between 0 and 99999999)</p></li>
+<li><p>“31ab”, “32ab”, “33ab”, “34ab”, “35ab”, “36ab” for some numbers a and b:
+These AI’s are represented by two fields in our result: The field “31ab” and the fields “31ax”. For example: The AI “3222” has the fields “3222” and “322x”
+The parsed data is a string of the floating point number (e.g. “3202000150” has the parsed data “1.50”)</p></li>
+<li><p>“37”: parsed data is an integer (count of items, between 0 and 99999999)</p></li>
+<li><p>“400”: parsed data is a string (customer’s purchase order number)</p></li>
+<li><p>“401”: parsed data is a string (the GINC)</p></li>
+<li><p>“420”: parsed data is a string (postal code)</p></li>
+<li><p>“422”: parsed data is a 3-digit string (ISO3166 country of origin)</p></li>
+<li><p>“7003”: parsed data is a dictionary, always contains integer fields “year” (YYYY), “month” (MM), “day” (DD), “hour” (HH), “minute” (MM).</p></li>
+<li><p>“8017”: parsed data is a dictionary, always contains string subfields “companyPrefix” and “serviceReference”.</p></li>
+<li><p>“8018”: parsed data is a dictionary, always contains string subfields “companyPrefix” and “serviceReference”.</p></li>
+<li><p>“91”-“99”: parsed data is a string (when standardExtension option is not set)</p></li>
+</ul>
+</div>
+<div class="section" id="extensions">
+<h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">#</a></h2>
+<div class="section" id="nhs">
+<h3>NHS<a class="headerlink" href="#nhs" title="Permalink to this headline">#</a></h3>
+<p>Based on Automatic Identification and Data Capture (AIDC) for Patient Identification. Standard Number: ISB 1077.
+When the standardExtension option is set to “nhs” we parse the following specific fields:</p>
+<ul class="simple">
+<li><p>“91”: parsed data is a dictionary, always contains alphanumeric subfield “organisationCode”, “patientHospitalNumber”. Might also contain numeric subfied “organisationPrefix”.</p></li>
+<li><p>“92”: parsed data is a dictionary, always contains alphanumeric subfield “numberOfBabiesIndicator” and alphabetic subfields “babyOfLastName” and “babyOfFirstName”.</p></li>
+<li><p>“93”: parsed data is a dictionary, always contains alphabetic subfield “lastName”, “firstName” and alphanumeric “dateOfBirth”. Might also contain alphanumeric “timeOfBirth”.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="parser-options">
+<h2>Parser Options<a class="headerlink" href="#parser-options" title="Permalink to this headline">#</a></h2>
+<p>Following options can be set to fine-tune the behaviour of the parser:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>“strictMode”: boolean (default:true)</dt><dd><p>Controls the strictness of the parser. When strictMode is set to true, every error in the input (invalid checksum, invalid characters etc.) is treated as an error. Parsing is aborted upon encountering the first error. When strictMode is set to false, parsing continues for non-critical errors. The encountered problems can be queried for each field separately via the issues property.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>“standardExtension”: string (no default value)</dt><dd><p>Option to enable extensions of the GS1 standard. This configures how certain AIs are interpreted (e.g, ‘company internal information’ on AIs 91 to 99). See section ‘Extensions’ for more details. Currently only “nhs” is supported.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>“allowMachineReadableCodes”: boolean (default:true)</dt><dd><p>Makes the parser accept codes which are encoded in machine readable format (i.e. AI numbers not encapsulated in parenthesis).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>“allowHumanReadableCodes”: boolean (default:false)</dt><dd><p>Makes the parser accept codes which are encoded in human readable format (i.e. AI numbers encapsulated in parenthesis).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>“outputHumanReadableString”: boolean (default: false)</dt><dd><p>Adds the additional field “humanReadableString” at the end of the resulting JSON string. This field contains the code in human readable form (i.e. AI number encapsulated in parenthesis).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

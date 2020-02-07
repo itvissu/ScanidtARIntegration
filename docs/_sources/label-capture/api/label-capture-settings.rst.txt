@@ -1,0 +1,21 @@
+Label Capture Settings
+======================
+
+.. module:: scandit.datacapture.label
+  :android-package: com.scandit.datacapture.label.capture
+
+.. class:: LabelCaptureSettings
+  @objc@ SDCLabelCaptureSettings : NSObject <NSCopying>
+  :available: ios=6.0, android=6.0
+
+  .. method:: static LabelCaptureSettings LoadFromString(Data data)
+    @objc@ +(nullable instancetype)settingsFromString:(nonnull NSString*)string error:(NSError **)error
+    :available: ios=6.0
+
+    Loads the settings from a label blueprint, provided to you by Scandit.
+    
+  .. method:: static LabelCaptureSettings LoadFromString(String string)
+    @objc@ +(nullable instancetype)settingsFromString:(nonnull NSString *)string error:(NSError **)error
+    :available: ios=6.0, android=6.0
+
+    Load the settings from the string representation (JSON) of a label blueprint, provided to you by Scandit.

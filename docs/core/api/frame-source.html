@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Frame Source &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Frame Source Deserializer" href="frame-source-deserializer.html" />
+    <link rel="prev" title="Frame Data" href="frame-data.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../overview.html">ScanditCaptureCore</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">Core Concepts of the Scandit Data Capture SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../serialization.html">Serialization</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="anchor.html">Anchor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera-settings.html">Camera Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="context-status.html">Context Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context.html">Data Capture Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-builder.html">Data Capture Context Builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer.html">Data Capture Context Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer-listener.html">Data Capture Context Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer-result.html">Data Capture Context Deserializer Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-frame-listener.html">Data Capture Context Frame Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-listener.html">Data Capture Context Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-mode.html">Data Capture Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-mode-deserializer.html">Data Capture Mode Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-view-deserializer.html">Data Capture View Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-view-deserializer-listener.html">Data Capture View Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="direction.html">Direction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="feedback.html">Feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-data.html">Frame Data</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Frame Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-deserializer.html">Frame Source Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-deserializer-listener.html">Frame Source Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-listener.html">Frame Source Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="json-value.html">Json Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laserline-viewfinder.html">Laserline Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="location-selection.html">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radius-location-selection.html">Radius Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rectangular-location-selection.html">Rectangular Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rectangular-viewfinder.html">Rectangular Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spotlight-viewfinder.html">Spotlight Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewfinder.html">Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/brush.html">Brush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-overlay.html">Data Capture Overlay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-view.html">Data Capture View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-view-listener.html">Data Capture View Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/torch-switch-control.html">Torch Switch Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#camera-and-frame-sources">Camera and Frame Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#context-and-capture-modes">Context and Capture Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#location-selection">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#user-interface">User Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#misc-data-structures">Misc Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#deserialization">Deserialization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../overview.html">ScanditCaptureCore</a> &raquo;</li>
+        
+          <li><a href="../api.html">ScanditCaptureCore API</a> &raquo;</li>
+        
+      <li>Frame Source</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="frame-source">
+<h1>Frame Source<a class="headerlink" href="#frame-source" title="Permalink to this headline">#</a></h1>
+<p>Defined under the namespace <em>Scandit.Datacapture.Core</em></p>
+<dl class="enum">
+<dt id="enum-scandit.datacapture.core.FrameSourceState">
+<code class="sig-name descname">FrameSourceState</code><a class="headerlink" href="#enum-scandit.datacapture.core.FrameSourceState" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The different states a frame source can be in.</p>
+<dl class="value">
+<dt id="value-scandit.datacapture.core.FrameSourceState.On">
+<code class="sig-name descname">On</code><a class="headerlink" href="#value-scandit.datacapture.core.FrameSourceState.On" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The frame source is on and producing frames.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.FrameSourceState.Off">
+<code class="sig-name descname">Off</code><a class="headerlink" href="#value-scandit.datacapture.core.FrameSourceState.Off" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The frame source is off and not producing frames.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.FrameSourceState.Starting">
+<code class="sig-name descname">Starting</code><a class="headerlink" href="#value-scandit.datacapture.core.FrameSourceState.Starting" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The frame source is currently starting (moving from <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.Off" title="Off value">Off</a> to state <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.On" title="On value">On</a>). This value can not be set directly but is returned by <a class="reference internal" href="#property-scandit.datacapture.core.IFrameSource.CurrentState" title="FrameSource.getCurrentState property">FrameSource.getCurrentState</a> to indicate that the frame source is currently starting.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.FrameSourceState.Stopping">
+<code class="sig-name descname">Stopping</code><a class="headerlink" href="#value-scandit.datacapture.core.FrameSourceState.Stopping" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The frame source is currently stopping (moving from <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.On" title="On value">On</a> to state <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.Off" title="Off value">Off</a>). This value can not be set directly but is returned by <a class="reference internal" href="#property-scandit.datacapture.core.IFrameSource.CurrentState" title="FrameSource.getCurrentState property">FrameSource.getCurrentState</a> to indicate that the frame source is currently stopping.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="interface">
+<dt id="interface-scandit.datacapture.core.IFrameSource">
+<code class="sig-name descname">FrameSource</code><a class="headerlink" href="#interface-scandit.datacapture.core.IFrameSource" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">interface FrameSource</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Interface for producers of frames. Typically this interface is used through <a class="reference internal" href="camera.html#class-scandit.datacapture.core.Camera" title="Camera class">Camera</a> which gives access to the built-in camera on Cordova. For more sophisticated use cases this interface can be implemented by programmers to support other sources of frames, such as external cameras with proprietary APIs.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="reference internal" href="#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a> interface is currently restricted to frame sources included in the Scandit Data Capture SDK and can not be used to implement custom frame sources.</p>
+</div>
+<dl class="method">
+<dt id="method-scandit.datacapture.core.IFrameSource.SwitchToDesiredStateAsync">
+<code class="sig-name descname">switchToDesiredState(desiredState)</code><a class="headerlink" href="#method-scandit.datacapture.core.IFrameSource.SwitchToDesiredStateAsync" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">switchToDesiredState</code>(<em>desiredState</em>: <a class="reference internal" href="#enum-scandit.datacapture.core.FrameSourceState" title="FrameSourceState enum">FrameSourceState</a>): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" title="Promise">Promise</a>&lt;<code class="docutils literal notranslate"><span class="pre">void</span></code>&gt;</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Sets the desired state of the frame source</p>
+<p>Possible values are <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.On" title="FrameSourceState.On value">FrameSourceState.On</a>/<a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.Off" title="FrameSourceState.Off value">FrameSourceState.Off</a>. The frame source’s state needs to be switched to <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.On" title="FrameSourceState.On value">FrameSourceState.On</a> for it to produce frames.</p>
+<p>It is not allowed to set the desired state to <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.Starting" title="FrameSourceState.Starting value">FrameSourceState.Starting</a>/<a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.Stopping" title="FrameSourceState.Stopping value">FrameSourceState.Stopping</a>. These values are only used to report ongoing state transitions.</p>
+<p>In case the desired state is equal to the current state, calling this method has no effect. Otherwise, a call to this method initiates a state transition from the current state to the desired state.</p>
+<p>The state transition is asynchronous, meaning that it may not complete immediately for certain frame source implementations. When a state transition is ongoing, further changes to the desired state are delayed until the state transition completes. Only the last of the desired states will be processed; previous requested state transitions will be cancelled.</p>
+<p>The completion handler is invoked when the state transition finishes. <em>True</em> is passed to the completion handler in case the state transition is successful, <em>false</em> if it either was cancelled or the state transition failed.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.IFrameSource.DesiredState">
+<code class="sig-name descname">desiredState</code><a class="headerlink" href="#property-scandit.datacapture.core.IFrameSource.DesiredState" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">readonly desiredState: <a class="reference internal" href="#enum-scandit.datacapture.core.FrameSourceState" title="FrameSourceState enum">FrameSourceState</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Readonly attribute for accessing the desired state. Possible states are <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.On" title="FrameSourceState.On value">FrameSourceState.On</a>, <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.Off" title="FrameSourceState.Off value">FrameSourceState.Off</a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.IFrameSource.CurrentState">
+<code class="sig-name descname">getCurrentState()</code><a class="headerlink" href="#property-scandit.datacapture.core.IFrameSource.CurrentState" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">getCurrentState</code>(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" title="Promise">Promise</a>&lt;<a class="reference internal" href="#enum-scandit.datacapture.core.FrameSourceState" title="FrameSourceState enum">FrameSourceState</a>&gt;</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Readonly attribute for accessing the current state. Possible states are <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.On" title="FrameSourceState.On value">FrameSourceState.On</a>, <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.Off" title="FrameSourceState.Off value">FrameSourceState.Off</a>, <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.Starting" title="FrameSourceState.Starting value">FrameSourceState.Starting</a>, <a class="reference internal" href="#value-scandit.datacapture.core.FrameSourceState.Stopping" title="FrameSourceState.Stopping value">FrameSourceState.Stopping</a>.</p>
+<p>The current state can not be changed directly, but is modified by <a class="reference internal" href="#method-scandit.datacapture.core.IFrameSource.SwitchToDesiredStateAsync" title="switchToDesiredState() method">switchToDesiredState()</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.IFrameSource.AddListener">
+<code class="sig-name descname">addListener(listener)</code><a class="headerlink" href="#method-scandit.datacapture.core.IFrameSource.AddListener" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">addListener</code>(<em>listener</em>: <a class="reference internal" href="frame-source-listener.html#interface-scandit.datacapture.core.IFrameSourceListener" title="FrameSourceListener interface">FrameSourceListener</a> | null): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Adds the listener to this frame source.</p>
+<p>In case the same listener is already observing this instance, calling this method will not add the listener again.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.IFrameSource.RemoveListener">
+<code class="sig-name descname">removeListener(listener)</code><a class="headerlink" href="#method-scandit.datacapture.core.IFrameSource.RemoveListener" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">removeListener</code>(<em>listener</em>: <a class="reference internal" href="frame-source-listener.html#interface-scandit.datacapture.core.IFrameSourceListener" title="FrameSourceListener interface">FrameSourceListener</a> | null): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Removes a previously added listener from this frame source.</p>
+<p>In case the listener is not currently observing this instance, calling this method has no effect.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

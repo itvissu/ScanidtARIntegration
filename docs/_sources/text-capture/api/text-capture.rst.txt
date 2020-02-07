@@ -1,0 +1,98 @@
+Text Capture
+===============
+
+.. module:: scandit.datacapture.text
+  :android-package: com.scandit.datacapture.text.capture
+
+.. class:: TextCapture : core.IDataCaptureMode
+  @objc@ SDCTextCapture : NSObject <SDCDataCaptureMode>
+  :available: android=6.1, ios=6.1
+
+  Capture mode for reading text.
+
+  .. method:: static TextCapture ForDataCaptureContext(core.DataCaptureContext? context, TextCaptureSettings settings)
+    @objc@ + (instancetype)textCaptureWithContext:(nullable SDCDataCaptureContext *)context settings:(nonnull SDCTextCaptureSettings *)settings
+    :available: android=6.1, ios=6.1
+
+    Construct a new text capture mode with the provided context and settings. Then the context is not |null|, the capture mode is automatically added to the context.
+
+  .. method:: static TextCapture FromJson(core.DataCaptureContext context, String jsonData)
+    @objc@ + (nullable instancetype)textCaptureFromJSONString:(nonnull NSString *)jsonString context:(nonnull SDCDataCaptureContext *)context error:(NSError **)error
+    :available: none
+
+    Construct a new text capture mode with the provided JSON serialization. See :doc:`/core/serialization` for details. The capture mode is automatically added to the context.
+
+  .. property:: bool IsEnabled { get; set; }
+    :available: android=6.1, ios=6.1
+
+    Implemented from :type:`core.IDataCaptureMode`. See :prop:`core.IDataCaptureMode.IsEnabled`.
+
+  .. property:: core.PointWithUnit? PointOfInterest { get; set; }
+    :available: ios=6.1, android=6.1, 
+
+    The point of interest overwriting the :prop:`point of interest of the data capture view<core.ui.DataCaptureView.PointOfInterest>`. By default, this overwriting point of interest is not set and the one from the data capture view is used.
+    The overwriting point of interest is used to control the *center of attention* for the following subsystems:
+
+    - :prop:`Location selection<TextCaptureSettings.LocationSelection>`. When no location selection is set, the point of interest defines the location at which the recognition optimizes for reading barcodes.
+    - Rendered :type:`viewfinders<core.ui.IViewfinder>`.
+
+  .. method:: Task ApplySettingsAsync(TextCaptureSettings settings)
+    :available: android=6.1, ios=6.1
+
+    Asynchronously apply the new settings to the text capture mode. If text capture is currently running, the task will complete when the next frame is processed, and will use the new settings for that frame. If text capture is currently *not* running, the task will complete as soon as the settings have been stored and won't wait until the next frame is going to be processed.
+
+  .. method:: void ApplySettings(TextCaptureSettings settings)
+    :available: android=6.1
+
+    Same as :meth:`TextCapture.ApplySettingsAsync` with the second argument set to |null|.
+
+  .. property:: TextCaptureFeedback Feedback { get; set; }
+    :available: android=6.1, ios=6.1
+
+    Instance of :type:`TextCaptureFeedback` that is used by text capture to notify users about Success events.
+
+    The default instance of the Feedback will have both sound and vibration enabled. A default beep sound will be used for the sound.
+
+    To change the feedback emitted, the :type:`TextCaptureFeedback` can be modified as shown below, or a new one can be assigned.
+
+    .. sample:: swift
+
+      let textCapture: TextCapture = ...
+      textCapture.feedback.success = Feedback(vibration: nil, sound: Sound.default)
+
+    .. sample:: java
+
+      TextCapture textCapture = ...;
+      textCapture.getFeedback().setSuccess(new Feedback(null, Sound.defaultSound()));
+
+  .. method:: void AddListener(ITextCaptureListener? listener)
+    :available: android=6.1, ios=6.1
+
+    Add the listener to observe this text capture instance.
+
+    |add-listener|
+
+  .. method:: void RemoveListener(ITextCaptureListener? listener)
+    :available: android=6.1, ios=6.1
+
+    Remove a previously added listener from this text capture instance.
+
+    |remove-listener|
+
+  .. method:: static core.CameraSettings CreateRecommendedCameraSettings()
+     @objc@ @property (class, nonatomic, readonly, nonnull) SDCCameraSettings *recommendedCameraSettings
+    :available: android=6.1, ios=6.1
+
+    Returns the recommended camera settings for use with text capture.
+
+  .. property:: core.DataCaptureContext? Context { get; }
+    @java@ core.DataCaptureContext? DataCaptureContext { get; }
+    :available: android=6.1, ios=6.1
+
+    Implemented from :type:`core.IDataCaptureMode`. See :prop:`core.IDataCaptureMode.Context`.
+
+  .. method:: void UpdateFromJson(String jsonData)
+    @objc@ - (BOOL)updateFromJSONString:(nonnull NSString *)jsonString error:(NSError **)error
+    :available: none
+
+    Updates the mode according to a JSON serialization. See :doc:`/core/serialization` for details.

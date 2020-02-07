@@ -1,0 +1,211 @@
+Migrate from Barcode Scanner 5.x
+================================
+
+.. module:: scandit.datacapture.core
+  :hidden:
+
+|sdk| 6.0 introduces all new APIs that are not backwards compatible with apps using ScanditSDK 5.x. To migrate your code to SDK 6.0 and newer, you will need to modify your app. This guide will assist you in performing this migration. In case you are unsure about how to perform the migration or the feature you are using is not covered in this migration guide, please :doc:`reach out to us</support>`. We will gladly assist you in the upgrade process.
+
+.. admonition:: Before you start...
+
+  To get the most out of this guide, we recommend that you take a look at the following guides:
+
+  * :doc:`/add-sdk`
+  * :doc:`/get-started-barcode`
+  * :doc:`/get-started-matrixscan`
+
+Replace the BarcodePicker
+-------------------------
+
+In 5.x, the BarcodePicker (SBSBarcodePicker on iOS) was the central class that manages recognition, renders the video preview and provides means to configure what barcodes get scanned. In 6.0 and newer, there is no direct equivalent to the BarcodePicker. Instead this functionality is covered by multiple classes:
+
+* The :type:`DataCaptureContext` is the central object that manages the data capture/recognition process.
+* The :type:`Camera` class wraps the native camera on |platform|.
+* The :type:`ui.DataCaptureView` displays the camera preview as well as augmentations on top of the camera preview.
+* The :type:`barcode.BarcodeCapture` manages the barcode scanning/capturing process, exposes :type:`listeners<barcode.IBarcodeCaptureListener>` and ways to :doc:`/configure-barcodes`.
+
+In your app you will need to use all of these classes to implement the functionality offered by the BarcodePicker. The following couple of lines show you how to do this. Take a look at :doc:`get-started-barcode` for more details, or :doc:`check out one of our barcode capture samples</run-samples>`.
+
+.. sample:: java
+
+  dataCaptureContext = DataCaptureContext.forLicenseKey(SCANDIT_LICENSE_KEY);
+
+  // Device's camera will serve as a frame source.
+  camera = Camera.getDefaultCamera();
+  dataCaptureContext.setFrameSource(camera, null);
+
+  // See below for differences between 5.x and 6.0.
+  BarcodeCaptureSettings barcodeCaptureSettings = new BarcodeCaptureSettings();
+  barcodeCaptureSettings.enableSymbology(Symbology.EAN13_UPCA);
+
+  barcodeCapture = BarcodeCapture.forDataCaptureContext(dataCaptureContext, barcodeCaptureSettings);
+  barcodeCapture.addListener(this);
+  barcodeCapture.setEnabled(true);
+
+  BarcodeCaptureOverlay overlay = new BarcodeCaptureOverlay(barcodeCapture);
+
+  dataCaptureView = DataCaptureView.newInstance(this, dataCaptureContext);
+  dataCaptureView.addOverlay(overlay);
+
+  setContentView(dataCaptureView);
+
+
+.. sample:: swift
+
+  // Create data capture context using your license key.
+  context = DataCaptureContext(licenseKey: yourLicenseKey)
+
+  // Set the back (world)-facing camera as the frame source of the context.
+  camera = Camera.default
+  context.setFrameSource(camera, completionHandler: nil)
+
+  // See below for differences between 5.x and 6.0.
+  let settings = BarcodeCaptureSettings()
+  settings.set(symbology: .ean13UPCA, enabled: true)
+
+  // Create new barcode capture mode with the settings from above.
+  barcodeCapture = BarcodeCapture(context: context, settings: settings)
+
+  // Register self as a listener to get informed whenever a new barcode got recognized.
+  barcodeCapture.addListener(self)
+
+  captureView = DataCaptureView(frame: view.bounds)
+  captureView.dataCaptureContext = context
+  captureView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+  view.addSubview(captureView)
+
+  overlay = BarcodeCaptureOverlay(barcodeCapture: barcodeCapture)
+  captureView.addOverlay(overlay)
+
+
+Start/Stop the Capture Process
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In 5.x the scan process was started by calling startScanning on the BarcodePicker. In 6.0+, the equivalent functionality is to :meth:`switch the frame source from off to on<IFrameSource.SwitchToDesiredStateAsync>` and to :prop:`enable the capture mode<IDataCaptureMode.IsEnabled>`. Capture modes are enabled by default, the first line to enable the capture mode is only required when you are reusing a previously disabled data capture mode.
+
+.. sample:: java
+
+  barcodeCapture.setEnabled(true);
+  camera.switchToDesiredState(FrameSourceState.ON, null);
+
+.. sample:: swift
+
+  barcodeCapture.isEnabled = true
+  camera?.switch(toDesiredState: .on)
+
+To **pause** the barcode capture process, simply set the :prop:`barcode.BarcodeCapture.IsEnabled` property to |false| (without turning the camera off). To **resume** the capture process, set the  :prop:`barcode.BarcodeCapture.IsEnabled` property back to |true|.
+
+To **stop** the barcode capture process and turn the camera off, disable the capture mode and turn the camera off, as shown below:
+
+.. sample:: java
+
+  barcodeCapture.setEnabled(false);
+  camera.switchToDesiredState(FrameSourceState.OFF, null);
+
+.. sample:: swift
+
+  barcodeCapture.isEnabled = false
+  camera?.switch(toDesiredState: .off)
+
+Barcode Scanner Changes Between 5.x and 6.0+
+--------------------------------------------
+
+* The default code duplicate filter has been changed from 500ms to 0ms. This means that a barcode that gets scanned in two consecutive scans will get reported twice. When you pause/stop the scanning as soon as one code gets scanned, the code duplicate filtering setting does not affect you. However if you continue scanning further codes without pausing/stopping recognition, you may want to change the :prop:`barcode.BarcodeCaptureSettings.CodeDuplicateFilter` property back to 500ms. 
+
+* EAN13 and UPCA used to be separate symbologies in 5.x but have now been merged into one symbology called :enum:`barcode.Symbology.Ean13Upca`.
+* The leading zero of UPCA codes is no longer removed by default. If you rely on this behavior in your app, you can either remove the leading zero yourself, or enable the "remove_leading_upca_zero" extension:
+
+  .. sample:: java
+
+    settings.getSymbologySettings(Symbology.EAN13_UPCA)
+            .setExtensionEnabled("remove_leading_upca_zero", true)
+
+  .. sample:: swift
+
+    settings.settings(for: .ean13UPCA)?.set(extension: "remove_leading_upca_zero", enabled: true) 
+
+* The API to configure the active scan area has been overhauled and simplified. If you were changing the active scan area to match the visible part of the preview, the good news is that the active scan area is now automatically restricted to the visible part of the preview. If you are restricting the scan area for other reasons, take a look at :doc:`/scan-area` to see how to upgrade your app.
+* The camera-related settings have been moved from ScanSettings to :type:`CameraSettings`. For example, if you want to change the preview resolution from 720p to 1080p, set the :prop:`CameraSettings.PreferredResolution` to :enum:`VideoResolution.FullHd` and :meth:`apply the new settings<Camera.ApplySettingsAsync>` to the camera.
+
+MatrixScan Changes Between 5.x and 6.0+
+--------------------------------------------
+
+The features that you know under the name MatrixScan are now bundled under :type:`barcode.tracking.BarcodeTracking`, the overall concept is still refered to as MatrixScan.
+
+In 5.x setMaxNumberOfCodesPerFrame was used to adjust MatrixScan to specific use cases where more or less codes had to be tracked. In 6.x it is no longer needed to set this number, instead it is selected automatically depending on the license, use case and enabled symbologies.
+
+Migrate the Scan UI
+-------------------
+
+Without any further configuration, the default UI renders the "Scanning by Scandit" logo in the bottom-right corner of the data capture view. To replicate the default look from 5.x, you need to create a viewfinder. This functionality is only available for barcode capture, but not barcode tracking (MatrixScan).
+
+Enable the Rectangular Viewfinder
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To enable the :type:`rectangular viewfinder<ui.RectangularViewfinder>` (previously called the default viewfinder), use the following lines of code:
+
+
+.. sample:: java
+
+  BarcodeCaptureOverlay overlay = new BarcodeCaptureOverlay(barcodeCapture);
+  RectangularViewfinder viewfinder = new RectangularViewfinder();
+  overlay.setViewfinder(viewfinder);
+
+  dataCaptureView = DataCaptureView.newInstance(this, dataCaptureContext);
+  dataCaptureView.addOverlay(overlay);
+
+.. sample:: swift
+
+  let overlay = BarcodeCaptureOverlay(barcodeCapture: barcodeCapture)
+  let viewfinder = RectangularViewfinder()
+  overlay.viewfinder = viewfinder
+  captureView.addOverlay(overlay)
+
+To change the size of the viewfinder using sizes relative to the data capture view (same as in 5.x), you can use the following lines of code:
+
+.. sample:: java
+
+  viewfinder.setSize(new SizeWithUnit(new FloatWithUnit(0.8f, MeasureUnit.FRACTION), 
+                                 new FloatWithUnit(0.4f, MeasureUnit.FRACTION)));
+
+.. sample:: swift
+
+  viewfinder.setSize(SizeWithUnit(width: FloatWithUnit(value: 0.8, unit: .fraction),
+                             height: FloatWithUnit(value: 0.4, unit: .fraction)))
+
+Enable the Laserline Viewfinder
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To enable the :type:`laserline viewfinder<ui.LaserlineViewfinder>` use the following lines of code:
+
+.. sample:: java
+
+  BarcodeCaptureOverlay overlay = new BarcodeCaptureOverlay(barcodeCapture);
+  LaserlineViewfinder viewfinder = new LaserlineViewfinder();
+        
+  overlay.setViewfinder(viewfinder);
+
+  dataCaptureView.addOverlay(overlay);
+
+.. sample:: swift
+
+  let overlay = BarcodeCaptureOverlay(barcodeCapture: barcodeCapture)
+  let viewfinder = LaserlineViewfinder()
+  overlay.viewfinder = viewfinder
+        
+  captureView.addOverlay(overlay)
+
+To change the width of the laserline relative to the data capture view (same as in 5.x), you can use the following line of code:
+
+.. sample:: java
+
+  viewfinder.setWidth(new FloatWithUnit(0.8f, MeasureUnit.FRACTION));
+
+.. sample:: swift
+
+  viewfinder.width = FloatWithUnit(value: 0.8, unit: .fraction)
+
+Other Changes
+-------------
+
+* The short 43 character legacy app keys supported in 4.x and 5.x have been deprecated and are not compatible with 6.0+ anymore. Please :doc:`contact us</support>` to get your new license keys.

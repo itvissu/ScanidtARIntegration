@@ -1,0 +1,37 @@
+Data Capture Context Frame Listener
+-----------------------------------
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.capture
+
+.. interface:: IDataCaptureContextFrameListener
+  @objc@ SDCDataCaptureContextFrameListener <NSObject>
+  :available: ios=6.0, android=6.0
+
+  |Interface| for observing/listening to frame processing related events of a data capture context.
+
+  To observe changes of the data capture context's frame processing, one or more :type:`IDataCaptureContextFrameListener` may be added. These listeners provide hooks into different parts of the data capture context.
+
+  Frame processing only happens if at least one :type:`IDataCaptureMode` is added.
+
+  .. method:: void OnObservationStarted(DataCaptureContext dataCaptureContext)
+    :available: android=6.0
+
+    Called when the listener has been added to the data capture context and is from now on receiving events.
+
+  .. method:: void OnObservationStopped(DataCaptureContext dataCaptureContext)
+    :available: android=6.0
+
+    Called when the listener has been removed from the data capture context and is no longer receiving events.
+
+  .. method:: void OnFrameProcessingStarted(DataCaptureContext dataCaptureContext, IFrameData frame)
+    @objc@ - (void)context:(SDCDataCaptureContext*)context willProcessFrame:(id<SDCFrameData>)frame
+    :available: ios=6.0, android=6.0
+
+    Called when a frame will be processed.
+
+  .. method:: void OnFrameProcessingFinished(DataCaptureContext dataCaptureContext, IFrameData frame)
+    @objc@ - (void)context:(SDCDataCaptureContext*)context didProcessFrame:(id<SDCFrameData>)frame
+    :available: ios=6.0, android=6.0
+
+    Called when a frame has been processed.

@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HIBC &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>HIBC</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hibc">
+<h1>HIBC<a class="headerlink" href="#hibc" title="Permalink to this headline">#</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<p>The parser supports the ANSI HIBC 2.5 supplier labeling standard. For the complete documentation of the standard please refer to <a class="reference external" href="http://www.hibcc.org">the official website.</a></p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<p>Parsing following code (without quotes):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;+A123BJC5D6E71G&quot;</span>
+</pre></div>
+</div>
+<p>will result in following JSON output:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+       <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;lic&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;A123&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;A123&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+       <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;pcn&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;BJC5D6E7&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;BJC5D6E7&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+       <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;uom&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+       <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+       <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;checksum&quot;</span> <span class="o">:</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;primary&quot;</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="s2">&quot;secondary&quot;</span> <span class="o">:</span> <span class="kc">false</span>
+       <span class="p">},</span>
+       <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+    <span class="p">}</span>
+ <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exposed-fields">
+<h2>Exposed fields<a class="headerlink" href="#exposed-fields" title="Permalink to this headline">#</a></h2>
+<p>A code might contain a primary and/or secondary section. If it contains a secondary section, it might also contain an additional section for miscellaneous data. To check whether a primary/secondary/additional section is present, check the ‘metadata’ field.
+The order of the fields corresponds to order in the data string. The ‘metadata’ field, is always the last field.</p>
+<div class="section" id="primary-data-fields">
+<h3>Primary data fields<a class="headerlink" href="#primary-data-fields" title="Permalink to this headline">#</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 25%" />
+<col style="width: 29%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Always present?</p></th>
+<th class="head"><p>Parsed Data Sructure</p></th>
+<th class="head"><p>Additional Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lic</p></td>
+<td><p>yes (if primary present)</p></td>
+<td><p>alphanumeric string</p></td>
+<td><p>Label Identification Code</p></td>
+</tr>
+<tr class="row-odd"><td><p>pcn</p></td>
+<td><p>yes (if primary present)</p></td>
+<td><p>alphanumeric string</p></td>
+<td><p>Product or Catalogue Number</p></td>
+</tr>
+<tr class="row-even"><td><p>uom</p></td>
+<td><p>yes (if primary present)</p></td>
+<td><p>One-digit integer</p></td>
+<td><p>Unit of Measure</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="secondary-data-fields">
+<h3>Secondary data fields<a class="headerlink" href="#secondary-data-fields" title="Permalink to this headline">#</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 25%" />
+<col style="width: 29%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><div class="line-block">
+<div class="line">Always</div>
+<div class="line">present?</div>
+</div>
+</th>
+<th class="head"><p>Parsed Data Structure</p></th>
+<th class="head"><p>Additional Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>quantity</p></td>
+<td><p>no</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>expiryDate</p></td>
+<td><p>no</p></td>
+<td><div class="line-block">
+<div class="line">Dictionary with these</div>
+<div class="line">key/value pairs:</div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘year’ : YY,</p></li>
+<li><p>‘month’ : MM,</p></li>
+<li><p>‘day’ : DD,</p></li>
+<li><p>(‘hour’ : HH)</p></li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line">where YY, MM, DD, HH are</div>
+<div class="line">two-digit integers. ‘hour’</div>
+<div class="line">is optional and not always</div>
+<div class="line">present.</div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>serial</p></td>
+<td><p>no</p></td>
+<td><p>string</p></td>
+<td><p>Serial number</p></td>
+</tr>
+<tr class="row-odd"><td><p>lot</p></td>
+<td><p>no</p></td>
+<td><p>string</p></td>
+<td><p>Lot/Batch number</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="additional-data-fields">
+<h3>Additional data fields<a class="headerlink" href="#additional-data-fields" title="Permalink to this headline">#</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 13%" />
+<col style="width: 34%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><div class="line-block">
+<div class="line">Always</div>
+<div class="line">present?</div>
+</div>
+</th>
+<th class="head"><p>Parsed Data Sructure</p></th>
+<th class="head"><p>Additional Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>serial</p></td>
+<td><p>no</p></td>
+<td><div class="line-block">
+<div class="line">String</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Serial number</div>
+<div class="line">If the serial number is</div>
+<div class="line">specified in the secondary</div>
+<div class="line">and the additional data,</div>
+<div class="line">then the first is ignored.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>expiryDate</p></td>
+<td><p>no</p></td>
+<td><div class="line-block">
+<div class="line">Dictionary with these</div>
+<div class="line">key/value pairs:</div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘year’ : YYYY,</p></li>
+<li><p>‘month’: MM,</p></li>
+<li><p>‘day’ : DD</p></li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line">with YYYY, MM, DD</div>
+<div class="line">integers</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">If the expiry date</div>
+<div class="line">specified in the secondary</div>
+<div class="line">and in the additional data,</div>
+<div class="line">then the first is ignored.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>manufactureDate</p></td>
+<td><p>no</p></td>
+<td><div class="line-block">
+<div class="line">Dictionary with these</div>
+<div class="line">key/value pairs:</div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘year’ : YYYY,</p></li>
+<li><p>‘month’: MM,</p></li>
+<li><p>‘day’ : DD</p></li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line">with YYYY, MM, DD</div>
+<div class="line">integers</div>
+</div>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="metadata-field">
+<span id="hibc-metadata"></span><h3>Metadata field<a class="headerlink" href="#metadata-field" title="Permalink to this headline">#</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 29%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Always present?</p></th>
+<th class="head"><p>Parsed Data Sructure</p></th>
+<th class="head"><p>Additional Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>metadata</p></td>
+<td><p>yes</p></td>
+<td><div class="line-block">
+<div class="line">Dictionary with these</div>
+<div class="line">key/value pairs:</div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘primary’ : boolean,</p></li>
+<li><p>‘secondary’ : boolean,</p></li>
+<li><p>‘link’ : string, optional</p></li>
+<li><p>‘checksum’ : string</p></li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line">The primary and secondary</div>
+<div class="line">booleans indicate wether</div>
+<div class="line">the corresponding section</div>
+<div class="line">is present in the code.</div>
+</div>
+<div class="line-block">
+<div class="line">The link string is one</div>
+<div class="line">character and is used to</div>
+<div class="line">link a separate primary and</div>
+<div class="line">secondary code together. It</div>
+<div class="line">is only present for</div>
+<div class="line">standalone secondary codes.</div>
+</div>
+<div class="line-block">
+<div class="line">‘check’ is the checksum</div>
+<div class="line">character of the code. The</div>
+<div class="line">Scandit parser library</div>
+<div class="line">automatically checks the</div>
+<div class="line">ingerity of the code.</div>
+</div>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

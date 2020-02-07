@@ -1,0 +1,40 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Result Object Structure
+=======================
+
+This document describes the structure and format of the result object as returned by the parser. 
+
+Because of the wide variety of potential parser results, the result is provided as a JSON object. The JSON result is an array of objects (`[{ ... }, { ... }]`), one object for each field found in the data. Each field has 4 attributes:
+
+* **name:** Holds the name of the field. Type: string.
+* **rawString:** Holds the raw string data as found in the code. Type: string.
+* **parsed:** Holds the parsed representation of the field. For example, this field might contain an object with year, month and day values, or just be a number. For a field with a given name, the format of the data is fixed. Type: string, float, int, object boolean, null, or array. 
+* **issues:** Holds list of non-critical errors encountered during parsing. More details can be found in specific parser format pages. Type: list of strings.
+
+The name and the precise form of the parsed data-structure is format and field specific. Consult the documentation for each data :doc:`format docs<formats>` for more information.
+
+The following example shows the JSON output of the GS1 code `1719060010SCANDIT123`:
+
+.. code-block:: javascript
+
+      [
+        {
+            "name": "17",
+            "parsed": {
+                "month": 6,
+                "year": 2019
+            },
+            "rawString": "190600",
+            "issues": []
+        },
+        {
+            "name": "10",
+            "parsed": "SCANDIT123",
+            "rawString": "SCANDIT123",
+            "issues": []
+        }
+    ]
+

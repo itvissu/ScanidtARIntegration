@@ -1,0 +1,35 @@
+Rectangular Location Selection
+==============================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.area
+
+.. class:: RectangularLocationSelection : ILocationSelection
+  @objc@ SDCRectangularLocationSelection : NSObject<SDCLocationSelection>
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Location selection for selecting codes inside a rectangle centered on the :prop:`point of interest <ui.DataCaptureView.PointOfInterest>`. Any object that is fully inside the rectangle is returned, objects that are partially or entirely outside of the rectangle are filtered out. See :doc:`Scan Area Guide</scan-area>` for an in-depth explanation of location selection.
+
+  .. method:: static RectangularLocationSelection WithSize(SizeWithUnit size)
+    @objc@ + (instancetype)locationSelectionWithSize:(SDCSizeWithUnit)size
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Creates a new rectangular location selection instance with the specified horizontal and vertical size. When the unit is relative (unit in either x or y is :enum:`core.MeasureUnit.Fraction`) the size is computed relative to the view size minus the scan area margins.
+
+  .. method:: static RectangularLocationSelection WithWidthAndAspectRatio(FloatWithUnit width, float heightToWidthAspectRatio)
+    @objc@ + (instancetype)locationSelectionWithWidth:(SDCFloatWithUnit)width aspectRatio:(CGFloat)heightToWidthAspectRatio
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Creates a new rectangular location selection instance with the specified width and computes the height based on the provided height/width aspect ratio. When the unit is relative (:enum:`core.MeasureUnit.Fraction`), the width is computed relative to the view size minus the scan area margins.
+
+  .. method:: static RectangularLocationSelection WithHeightAndAspectRatio(FloatWithUnit height, float widthToHeightAspectRatio)
+    @objc@ + (instancetype)locationSelectionWithHeight:(SDCFloatWithUnit)height aspectRatio:(CGFloat)widthToHeightAspectRatio
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Creates a new rectangular location selection instance with the specified height and computes the width based on the provided width/height aspect ratio.  When the unit is relative (:enum:`core.MeasureUnit.Fraction`), the height is computed relative to the view size minus the scan area margins.
+
+  .. property:: SizeWithUnitAndAspect SizeWithUnitAndAspect { get; }
+    @objc@ @property (nonatomic, readonly) SDCSizeWithUnitAndAspect *sizeWithUnitAndAspect
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The size and sizing mode of the location selection.

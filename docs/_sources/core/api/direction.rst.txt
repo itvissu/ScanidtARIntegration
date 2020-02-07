@@ -1,0 +1,52 @@
+Direction
+=========
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.direction
+
+.. enum:: Direction
+  :available: ios=6.0, android=6.1
+
+  Enumeration for different directions.
+
+  .. value:: LeftToRight
+    @objc@ SDCDirectionLeftToRight
+    :available: ios=6.0, android=6.1
+
+    Direction left to right.
+
+  .. value:: RightToLeft
+    @objc@ SDCDirectionRightToLeft
+    :available: ios=6.0, android=6.1
+
+    Direction right to left.
+
+  .. value:: Horizontal
+    @objc@ SDCDirectionHorizontal
+    :available: ios=6.0, android=6.1
+
+    Direction horizontal.
+    
+  .. value:: TopToBottom
+    @objc@ SDCDirectionTopToBottom
+    :available: ios=6.0, android=6.1
+
+    Direction top to bottom.
+    
+  .. value:: BottomToTop
+    @objc@ SDCDirectionBottomToTop
+    :available: ios=6.0, android=6.1
+
+    Direction bottom to top.
+
+  .. value:: Vertical
+    @objc@ SDCDirectionVertical
+    :available: ios=6.0, android=6.1
+
+    Direction vertical.
+    
+  .. value:: None
+    @objc@ SDCDirectionNone
+    :available: ios=6.0, android=6.1
+
+    No direction.

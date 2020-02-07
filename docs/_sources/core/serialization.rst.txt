@@ -1,0 +1,171 @@
+Serialization
+=============
+
+.. module:: scandit.datacapture.core
+  :hidden:
+
+Most objects, such as :type:`barcode.BarcodeCapture` provide methods to convert to and from JSON. This is referred to as serialization and deserialization, respectively. Its main use is to be able to capture the current configuration of the object and restore it at a later point on any device. This can be especially useful when wrapping the |sdk| for a Java Script based framework or to debug issues without needing to filter through the code base of an entire project.
+
+.. note:: Serialization and deserialization are a very specific use case that is generally only relevant to Scandit's internal implementation of third-party frameworks and internal apps. As an implementer you very likely do not want to be touching the serialization at all and should steer clear of this section.
+
+
+Creating from JSON
+------------------
+
+Most bigger objects can be created from JSON directly through a method like :meth:`barcode.BarcodeCapture.FromJson` in :type:`barcode.BarcodeCapture`. While it is possible to deserialize a data capture mode like :type:`barcode.BarcodeCapture`, it is also possible to just deserialize the :type:`barcode.BarcodeCaptureSettings` or go higher up and deserialize an entire :type:`DataCaptureContext` that contains a frame source, a view and any number of data capture modes.
+
+The deserialization of most bigger objects is backed by a deserializer, a class specifically just for JSON deserialization. For example, the :type:`barcode.BarcodeCaptureDeserializer` handles deserialization of :type:`barcode.BarcodeCapture`, :type:`barcode.BarcodeCaptureSettings` and :type:`barcode.ui.BarcodeCaptureOverlay`. the individual `fromJson` methods of these classes simply delegate the work to the deserializer and often it is fine to ignore the deserializer itself. However, the deserializer adds certain functionality that is not available by simple `fromJson` calls:
+
+* There is a listener associated with every deserializer like for example :type:`barcode.IBarcodeCaptureDeserializerListener`, that exposes events that can help in manipulating the deserialization. For example it would be possible to change the default settings in :meth:`~barcode.IBarcodeCaptureDeserializerListener.OnSettingsDeserializationStarted` and do additional deserialization in :meth:`~barcode.IBarcodeCaptureDeserializerListener.OnSettingsDeserializationFinished` after the "official" deserialization has finished.
+* A list of warnings is available to be checked after the deserialization has finished. Warnings are especially useful for detecting issues during the deserialization like when a property was misspelled and therefore never processed by the deserializer.
+
+.. _serialization_update_from_json:
+
+Updating from JSON
+------------------
+
+Just like creating new objects, it is possible to update already existing objects from JSON. When updating an object, top level properties that are not set will be left as they are. As soon as a top level property is set when updating, it will be deserialized in its entirety and the old values of this property are not taken into consideration anymore. As an example lets say we first created an object through deserialization from the following JSON:
+
+.. code-block:: json
+
+  {
+    "topLevelOne": {
+      "oneOne": 10
+    },
+    "topLevelTwo": { 
+      "twoOne": 10, 
+      "twoTwo": {
+        "twoTwoOne": 5
+      }
+    }
+  }
+
+The resulting object is now updated by the following JSON:
+
+.. code-block:: json
+
+  {
+    "topLevelTwo": { 
+      "twoTwo": {
+        "twoTwoTwo": 5
+      },
+      "twoThree": 20
+    }
+  }
+
+What happens now is that the top-level property `topLevelOne` stays the same as it is not mentioned in the update. On the other hand `topLevelTwo` is overwritten in its entirety. For example, even though `twoOne` is not mentioned anymore, it will not be kept as a value as the entire `topLevelTwo` is being overwritten. The update results in the same configuration that we would have accomplished by creating an object through this merged JSON:
+
+.. code-block:: json
+
+  {
+    "topLevelOne": {
+      "oneOne": 10
+    },
+    "topLevelTwo": { 
+      "twoTwo": {
+        "twoTwoTwo": 5
+      },
+      "twoThree": 20
+    }
+  }
+
+Context Updates
+^^^^^^^^^^^^^^^
+
+When updating the context, some special rules apply and the update behaves slightly different from other objects.
+
+When updating the context, the deserializer will not leave the top level properties `"frameSource"`, `"modes"` and `"view"` as they are in case they are not specified. If such a property is no longer specified, the object created by it is disonnected from the context, otherwise the existing object is updated with the new settings. So for example if we created a context from this JSON:
+
+.. code-block:: json
+
+  {
+    "licenseKey": "AbE89o...",
+    "deviceName": "myDevice",
+    "frameSource": {
+      "type": "camera"
+    },
+    "modes": [
+      { "type": "barcodeCapture" },
+      { "type": "textCapture" }
+    ],
+    "view": {}
+  }
+
+And now we update it with the following:
+
+.. code-block:: json
+
+  {
+    "modes": [
+      { "type": "barcodeTracking" },
+      { "type": "textCapture" }
+    ],
+    "view": {
+      "overlays": [
+        { "type": "barcodeTracking" }
+      ]
+    }
+  }
+
+Since this exception does not concern `"licenseKey"` and `"deviceName"`, the license key and the device name stay the same. Be aware that it is actually not possible to change these properties through an update. If you want to change them, you will have to create a new context entirely. Whether you specify them for an update does not make a difference, as long as they are the same as before.
+Since the `"frameSource"` is no longer specified, it will be removed from the context. The `"view"` is still specified which means the deserializer will reuse the view from before and add the new barcode tracking overlay to it. The `"modes"` array is also still specified but contains different modes which results in the old barcode capture mode being removed from the context and a new barcode tracking mode being added. Since the text capture mode is specified in both, it will simply continue being attached to the context.
+
+In cases where an existing frame source, data capture mode or data capture view is updated, these updates behave as if that object were directly updated, meaning its top-level properties are left as they are if not specified. For example, if we start out with the following context:
+
+.. code-block:: json
+
+  {
+    "licenseKey": "AbE89o...",
+    "deviceName": "myDevice",
+    "modes": [
+      { 
+        "type": "barcodeCapture",
+        "settings": {
+          "symbologies": [ "ean13upca", "code39"]
+        }
+      }
+    ]
+  }
+
+And update it with:
+
+.. code-block:: json
+
+  {
+    "licenseKey": "AbE89o...",
+    "deviceName": "myDevice",
+    "modes": [
+      {
+        "type": "barcodeCapture",
+        "feedback": {
+          "success": {
+            "vibration": {}
+          }
+        }
+      }
+    ]
+  }
+
+We did not touch the top-level property `"settings"`, leaving it as it is (both symbologies continue to be enabled). The top-level property `"feedback"` was set and overwrites the default feedback behavior that we had before by only enabling vibration but turning off the sound. If we now further update it with:
+
+.. code-block:: json
+
+  {
+    "licenseKey": "AbE89o...",
+    "deviceName": "myDevice",
+    "modes": [
+      {
+        "type": "barcodeCapture",
+        "settings": {
+          "codeDuplicateFilter": 500
+        }
+        "feedback": {
+          "success": {
+            "sound": {}
+          }
+        }
+      }
+    ]
+  }
+
+In this case we are changing both top-level properties, meaning both of them are being overwritten. The result is that we have a code duplicate filter of 500ms but all symbologies are disabled. The feedback was changed to only beep but not vibrate.

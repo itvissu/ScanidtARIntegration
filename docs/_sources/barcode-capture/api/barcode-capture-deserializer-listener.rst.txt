@@ -1,0 +1,55 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Barcode Capture Deserializer Listener
+=====================================
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.capture.serialization
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. interface:: IBarcodeCaptureDeserializerListener
+  @objc@ SDCBarcodeCaptureDeserializerDelegate <NSObject>
+  :available: ios=6.1, android=6.1
+
+  The listener for the barcode capture deserializer.
+
+  .. method:: void OnModeDeserializationStarted(BarcodeCaptureDeserializer deserializer, BarcodeCapture mode, core.JsonValue json)
+    @objc@ - (void)barcodeCaptureDeserializer:(SDCBarcodeCaptureDeserializer *)deserializer didStartDeserializingMode:(SDCBarcodeCapture *)mode fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called before the deserialization of barcode capture started. This is the point to overwrite defaults before the deserialization is performed. 
+
+  .. method:: void OnModeDeserializationFinished(BarcodeCaptureDeserializer deserializer, BarcodeCapture mode, core.JsonValue json)
+    @objc@ - (void)barcodeCaptureDeserializer:(SDCBarcodeCaptureDeserializer *)deserializer didFinishDeserializingMode:(SDCBarcodeCapture *)mode fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called when the deserialization of barcode capture finished. This is the point to do additional deserialization.
+
+  .. method:: void OnSettingsDeserializationStarted(BarcodeCaptureDeserializer deserializer, BarcodeCaptureSettings settings, core.JsonValue json)
+    @objc@ - (void)barcodeCaptureDeserializer:(SDCBarcodeCaptureDeserializer *)deserializer didStartDeserializingSettings:(SDCBarcodeCaptureSettings *)settings fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called before the deserialization of the barcode capture settings started. This is the point to overwrite defaults before the deserialization is performed. 
+
+  .. method:: void OnSettingsDeserializationFinished(BarcodeCaptureDeserializer deserializer, BarcodeCaptureSettings settings, core.JsonValue json)
+    @objc@ - (void)barcodeCaptureDeserializer:(SDCBarcodeCaptureDeserializer *)deserializer didFinishDeserializingSettings:(SDCBarcodeCaptureSettings *)settings fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called when the deserialization of the barcode capture settings finished. This is the point to do additional deserialization.
+
+  .. method:: void OnOverlayDeserializationStarted(BarcodeCaptureDeserializer deserializer, ui.BarcodeCaptureOverlay overlay, core.JsonValue json)
+    @objc@ - (void)barcodeCaptureDeserializer:(SDCBarcodeCaptureDeserializer *)deserializer didStartDeserializingOverlay:(SDCBarcodeCaptureOverlay *)overlay fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called before the deserialization of the barcode capture overlay started. This is the point to overwrite defaults before the deserialization is performed. 
+
+  .. method:: void OnOverlayDeserializationFinished(BarcodeCaptureDeserializer deserializer, ui.BarcodeCaptureOverlay overlay, core.JsonValue json)
+    @objc@ - (void)barcodeCaptureDeserializer:(SDCBarcodeCaptureDeserializer *)deserializer didFinishDeserializingOverlay:(SDCBarcodeCaptureOverlay *)overlay fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called when the deserialization of the barcode capture overlay finished. This is the point to do additional deserialization.

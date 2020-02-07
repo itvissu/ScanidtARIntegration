@@ -1,0 +1,22 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+ScanditParser API
+=================
+
+.. module:: scandit.datacapture.parser
+
+..  toctree::
+  :hidden:
+  :glob:
+
+  api/*
+
+
+.. hlist::
+  
+  * :type:`Parser`
+  * :type:`ParsedData`
+  * :type:`ParsedField`
+  * :type:`ParserDataFormat`

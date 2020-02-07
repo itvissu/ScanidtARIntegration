@@ -1,0 +1,30 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+ScanditLabelCapture API
+=======================
+
+.. module:: scandit.datacapture.label
+  :hidden:
+
+.. toctree::
+  :hidden:
+  :glob:
+
+  api/*
+  api/ui/*
+
+.. hlist::
+
+  * :type:`LabelCapture`
+  * :type:`LabelCaptureSettings`
+  * :type:`LabelCaptureSession`
+  * :type:`ILabelCaptureListener`
+  * :type:`LabelField`
+  * :type:`CapturedLabel`
+  * :type:`ui.LabelCaptureBasicOverlay`
+  * :type:`ui.ILabelCaptureBasicOverlayListener`
+  * :type:`LabelFieldState`
+  * :type:`LabelFieldType`
+ 

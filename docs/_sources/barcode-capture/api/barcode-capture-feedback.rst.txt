@@ -1,0 +1,45 @@
+Barcode Capture Feedback
+========================
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.feedback
+
+.. class:: BarcodeCaptureFeedback
+  @objc@ SDCBarcodeCaptureFeedback : NSObject
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Determines what feedback (vibration, sound) should be emitted when reading barcodes.
+  The feedback is specified for each :type:`BarcodeCapture` instance separately and can be changed
+  through the :prop:`feedback<BarcodeCapture.Feedback>` property by either modifying an existing
+  instance of this class, or by assigning a new one.
+
+  As of now, this class only allows to configure the feedback that gets emitted when a barcode is read successfully, through the :prop:`Success` property.
+
+  See documentation on the :prop:`BarcodeCapture.Feedback` property for usage samples.
+
+  .. method:: static BarcodeCaptureFeedback DefaultFeedback()
+    @objc@ @property (class, nonatomic, readonly) SDCBarcodeCaptureFeedback *defaultFeedback
+    @javascript@ static get default(): BarcodeCaptureFeedback
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Returns a barcode capture feedback with default configuration:
+
+    - default beep sound is loaded,
+    - beeping for the success event is enabled,
+    - vibration for the success event is enabled.
+
+  .. method:: BarcodeCaptureFeedback()
+    :available: android=6.0
+
+    Empty constructor. Constructs a new feedback that will not emit any sound, nor vibration.
+
+  .. method:: static BarcodeCaptureFeedback FromJson(String jsonData)
+    @objc@ + (nullable instancetype)barcodeCaptureFeedbackFromJSONString:(nonnull NSString *)jsonString error:(NSError **)error
+    :available: android=6.1, ios=6.1
+
+    Construct a new barcode capture feedback with the provided JSON serialization. See :doc:`/core/serialization` for details.
+
+  .. property:: core.Feedback Success { get; set; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    A :type:`feedback<core.Feedback>` for a success event.

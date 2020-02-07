@@ -1,0 +1,32 @@
+Data Capture View Listener
+===============================================
+
+.. module:: scandit.datacapture.core.ui
+
+.. interface:: IDataCaptureViewListener
+  @objc@ SDCDataCaptureViewListener <NSObject>
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Listener for observing the data capture view. This listener is typically used when you want to react to orientation and size changes, e.g. to adjust view finder and scan area parameters.
+
+  .. eager-ifconfig:: platform == 'android'
+
+    To receive callback when screen rotates or keyboard opens you may have to add `android:configChanges` flag on your activity declaration in AndroidManifest.xml file.
+
+    .. code-block:: xml
+
+      <activity
+        android:name="SampleActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"/>
+
+  .. method:: void OnSizeChanged(DataCaptureView view, Size size, Orientation orientation)
+    @objc@ - (void)dataCaptureView:(SDCDataCaptureView *)view didChangeSize:(CGSize)size orientation:(UIInterfaceOrientation)orientation
+    @java@ void onSizeChanged(int width, int height, int screenOrientation)
+    @javascript@ didChangeSize(view: DataCaptureView, size: Size, orientation: Orientation): void
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Invoked when the data capture view changes size or orientation.
+
+    .. eager-ifconfig:: platform == "android"
+
+      Orientation parameter might have value of `Surface.ROTATION_0 <https://developer.android.com/reference/android/view/Surface.html#ROTATION_0>`_, `Surface.ROTATION_90 <https://developer.android.com/reference/android/view/Surface.html#ROTATION_90>`_, `Surface.ROTATION_180 <https://developer.android.com/reference/android/view/Surface.html#ROTATION_180>`_ or `Surface.ROTATION_270 <https://developer.android.com/reference/android/view/Surface.html#ROTATION_270>`_.

@@ -1,0 +1,92 @@
+****
+VIN
+****
+
+Overview
+========
+
+The parser supports all standards of the Vehicle Idenitification Number (VIN).
+
+Standards differ a little bit from each other. North America standard (used in the USA) is more strict than `ISO 3779
+<https://www.iso.org/standard/52200.html>`_ standard and the standard used in the European Union.
+European Union standard doesn't have to contain information about model year, plant or check digit.
+
+Example
+-------
+
+Parsing the following code (without quotes):
+
+::
+
+    "5UXFG2C50DL782277"
+
+will result in the following JSON output:
+
+.. code-block:: javascript
+
+	[
+            {
+                "name": "WMI",
+                "parsed": {
+                    "region": "USA",
+                    "fullCode": "5UX"
+                    "numberOfVehicles": ">2000",
+                },
+                "rawString": "5UX"
+            },
+            {
+                "name": "VDS",
+                "parsed": "FG2C5",
+                "rawString": "FG2C5"
+            },
+            {
+                "name": "VIS",
+                "parsed": {
+                    "modelYear" : [1983, 2013],
+                    "plant" : "L",
+                    "wmiSuffix" : null,
+                    "serialNumber" : "782277"
+                },
+                "rawString": "DL782277"
+            },
+            {
+                "name" : "metadata",
+                "parsed" : {
+                    "checksum" : "0",
+                    "passedChecksum": true,
+                    "standard": "northAmerica"
+                },
+                "rawString" : ""
+            }
+	]
+
+Fields
+========
+The following fields are exposed for VIN code:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 10, 15, 35
+    :file: vin.csv
+
+Metadata
+-------------
+The metadata field provides more information about the parsing of the input's fields.
+The dictionary encoded in the JSON string of the 'parsed' field contains the following
+entries:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 20, 20, 20
+    :file: vin_metadata.csv
+
+Parser Options
+==============
+The parser can be configured by providing a JSON string containing key / value pairs.
+Currently there is only one option available:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 10, 15, 35
+    :file: vin_options.csv
+

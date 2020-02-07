@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data Capture Context &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data Capture Context Builder" href="data-capture-context-builder.html" />
+    <link rel="prev" title="Context Status" href="context-status.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../overview.html">ScanditCaptureCore</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">Core Concepts of the Scandit Data Capture SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../serialization.html">Serialization</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="anchor.html">Anchor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera-settings.html">Camera Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html">Common Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="context-status.html">Context Status</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data Capture Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-builder.html">Data Capture Context Builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer.html">Data Capture Context Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer-listener.html">Data Capture Context Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer-result.html">Data Capture Context Deserializer Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-frame-listener.html">Data Capture Context Frame Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-listener.html">Data Capture Context Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-mode.html">Data Capture Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-mode-deserializer.html">Data Capture Mode Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-view-deserializer.html">Data Capture View Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-view-deserializer-listener.html">Data Capture View Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="direction.html">Direction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="feedback.html">Feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-data.html">Frame Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source.html">Frame Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-deserializer.html">Frame Source Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-deserializer-listener.html">Frame Source Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-listener.html">Frame Source Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="json-value.html">Json Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laserline-viewfinder.html">Laserline Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="location-selection.html">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radius-location-selection.html">Radius Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rectangular-location-selection.html">Rectangular Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rectangular-viewfinder.html">Rectangular Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spotlight-viewfinder.html">Spotlight Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewfinder.html">Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/brush.html">Brush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-overlay.html">Data Capture Overlay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-view.html">Data Capture View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-view-listener.html">Data Capture View Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/torch-switch-control.html">Torch Switch Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#camera-and-frame-sources">Camera and Frame Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#context-and-capture-modes">Context and Capture Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#location-selection">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#user-interface">User Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#misc-data-structures">Misc Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#deserialization">Deserialization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../overview.html">ScanditCaptureCore</a> &raquo;</li>
+        
+          <li><a href="../api.html">ScanditCaptureCore API</a> &raquo;</li>
+        
+      <li>Data Capture Context</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data-capture-context">
+<h1>Data Capture Context<a class="headerlink" href="#data-capture-context" title="Permalink to this headline">#</a></h1>
+<p>Defined under the namespace <em>Scandit.Datacapture.Core</em></p>
+<dl class="interface">
+<dt id="interface-scandit.datacapture.core.IDataCaptureContextCreationOptions">
+<code class="sig-name descname">DataCaptureContextCreationOptions</code><a class="headerlink" href="#interface-scandit.datacapture.core.IDataCaptureContextCreationOptions" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">interface DataCaptureContextCreationOptions</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.IDataCaptureContextCreationOptions.DeviceName">
+<code class="sig-name descname">deviceName</code><a class="headerlink" href="#property-scandit.datacapture.core.IDataCaptureContextCreationOptions.DeviceName" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">deviceName: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a> | null
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The device name allows to optionally identify the device with a user-provided name. This name is then associated with unique identifier of the device and displayed in the online dashboard.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="class-scandit.datacapture.core.DataCaptureContext">
+<code class="sig-name descname">DataCaptureContext</code><a class="headerlink" href="#class-scandit.datacapture.core.DataCaptureContext" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class DataCaptureContext</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Data capture context is the main class for running data-capture related tasks. The context manages one or more <a class="reference internal" href="data-capture-mode.html#interface-scandit.datacapture.core.IDataCaptureMode" title="capture modes interface">capture modes</a>, such as <a class="reference internal" href="../../barcode-capture/api/barcode-capture.html#class-scandit.datacapture.barcode.BarcodeCapture" title="BarcodeCapture class">BarcodeCapture</a>, or <code class="docutils literal notranslate"><span class="pre">LabelCapture</span></code> that perform the recognition. The context itself acts as a scheduler, but does not provide any interfaces for configuring data capture capabilities. Configuration and result handling is handled by the data capture modes directly.</p>
+<p>Each data capture context has exactly one frame source (typically a <a class="reference internal" href="camera.html#class-scandit.datacapture.core.Camera" title="built-in camera class">built-in camera</a>). The frame source delivers the frames on which the capture modes should perform recognition on. When a new capture context is created, it’s frame source is <em>null</em> and must be initialized for recognition to work.</p>
+<p>Typically a <a class="reference internal" href="ui/data-capture-view.html#class-scandit.datacapture.core.ui.DataCaptureView" title="DataCaptureView class">DataCaptureView</a> is used to visualize the ongoing data capture process on screen together with one or more <a class="reference internal" href="ui/data-capture-overlay.html#interface-scandit.datacapture.core.ui.IDataCaptureOverlay" title="overlays interface">overlays</a>. However it’s also possible to use the data capture context without a view to perform off-screen processing.</p>
+<p><strong>Related topics</strong>: <a class="reference internal" href="../../get-started-barcode.html"><span class="doc">Get Started With Barcode Scanning</span></a>, <a class="reference internal" href="../../get-started-matrixscan.html"><span class="doc">Get Started With MatrixScan</span></a>, <a class="reference internal" href="../concepts.html"><span class="doc">Core Concepts of the Scandit Data Capture SDK</span></a>.</p>
+<dl class="method">
+<dt id="method-scandit.datacapture.core.DataCaptureContext.ForLicenseKey">
+<code class="sig-name descname">forLicenseKey(licenseKey)</code><a class="headerlink" href="#method-scandit.datacapture.core.DataCaptureContext.ForLicenseKey" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">static <code class="sig-name descname">forLicenseKey</code>(<em>licenseKey</em>: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>): <a class="reference internal" href="#class-scandit.datacapture.core.DataCaptureContext" title="DataCaptureContext class">DataCaptureContext</a></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Constructs a data capture context with the provided license key.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Due to resource constraints, only one data capture context instance can be used at a given point in time. Each call to <a class="reference internal" href="#method-scandit.datacapture.core.DataCaptureContext.ForLicenseKey" title="forLicenseKey() method">forLicenseKey()</a> disposes previously created data capture contexts, as if <a class="reference internal" href="#method-scandit.datacapture.core.DataCaptureContext.Dispose" title="dispose() method">dispose()</a> were called. Disposed contexts cannot be used for recognition anymore.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.DataCaptureContext.ForLicenseKeyWithOptions">
+<code class="sig-name descname">forLicenseKeyWithOptions(licenseKey, options)</code><a class="headerlink" href="#method-scandit.datacapture.core.DataCaptureContext.ForLicenseKeyWithOptions" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">static <code class="sig-name descname">forLicenseKeyWithOptions</code>(<em>licenseKey</em>: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>,
+        <em>options</em>: <a class="reference internal" href="#interface-scandit.datacapture.core.IDataCaptureContextCreationOptions" title="DataCaptureContextCreationOptions interface">DataCaptureContextCreationOptions</a> | null): <a class="reference internal" href="#class-scandit.datacapture.core.DataCaptureContext" title="DataCaptureContext class">DataCaptureContext</a></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Constructs a data capture context with the provided license key and additional options.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.DataCaptureContext.SetFrameSourceAsync">
+<code class="sig-name descname">setFrameSource(frameSource)</code><a class="headerlink" href="#method-scandit.datacapture.core.DataCaptureContext.SetFrameSourceAsync" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">setFrameSource</code>(<em>frameSource</em>: <a class="reference internal" href="frame-source.html#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a> | null): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise" title="Promise">Promise</a>&lt;<code class="docutils literal notranslate"><span class="pre">void</span></code>&gt;</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Set the frame source of this data capture context.</p>
+<p>Frame sources produce frames to be processed by the data capture context. The user typically doesn’t create their own frame sources, but use one of the frame sources provided by the Scandit Data Capture SDK. Typical frame sources are web cams, or built-in cameras of a mobile device.</p>
+<p>Setting the frame source to <em>null</em> will effectively stop recognition of this capture context.</p>
+<p>When the frame source changes, <code class="docutils literal notranslate"><span class="pre">OnFrameSourceChanged</span></code> will be invoked on all registered listeners.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.DataCaptureContext.FrameSource">
+<code class="sig-name descname">frameSource</code><a class="headerlink" href="#property-scandit.datacapture.core.DataCaptureContext.FrameSource" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get frameSource(): <a class="reference internal" href="frame-source.html#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a> | null
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Readonly attribute to get the current frame source. To change the frame source use <a class="reference internal" href="#method-scandit.datacapture.core.DataCaptureContext.SetFrameSourceAsync" title="setFrameSource() method">setFrameSource()</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.DataCaptureContext.AddListener">
+<code class="sig-name descname">addListener(listener)</code><a class="headerlink" href="#method-scandit.datacapture.core.DataCaptureContext.AddListener" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">addListener</code>(<em>listener</em>: <a class="reference internal" href="data-capture-context-listener.html#interface-scandit.datacapture.core.IDataCaptureContextListener" title="DataCaptureContextListener interface">DataCaptureContextListener</a> | null): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Adds the listener to this data capture context. Context listeners receive events when new data capture modes are added, or the frame source changes.</p>
+<p>In case the same listener is already observing this instance, calling this method will not add the listener again.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.DataCaptureContext.RemoveListener">
+<code class="sig-name descname">removeListener(listener)</code><a class="headerlink" href="#method-scandit.datacapture.core.DataCaptureContext.RemoveListener" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">removeListener</code>(<em>listener</em>: <a class="reference internal" href="data-capture-context-listener.html#interface-scandit.datacapture.core.IDataCaptureContextListener" title="DataCaptureContextListener interface">DataCaptureContextListener</a> | null): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Removes a previously added listener from this data capture context.</p>
+<p>In case the listener is not currently observing this instance, calling this method has no effect.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.DataCaptureContext.AddMode">
+<code class="sig-name descname">addMode(mode)</code><a class="headerlink" href="#method-scandit.datacapture.core.DataCaptureContext.AddMode" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">addMode</code>(<em>mode</em>: <a class="reference internal" href="data-capture-mode.html#interface-scandit.datacapture.core.IDataCaptureMode" title="DataCaptureMode interface">DataCaptureMode</a>): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Adds the specified data capture mode to this capture context. Please note that it is not possible to add a mode associated with a context to a different context. If the mode is already associated with this context, this call has no effect.</p>
+<p>Multiple data capture modes can be associated with the same context. However, there are restrictions on which data capture modes can be used together. These restrictions are expressed in terms of capabilities that the capture modes require, .e.g. <em>barcode scanning</em>, <em>tracking</em>. No two capture modes that require the same capabilities can be used with the same data capture context. When conflicting requirements are detected, the data capture context will not process any frames and report an error.</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Decide how to propagate error in case of failure.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.DataCaptureContext.RemoveMode">
+<code class="sig-name descname">removeMode(mode)</code><a class="headerlink" href="#method-scandit.datacapture.core.DataCaptureContext.RemoveMode" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">removeMode</code>(<em>mode</em>: <a class="reference internal" href="data-capture-mode.html#interface-scandit.datacapture.core.IDataCaptureMode" title="DataCaptureMode interface">DataCaptureMode</a>): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Removes the mode from this capture context. If the capture mode is currently not associated to the context, this call has no effect.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.DataCaptureContext.RemoveAllModes">
+<code class="sig-name descname">removeAllModes()</code><a class="headerlink" href="#method-scandit.datacapture.core.DataCaptureContext.RemoveAllModes" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">removeAllModes</code>(): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Removes all modes from this capture context. If there currently are no captures modes associated to the context, this call has no effect. It is only allowed to remove capture modes from the context when either the frame source is <em>null</em>, or the frame source is off (<a class="reference internal" href="frame-source.html#property-scandit.datacapture.core.IFrameSource.CurrentState" title="FrameSource.getCurrentState property">FrameSource.getCurrentState</a> is <a class="reference internal" href="frame-source.html#value-scandit.datacapture.core.FrameSourceState.Off" title="FrameSourceState.Off value">FrameSourceState.Off</a>).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.DataCaptureContext.Dispose">
+<code class="sig-name descname">dispose()</code><a class="headerlink" href="#method-scandit.datacapture.core.DataCaptureContext.Dispose" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">dispose</code>(): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Disposes/releases this data capture context. This frees most associated resources and can be used to save some memory. Disposed/released contexts cannot be used for recognition anymore, trying will result in a <a class="reference internal" href="context-status.html#class-scandit.datacapture.core.ContextStatus" title="ContextStatus with error code 1025 class">ContextStatus with error code 1025</a>. Data capture modes and listeners remain untouched.</p>
+<p>This method may be called multiple times on the same context. Further calls have no effect.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

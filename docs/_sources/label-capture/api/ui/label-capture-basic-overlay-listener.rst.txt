@@ -1,0 +1,25 @@
+Label Capture Basic Overlay |Delegate|
+======================================
+
+.. module:: scandit.datacapture.label.ui
+  :android-package: com.scandit.datacapture.label.ui.overlay
+
+.. interface:: ILabelCaptureBasicOverlayListener
+  @objc@ SDCLabelCaptureBasicOverlayDelegate <NSObject>
+  :available: android=6.0, ios=6.0
+
+  :type:`ILabelCaptureBasicOverlayListener` can be implemented to customize the visual appearance of highlighted labels and their fields. When label capture identifies a new field, or when the :prop:`LabelField.State` property changes, :meth:`BrushForField` is called to determine the :type:`brush<core.ui.Brush>` of the field.
+
+  .. method:: core.ui.Brush? BrushForField(LabelCaptureBasicOverlay overlay, LabelField field, CapturedLabel label)
+    @objc@ -(nullable SDCBrush*)labelCaptureBasicOverlay:(nonnull SDCLabelCaptureBasicOverlay*)overlay brushForField:(nonnull SDCLabelField*)field ofLabel:(nonnull SDCCapturedLabel*)label
+    :available: android=6.0, ios=6.0
+
+    Called for each field to determine its brush whenever the field's state changes. In case the field is tracked over multiple frames and its state does not change, the same brush is used. The field brush can be changed by explicit calls to :meth:`LabelCaptureBasicOverlay.SetBrushForField`.
+
+  .. method:: core.ui.Brush? BrushForLabel(LabelCaptureBasicOverlay overlay, CapturedLabel label)
+    @objc@ -(nullable SDCBrush*)labelCaptureBasicOverlay:(nonnull SDCLabelCaptureBasicOverlay*)overlay brushForLabel:(nonnull SDCCapturedLabel*)label
+    :available: ios=6.0, android=6.0
+
+    Called for each label to determine its brush whenever one of the label's fields changes it's state/data. In case the field is tracked over multiple frames and none of the fields changes its state, the same brush is used. The label brush can be changed by explicit calls to :meth:`LabelCaptureBasicOverlay.SetBrushForLabel`.
+
+

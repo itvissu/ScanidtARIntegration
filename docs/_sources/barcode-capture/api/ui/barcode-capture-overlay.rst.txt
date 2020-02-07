@@ -1,0 +1,71 @@
+Barcode Capture Overlay
+=======================
+
+.. module:: scandit.datacapture.barcode.ui
+  :android-package: com.scandit.datacapture.barcode.ui.overlay
+
+.. class:: BarcodeCaptureOverlay : core.ui.IDataCaptureOverlay
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Overlay for the :type:`BarcodeCapture` capture mode that displays recognized barcodes on top of a :type:`data capture view<core.ui.DataCaptureView>`. The appearance of the visualized barcodes can be configured or turned off completely through the :prop:`Brush` property.
+
+  .. method:: static BarcodeCaptureOverlay NewInstance(BarcodeCapture barcodeCapture, core.ui.DataCaptureView ?view)
+    @objc@ + (instancetype)overlayWithBarcodeCapture:(nonnull SDCBarcodeCapture *)barcodeCapture forDataCaptureView:(nullable SDCDataCaptureView *)view
+    @javascript@ static withBarcodeCaptureForView(barcodeCapture: BarcodeCapture, view: DataCaptureView?): BarcodeCaptureOverlay
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+     Constructs a new barcode capture overlay for the provided barcode capture instance. When passing a non-|null| **view** instance, the overlay is automatically added to the view. 
+
+  .. method:: static BarcodeCaptureOverlay FromJson(BarcodeCapture mode, String jsonData)
+    @objc@ + (nullable instancetype)barcodeCaptureOverlayFromJSONString:(nonnull NSString *)jsonString mode:(nonnull SDCBarcodeCapture *)mode error:(NSError **)error
+    :available: android=6.0, ios=6.0
+
+    Constructs a new barcode capture overlay with the provided JSON serialization. See :doc:`/core/serialization` for details.
+
+    For the overlay to be displayed on screen, it must be added to a :type:`core.ui.DataCaptureView`.
+
+  .. method:: static BarcodeCaptureOverlay WithBarcodeCapture(BarcodeCapture barcodeCapture)
+    @objc@ + (instancetype)overlayWithBarcodeCapture:(nonnull SDCBarcodeCapture *)barcodeCapture
+    :available: ios=6.0, cordova=6.1
+
+     Constructs a new barcode capture overlay for the provided barcode capture instance. For the overlay to be displayed on screen, it must be added to a :type:`core.ui.DataCaptureView`.
+
+  .. property:: core.ui.IViewfinder? Viewfinder { get; set; }
+    @objc@ @property (nonatomic, strong, nullable) id<SDCViewfinder> viewfinder
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Set the viewfinder. By default, the viewfinder is |null|. Set this to an instance of :type:`core.ui.IViewfinder` if you want to draw a viewfinder.
+
+  .. property:: core.ui.Brush Brush { get; set; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The brush used for visualizing a recognized barcode in the UI. To turn off drawing of locations, set the brush to use both a transparent fill and stroke color. By default, the brush has a transparent fill color, a "Scandit"-blue stroke color, and a stroke width of 1.
+
+  .. method:: static core.ui.Brush DefaultBrush()
+    @objc@ @property (class, nonatomic, nonnull, readonly) SDCBrush *defaultBrush
+    @javascript@ static get defaultBrush(): Brush
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Returns the default brush used by the overlay.
+
+  .. property:: bool ShouldShowScanAreaGuides { get; set; }
+    :available: android=6.0, ios=6.0
+
+    Whether to show scan area guides on top of the preview. This property is useful during development to visualize the current scan areas on screen. It is not meant to be used for production. By default this property is |false|.
+
+  .. method:: void UpdateFromJson(String jsonData)
+    @objc@ - (BOOL)updateFromJSONString:(nonnull NSString *)jsonString error:(NSError **)error
+    :available: android=6.0, ios=6.0
+
+    Updates the overlay according to a JSON serialization. See :doc:`/core/serialization` for details.
+
+  .. method:: void SetProperty(string name, Object value)
+    @objc@ - (void)setValue:(nullable id)value forProperty:(nonnull NSString *)property
+    :available: android=6.0, ios=6.0
+
+    Set barcode capture overlay property to the provided value. Use this method to set properties that are not yet part of a stable API. Properties set through this method may or may not be used or change in a future release.
+
+  .. method:: Object? GetProperty(string name)
+    :available: android=6.0
+
+    Retrieves the value of a previously set barcode capture overlay property. In case the property does not exist, |null| is returned.

@@ -1,0 +1,58 @@
+Label Capture
+=============
+
+.. module:: scandit.datacapture.label
+  :android-package: com.scandit.datacapture.label.capture
+
+
+.. class:: LabelCapture : core.IDataCaptureMode
+  :available: ios=6.0, android=6.0
+
+  Data capture mode to scan labels, e.g. groups of barcodes, or a combination of text and barcode in a fixed spatial arrangement.
+
+  .. method:: static LabelCapture ForDataCaptureContext(core.DataCaptureContext? dataCaptureContext, LabelCaptureSettings settings)
+    @objc@ + (instancetype)labelCaptureWithContext:(nullable SDCDataCaptureContext *)context settings:(nonnull SDCLabelCaptureSettings *)settings
+    :available: ios=6.0, android=6.0
+
+    Construct a new label capture mode with the provided context and settings. When the context is not |null|, the capture mode is automatically added to the context.
+
+  .. property:: bool IsEnabled { get; set; }
+    :available: ios=6.0, android=6.0
+
+    Implemented from :type:`core.IDataCaptureMode`. See :prop:`core.IDataCaptureMode.IsEnabled`.
+
+  .. method:: Task ApplySettingsAsync(LabelCaptureSettings settings)
+    :available: ios=6.0, android=6.0
+
+    Asynchronously apply the new settings to label capture. If label capture is currently running, the task will complete when the next frame is processed, and will use the new settings for that frame. If label capture is currently *not* running, the task will complete as soon as the settings have been stored and won't wait until the next frame is going to be processed.
+
+  .. method:: void ApplySettings(LabelCaptureSettings settings)
+    :available: android=6.0
+
+    Same as :meth:`LabelCapture.ApplySettingsAsync` with the second argument set to |null|.
+
+  .. method:: void AddListener(ILabelCaptureListener? listener)
+    :available: ios=6.0, android=6.0
+
+    Adds the listener to this label capture instance to observe the label capture mode and get notified when a label or some of its fields got scanned.
+
+    |add-listener|
+
+  .. method:: void RemoveListener(ILabelCaptureListener? listener)
+    :available: ios=6.0, android=6.0
+
+    Removes a previously added listener from this label capture instance.
+
+    |remove-listener|
+
+  .. method:: static core.CameraSettings CreateRecommendedCameraSettings()
+     @objc@ @property (class, nonatomic, readonly, nonnull) SDCCameraSettings *recommendedCameraSettings
+    :available: android=6.0, ios=6.1
+
+    Returns the recommended camera settings for use with label capture.
+
+  .. property:: core.DataCaptureContext? Context { get; }
+    @java@ core.DataCaptureContext? DataCaptureContext { get; }
+    :available: ios=6.0, android=6.0
+
+    Implemented from :type:`core.IDataCaptureMode`. See :prop:`core.IDataCaptureMode.Context`.

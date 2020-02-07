@@ -1,0 +1,147 @@
+Context Status
+======================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.common
+
+.. class:: ContextStatus
+  @objc@ SDCContextStatus : NSObject
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  Holds information on the current context status. This information is available to data capture context listeners (see :meth:`~IDataCaptureContextListener.OnStatusChanged` method).
+
+  .. property:: string Message { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    A human readable representation of the current context status, containing more information about potential issues. In case there are no issues (:prop:`IsValid` is |true|), the message is empty.
+
+  .. property:: uint Code  { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The context status code.
+
+  .. property:: bool IsValid { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Whether the context is valid.
+
+  .. method:: string ToJson()
+    @objc@ -(nonnull NSString *)JSONString
+    :available: ios=6.1
+
+    Returns the JSON representation of the context status.
+
+
+Status Codes
+------------
+
+2 - Internal Error
+^^^^^^^^^^^^^^^^^^
+
+Something went wrong internally. Please send the error, device model and |sdk| version through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_.
+
+5 - Inconsistent Image Data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The image data being fed to the recognizer is inconsistent. This is likely a device issue. Please send the error, device model and |sdk| version through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_.
+
+6 - No Network Connection
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You are using a test license of the |sdk| which needs a network connection to scan. Please make sure the phone you are testing on is connected to the Internet (an intra net for example might not have a connection to the public Internet).
+
+9, 10, 11 - Validation Failed
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The license key validation failed. Make sure you are using a valid license key and check your account for available device activations. If this doesn't fix the problem, please send the error, device model and |sdk| version through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_.
+
+12 - License Key Missing
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+No License key was set. Please set a valid license key when creating your :type:`core.DataCaptureContext`.
+
+13 - License Key Expired
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The license key validation failed. Your license key has expired, please log into your account at www.scandit.com and request an extension or contact support through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_.
+
+14 - Invalid Platform
+^^^^^^^^^^^^^^^^^^^^^
+
+The license key validation failed. Your license key does not include the platform that you are using it on. Please contact support through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_ to request a different license key.
+
+15 - Invalid App ID
+^^^^^^^^^^^^^^^^^^^
+
+The license key validation failed. The identifier of your app does not match the license key's app identifier. Please change the app identifier of your app or acquire a new license key that matches it. 
+
+16 - Invalid Device
+^^^^^^^^^^^^^^^^^^^
+
+The license key validation failed. Your license key does not include support for this device. Please contact support through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_ to request a different license key.
+
+17 - Invalid SDK Version
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The license key validation failed. Your license key does not include support for this SDK version. Please contact support through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_ to request a different license key.
+
+18 - Invalid License Key
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The provided license key is invalid. Please set a valid license key when creating your :type:`core.DataCaptureContext`.
+
+19 - Device Activation Failed
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The device activation failed. Please connect to the Internet and restart the app.
+
+20 - Time Exceeded
+^^^^^^^^^^^^^^^^^^
+
+The device activation failed. The number of allowed days to use the SDK has exceeded. Please contact support through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_ to request a different license key.
+
+21 - Scans Exceeded
+^^^^^^^^^^^^^^^^^^^
+
+The device activation failed. The number of allowed scans was exceeded. Please contact support through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_ to request a different license key.
+
+22 - Mandatory Registration Not Completed
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The registration of the device is mandatory and must be completed before the recognition context can be used. Please connect to the Internet and restart the app.
+
+23 - Invalid External ID
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Scandit SDK validation failed. The external id does not match with the license key. Make sure you are setting the right external ID when creating your :type:`core.DataCaptureContext` or no external ID at all if your license key is not meant for it.
+
+
+24 - Unlicensed Symbology Enabled
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Your license does not include a symbology that was enabled through barcode capture or tracking settings. Please disable those symbologies or contact support through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_ to request a license key containing the symbologies.
+
+25 - Unlicensed Video Resolution
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Your license does not include the enabled resolution. Please set a different :type:`core.VideoResolution` or contact support through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_ to request a license key with higher resolutions enabled.
+
+1025 - Disposed Context
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The data capture context has been disposed and cannot be used anymore. Most likely this is happening because a new context was created but the old context is still used in some fashion. To solve this you should no longer use the old context once you create a new one or not re-create the context at all. Please read up on the :type:`data capture context<core.DataCaptureContext>` to understand how exactly it behaves.
+
+1026 - Augmented Reality Features Disabled
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Your license does not include Augmented Reality functionality. Please contact support through `this contact form <https://support.scandit.com/hc/en-us/requests/new>`_ if you would like to use this feature.
+
+1028 - Conflicting Requirements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The added data capture modes have conflicting feature requirements and cannot be used with the same context at the same time. Read up on the conflicting requirements at :meth:`core.DataCaptureContext.AddMode`.
+
+1032 - Camera Authorization Required
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The |sdk| was unable to access the device's camera. Check that your app has permissions to use the camera. In rare cases it is possible that the camera is locked by another app or non-functional because of some other reason, in such cases restarting the phone helps.

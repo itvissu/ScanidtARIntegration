@@ -1,0 +1,86 @@
+Parser
+=========================
+
+.. module:: scandit.datacapture.parser
+
+
+.. class:: Parser
+  @objc@ SDCParser : NSObject
+  :available: ios=6.1, android=6.1
+
+  .. method:: static Parser ForFormat(core.DataCaptureContext dataCaptureContext, ParserDataFormat dataFormat)
+    @objc@ + (nullable instancetype)parserForContext:(nonnull SDCDataCaptureContext *)context format:(SDCParserDataFormat)dataFormat error:(NSError **)error
+    :available: android=6.1, ios=6.1
+
+    Create new parser for the provided data format and context. The license key with which the data capture context was constructed must have the parser feature enabled. 
+
+    .. eager-ifconfig:: platform == 'ios'
+
+      In case the parser could not be created, more detailed information on why creation failed is stored in the error argument, if non-|null|.
+
+  .. eager-ifconfig:: platform != 'ios'
+
+     In case the parser could not be constructed, an exception is raised. Information on why creation failed is contained in the exception error message.
+
+     .. todo:: specify exception type
+
+
+  .. method:: ParsedData ParseString(String string)
+    @objc@ - (nullable SDCParsedData *)parseString:(NSString *)string error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Parses the data string and returns the contained field in the result object. Typical inputs to this method is the data contained in a barcode (see :prop:`barcode.Barcode.Data`)
+
+    .. eager-ifconfig:: platform == 'ios'
+
+      In case the data string could not be parsed, the error message is contained in the **error** parameter.
+
+    .. eager-ifconfig:: platform != 'ios'
+
+      In case the data string could not be parsed, an exception is raised. More detailed information on why creation failed is contained in the exception error message.
+
+     .. todo:: specify exception type
+
+  .. method:: ParsedData ParseRawData(Data data)
+    @java@ ParsedData parseRawData(byte[] data)
+    @objc@ - (nullable SDCParsedData *)parseRawData:(NSData *)data error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Parses the raw data and returns the contained field in the result object. Typical inputs to this method is the raw data of a barcode (see :prop:`barcode.Barcode.RawData`).
+
+    .. eager-ifconfig:: platform == 'ios'
+
+      In case the data string could not be parsed, the error message is contained in the **error** parameter.
+
+    .. eager-ifconfig:: platform != 'ios'
+
+      In case the data string could not be parsed, an exception is raised. More detailed information on why creation failed is contained in the exception error message.
+
+     .. todo:: specify exception type
+
+
+  .. method:: void SetOptions(IDictionary<string, Object> options)
+    @objc@ -(BOOL)setOptions:(NSDictionary<NSString*, NSObject*> *)options error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Set the provided options on the parser.
+
+    Available options depend on the data format type of the parser and are documented for each of the supported data formats.
+
+    .. eager-ifconfig:: platform == 'ios'
+
+      In case the options are invalid, this method returns |false| and the error argument is filled with more information on the failure.
+
+    .. eager-ifconfig:: platform != 'ios'
+
+      In case the options are invalid, an exception is raised. More detailed information on why creation failed is contained in the exception error message.
+
+
+
+
+      
+
+
+    
+
+

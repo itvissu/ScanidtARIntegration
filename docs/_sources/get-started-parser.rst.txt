@@ -1,0 +1,102 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Get Started With The Parser
+===========================
+
+.. module:: scandit.datacapture.parser
+  :hidden:
+
+The parser parses data strings, e.g. as found in barcodes, into a set of key-value mappings. These data formats are supported: :doc:`Health Industry Bar Code (HIBC)<parser/hibc>`, :doc:`GS1 Application Identifier (parser/AI) system <parser/gs1ai>`, :doc:`AAMVA Driver License/Identification <parser/dlid>`, :doc:`ICAO Machine Readable Travel Document (parser/MRTD) <parser/mrtd>` and :doc:`Swiss QR Codes <parser/swissqr>`, :doc:`VIN Vehicle Identification Number <parser/vin>`.
+
+More data formats will be added in future releases. Please contact us if the data format you are using is not yet supported, or you want to use the parser on a currently unsupported platform.
+
+.. include:: /core/prerequisites.txt
+
+.. include:: /core/create-context.txt
+
+Use the Parser
+--------------
+
+In a nutshell, the parser provides functionality to transform a data string and into a list of key-value pairs. To use this functionality in your app, first the parser must be instantiated with the :doc:`desired format <parser/formats>`. The result is then returned in a result object. The following sample shows how the parser code typically looks like.
+
+.. sample:: java
+
+  import com.scandit.datacapture.parser.*;
+
+   ...
+   Parser parser = Parser.forFormat(dataCaptureContext, ParserDataFormat.GS1_AI);
+
+   ParsedData res = null;
+   try {
+       res = parser.parseString("1719060110SCANDIT123");
+   } catch (IllegalArgumentException e) {
+       // Something went wrong.
+   }
+
+   // We can either acces the data from the raw JSON string ...
+   Log.d("JsonString", res.getJsonString());
+
+   // ... or from the fields dictionary ...
+   Map<String, ParsedField> map = res.getFieldsByName();
+   ParsedField metaField = map.get("17");
+   Log.d("FieldRawString", metaField.getRawString());
+   // parsed can be a Map<String,Object>, Object[], Integer, Long, Boolean, Double or String
+   Object parsed = metaField.getParsed();
+   Log.d("OUTPUT", parsed.toString());
+
+   // ... or from the fields array
+   List<ParsedField> fields = res.getFields();
+   for (ParsedField field : fields){
+       final String result = field.getName() + ": " + field.getParsed();
+       Log.d("OUTPUT", result);
+   }
+
+.. sample:: swift
+
+  #import <ScanditParser/ScanditParser.h>
+  ...
+  do {
+    let parser = try Parser(context:context, format:.hibc)
+    let result = try parser.parseString("+A99912345/$$52001510X33")
+  
+    // We can either access the data from the raw JSON string...
+    print(result.jsonString);
+  
+    // ... or from the fields dictionary...
+    for (key, field) in result.fieldsByName {
+      print("\(key) name: \(field.name)")
+      print("\(key) raw: \(field.rawString)")
+      if let parsed = field.parsed {
+        // Here we just print the description of the object.
+        // You should most likely check the type and cast it in order to safely use it.
+        print("\(key) parsed: \(parsed.debugDescription)")
+      }
+    }
+  
+    // ... or from the fields array.
+    for field in result.fields {
+      print("\(field.name) raw: \(field.rawString)")
+      if let parsed = field.parsed {
+        print("\(field.name) parsed: \(parsed.debugDescription)")
+      }
+    }
+  } catch {
+    // Something went wrong. Look at error for more info.
+    print(error.localizedDescription)
+  }
+
+
+For details, go to the :doc:`API docs<parser/api>`.
+
+Format-Specific Documentation
+-----------------------------
+
+* :doc:`parser/formats`
+* :doc:`parser/hibc`
+* :doc:`parser/gs1ai`
+* :doc:`parser/dlid`
+* :doc:`parser/mrtd`
+* :doc:`parser/swissqr`
+* :doc:`parser/vin`

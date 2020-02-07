@@ -1,0 +1,22 @@
+Radius Location Selection
+=========================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.area
+
+.. class:: RadiusLocationSelection : ILocationSelection
+  @objc@ SDCRadiusLocationSelection : NSObject<SDCLocationSelection>
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Location selection for selecting codes inside a circle with the given radius, centered on the :prop:`point of interest <ui.DataCaptureView.PointOfInterest>`. Any object that touches the circle is returned, objects that do not intersect the circle are filtered out. See :doc:`Scan Area Guide</scan-area>` for an in depth explanation of location selection.
+  
+  .. method:: RadiusLocationSelection(FloatWithUnit radius)
+    @objc@ + (instancetype)locationSelectionWithRadius:(SDCFloatWithUnit)radius
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Creates a new radius location selection instance with the specified radius.
+
+  .. property:: FloatWithUnit Radius { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The radius of the circle. When using fractional coordinates, the radius is measured relative to the view's width.

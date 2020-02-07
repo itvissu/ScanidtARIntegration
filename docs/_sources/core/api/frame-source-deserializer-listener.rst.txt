@@ -1,0 +1,39 @@
+Frame Source Deserializer Listener
+==================================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.capture.serialization
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. interface:: IFrameSourceDeserializerListener
+  @objc@ SDCFrameSourceDeserializerDelegate <NSObject>
+  :available: ios=6.1, android=6.1
+
+  The listener for the frame source deserializer.
+
+  .. method:: void OnFrameSourceDeserializationStarted(FrameSourceDeserializer deserializer, IFrameSource frameSource, JsonValue json)
+    @objc@ - (void)frameSourceDeserializer:(SDCFrameSourceDeserializer *)deserializer didStartDeserializingFrameSource:(id<SDCFrameSource>)frameSource fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called before the deserialization of the frame source started. This is the point to overwrite defaults before the deserialization is performed. 
+
+  .. method:: void OnFrameSourceDeserializationFinished(FrameSourceDeserializer deserializer, IFrameSource frameSource, JsonValue json)
+    @objc@ - (void)frameSourceDeserializer:(SDCFrameSourceDeserializer *)deserializer didFinishDeserializingFrameSource:(id<SDCFrameSource>)frameSource fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called when the deserialization of the frame source finished. This is the point to do additional deserialization.
+
+  .. method:: void OnCameraSettingsDeserializationStarted(FrameSourceDeserializer deserializer, CameraSettings cameraSettings, JsonValue json)
+    @objc@ - (void)frameSourceDeserializer:(SDCFrameSourceDeserializer *)deserializer didStartDeserializingCameraSettings:(SDCCameraSettings *)settings fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called before the deserialization of the camera settings started. This is the point to overwrite defaults before the deserialization is performed. 
+
+  .. method:: void OnCameraSettingsDeserializationFinished(FrameSourceDeserializer deserializer, CameraSettings cameraSettings, JsonValue json)
+    @objc@ - (void)frameSourceDeserializer:(SDCFrameSourceDeserializer *)deserializer didFinishDeserializingCameraSettings:(SDCCameraSettings *)settings fromJSONValue:(SDCJSONValue *)JSONValue
+    :available: ios=6.1, android=6.1
+
+    Called when the deserialization of the camera settings finished. This is the point to do additional deserialization.

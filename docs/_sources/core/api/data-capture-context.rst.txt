@@ -1,0 +1,171 @@
+Data Capture Context
+=============================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.capture
+
+.. interface:: IDataCaptureContextCreationOptions
+  :available: cordova=6.1
+
+  .. property:: string? DeviceName { get; set; }
+    :available: cordova=6.1
+
+    The device name allows to optionally identify the device with a user-provided name. This name is then associated with unique identifier of the device and displayed in the online dashboard.
+
+.. class:: DataCaptureContext
+  @objc@ SDCDataCaptureContext : NSObject
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  Data capture context is the main class for running data-capture related tasks. The context manages one or more :type:`capture modes<IDataCaptureMode>`, such as :type:`barcode.BarcodeCapture`, or :type:`label.LabelCapture` that perform the recognition. The context itself acts as a scheduler, but does not provide any interfaces for configuring data capture capabilities. Configuration and result handling is handled by the data capture modes directly.
+
+  Each data capture context has exactly one frame source (typically a :type:`built-in camera<Camera>`). The frame source delivers the frames on which the capture modes should perform recognition on. When a new capture context is created, it's frame source is |null| and must be initialized for recognition to work.
+
+  Typically a :type:`ui.DataCaptureView` is used to visualize the ongoing data capture process on screen together with one or more :type:`overlays<ui.IDataCaptureOverlay>`. However it's also possible to use the data capture context without a view to perform off-screen processing.
+
+  **Related topics**: :doc:`/get-started-barcode`, :doc:`/get-started-matrixscan`, :doc:`/core/concepts`.
+
+  .. method:: static DataCaptureContext ForLicenseKey(string licenseKey)
+    @objc@ +(instancetype)contextForLicenseKey:(nonnull NSString*)licenseKey
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Constructs a data capture context with the provided license key.
+
+    .. eager-ifconfig:: platform == 'android'
+
+      To set additional properties like a device name or external id, use :meth:`Builder`.
+
+    .. note::
+
+      Due to resource constraints, only one data capture context instance can be used at a given point in time. Each call to :meth:`ForLicenseKey` disposes previously created data capture contexts, as if :meth:`Dispose` were called. Disposed contexts cannot be used for recognition anymore.
+
+  .. method:: static DataCaptureContext ForLicenseKeyAndDeviceName(string licenseKey, string? deviceName)
+    @objc@ +(instancetype)contextForLicenseKey:(nonnull NSString *)licenseKey deviceName:(nullable NSString *)deviceName
+    @java@ static DataCaptureContext forLicenseKey(String licenseKey, String deviceName)
+    :available: ios=6.0, android=6.0
+
+    Constructs a data capture context with the provided license key and an optional device name.
+
+    The device name allows to optionally identify the device with a user-provided name. This name is then associated with the unique identifier of the device and displayed in the online dashboard.
+
+    See :meth:`ForLicenseKey` for details about the context instantiation.
+
+    .. eager-ifconfig:: platform == 'android'
+
+      .. deprecated:: 6.1.0
+        Replaced by :meth:`Builder` to set the device name and additional properties.
+
+  .. method:: static DataCaptureContext ForLicenseKeyAndExternalId(string licenseKey, string? externalId)
+    @objc@ + (instancetype)contextForLicenseKey:(nonnull NSString *)licenseKey externalID:(nullable NSString *)externalID
+    :available: ios=6.1
+
+    Constructs a data capture context with the provided license key and an optional external id. See :meth:`ForLicenseKey` for details.
+
+    The external ID is a customer defined identifier that is verified in the license key. This is an optional feature for resellers of the |sdk|.
+
+    See :meth:`ForLicenseKey` for details about the context instantiation.
+
+  .. method:: static DataCaptureContext ForLicenseKeyAndExternalIdAndDeviceName(string licenseKey, string? externalId, string? deviceName)
+    @objc@ + (instancetype)contextForLicenseKey:(nonnull NSString *)licenseKey externalID:(nullable NSString *)externalID deviceName:(nullable NSString *)deviceName
+    :available: ios=6.1
+
+    Constructs a data capture context with the provided license key, an optional external id and an optional device name.
+
+    The external ID is a customer defined identifier that is verified in the license key. This is an optional feature for resellers of the |sdk|.
+
+    The device name allows to identify the device with a user-provided name. This name is then associated with the unique identifier of the device and displayed in the online dashboard.
+
+    See :meth:`ForLicenseKey` for details about the context instantiation.
+
+  .. method:: static DataCaptureContextBuilder Builder(string licenseKey)
+    :available: android=6.1
+
+    Constructs a data capture context builder to build a data capture context with additional properties such as :meth:`device name<DataCaptureContextBuilder.DeviceName>` and :meth:`external ID<DataCaptureContextBuilder.ExternalId>`.
+
+  .. method:: static DataCaptureContext ForLicenseKeyWithOptions(string licenseKey, IDataCaptureContextCreationOptions? options)
+    :available: cordova=6.1
+
+    Constructs a data capture context with the provided license key and additional options.
+
+  .. method:: Task SetFrameSourceAsync(IFrameSource? frameSource)
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Set the frame source of this data capture context.
+
+    Frame sources produce frames to be processed by the data capture context. The user typically doesn't create their own frame sources, but use one of the frame sources provided by the |sdk|. Typical frame sources are web cams, or built-in cameras of a mobile device.
+
+    Setting the frame source to |null| will effectively stop recognition of this capture context.
+
+    When the frame source changes, :meth:`IDataCaptureContextListener.OnFrameSourceChanged` will be invoked on all registered listeners.
+
+  .. method:: void SetFrameSource(IFrameSource? frameSource)
+    :available: android=6.0
+
+    Same as :meth:`DataCaptureContext.SetFrameSourceAsync` with the second argument set to |null|.
+
+  .. property:: IFrameSource? FrameSource { get; }
+    @objc@ @property(nonatomic, nullable, readonly) id<SDCFrameSource> frameSource
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Readonly attribute to get the current frame source. To change the frame source use :meth:`SetFrameSourceAsync`.
+
+  .. method:: void AddListener(IDataCaptureContextListener? listener)
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Adds the listener to this data capture context. Context listeners receive events when new data capture modes are added, or the frame source changes.
+
+    |add-listener|
+
+  .. method:: void RemoveListener(IDataCaptureContextListener? listener)
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Removes a previously added listener from this data capture context.
+
+    |remove-listener|
+
+  .. method:: void AddFrameListener(IDataCaptureContextFrameListener? listener)
+    :available: ios=6.0, android=6.0
+
+    Adds the frame listener to this data capture context. Frame listeners receive events when frames are about to be processed or have been processed by the data capture context.
+
+    |add-listener|
+
+  .. method:: void RemoveFrameListener(IDataCaptureContextFrameListener? listener)
+    :available: ios=6.0, android=6.0
+
+    Removes a previously added frame listener from this data capture context.
+
+    |remove-listener|
+
+  .. property:: IList<IDataCaptureMode> CaptureModes { get; }
+    :available: none
+
+    The capture modes currently associated with this context. To add new modes, use :meth:`AddMode`, to remove an existing mode, use :meth:`RemoveMode`, or :meth:`RemoveAllModes`.
+
+  .. method:: void AddMode(IDataCaptureMode mode)
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Adds the specified data capture mode to this capture context. Please note that it is not possible to add a mode associated with a context to a different context. If the mode is already associated with this context, this call has no effect.
+
+    Multiple data capture modes can be associated with the same context. However, there are restrictions on which data capture modes can be used together. These restrictions are expressed in terms of capabilities that the capture modes require, .e.g. *barcode scanning*, *tracking*. No two capture modes that require the same capabilities can be used with the same data capture context. When conflicting requirements are detected, the data capture context will not process any frames and report an error.
+
+    .. todo::
+
+      Decide how to propagate error in case of failure.
+
+  .. method:: void RemoveMode(IDataCaptureMode mode)
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Removes the mode from this capture context. If the capture mode is currently not associated to the context, this call has no effect.
+
+  .. method:: void RemoveAllModes()
+    :available: ios=6.0, cordova=6.1
+
+    Removes all modes from this capture context. If there currently are no captures modes associated to the context, this call has no effect. It is only allowed to remove capture modes from the context when either the frame source is |null|, or the frame source is off (:prop:`IFrameSource.CurrentState` is :enum:`FrameSourceState.Off`).
+
+  .. method:: void Dispose()
+    @java@ void release()
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Disposes/releases this data capture context. This frees most associated resources and can be used to save some memory. Disposed/released contexts cannot be used for recognition anymore, trying will result in a :type:`ContextStatus with error code 1025<ContextStatus>`. Data capture modes and listeners remain untouched.
+
+    This method may be called multiple times on the same context. Further calls have no effect.

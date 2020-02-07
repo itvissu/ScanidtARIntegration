@@ -1,0 +1,15 @@
+Location Selection
+==================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.area
+
+.. interface:: ILocationSelection
+  @objc@ SDCLocationSelection <NSObject>
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  |Interface| for location selection. Location selections implement a specific strategy how a data object (like a barcode or text) is selected out of multiple visible ones by for example only selecting objects inside a certain area or objects that intersect a certain area. See :doc:`Scan Area Guide</scan-area>` for an in-depth explanation of location selection. Implementations are provided by :type:`RadiusLocationSelection` and :type:`RectangularLocationSelection`.
+  
+  Location selection implementations are restricted to the set of location selections provided by the |sdk|, it is not possible to |implement| this |interface| with a custom implementations of location selection. This |interface| does not expose any methods or properties, it just serves as a unifying type for different selection strategies.
+  
+

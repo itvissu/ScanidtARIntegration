@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Core Concepts of the Scandit Data Capture SDK &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Serialization" href="serialization.html" />
+    <link rel="prev" title="ScanditCaptureCore" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">ScanditCaptureCore</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Core Concepts of the Scandit Data Capture SDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-capture-context">Data Capture Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-capture-view">Data Capture View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#frame-sources">Frame Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#capture-modes">Capture Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#capture-mode-settings">Capture Mode Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#capture-mode-listeners">Capture Mode Listeners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#capture-mode-sessions">Capture Mode Sessions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overlays">Overlays</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="serialization.html">Serialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="overview.html">ScanditCaptureCore</a> &raquo;</li>
+        
+      <li>Core Concepts of the Scandit Data Capture SDK</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="core-concepts-of-the-sdk">
+<h1>Core Concepts of the Scandit Data Capture SDK<a class="headerlink" href="#core-concepts-of-the-sdk" title="Permalink to this headline">#</a></h1>
+<p>This page gives an overview of the core concepts and terms used in the Scandit Data Capture SDK.</p>
+<p>All of these concepts are implemented as classes or interfaces in the ScanditCaptureCore framework and are used by the frameworks that build on it to implement the data capture capabilities such as barcode reading.</p>
+<div class="section" id="data-capture-context">
+<h2>Data Capture Context<a class="headerlink" href="#data-capture-context" title="Permalink to this headline">#</a></h2>
+<p>The data capture context is the central object that orchestrates the data capture and recognition tasks.</p>
+<p>It is the object that links all of the different components together. Its main responsibilities are managing and verifying the license key, scheduling when data capture modes process frames, and defining the frame source to be used for recognition. The context itself acts as a scheduler, but does not provide any interfaces for configuring data capture capabilities.</p>
+<p>Configuration and result handling is handled by the data capture modes directly.</p>
+<p><strong>Relevant classes</strong>: <a class="reference internal" href="api/data-capture-context.html#class-scandit.datacapture.core.DataCaptureContext" title="DataCaptureContext class">DataCaptureContext</a>, <a class="reference internal" href="api/data-capture-mode.html#interface-scandit.datacapture.core.IDataCaptureMode" title="DataCaptureMode interface">DataCaptureMode</a></p>
+</div>
+<div class="section" id="data-capture-view">
+<h2>Data Capture View<a class="headerlink" href="#data-capture-view" title="Permalink to this headline">#</a></h2>
+<p>Typically a <a class="reference internal" href="api/ui/data-capture-view.html#class-scandit.datacapture.core.ui.DataCaptureView" title="DataCaptureView class">DataCaptureView</a> is used to visualize the ongoing data capture process on screen together with one or more <a class="reference internal" href="api/ui/data-capture-overlay.html#interface-scandit.datacapture.core.ui.IDataCaptureOverlay" title="overlays interface">overlays</a>. However it’s also possible to use the data capture context without a view to perform off-screen processing.</p>
+<p><strong>Relevant classes</strong>: <a class="reference internal" href="api/ui/data-capture-view.html#class-scandit.datacapture.core.ui.DataCaptureView" title="DataCaptureView class">DataCaptureView</a>, <a class="reference internal" href="api/ui/data-capture-overlay.html#interface-scandit.datacapture.core.ui.IDataCaptureOverlay" title="DataCaptureOverlay interface">DataCaptureOverlay</a></p>
+</div>
+<div class="section" id="frame-sources">
+<h2>Frame Sources<a class="headerlink" href="#frame-sources" title="Permalink to this headline">#</a></h2>
+<p>The data capture context performs recognition on images (frames).</p>
+<p>These images are provided to the context through classes that implement the frame source interface. Most applications will use images coming from one of the built-in cameras of the device as implemented by the <a class="reference internal" href="api/camera.html#class-scandit.datacapture.core.Camera" title="camera class class">camera class</a>.</p>
+<p><strong>Relevant classes</strong>: <a class="reference internal" href="api/frame-source.html#interface-scandit.datacapture.core.IFrameSource" title="FrameSource interface">FrameSource</a>, <code class="docutils literal notranslate"><span class="pre">IFrameData</span></code>, <a class="reference internal" href="api/camera.html#class-scandit.datacapture.core.Camera" title="Camera class">Camera</a></p>
+</div>
+<div class="section" id="capture-modes">
+<h2>Capture Modes<a class="headerlink" href="#capture-modes" title="Permalink to this headline">#</a></h2>
+<p><strong>Recognition capabilities</strong> are added to the data capture context through registering one or more data capture modes.</p>
+<p>A capture mode is responsible for one particular type of data capture, e.g. capturing barcodes, or tracking barcodes. The mode manages the settings and allows to configure what exactly gets captured, for example in the case of barcode capture, it allows to configure the symbologies of the barcodes to be captured.</p>
+<p>Each of the data capture modes follows the same basic structure and is made up of the same building blocks described below.</p>
+<p><strong>Relevant classes</strong>: <a class="reference internal" href="api/data-capture-mode.html#interface-scandit.datacapture.core.IDataCaptureMode" title="DataCaptureMode interface">DataCaptureMode</a>, <a class="reference internal" href="../barcode-capture/api/barcode-capture.html#class-scandit.datacapture.barcode.BarcodeCapture" title="BarcodeCapture class">BarcodeCapture</a></p>
+</div>
+<div class="section" id="capture-mode-settings">
+<h2>Capture Mode Settings<a class="headerlink" href="#capture-mode-settings" title="Permalink to this headline">#</a></h2>
+<p>Capture modes are configured through <strong>settings</strong>.</p>
+<p>Settings are specific to each data capture mode and allow to configure the data that is captured. For example, for barcode capture and barcode tracking, the settings allow to configure which symbologies are enabled. Settings are applied to the capture mode, which is when they take effect.</p>
+<p><strong>Relevant classes</strong>: <a class="reference internal" href="../barcode-capture/api/barcode-capture-settings.html#class-scandit.datacapture.barcode.BarcodeCaptureSettings" title="BarcodeCaptureSettings class">BarcodeCaptureSettings</a></p>
+</div>
+<div class="section" id="capture-mode-listeners">
+<h2>Capture Mode Listeners<a class="headerlink" href="#capture-mode-listeners" title="Permalink to this headline">#</a></h2>
+<p>Data capture events, such as when a new barcode has been recognized, are propagated to the user of the API through <strong>listeners</strong> added to the capture mode.</p>
+<p>Capture modes allow an arbitrary number of listeners to be registered.</p>
+<p><strong>Relevant classes</strong>: <a class="reference internal" href="../barcode-capture/api/barcode-capture-listener.html#interface-scandit.datacapture.barcode.IBarcodeCaptureListener" title="BarcodeCaptureListener interface">BarcodeCaptureListener</a></p>
+</div>
+<div class="section" id="capture-mode-sessions">
+<h2>Capture Mode Sessions<a class="headerlink" href="#capture-mode-sessions" title="Permalink to this headline">#</a></h2>
+<p>The captured data, such as the list of captured barcodes is available to the event callbacks through a <strong>session</strong> object.</p>
+<p>The session object is only safe to be accessed from the event callbacks themselves and should not be passed to other threads.</p>
+<p><strong>Relevant classes</strong>: <a class="reference internal" href="../barcode-capture/api/barcode-capture-session.html#class-scandit.datacapture.barcode.BarcodeCaptureSession" title="BarcodeCaptureSession class">BarcodeCaptureSession</a></p>
+</div>
+<div class="section" id="overlays">
+<h2>Overlays<a class="headerlink" href="#overlays" title="Permalink to this headline">#</a></h2>
+<p>Each of the capture modes has one or more overlays that visualise the ongoing data capturing process.</p>
+<p>These overlays are added to the data capture view.</p>
+<p><strong>Relevant classes</strong>: <a class="reference internal" href="api/ui/data-capture-overlay.html#interface-scandit.datacapture.core.ui.IDataCaptureOverlay" title="DataCaptureOverlay interface">DataCaptureOverlay</a>, <a class="reference internal" href="../barcode-capture/api/ui/barcode-capture-overlay.html#class-scandit.datacapture.barcode.ui.BarcodeCaptureOverlay" title="BarcodeCaptureOverlay class">BarcodeCaptureOverlay</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

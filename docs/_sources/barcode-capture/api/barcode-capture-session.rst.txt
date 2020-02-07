@@ -1,0 +1,54 @@
+Barcode Capture Session
+=======================
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.capture
+
+.. class:: BarcodeCaptureSession
+  @objc@ SDCBarcodeCaptureSession : NSObject
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  The capture session is responsible for determining the list of *relevant* barcodes by filtering out duplicates. This filtering of duplicates is completely time-based and doesn't use any information about the location of the barcode. For location-based tracking over multiple frames, you may be better off using :type:`tracking.BarcodeTracking`. By default, all the codes scanned in a frame are always reported. It is possible to filter out codes recently scanned by changing :prop:`BarcodeCaptureSettings.CodeDuplicateFilter`.
+
+  When :prop:`the barcode capture mode is disabled<core.IDataCaptureMode.IsEnabled>`, the session's duplicate filter is reset.
+
+  The capture session should only be accessed from within the callbacks to which it is provided as an argument. It is not safe to be accessed from anywhere else since it may be concurrently modified. However, the barcodes returned by the session can be used outside the callbacks.
+
+  .. property:: IList<Barcode> NewlyRecognizedBarcodes { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    List of codes that were newly recognized in the last processed frame.
+
+  .. implnote:: allRecognizedCodes in the picker session didn't add that much value. Just having the newly recognized and localized codes should be enough.
+
+  .. property:: IList<LocalizedOnlyBarcode> NewlyLocalizedBarcodes { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    List of codes that were newly localized (but not recognized) in the last processed frame.
+
+  .. method:: void RejectBarcode(Barcode barcode)
+    :available: none
+
+    Use this method to prevent beeping/vibrating and highlighting (in case a preview is shown) for a particular code. A typical application for rejecting a code is to apply some additional checks for verifying the integrity of a code, e.g. a custom checksum or making sure the code has a certain prefix.
+
+    Passing a code that is not returned by :prop:`NewlyRecognizedBarcodes` does not have any effect.
+
+  .. method:: void Reset()
+    :available: ios=6.0, android=6.0
+
+    Resets the barcode capture session, effectively clearing the history of scanned codes. This affects duplicate filtering: when calling :meth:`Reset` every frame has the same effect as setting the :prop:`BarcodeCaptureSettings.CodeDuplicateFilter` to 0.
+
+  .. method:: string ToJson()
+    @objc@ -(nonnull NSString *)JSONString
+    :available: ios=6.1, android=6.1
+
+    Returns the JSON representation of the barcode capture session.
+
+  .. property:: long FrameSequenceId { get; }
+    @objc@ @property (nonatomic, readonly) NSInteger frameSequenceId
+    :available: ios=6.1, android=6.1
+
+    The identifier of the current frame sequence.
+
+    .. important::
+      As long as there is no interruptions of frames coming from the camera, the :prop:`BarcodeCaptureSession.FrameSequenceId` will stay the same.

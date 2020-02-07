@@ -1,0 +1,138 @@
+.. _label-capture-getting-started:
+
+Getting Started With Label Capture
+==================================
+
+.. module:: scandit.datacapture.label
+  :hidden:
+
+This page is a step-by-step guide of how to get started with label capture. 
+
+.. todo:: To be written
+
+Integrating Label Capture Into Your App
+---------------------------------------
+
+Assuming that you have received your label blueprint, the process of adding label capture to your application consists roughly of these steps:
+
+* Create a :type:`data capture context<core.DataCaptureContext>` instance, initialized with your license key.
+* Load a :type:`label capture settings<LabelCaptureSettings>` instance from your label blueprint.
+* Create a new :type:`label capture mode<LabelCapture>` instance and initialize it with the settings created above.
+* Register a :type:`listener<ILabelCaptureListener>` to receive scan events. Process the successful scans according to your applications needs, e.g. by looking up information in a database. After a successful scan, decide whether more codes will be scanned, or the scanning process should be stopped.
+* Obtain a :type:`camera<core.Camera>` instance and set it as the frame source on the data capture context.
+* Optionally, if displaying a preview, create a new :type:`data capture view<core.ui.DataCaptureView>`, add it to the view hierarchy and add an :type:`overlay<ui.LabelCaptureBasicOverlay>`.
+
+.. include:: ../../core/prerequisites.txt
+
+.. include:: ../../core/create-context.txt
+     
+
+Load the Label Blueprint
+------------------------
+
+The label blueprint is loaded using :type:`LabelCaptureSettings`. In order to create a :type:`label capture settings<LabelCaptureSettings>` instance, you need a valid :type:`Data` object containing the label blueprint.
+
+.. sample:: swift
+
+  let labelCaptureSettings = try LabelCaptureSettings(from: labelBlueprint)
+
+.. sample:: java
+
+  LabelCaptureSettings labelCaptureSettings = LabelCaptureSettings.loadFromString(labelBlueprint);
+
+Configure the Label Capture Behavior
+------------------------------------
+
+Label scanning is orchestrated by the :type:`LabelCapture` :type:`data capture mode<core.IDataCaptureMode>`. This class is the main entry point for scanning labels. It is configured through :type:`LabelCaptureSettings` and allows to register one or more :type:`listeners<ILabelCaptureListener>` that will get informed whenever new labels have been detected.
+
+.. sample:: swift
+
+  labelCapture = LabelCapture(context: context, settings: labelCaptureSettings)
+
+.. sample:: java
+
+  labelCapture = LabelCapture.forDataCaptureContext(dataCaptureContext, labelCaptureSettings);
+
+Register the Label Capture Listener
+-----------------------------------
+
+To get informed whenever a new label has been detected, add a :type:`listener<ILabelCaptureListener>` through :meth:`LabelCapture.AddListener` and implement the listener methods to suit your application's needs.
+
+First |implement| the :type:`ILabelCaptureListener` |interface|. For example:
+
+.. sample:: swift
+
+  extension ViewController: LabelCaptureListener {
+      func labelCapture(_ labelCapture: LabelCapture,
+                        didUpdate session: LabelCaptureSession,
+                        frameData: FrameData) {
+          // Do something.
+      }
+  }
+
+.. sample:: java
+
+  @Override
+  public void onSessionUpdated(@NonNull LabelCapture mode,
+          @NonNull LabelCaptureSession session, @NonNull FrameData data) {
+      // Do something.
+  }
+
+Then add the listener:
+
+.. sample:: swift
+
+  labelCapture.addListener(self)
+
+.. sample:: java
+
+  labelCapture.addListener(this);
+
+.. include:: ../../core/use-builtin-camera.txt
+
+.. include:: ../../core/display-scan-process.txt
+
+To visualize the results of label capture, the following :type:`overlay<ui.LabelCaptureBasicOverlay>` can be added:
+
+.. sample:: swift
+
+  let overlay = LabelCaptureBasicOverlay(labelCapture: labelCapture)
+  overlay.delegate = self
+  captureView.addOverlay(overlay)
+
+.. sample:: java
+
+  overlay = LabelCaptureBasicOverlay(labelCapture)
+  captureView.addOverlay(overlay)
+
+By implementing :type:`ui.ILabelCaptureBasicOverlayListener`, it is possible to highlight the labels and their fields.
+
+.. sample:: swift
+
+  extension ViewController: LabelCaptureBasicOverlayDelegate {
+      func labelCaptureBasicOverlay(_ overlay: LabelCaptureBasicOverlay, 
+                                    brushFor label: CapturedLabel) -> Brush? {
+          // Return the Brush used to highlight the label.
+      }
+  
+      func labelCaptureBasicOverlay(_ overlay: LabelCaptureBasicOverlay, 
+                                    brushFor field: LabelField, 
+                                    of label: CapturedLabel) -> Brush? {
+          // Return the Brush used to highlight the field.
+      }
+  }
+
+.. sample:: java
+
+  @Override
+  public Brush brushForLabel(@NonNull LabelCaptureBasicOverlay overlay,
+                             @NonNull CapturedLabel label) {
+      // Return the Brush used to highlight the label.
+  }
+
+  @Override
+  public Brush brushForField(@NonNull LabelCaptureBasicOverlay overlay,
+                             @NonNull LabelField field,
+                             @NonNull CapturedLabel label) {
+      // Return the Brush used to highlight the field.
+  }

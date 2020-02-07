@@ -1,0 +1,47 @@
+Label Capture Enumerations
+==========================
+
+.. module:: scandit.datacapture.label
+  :android-package: com.scandit.datacapture.label.data
+
+Enumerations used by the label capture module.
+
+.. enum:: LabelFieldState
+  :available: android=6.0, ios=6.0
+
+  An enumeration of possible states a :type:`label field<CapturedLabel>` can be in. 
+
+  .. value:: Captured
+    :available: android=6.0, ios=6.0
+
+    The field has been captured, e.g. the barcode or text has been read and its location is known.
+
+  .. value:: Predicted
+    :available: android=6.0, ios=6.0
+
+    The field has not been captured yet, but its location has been predicted.
+
+  .. value:: Unknown
+    :available: android=6.0, ios=6.0
+
+    The field data as well as its location are unknown.
+
+.. enum:: LabelFieldType
+  :available: android=6.0, ios=6.0
+
+  An enumeration of possible field types of a :type:`captured field<LabelField>`. The type of the field is given by the currently active :type:`label capture settings<LabelCaptureSettings>`.
+
+  .. value:: Barcode
+    :available: android=6.0, ios=6.0
+
+    The type of the captured field is barcode. For fields that have been :enum:`captured <LabelFieldState.Captured>`, the data encoded in the field is available through the :prop:`LabelField.Barcode` property.
+
+  .. value:: Text
+    :available: android=6.0, ios=6.0
+
+    The type of the captured field is text. For fields that have been :enum:`captured <LabelFieldState.Captured>`, the data encoded in the field is available through the :prop:`LabelField.Text` property.
+
+  .. value:: Unknown
+    :available: android=6.0, ios=6.0
+
+    The type of the captured field is unknown.

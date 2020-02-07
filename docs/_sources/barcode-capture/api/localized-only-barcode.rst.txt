@@ -1,0 +1,37 @@
+Localized Only Barcode
+======================
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.data
+
+.. class:: LocalizedOnlyBarcode
+  @objc@ SDCLocalizedOnlyBarcode : NSObject
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  A barcode that was only localized but not recognized yet. This means there is no data or symbology associated with it.
+
+  .. property:: core.Quadrilateral Location { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The location of the code. The coordinates are in image-space, meaning that the coordinates correspond to actual pixels in the image. For display, the coordinates need first to be converted into screen-space.
+
+    The meaning of the values of :prop:`core.Quadrilateral.TopLeft` etc is such that the top left point corresponds to the top left corner of the barcode, independent of how the code is oriented in the image.
+    
+    .. warning::
+    
+      In case the feature is not licensed, a quadrilateral with all corners set to 0, 0 is returned.
+
+    .. todo:: SDK-11002 add link to section describing coordinate conversions.
+
+  .. property:: uint FrameId { get; }
+    @javascript@ get frameID(): number
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Id of the frame from which this barcode information was obtained.
+
+  .. method:: string ToJson()
+    @objc@ -(nonnull NSString *)JSONString
+    :available: ios=6.1, android=6.1
+
+    Returns the JSON representation of the localized only barcode.
+

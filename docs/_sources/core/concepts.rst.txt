@@ -1,0 +1,113 @@
+Core Concepts of the |sdk|
+==========================
+
+.. module:: scandit.datacapture.core
+  :hidden:
+
+This page gives an overview of the core concepts and terms used in the |sdk|.
+
+All of these concepts are implemented as classes or |interfaces| in the ScanditCaptureCore framework and are used by the frameworks that build on it to implement the data capture capabilities such as barcode reading.
+
+Data Capture Context
+--------------------
+
+The data capture context is the central object that orchestrates the data capture and recognition tasks.
+
+It is the object that links all of the different components together. Its main responsibilities are managing and verifying the license key, scheduling when data capture modes process frames, and defining the frame source to be used for recognition. The context itself acts as a scheduler, but does not provide any interfaces for configuring data capture capabilities.
+
+Configuration and result handling is handled by the data capture modes directly.
+
+**Relevant classes**: :type:`DataCaptureContext`, :type:`IDataCaptureMode`
+
+Data Capture View
+-----------------
+
+Typically a :type:`ui.DataCaptureView` is used to visualize the ongoing data capture process on screen together with one or more :type:`overlays<ui.IDataCaptureOverlay>`. However it's also possible to use the data capture context without a view to perform off-screen processing.
+
+**Relevant classes**: :type:`ui.DataCaptureView`, :type:`ui.IDataCaptureOverlay`
+
+Frame Sources
+-------------
+
+The data capture context performs recognition on images (frames).
+
+These images are provided to the context through classes that |implement| the frame source |interface|. Most applications will use images coming from one of the built-in cameras of the device as implemented by the :type:`camera class<Camera>`.
+
+**Relevant classes**: :type:`IFrameSource`, :type:`IFrameData`, :type:`Camera`
+
+Capture Modes
+-------------
+
+**Recognition capabilities** are added to the data capture context through registering one or more data capture modes.
+
+A capture mode is responsible for one particular type of data capture, e.g. capturing barcodes, or tracking barcodes. The mode manages the settings and allows to configure what exactly gets captured, for example in the case of barcode capture, it allows to configure the symbologies of the barcodes to be captured.
+
+Each of the data capture modes follows the same basic structure and is made up of the same building blocks described below.
+
+.. eager-ifconfig:: platform != 'cordova'
+
+  **Relevant classes**: :type:`IDataCaptureMode`, :type:`barcode.BarcodeCapture`, :type:`barcode.tracking.BarcodeTracking`
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  **Relevant classes**: :type:`IDataCaptureMode`, :type:`barcode.BarcodeCapture`
+
+Capture Mode Settings
+---------------------
+
+Capture modes are configured through **settings**.
+
+Settings are specific to each data capture mode and allow to configure the data that is captured. For example, for barcode capture and barcode tracking, the settings allow to configure which symbologies are enabled. Settings are applied to the capture mode, which is when they take effect.
+
+.. eager-ifconfig:: platform != 'cordova'
+
+  **Relevant classes**: :type:`barcode.BarcodeCaptureSettings`, :type:`barcode.tracking.BarcodeTrackingSettings`
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  **Relevant classes**: :type:`barcode.BarcodeCaptureSettings`
+
+Capture Mode Listeners
+----------------------
+
+Data capture events, such as when a new barcode has been recognized, are propagated to the user of the API through **listeners** added to the capture mode.
+
+Capture modes allow an arbitrary number of listeners to be registered.
+
+.. eager-ifconfig:: platform != 'cordova'
+
+  **Relevant classes**: :type:`barcode.IBarcodeCaptureListener`, :type:`barcode.tracking.IBarcodeTrackingListener`
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  **Relevant classes**: :type:`barcode.IBarcodeCaptureListener`
+
+Capture Mode Sessions
+---------------------
+
+The captured data, such as the list of captured barcodes is available to the event callbacks through a **session** object.
+
+The session object is only safe to be accessed from the event callbacks themselves and should not be passed to other threads.
+
+.. eager-ifconfig:: platform != 'cordova'
+
+  **Relevant classes**: :type:`barcode.BarcodeCaptureSession`, :type:`barcode.tracking.BarcodeTrackingSession`
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  **Relevant classes**: :type:`barcode.BarcodeCaptureSession`
+
+Overlays
+--------
+
+Each of the capture modes has one or more overlays that visualise the ongoing data capturing process.
+
+These overlays are added to the data capture view.
+
+.. eager-ifconfig:: platform != 'cordova'
+
+  **Relevant classes**: :type:`ui.IDataCaptureOverlay`, :type:`barcode.ui.BarcodeCaptureOverlay`, :type:`barcode.tracking.ui.BarcodeTrackingBasicOverlay`, :type:`barcode.tracking.ui.BarcodeTrackingAdvancedOverlay`
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  **Relevant classes**: :type:`ui.IDataCaptureOverlay`, :type:`barcode.ui.BarcodeCaptureOverlay`

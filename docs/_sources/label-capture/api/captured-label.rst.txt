@@ -1,0 +1,43 @@
+Captured Label
+==============
+
+.. module:: scandit.datacapture.label
+  :android-package: com.scandit.datacapture.label.data
+
+.. class:: CapturedLabel
+  @objc@ SDCCapturedLabel : NSObject
+  :available: android=6.0, ios=6.0
+
+  A captured label tracked over multiple frames. This class holds the list of label fields as well as the predicted boundary of the label. Each instance of a found label has a unique tracking Id which remains constant over multiple frames.
+
+  .. property:: IList<LabelField> Fields { get; }
+    :available: android=6.0, ios=6.0
+
+    List of fields in the form. For each field in the label description, exactly one captured field is returned.
+
+  .. property:: string Name { get; }
+    :available: android=6.0, ios=6.0
+
+    The name of this label, e.g. *label-a*. This property can be used in case multiple different label definitions are used at the same time.
+
+  .. property:: bool IsComplete { get; }
+    :available: android=6.0, ios=6.0
+
+    Whether the label has been completely scanned. True as soon as all the required fields are present. Optional fields do not need to be present for this property to be true.
+
+  .. property:: core.Quadrilateral PredictedBounds { get; }
+    :available: android=6.0, ios=6.0
+
+    The predicted label bounds in image coordinates. These coordinates will need to be converted to view coordinates before they can be visualized.
+
+  .. property:: TimeInterval DeltaTimeToPrediction { get; }
+    @java@ core.TimeInterval DeltaTimeToPrediction { get; }
+    :available: android=6.0, ios=6.0
+
+    The delta time  used for predicting the label bounds (:prop:`PredictedBounds`) as well as the field locations (available as :prop:`LabelField.PredictedLocation`).
+
+  .. property:: int TrackingId { get; }
+    :available: android=6.0, ios=6.0
+
+    The tracking identifier for this label. 
+

@@ -1,0 +1,337 @@
+*****
+DL/ID
+*****
+
+Overview
+========
+
+The parser supports all versions of the AAMVA Driver License/Identification specification (2000, 2003, 2005, 2009, 2010, 2011, 2012, 2013, 2016) used in the USA and in Canada. Pre-specification codes (before 2000) are currently not supported. Encrypted codes issued in Georgia before 2012 are also currently not supported.
+
+The encoding of card holder information has changed significantly between revisions of the DL/ID specification (most notably between 2000 codes and later codes) and the same piece of information is encoded differently, depending on the version. We provide a subset of the information as part of the :ref:unified-label, which exposes the fields in a version-agnostic way.
+
+In addition, the implementations of the specification vary strongly between jurisdictions, as many of them don't implement the specifications correctly. If you are experiencing trouble when scanning certain DL/ID cards, we suggest to contact the Scandit team to resolve the issues.
+
+
+Example
+=======
+
+Parsing the following code (without quotes, with encoded ASCII characters '\\n'=0x0A, '\\r'=0x0D and '\\x1e'=0x1E, source: 2016 AAMVA DL/ID Card Design Standard, `<http://www.aamva.org/>`_):
+
+::
+
+    "@\n\x1e\rANSI 636000090002DL00410278ZV03190008DLDAQT64235789\nDCSSAMPLE\nDDEN\nDACMICHAEL\nDDFN\nDADJOHN\nDDGN\nDCUJR\nDCAD\nDCBK\nDCDPH\nDBD06062016\nDBB06061986\nDBA12102024\nDBC1\nDAU068 in\nDAYBRO\nDAG2300 WEST BROAD STREET\nDAIRICHMOND\nDAJVA\nDAK232690000  \nDCF2424244747474786102204\nDCGUSA\nDCK123456789\nDDAF\nDDB06062008\nDDC06062009\nDDD1\rZVZVA01\r"
+
+will result in following JSON output:
+
+.. code-block:: javascript
+
+	[
+	   {
+		  "name" : "header",
+		  "parsed" : {
+			 "AAMVAVersion" : 9,
+			 "IIN" : "636000",
+			 "jurisdictionVersion" : 0
+		  },
+		  "rawString" : ""
+	   },
+	   {
+		  "name" : "DAQ",
+		  "parsed" : "T64235789",
+		  "rawString" : "T64235789"
+	   },
+	   {
+		  "name" : "DCS",
+		  "parsed" : "SAMPLE",
+		  "rawString" : "SAMPLE"
+	   },
+	   {
+		  "name" : "DDE",
+		  "parsed" : "N",
+		  "rawString" : "N"
+	   },
+	   {
+		  "name" : "DAC",
+		  "parsed" : "MICHAEL",
+		  "rawString" : "MICHAEL"
+	   },
+	   {
+		  "name" : "DDF",
+		  "parsed" : "N",
+		  "rawString" : "N"
+	   },
+	   {
+		  "name" : "DAD",
+		  "parsed" : "JOHN",
+		  "rawString" : "JOHN"
+	   },
+	   {
+		  "name" : "DDG",
+		  "parsed" : "N",
+		  "rawString" : "N"
+	   },
+	   {
+		  "name" : "DCU",
+		  "parsed" : "JR",
+		  "rawString" : "JR"
+	   },
+	   {
+		  "name" : "DCA",
+		  "parsed" : "D",
+		  "rawString" : "D"
+	   },
+	   {
+		  "name" : "DCB",
+		  "parsed" : "K",
+		  "rawString" : "K"
+	   },
+	   {
+		  "name" : "DCD",
+		  "parsed" : "PH",
+		  "rawString" : "PH"
+	   },
+	   {
+		  "name" : "DBD",
+		  "parsed" : {
+			 "day" : 6,
+			 "month" : 6,
+			 "year" : 2016
+		  },
+		  "rawString" : "06062016"
+	   },
+	   {
+		  "name" : "DBB",
+		  "parsed" : {
+			 "day" : 6,
+			 "month" : 6,
+			 "year" : 1986
+		  },
+		  "rawString" : "06061986"
+	   },
+	   {
+		  "name" : "DBA",
+		  "parsed" : {
+			 "day" : 10,
+			 "month" : 12,
+			 "year" : 2024
+		  },
+		  "rawString" : "12102024"
+	   },
+	   {
+		  "name" : "DBC",
+		  "parsed" : 1,
+		  "rawString" : "1"
+	   },
+	   {
+		  "name" : "DAU",
+		  "parsed" : {
+			 "cm" : 173,
+			 "inch" : 68
+		  },
+		  "rawString" : "068 in"
+	   },
+	   {
+		  "name" : "DAY",
+		  "parsed" : "Brown",
+		  "rawString" : "BRO"
+	   },
+	   {
+		  "name" : "DAG",
+		  "parsed" : "2300 WEST BROAD STREET",
+		  "rawString" : "2300 WEST BROAD STREET"
+	   },
+	   {
+		  "name" : "DAI",
+		  "parsed" : "RICHMOND",
+		  "rawString" : "RICHMOND"
+	   },
+	   {
+		  "name" : "DAJ",
+		  "parsed" : "VA",
+		  "rawString" : "VA"
+	   },
+	   {
+		  "name" : "DAK",
+		  "parsed" : "232690000",
+		  "rawString" : "232690000  "
+	   },
+	   {
+		  "name" : "DCF",
+		  "parsed" : "2424244747474786102204",
+		  "rawString" : "2424244747474786102204"
+	   },
+	   {
+		  "name" : "DCG",
+		  "parsed" : "USA",
+		  "rawString" : "USA"
+	   },
+	   {
+		  "name" : "DCK",
+		  "parsed" : "123456789",
+		  "rawString" : "123456789"
+	   },
+	   {
+		  "name" : "DDA",
+		  "parsed" : "F",
+		  "rawString" : "F"
+	   },
+	   {
+		  "name" : "DDB",
+		  "parsed" : {
+			 "day" : 6,
+			 "month" : 6,
+			 "year" : 2008
+		  },
+		  "rawString" : "06062008"
+	   },
+	   {
+		  "name" : "DDC",
+		  "parsed" : {
+			 "day" : 6,
+			 "month" : 6,
+			 "year" : 2009
+		  },
+		  "rawString" : "06062009"
+	   },
+	   {
+		  "name" : "DDD",
+		  "parsed" : 1,
+		  "rawString" : "1"
+	   },
+	   {
+		  "name" : "ZVA",
+		  "parsed" : "01",
+		  "rawString" : "01"
+	   },
+	   {
+		  "name" : "unified",
+		  "parsed" : {
+		  "dateOfBirth" : {
+		     "day" : 6,
+		     "month" : 6,
+		     "year" : 1986
+		  },
+		  "expirationDate" : {
+		     "day" : 10,
+		     "month" : 12,
+		     "year" : 2024
+		  },
+		  "fullAddress" : "2300 WEST BROAD STREET, RICHMOND, VA, 232690000",
+		  "gender" : "male",
+		  "height" : {
+		     "cm" : 173,
+		     "inch" : 68
+		  },
+		  "name" : "MICHAEL JOHN SAMPLE",
+		  "weightRange" : -1
+	          },
+	          "rawString" : ""
+	   }
+         ]
+
+Exposed Fields
+==============
+
+The data in DL/ID codes is encoded into data elements. A data element is uniquely identified by its data element ID. Some data elements are mandatory (present on every code) while others are optional. Fields, including mandatory ones, vary between specification versions. It is thus required to handle these versions differently.
+
+Further information about the data elements can be found in the DL/ID specifications on the `AAMVA Web page <http://www.aamva.org/>`_.
+
+The first field is the `header` field. Its raw content is empty. Its parsed content is a dictionary with following key/value pairs:
+
+* "AAMVAVersion" : integer (0-99)
+* "jurisdictionVersion" : integer (0-99)
+* "IIN" : 6 digit numeric string
+
+AAMVAVersion corresponds to the version of the specifications that is implemented in the code: 0=pre-specification, 1=2000, 2=2003, 3=2005, 4=2009, 5=2010, 6=2011, 7=2012, 8=2013, 9=2016.
+jurisdictionVersion is a jurisdiction specific version number of the implementation.
+IIN is the Issuer Identification Number which uniquely identifies the issuing jurisdiction.
+If the AAMVAVersion is < 2, then the jurisdiction Version is always 0, as this information is not available in the code.
+
+The specification got a major overhaul between the 2000 and 2003 specifications and many data fields got reworked. After 2003 only minor changes were made to the standard. Due to the large differences between the 2000 and later revisions of the specification, we will list them separately in the following.
+Some of the common fields (name, date of birth, etc...) are encoded differently across different specification versions. Such information is collected in the :ref:`unified-label` field, the idea being to allow quick access to commonly used information, without the hassle of having to check the specification version. If you require more complex information that is encoded differently between versions or is only present in a few versions, there is no way around handling the different cases for the different versions.
+
+Note that the parsed content can be null for all fields except the unified field and the header field. This is very rarely the case, as it usually only happens if the code contains bogus content. 
+
+.. _unified-label:
+
+"unified" field
+===============
+
+The "unified" field is always present. The idea behind the unified field is to facilitate the access to data that might be encoded differently depending on the version of the standard by mapping the data in a standardized way.
+The raw content of "unified" is an empty string, all information is encoded in the parsed content, which is a dictionary containing following key-value pairs:
+
+* "name" : Full name of cardholder (string)
+* "gender" : Gender of the cardholder (string, can be 'male', 'female', 'unspecified' or 'invalid')
+* "fullAddress" : Full address of the cardholder (string)
+* "expirationDate" : expiration date of the card (in the same format as "DBA", see below, may be null)
+* "dateOfBirth" : date of birth of the cardholder (in the same format as "DBB", see below, may be null)
+* "height" : height of cardholder (in the same format as "DAU", is set to 0 if unspecified)
+* "weightRange" : weight of cardholder (integer), can be:
+
+    * -1 = unspecified
+    * 0 = up to 31 kg (up to 70 lbs)
+    * 1 = 32 – 45 kg (71 – 100 lbs)
+    * 2 = 46 - 59 kg (101 – 130 lbs)
+    * 3 = 60 - 70 kg (131 – 160 lbs)
+    * 4 = 71 - 86 kg (161 – 190 lbs)
+    * 5 = 87 - 100 kg (191 – 220 lbs)
+    * 6 = 101 - 113 kg (221 – 250 lbs)
+    * 7 = 114 - 127 kg (251 – 280 lbs)
+    * 8 = 128 – 145 kg (281 – 320 lbs)
+    * 9 = 146+ kg (321+ lbs) 
+
+Mandatory Fields for spec version 1 (2000)
+==========================================
+
+Following data fields are always present in a version 1 code:
+
+.. csv-table::
+    :widths: 10, 20, 35
+    :header-rows: 1
+    :file: dlid_1_mandatory.csv
+
+Optional Fields for spec version 1 (2000)
+=========================================
+
+Following data fields are sometimes present in a version 1 code:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 10, 20, 35
+    :file: dlid_1_optional.csv
+
+Mandatory Fields for spec version 2 and later (2003+)
+=====================================================
+
+Following data fields are sometimes present in a version >=2 code:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 10, 20, 5, 35
+    :file: dlid_2_mandatory.csv
+
+
+Optional Fields for spec version 2 and later (2003+)
+====================================================
+
+Following data fields are sometimes present in a version >=2 code:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 10, 35, 20
+    :file: dlid_2_optional.csv
+
+Jurisdiction-Specific Fields
+============================
+
+Different jurisdictions can include custom data elements if desired. These data element must have an id starting with the letter 'Z'. The Scandit parsing library also exposes these fields without any parsing.
+
+Parser Options
+==============
+The parser can be configured by providing a JSON string containing key / value pairs.
+The following configuration options are available:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 10, 15, 35
+    :file: dlid_options.csv

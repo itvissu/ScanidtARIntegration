@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Migrate from Barcode Scanner 5.x &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Features By Platform" href="features-by-platform.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Migrate from Barcode Scanner 5.x</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#replace-the-barcodepicker">Replace the BarcodePicker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#start-stop-the-capture-process">Start/Stop the Capture Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#barcode-scanner-changes-between-5-x-and-6-0">Barcode Scanner Changes Between 5.x and 6.0+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#matrixscan-changes-between-5-x-and-6-0">MatrixScan Changes Between 5.x and 6.0+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#migrate-the-scan-ui">Migrate the Scan UI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#enable-the-rectangular-viewfinder">Enable the Rectangular Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-the-laserline-viewfinder">Enable the Laserline Viewfinder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#other-changes">Other Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Migrate from Barcode Scanner 5.x</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="migrate-from-barcode-scanner-5-x">
+<h1>Migrate from Barcode Scanner 5.x<a class="headerlink" href="#migrate-from-barcode-scanner-5-x" title="Permalink to this headline">#</a></h1>
+<p>Scandit Data Capture SDK 6.0 introduces all new APIs that are not backwards compatible with apps using ScanditSDK 5.x. To migrate your code to SDK 6.0 and newer, you will need to modify your app. This guide will assist you in performing this migration. In case you are unsure about how to perform the migration or the feature you are using is not covered in this migration guide, please <a class="reference internal" href="support.html"><span class="doc">reach out to us</span></a>. We will gladly assist you in the upgrade process.</p>
+<div class="admonition-before-you-start admonition">
+<p class="admonition-title">Before you start…</p>
+<p>To get the most out of this guide, we recommend that you take a look at the following guides:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="add-sdk.html"><span class="doc">Add the SDK to Your App</span></a></p></li>
+<li><p><a class="reference internal" href="get-started-barcode.html"><span class="doc">Get Started With Barcode Scanning</span></a></p></li>
+<li><p><a class="reference internal" href="get-started-matrixscan.html"><span class="doc">Get Started With MatrixScan</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="replace-the-barcodepicker">
+<h2>Replace the BarcodePicker<a class="headerlink" href="#replace-the-barcodepicker" title="Permalink to this headline">#</a></h2>
+<p>In 5.x, the BarcodePicker (SBSBarcodePicker on iOS) was the central class that manages recognition, renders the video preview and provides means to configure what barcodes get scanned. In 6.0 and newer, there is no direct equivalent to the BarcodePicker. Instead this functionality is covered by multiple classes:</p>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="core/api/data-capture-context.html#class-scandit.datacapture.core.DataCaptureContext" title="DataCaptureContext class">DataCaptureContext</a> is the central object that manages the data capture/recognition process.</p></li>
+<li><p>The <a class="reference internal" href="core/api/camera.html#class-scandit.datacapture.core.Camera" title="Camera class">Camera</a> class wraps the native camera on Cordova.</p></li>
+<li><p>The <a class="reference internal" href="core/api/ui/data-capture-view.html#class-scandit.datacapture.core.ui.DataCaptureView" title="DataCaptureView class">DataCaptureView</a> displays the camera preview as well as augmentations on top of the camera preview.</p></li>
+<li><p>The <a class="reference internal" href="barcode-capture/api/barcode-capture.html#class-scandit.datacapture.barcode.BarcodeCapture" title="BarcodeCapture class">BarcodeCapture</a> manages the barcode scanning/capturing process, exposes <a class="reference internal" href="barcode-capture/api/barcode-capture-listener.html#interface-scandit.datacapture.barcode.IBarcodeCaptureListener" title="listeners interface">listeners</a> and ways to <a class="reference internal" href="configure-barcodes.html"><span class="doc">Configure Which Barcodes Are Read</span></a>.</p></li>
+</ul>
+<p>In your app you will need to use all of these classes to implement the functionality offered by the BarcodePicker. The following couple of lines show you how to do this. Take a look at <a class="reference internal" href="get-started-barcode.html"><span class="doc">Get Started With Barcode Scanning</span></a> for more details, or <a class="reference internal" href="run-samples.html"><span class="doc">check out one of our barcode capture samples</span></a>.</p>
+<div class="section" id="start-stop-the-capture-process">
+<h3>Start/Stop the Capture Process<a class="headerlink" href="#start-stop-the-capture-process" title="Permalink to this headline">#</a></h3>
+<p>In 5.x the scan process was started by calling startScanning on the BarcodePicker. In 6.0+, the equivalent functionality is to <a class="reference internal" href="core/api/frame-source.html#method-scandit.datacapture.core.IFrameSource.SwitchToDesiredStateAsync" title="switch the frame source from off to on method">switch the frame source from off to on</a> and to <a class="reference internal" href="core/api/data-capture-mode.html#property-scandit.datacapture.core.IDataCaptureMode.IsEnabled" title="enable the capture mode property">enable the capture mode</a>. Capture modes are enabled by default, the first line to enable the capture mode is only required when you are reusing a previously disabled data capture mode.</p>
+<p>To <strong>pause</strong> the barcode capture process, simply set the <a class="reference internal" href="barcode-capture/api/barcode-capture.html#property-scandit.datacapture.barcode.BarcodeCapture.IsEnabled" title="BarcodeCapture.isEnabled property">BarcodeCapture.isEnabled</a> property to <em>false</em> (without turning the camera off). To <strong>resume</strong> the capture process, set the  <a class="reference internal" href="barcode-capture/api/barcode-capture.html#property-scandit.datacapture.barcode.BarcodeCapture.IsEnabled" title="BarcodeCapture.isEnabled property">BarcodeCapture.isEnabled</a> property back to <em>true</em>.</p>
+<p>To <strong>stop</strong> the barcode capture process and turn the camera off, disable the capture mode and turn the camera off, as shown below:</p>
+</div>
+</div>
+<div class="section" id="barcode-scanner-changes-between-5-x-and-6-0">
+<h2>Barcode Scanner Changes Between 5.x and 6.0+<a class="headerlink" href="#barcode-scanner-changes-between-5-x-and-6-0" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>The default code duplicate filter has been changed from 500ms to 0ms. This means that a barcode that gets scanned in two consecutive scans will get reported twice. When you pause/stop the scanning as soon as one code gets scanned, the code duplicate filtering setting does not affect you. However if you continue scanning further codes without pausing/stopping recognition, you may want to change the <a class="reference internal" href="barcode-capture/api/barcode-capture-settings.html#property-scandit.datacapture.barcode.BarcodeCaptureSettings.CodeDuplicateFilter" title="BarcodeCaptureSettings.codeDuplicateFilter property">BarcodeCaptureSettings.codeDuplicateFilter</a> property back to 500ms.</p></li>
+<li><p>EAN13 and UPCA used to be separate symbologies in 5.x but have now been merged into one symbology called <a class="reference internal" href="barcode-capture/api/symbology.html#value-scandit.datacapture.barcode.Symbology.Ean13Upca" title="Symbology.EAN13UPCA value">Symbology.EAN13UPCA</a>.</p></li>
+<li><p>The leading zero of UPCA codes is no longer removed by default. If you rely on this behavior in your app, you can either remove the leading zero yourself, or enable the “remove_leading_upca_zero” extension:</p></li>
+<li><p>The API to configure the active scan area has been overhauled and simplified. If you were changing the active scan area to match the visible part of the preview, the good news is that the active scan area is now automatically restricted to the visible part of the preview. If you are restricting the scan area for other reasons, take a look at <a class="reference internal" href="scan-area.html"><span class="doc">Set up the Active Scan Area and Location Selection</span></a> to see how to upgrade your app.</p></li>
+<li><p>The camera-related settings have been moved from ScanSettings to <a class="reference internal" href="core/api/camera-settings.html#class-scandit.datacapture.core.CameraSettings" title="CameraSettings class">CameraSettings</a>. For example, if you want to change the preview resolution from 720p to 1080p, set the <a class="reference internal" href="core/api/camera-settings.html#property-scandit.datacapture.core.CameraSettings.PreferredResolution" title="CameraSettings.preferredResolution property">CameraSettings.preferredResolution</a> to <a class="reference internal" href="core/api/camera-settings.html#value-scandit.datacapture.core.VideoResolution.FullHd" title="VideoResolution.FullHD value">VideoResolution.FullHD</a> and <a class="reference internal" href="core/api/camera.html#method-scandit.datacapture.core.Camera.ApplySettingsAsync" title="apply the new settings method">apply the new settings</a> to the camera.</p></li>
+</ul>
+</div>
+<div class="section" id="matrixscan-changes-between-5-x-and-6-0">
+<h2>MatrixScan Changes Between 5.x and 6.0+<a class="headerlink" href="#matrixscan-changes-between-5-x-and-6-0" title="Permalink to this headline">#</a></h2>
+<p>The features that you know under the name MatrixScan are now bundled under <code class="docutils literal notranslate"><span class="pre">BarcodeTracking</span></code>, the overall concept is still refered to as MatrixScan.</p>
+<p>In 5.x setMaxNumberOfCodesPerFrame was used to adjust MatrixScan to specific use cases where more or less codes had to be tracked. In 6.x it is no longer needed to set this number, instead it is selected automatically depending on the license, use case and enabled symbologies.</p>
+</div>
+<div class="section" id="migrate-the-scan-ui">
+<h2>Migrate the Scan UI<a class="headerlink" href="#migrate-the-scan-ui" title="Permalink to this headline">#</a></h2>
+<p>Without any further configuration, the default UI renders the “Scanning by Scandit” logo in the bottom-right corner of the data capture view. To replicate the default look from 5.x, you need to create a viewfinder. This functionality is only available for barcode capture, but not barcode tracking (MatrixScan).</p>
+<div class="section" id="enable-the-rectangular-viewfinder">
+<h3>Enable the Rectangular Viewfinder<a class="headerlink" href="#enable-the-rectangular-viewfinder" title="Permalink to this headline">#</a></h3>
+<p>To enable the <a class="reference internal" href="core/api/rectangular-viewfinder.html#class-scandit.datacapture.core.ui.RectangularViewfinder" title="rectangular viewfinder class">rectangular viewfinder</a> (previously called the default viewfinder), use the following lines of code:</p>
+<p>To change the size of the viewfinder using sizes relative to the data capture view (same as in 5.x), you can use the following lines of code:</p>
+</div>
+<div class="section" id="enable-the-laserline-viewfinder">
+<h3>Enable the Laserline Viewfinder<a class="headerlink" href="#enable-the-laserline-viewfinder" title="Permalink to this headline">#</a></h3>
+<p>To enable the <a class="reference internal" href="core/api/laserline-viewfinder.html#class-scandit.datacapture.core.ui.LaserlineViewfinder" title="laserline viewfinder class">laserline viewfinder</a> use the following lines of code:</p>
+<p>To change the width of the laserline relative to the data capture view (same as in 5.x), you can use the following line of code:</p>
+</div>
+</div>
+<div class="section" id="other-changes">
+<h2>Other Changes<a class="headerlink" href="#other-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>The short 43 character legacy app keys supported in 4.x and 5.x have been deprecated and are not compatible with 6.0+ anymore. Please <a class="reference internal" href="support.html"><span class="doc">contact us</span></a> to get your new license keys.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

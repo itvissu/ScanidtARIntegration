@@ -1,0 +1,60 @@
+Custom Controls on DataCaptureView
+==================================
+
+This is the proposed API for adding custom controls on top of the data capture view.
+
+Adding UI Elements
+-------------------------
+
+Additional UI elements can be added on top of the data capture view. These UI elements control parts of the capture process, or control the camera. For example
+
+- :type:`TorchSwitchView` is a button to control the state of the torch
+- :type:`CameraSwitchView` is a button to switch between cameras available on the system.
+
+The controls (UIElements) are added to the data capture view through :meth:`DataCaptureView.AddControl` and removed again through :meth:`DataCaptureView.RemoveControl`. The controls are automatically arranged in a linear layout from left to right and get equal space assigned to them. In case there is only one control, the control is displayed on the left.
+
+.. implnote::
+
+  In a first iteration, we should offer little to no control over how the custom controls are layed out. If we want to go completely crazy on this, we could then add "layouts" to customize the location of the controls.
+
+.. class:: MultiStateButton : IControl
+  :available: none
+
+  A button with multiple states. Each of the states can have a label, or an icon.
+
+.. class:: CameraSwitchView : MultiStateButton
+  :available: none
+
+  .. todo:: Naming: call it CameraSwitchControl or CameraSwitchButton instead?
+
+  The camera switch view allows to switch between available cameras on the system, e.g. the front and rear camera on a mobile device. On systems that support it (Windows), the camera switch button can also be used to switch between built-in cameras and external cameras.
+
+  In case there are fewer than 2 cameras, the camera switch button will be automatically hidden.
+
+  .. implnote:: In a future iteration, we could allow to control the list of cameras that the camera switch view controls.
+
+  .. property:: CameraSwitchVisibility Visibility { get; set; }
+    :available: none
+
+     One of :enum:`CameraSwitchVisibility.Always`, :enum:`CameraSwitchVisibility.OnTablets`, :enum:`CameraSwitchVisibility.Never`.
+
+     Up for discussion: Instead of having a visibility of never, the user could just not add the camera switch button to the UI.
+
+.. class:: TorchSwitchView : MultiStateButton
+  :available: none
+
+  .. todo:: naming: call it TorchSwitchControl or TorchSwitchButton instead?
+
+  UI view that allows to toggle the torch on an off. The torch switch is automatically hidden in case the active device doesn't have a torch.
+
+.. enum:: CameraSwitchVisibility
+  :available: none
+
+  .. value:: Never
+    :available: none
+
+  .. value:: Always
+    :available: none
+
+  .. value:: OnTablets
+    :available: none

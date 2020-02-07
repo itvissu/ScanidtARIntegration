@@ -1,0 +1,128 @@
+Choose the Right Scanner UI for Your Use Case
+==============================================
+
+In this guide, you will learn how to integrate the scanner into your app's user interface to fit various use cases. You will first learn how to add the data capture view to your app and then how to further customize this view to provide the most intuitive and efficient user experience.
+This guide will cover three main ways of displaying the view in your app:
+
+* Display the scanner in full screen
+
+* Display the scanner in split screen
+
+* Display the scanner in a tab view
+
+and two ways to customize its look and feel:
+
+* Implement an Aim and Scan UI
+
+* Overlay augmented reality on barcodes
+
+.. admonition:: Before you start...
+
+  To get the most out of this guide, please read the following:
+
+    - :doc:`get-started-barcode`
+
+
+Display the Data Capture View
+------------------------------
+
+Display the Scanner in Full-Screen
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This scanning setup provides the end user with a full screen camera preview. It fits all use cases where additional information or actions are not required during scanning. Our :doc:`Simple Sample</run-samples>` uses this setup.
+
+.. todo:: Add Code snippet
+
+.. eager-ifconfig:: platform == 'ios'
+
+  .. image:: /_static/getting-started/ios/sample-bc-simple-2.jpg
+    :height: 400px
+
+.. eager-ifconfig:: platform == 'android'
+
+  .. image:: /_static/getting-started/android/sample-bc-simple-2.jpg
+    :height: 400px
+
+Display the Scanner in Split-Screen
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This setup provides the user with a split view where the scanner is using only part of the screen. It fits use cases where additional information is required while scanning, for instance, displaying the list of barcodes scanned. This setup is demonstrated in our :doc:`View Sample</run-samples>`.
+
+.. todo:: Add Code snippet
+
+.. eager-ifconfig:: platform == 'ios'
+
+  .. image:: /_static/getting-started/ios/sample-bc-ui.jpg
+    :height: 400px
+
+.. eager-ifconfig:: platform == 'android'
+
+  .. image:: /_static/getting-started/android/sample-bc-ui.jpg
+    :height: 400px
+
+Display the Scanner in a Tab View
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This setup provides the user with the ability to quickly switch between the scan view and another view. If fits use cases where the user might want to start the scanner at any time while using the app.
+
+.. todo:: Add Code snippet
+
+.. eager-ifconfig:: platform == 'ios'
+
+  .. image:: /_static/getting-started/ios/tab-view.jpeg
+    :height: 400px
+
+.. eager-ifconfig:: platform == 'android'
+
+  .. image:: /_static/getting-started/android/tab-view.jpeg
+    :height: 400px
+
+Customize the Data Capture View
+-----------------------------------
+
+Use an Aim and Scan UI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This setup provides the user with the ability to aim for a barcode and only read the barcode aimed for. This UI can be extremely helpful when numerous barcodes are densely packed.
+
+To create the Aim and Scan UI, please follow these steps:
+
+1. Start the scanner in paused mode (camera preview on but not scanning).
+
+2. Use our :type:`laser UI<scandit.datacapture.core.ui.LaserlineViewfinder>` to give the user a precise indication of where he should scan.
+
+3. Restrict the scanning area to a thin line in the center of the screen.
+
+4. Add a “Scan” button to resume the scanner on user tap. When the scanner is active, the button can be greyed out and display “Scanning”.
+
+5. When a barcode is scanned, pause or stop the scanner.
+
+.. eager-ifconfig:: platform == 'ios'
+
+  .. image:: /_static/getting-started/ios/aim-and-scan.jpeg
+    :height: 400px
+
+.. eager-ifconfig:: platform == 'android'
+
+  .. image:: /_static/getting-started/android/aim-and-scan.png
+    :height: 400px
+
+.. todo:: Add Code snippet
+
+.. eager-ifconfig:: platform != 'cordova'
+
+  Overlay Augmented Reality on Barcodes
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  This setup provides the user with AR elements above/next to the scanned barcodes. This is useful when the app should provide additional information on multiple products in real time. For instance, you can overlay the price of an item or its expiry date on the corresponding barcode.
+  The principle of overlaying augmented reality on barcodes is described in :doc:`get-started-matrixscan` and :doc:`add-augmented-reality-overlay`.
+
+  .. eager-ifconfig:: platform == 'ios'
+
+    .. image:: /_static/getting-started/ios/AR-overlays.jpeg
+      :height: 400px
+
+  .. eager-ifconfig:: platform == 'android'
+
+    .. image:: /_static/getting-started/android/AR-overlays.png
+      :height: 400px

@@ -1,0 +1,58 @@
+Spotlight Viewfinder
+=========================
+
+.. module:: scandit.datacapture.core.ui
+  :android-package: com.scandit.datacapture.core.viewfinder
+
+.. class:: SpotlightViewfinder : IViewfinder
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+    Spotlight viewfinder with an embedded Scandit logo. The spotlight is always centered on the :prop:`point of interest<core.ui.DataCaptureView.PointOfInterest>` of the view.
+
+    The spotlight viewfinder is always displayed but the color of the border around the spotlight changes depending on whether the data capture mode is enabled or not.
+
+    To use this viewfinder, create a new instance and assign it to the overlay, e.g. the barcode capture overlay by assigning to the :prop:`barcode.ui.BarcodeCaptureOverlay.Viewfinder` property.
+
+  .. method:: SpotlightViewfinder()
+    @objc@ +(nonnull instancetype)viewfinder
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Returns a new spotlight viewfinder with default parameters.
+
+  .. property:: SizeWithUnitAndAspect SizeWithUnitAndAspect { get; }
+    @objc@ @property (nonatomic, readonly) SDCSizeWithUnitAndAspect *sizeWithUnitAndAspect
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The size and sizing mode of the viewfinder.
+
+  .. method:: void SetSize(core.SizeWithUnit size)
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Sets the horizontal and vertical size of the viewfinder to the provided value. When the unit is relative (unit in either x or y is :enum:`core.MeasureUnit.Fraction`) the size is computed relative to the view size minus the scan area margins.
+
+  .. method:: void SetWidthAndAspectRatio(core.FloatWithUnit width, float heightToWidthAspectRatio)
+    @objc@ -(void)setWidth:(SDCFloatWithUnit)width aspectRatio:(CGFloat)heightToWidthAspectRatio
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Sets the width of the viewfinder and compute height automatically based on the provided height/width aspect ratio. When the unit is relative (:enum:`core.MeasureUnit.Fraction`), the width is computed relative to the view size minus the scan area margins.
+
+  .. method:: void SetHeightAndAspectRatio(core.FloatWithUnit height, float widthToHeightAspectRatio)
+    @objc@ -(void)setHeight:(SDCFloatWithUnit)height aspectRatio:(CGFloat)widthToHeightAspectRatio
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Sets the height of the viewfinder and compute width automatically based on the provided width/height aspect ratio. When the unit is relative (:enum:`core.MeasureUnit.Fraction`), the height is computed relative to the view size minus the scan area margins.
+
+  .. property:: Color EnabledBorderColor { get; set; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The color used to draw the spotlight border when the data capture mode is enabled.
+
+  .. property:: Color DisabledBorderColor { get; set; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The color used to draw the spotlight border when the data capture mode is disabled.
+
+  .. property:: Color BackgroundColor { get; set; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The color used to draw the darkened area surrounding the spotlight.

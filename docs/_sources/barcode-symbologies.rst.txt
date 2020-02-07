@@ -1,0 +1,330 @@
+Barcode Symbologies
+===================
+
+In this guide, you will learn about barcode symbologies and their use cases.
+
+.. admonition:: Before you start...
+
+  To get the most out of this guide, we recommend that you first take a look at the following guides:
+
+  * :doc:`/add-sdk`
+  * :doc:`/get-started-barcode`
+
+Supported Symbologies
+---------------------
+
+Retail 1D Symbologies
+^^^^^^^^^^^^^^^^^^^^^
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| European Article Number (EAN)                                                                                                                                                                                      |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Also known as Japanese Article Number (JAN).                                                                                                                                                                     | .. image:: /_static/symbologies/ean13.png                          |
+| * Encodes a Global Trade Identification Number (GTIN).                                                                                                                                                             |                                                                    |
+| * Contains 8 (EAN-8) or 13 (EAN-13) numerical digits.                                                                                                                                                              |                                                                    |
+| * Last digit serves as a mod10 checksum.                                                                                                                                                                           |                                                                    |
+| * Additional data can be stored in an EAN-2 or EAN-5 add-on code.                                                                                                                                                  |                                                                    |
+| * It has been standardised under ISO/IEC 15420.                                                                                                                                                                    |                                                                    |
+| * Relevant enum values: :enum:`scandit.datacapture.barcode.Symbology.Ean8`, :enum:`scandit.datacapture.barcode.Symbology.Ean13Upca`                                                                                |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Universal Product Code (UPC)                                                                                                                                                                                       |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Encodes a Global Trade Identification Number (GTIN).                                                                                                                                                             | .. image:: /_static/symbologies/upca.png                           |
+| * Contains 6 (UPC-E) or 12 (UPC-A) numerical digits.                                                                                                                                                               |                                                                    |
+| * Last digit serves as a mod10 checksum.                                                                                                                                                                           |                                                                    |
+| * Additional data can be stored in an EAN-2 or EAN-5 add-on code.                                                                                                                                                  |                                                                    |
+| * It has been standardised under ISO/IEC 15420.                                                                                                                                                                    |                                                                    |
+| * Encodes a Global Trade Identification Number (GTIN).                                                                                                                                                             |                                                                    |
+| * Relevant enum values: :enum:`scandit.datacapture.barcode.Symbology.Upce`, :enum:`scandit.datacapture.barcode.Symbology.Ean13Upca`                                                                                |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| GS1 DataBar                                                                                                                                                                                                        |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Used to encode a Global Trade Identification Numbers (GTIN) along with variable additional information defined by application identifiers (AI). Examples are price, weight or expiry date.                       | .. image:: /_static/symbologies/gs1databar_expanded_stacked.png    |
+| * Valid application identifiers (AI) are defined in the GS1 specification.                                                                                                                                         |                                                                    |
+| * Supports variable length data content.                                                                                                                                                                           |                                                                    |
+| * Barcode data is verified by an implicit checksum.                                                                                                                                                                |                                                                    |
+| * Does not require quiet zones around the barcode.                                                                                                                                                                 |                                                                    |
+| * It has been standardised under ISO/IEC 24724.                                                                                                                                                                    |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Gs1Databar`, :enum:`scandit.datacapture.barcode.Symbology.Gs1DatabarExpanded`, :enum:`scandit.datacapture.barcode.Symbology.Gs1DatabarLimited` |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+
+Industrial 1D Symbologies
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Code 128                                                                                                                                                                         |                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Used in a wide range of applications.                                                                                                                                          | .. image:: /_static/symbologies/code128.png                        |
+| * The barcode data can be encode numerical data only or two different subsets of the ASCII table. Combinations of the three different modes can be used in a single code.        |                                                                    |
+| * Supports variable length data content.                                                                                                                                         |                                                                    |
+| * A mandatory checksum is verified.                                                                                                                                              |                                                                    |
+| * It has been standardised under ISO/IEC 15417.                                                                                                                                  |                                                                    |
+| * Includes support for EAN-128 and GS1-128.                                                                                                                                      |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Code128`                                                                                                     |                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Code 32                                                                                                                                                                          |                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * It is used for labelling pharmaceutical products in Italy.                                                                                                                     | .. image:: /_static/symbologies/code32.png                         |
+| * Also known as Italian Pharmacode, IMH, Codice 32 Pharmacode, Codice Farmaceutico Italiano and Radix 32.                                                                        |                                                                    |
+| * Contains nine numerical digits.                                                                                                                                                |                                                                    |
+| * Last digit serves as a mandatory checksum.                                                                                                                                     |                                                                    |
+| * Narrow to wide bar ratios of 1:2.5 is recommended.                                                                                                                             |                                                                    |
+| * Specification can be found in Allegato A Caratteristiche tecniche del bollino farmaceutico from 18-7-2014 GAZZETTA UFFICIALE DELLA REPUBBLICA ITALIANA Serie generale - n. 165 |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Code32`                                                                                                      |                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Code 39                                                                                                                                                                          |                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Mostly used in logistics to encode application specific identifiers.                                                                                                           | .. image:: /_static/symbologies/code39.png                         |
+| * The standard version can encode numbers 0-9, capital letters A-Z, symbols -.$/+% and space.                                                                                    |                                                                    |
+| * Supports variable length data content.                                                                                                                                         |                                                                    |
+| * Narrow to wide bar ratios from 1:2 up to 1:3 are supported. 1:2.5 is recommended.                                                                                              |                                                                    |
+| * By default no checksum is verified, but an optional mod43 checksum can be enforced.                                                                                            |                                                                    |
+| * All ASCII characters including control characters encoding support can be enabled on demand.                                                                                   |                                                                    |
+| * It has been standardised under ISO/IEC 16388.                                                                                                                                  |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Code39`                                                                                                      |                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Code 93                                                                                                                                                                          |                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Mostly used in logistics to encode application specific identifiers.                                                                                                           | .. image:: /_static/symbologies/code93.png                         |
+| * Data in standard encoding (numbers 0-9, capital letters A-Z, symbols -.$/+% and space) and Full ASCII mode (including control characters) are supported.                       |                                                                    |
+| * Supports variable length data content.                                                                                                                                         |                                                                    |
+| * Two mod47 checksums are verified.                                                                                                                                              |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Code93`                                                                                                      |                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| ITF (Interleaved 2 of 5)                                                                                                                                                         |                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * It is used primarily in the distribution and warehouse industry.                                                                                                               | .. image:: /_static/symbologies/itf.png                            |
+| * Encodes an even number of numerical characters.                                                                                                                                |                                                                    |
+| * Supports variable length data content.                                                                                                                                         |                                                                    |
+| * Narrow to wide bar ratios from 1:2 up to 1:3 are supported. 1:2.5 is recommended.                                                                                              |                                                                    |
+| * By default no checksum is verified.                                                                                                                                            |                                                                    |
+| * It has been standardised under ISO/IEC 16390.                                                                                                                                  |                                                                    |
+| * An optional mod10 checksum can be enforced.                                                                                                                                    |                                                                    |
+| * Alternative names for this symbology include Leitcode, or Identcode. Both of these have a mandatory mod10 checksum.                                                            |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.InterleavedTwoOfFive`                                                                                        |                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+
+Legacy 1D Symbologies
+^^^^^^^^^^^^^^^^^^^^^
+
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Code 11                                                                                                                                    |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Primarily used for labelling telecommunication equipment. Also known as USD-8.                                                           | .. image:: /_static/symbologies/code11.png                         |
+| * The barcode data can be encode numerical data, the dash and dot character.                                                               |                                                                    |
+| * Supports variable length data content.                                                                                                   |                                                                    |
+| * For up to 10 data digits a single check digit is used, otherwise two check digits are used.                                              |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Code11`                                                                |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Code 25                                                                                                                                    |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Also known as Standard 2 of 5, Industrial 2 of 5 or Discrete 2 of 5.                                                                     | .. image:: /_static/symbologies/code25.png                         |
+| * Legacy numerical barcode format with a low data density.                                                                                 |                                                                    |
+| * Supports variable length data content.                                                                                                   |                                                                    |
+| * By default no checksum is verified.                                                                                                      |                                                                    |
+| * An optional mod10 checksum can be enforced.                                                                                              |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Code25`                                                                |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Codabar                                                                                                                                    |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * This symbology is used by U.S. blood banks, photo labs, libraries, and on FedEx airbills.                                                | .. image:: /_static/symbologies/codabar.png                        |
+| * Encodes numbers and the characters –$:/.+                                                                                                |                                                                    |
+| * First and last symbols (the guard patterns) are one of A, B, C, or D. They are returned as part of the data string.                      |                                                                    |
+| * Supports variable length data content.                                                                                                   |                                                                    |
+| * Some standards that use Codabar will define a check digit, but there is no agreed-upon standard checksum algorithm.                      |                                                                    |
+| * The width ratio between narrow and wide can be chosen between 1:2.25 and 1:3.                                                            |                                                                    |
+| * Different checksum algorithms are in use, though they are not standardized. Supported optional checksums are a mod11 and mod16 checksum. |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Codabar`                                                               |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| MSI Plessey                                                                                                                                |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * MSI is used primarily for inventory control, marking storage containers and shelves in warehouse environments.                           | .. image:: /_static/symbologies/msi.png                            |
+| * Encodes any number of numerical characters.                                                                                              |                                                                    |
+| * By default a mod10 checksum is verified. Alternative supported checksum options are mod11, mod1010 and mod1110.                          |                                                                    |
+| * MSI is used primarily for inventory control, marking storage containers and shelves in warehouse environments.                           |                                                                    |
+| * Encodes any number of numerical characters.                                                                                              |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.MsiPlessey`                                                            |                                                                    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+
+2D Symbologies
+^^^^^^^^^^^^^^
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| QR Code                                                                                                                                                                 |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Supports variable length data content.                                                                                                                                | .. image:: /_static/symbologies/qr.png                             |
+| * Data encoding modes support numeric, alphanumeric, binary data and kanji characters.                                                                                  |                                                                    |
+| * Different sizes (called versions) and error correction levels can be defined.                                                                                         |                                                                    |
+| * The Scandit Data Capture SDK supports Model 2 codes including color inversion, mirroring and GS1 data content.                                                        |                                                                    |
+| * It has been standardised under ISO/IEC 18004.                                                                                                                         |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Qr`                                                                                                 |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Micro QR Code                                                                                                                                                           |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Miniature version of the standard QR code that supports variable length data content up to 35 characters                                                              | .. image:: /_static/symbologies/microqr.png                        |
+| * Different error correction levels can be defined with a data recovery rate of up to 25%                                                                               |                                                                    |
+| * Optimized to transfer small amounts of data such as a phone number or a website URL                                                                                   |                                                                    |
+| * The Scandit Data Capture SDK supports color inversion and mirroring                                                                                                   |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.MicroQr`                                                                                            |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Data Matrix                                                                                                                                                             |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Supports variable length data content.                                                                                                                                | .. image:: /_static/symbologies/datamatrix.png                     |
+| * Encodings and sizes defined in the Data Matrix ECC 200 standard are supported.                                                                                        |                                                                    |
+| * Different error correction levels can be defined.                                                                                                                     |                                                                    |
+| * It has been standardised under ISO/IEC 16022.                                                                                                                         |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.DataMatrix`                                                                                         |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Data Matrix Rectangular Extension (DMRE)                                                                                                                                |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * The decoder supports the Data Matrix Rectangular Extension (DMRE) as defined in the AIM-D Symbology Specification Revision 1.01.                                      | .. image:: /_static/symbologies/dpm.png                            |
+| * Data Matrix code are often used for direct part marking (DPM). For scanning these types of codes, it is recommended to enable the direct_part_marking extension_mode. |                                                                    |
+| * Includes support for GS1 encoded data (GS1 Data Matrix).                                                                                                              |                                                                    |
+| * Relevant enum values: :enum:`scandit.datacapture.barcode.Symbology.DataMatrix`                                                                                        |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| PDF417                                                                                                                                                                  |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Used in a wide range of applications such as transport tickets and document processing.                                                                               | .. image:: /_static/symbologies/pdf417.png                         |
+| * Supports variable length data content.                                                                                                                                |                                                                    |
+| * The number of rows and columns are configurable.                                                                                                                      |                                                                    |
+| * Different error correction levels can be defined.                                                                                                                     |                                                                    |
+| * It has been standardised under ISO/IEC 15438.                                                                                                                         |                                                                    |
+| * Truncated PDF417 (Compact PDF417) codes can be used to save space.                                                                                                    |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Pdf417`                                                                                             |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| MicroPDF417                                                                                                                                                             |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * More space efficient version of PDF417 without start and end patterns.                                                                                                | .. image:: /_static/symbologies/micropdf417.png                    |
+| * Used in GS1 Composite Codes type A (CC-A) and B (CC-B).                                                                                                               |                                                                    |
+| * Supports variable length data content using one to four columns and up to 44 rows.                                                                                    |                                                                    |
+| * All size versions have a fixed error correction level.                                                                                                                |                                                                    |
+| * It has been standardised under ISO/IEC 24728.                                                                                                                         |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.MicroPdf417`                                                                                        |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Aztec Code                                                                                                                                                              |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Used for tickets in the transport industries, e.g. railway companies.                                                                                                 | .. image:: /_static/symbologies/aztec.png                          |
+| * Data can be encoded in ASCII or extended ASCII.                                                                                                                       |                                                                    |
+| * Supports variable length data content.                                                                                                                                |                                                                    |
+| * Different error correction levels can be defined.                                                                                                                     |                                                                    |
+| * It has been standardised under ISO/IEC 24778.                                                                                                                         |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Aztec`                                                                                              |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| MaxiCode                                                                                                                                                                |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Fixed size 2d symbology originally created by UPS in 1992.                                                                                                            | .. image:: /_static/symbologies/maxicode.png                       |
+| * Used for tracking and managing shipments of packages.                                                                                                                 |                                                                    |
+| * It has been standardised under ISO/IEC 16023.                                                                                                                         |                                                                    |
+| * Supports encoding of a Structured Carrier Message or data in extended ASCII.                                                                                          |                                                                    |
+| * Uses Reed-Solomon error correction.                                                                                                                                   |                                                                    |
+| * Fixed size 2d symbology originally created by UPS in 1992.                                                                                                            |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.MaxiCode`                                                                                           |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| GS1 DotCode                                                                                                                                                             |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Public Domain optical data carrier designed to be printed reliably at very high speed.                                                                                | .. image:: /_static/symbologies/dotcode.png                        |
+| * Flexible code shape: rectangular codes of virtually any size and width/height proportion can be used.                                                                 |                                                                    |
+| * Strong error correction by using message encoding inspired by Code 128 and strengthened by Reed-Solomon.                                                              |                                                                    |
+| * Allows to apply real time data with GS1 application identifiers, such as expiration date, lot number and serial number to products at production line speeds.         |                                                                    |
+| * It has been standardised in the AIM specification AIMD013 Revision 3.0.                                                                                               |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.DotCode`                                                                                            |                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+
+
+Postal Code Symbologies
+^^^^^^^^^^^^^^^^^^^^^^^
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| RM4SCC (Royal Mail 4 State Customer Code)                                                                                                                                                                                                                                                                           |                                                                    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Postal code symbology used by Royal Mail and Singapore Post for encoding the destination address.                                                                                                                                                                                                                 | .. image:: /_static/symbologies/rm4scc.png                         |
+| * It enables UK postcodes as well as Delivery Point Suffixes (DPSs) to be easily read by a machine at high speed.                                                                                                                                                                                                   |                                                                    |
+| * Uses a checksum digit for verifying data.                                                                                                                                                                                                                                                                         |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Rm4scc`                                                                                                                                                                                                                                         |                                                                    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| KIX (Klant Index)                                                                                                                                                                                                                                                                                                   |                                                                    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Uses the same symbol alphabet as RM4SCC.                                                                                                                                                                                                                                                                          | .. image:: /_static/symbologies/kix.png                            |
+| * Does not use a checksum for data verification, nor does it have a start/end pattern.                                                                                                                                                                                                                              |                                                                    |
+| * KIX codes can be read from left-to-right or right-to-left. Depending on the reading direction, the data is completely different. To determine which of the two orientations is correct, the Scandit Data Capture SDK matches the data against a set of encoding rules and returns the data that matches the rule. |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Kix`                                                                                                                                                                                                                                            |                                                                    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| Posi LAPA 4 State Code                                                                                                                                                                                                                                                                                              |                                                                    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+| * Uses the same symbol alphabet as RM4SCC                                                                                                                                                                                                                                                                           |                                                                    |
+| * Uses Reed-Solomon error correction. It can correct up to 8 erasures or 4 errors.                                                                                                                                                                                                                                  |                                                                    |
+| * LAPA can be read from left-to-right or right-to-left. The direction can be determined by reading the leftmost or the rightmost bar.                                                                                                                                                                               |                                                                    |
+| * Thanks to its fixed length and error correction, it offers better robustness than RM4SCC.                                                                                                                                                                                                                         |                                                                    |
+| * Relevant enum value: :enum:`scandit.datacapture.barcode.Symbology.Lapa4sc`                                                                                                                                                                                                                                        |                                                                    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+
+Symbologies details
+-------------------
+
+GS1 Data Carriers
+^^^^^^^^^^^^^^^^^
+
+The GS1 organisation defined a `standard <https://www.gs1.org/standards/barcodes-epcrfid-id-keys/gs1-general-specifications>`_ to encode application specific data in a barcode. The symbologies Code128, GS1 DataBar, DataMatrix and QR codes can contain GS1 encoded data. The barcode property :prop:`scandit.datacapture.barcode.Barcode.IsGs1DataCarrier` tells you if a barcode contains GS1 encoded data. GS1 data has to be accessed using :prop:`scandit.datacapture.barcode.Barcode.RawData` and **not** :prop:`scandit.datacapture.barcode.Barcode.Data` because it is stored in machine readable form and might contain non-printable characters such as group separators (ASCII 29).
+
+GS1 encoded data cannot be displayed directly to the user. The application identifiers cannot be distinguished from the data and non-printable characters might be part of the data. There are three different options to process the data. Use the Scandit parser API to convert the machine readable data into a human readable string, use the Scandit parser to extract all data elements (Application Identifiers) from the machine readable data or lastly use your own parser to transform the machine readable data.
+
+Example of a correctly encoded GS1 Code128 (also known as GS1-128) barcode:
+
+.. image:: /_static/gs1/gs1_code128.png
+
+The machine readable data that gets scanned from the code above, where <GS> represents the non-printable group separator character:
+
+   ``1088748816455721123456789012<GS>11111228``
+
+The same data in the human readable representation:
+
+   ``(10)887488164557(21)123456789012(11)111228``
+
+The same data parsed into its application identifiers by the Scandit parser:
+
+.. code-block:: javascript
+
+    [
+        {
+            "name" : "01",
+            "parsed" : {
+                "indicator" : 1,
+                "company_prefix" : "0887488",
+                "item_reference" : "16455"
+            },
+            "rawString" : "10887488164557"
+        },
+        {
+            "name" : "21",
+            "parsed" : "123456789012",
+            "rawString" : "123456789012"
+        },
+        {
+            "name" : "11",
+            "parsed" : {
+                "year" : 2011,
+                "month" : 12,
+                "day" : 28
+            },
+            "rawString" : "111228"
+        }
+    ]
+
+Symbology Specific Notes
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+* **Code128** uses a leading FNC1 character (ASCII 21) to signal GS1 data. The FNC1 character is encoded but will not be returned in the barcode result.
+* **GS1 DataBar** always contains GS1 data.
+* **DataMatrix** and **QR Code** use an internal symbology specific FNC1 symbol to signal GS1 data carrier mode. The internal symbol is not returned as part of the result. The common mistake of adding a leading group separator character in raw byte mode does not turn the code into a GS1 data carrier.
+
+There are many incorrectly encoded GS1 codes in the wild. The following image depicts two common error cases: The first incorrect code uses a leading group separator instead of the DataMatrix specific encoding scheme. The second error case encodes the human readable GS1 data representation in a normal DataMatrix code.
+
+.. image:: /_static/gs1/gs1_data_matrix_examples.png
+
+
+
+.. admonition:: What's next?
+
+  To dive further into the |sdk| we recommend the following articles:
+
+  * :doc:`/configure-barcodes`

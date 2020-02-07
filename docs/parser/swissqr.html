@@ -1,0 +1,836 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Swiss QR &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Swiss QR</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="swiss-qr">
+<h1>Swiss QR<a class="headerlink" href="#swiss-qr" title="Permalink to this headline">#</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<p>The parser supports the 1.0, 2.0 and the 2.1 versions of the Swiss QR ISO 20022 standard. For the complete documentation of the standard please refer to <a class="reference external" href="https://www.paymentstandards.ch/">the official website.</a></p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<p>Parsing following code (without quotes):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;SPC</span><span class="se">\r\n</span><span class="s2">0100</span><span class="se">\r\n</span><span class="s2">1</span><span class="se">\r\n</span><span class="s2">CH6812345678901234567</span><span class="se">\r\n</span><span class="s2">Scandit AG</span><span class="se">\r\n</span><span class="s2">Limmatstrasse</span><span class="se">\r\n</span><span class="s2">73</span><span class="se">\r\n</span><span class="s2">8005</span><span class="se">\r\n</span><span class="s2">Zuerich</span><span class="se">\r\n</span><span class="s2">CH</span><span class="se">\r\n\r\n\r\n\r\n\r\n\r\n\r\n</span><span class="s2">1234.00</span><span class="se">\r\n</span><span class="s2">CHF</span><span class="se">\r\n</span><span class="s2">2020-01-01</span><span class="se">\r\n\r\n\r\n\r\n\r\n\r\n\r\n</span><span class="s2">NON</span><span class="se">\r\n\r\n</span><span class="s2">test code</span><span class="se">\r\n</span><span class="s2">AC:Alternative scheme data first</span><span class="se">\r\n</span><span class="s2">AC:Alternative scheme data second&quot;</span>
+</pre></div>
+</div>
+<p>will result in following JSON output:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+ <span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/Header/QRType&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;SPC&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;SPC&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/Header/Version&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;0100&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;0100&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/Header/Coding&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/CdtrInf/IBAN&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;CH6812345678901234567&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;CH6812345678901234567&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/CdtrInf/Cdtr/Name&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;Scandit AG&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;Scandit AG&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/CdtrInf/Cdtr/StrtNm&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;Limmatstrasse&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;Limmatstrasse&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/CdtrInf/Cdtr/BldgNb&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;73&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;73&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/CdtrInf/Cdtr/PstCd&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;8005&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;8005&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/CdtrInf/Cdtr/TwnNm&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;Zuerich&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;Zuerich&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/CdtrInf/Cdtr/Ctry&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;CH&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;CH&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtCdtr/Name&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtCdtr/StrtNm&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtCdtr/BldgNb&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtCdtr/PstCd&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtCdtr/TwnNm&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtCdtr/Ctry&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/CcyAmtDate/Amt&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;1234.00&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;1234.00&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/CcyAmtDate/Ccy&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;CHF&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;CHF&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/CcyAmtDate/ReqdExctnDt&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;day&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;month&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;year&quot;</span> <span class="o">:</span> <span class="mi">2020</span>
+   <span class="p">},</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;2020-01-01&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtDbtr/Name&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtDbtr/StrtNm&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtDbtr/BldgNb&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtDbtr/PstCd&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtDbtr/TwnNm&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/UltmtDbtr/Ctry&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/RmtInf/Tp&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;NON&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;NON&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/RmtInf/Ref&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/RmtInf/Ustrd&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;test code&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;test code&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/AltPmtInf/AltPmt/1&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;AC:Alternative scheme data first&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;AC:Alternative scheme data first&quot;</span>
+<span class="p">},</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span> <span class="o">:</span> <span class="s2">&quot;QRCH/AltPmtInf/AltPmt/2&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;parsed&quot;</span> <span class="o">:</span> <span class="s2">&quot;AC:Alternative scheme data second&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;rawString&quot;</span> <span class="o">:</span> <span class="s2">&quot;AC:Alternative scheme data second&quot;</span>
+<span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exposed-fields-for-version-1-0">
+<h2>Exposed fields for Version 1.0<a class="headerlink" href="#exposed-fields-for-version-1-0" title="Permalink to this headline">#</a></h2>
+<p>The exposed fields correspond one-to-one with the fields defined in the specs. The full list is given below:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 33%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element Name</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Always Present</p></th>
+<th class="head"><p>May be empty</p></th>
+<th class="head"><p>Parsed Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>QRCH/Header/QRType</p></td>
+<td><p>Indicator for Swiss QR Code, always ‘SPC’</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/Header/Version</p></td>
+<td><p>Version string, ‘0100’ for v1.0</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/Header/Coding</p></td>
+<td><p>Character set code, always 1</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td><p>parsed Integer</p></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/CdtrInf/IBAN</p></td>
+<td><p>IBAN (string of 21 characters)</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/Cdtr/Name</p></td>
+<td><p>Creditor’s name</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/Cdtr/StrtNm</p></td>
+<td><p>Creditor’s street name</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/Cdtr/BldgNb</p></td>
+<td><p>Creditor’s house number</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/Cdtr/PstCd</p></td>
+<td><p>Creditor’s postal code</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/Cdtr/TwnNm</p></td>
+<td><p>Creditor’s city</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/Cdtr/Ctry</p></td>
+<td><p>Creditor’s country (2 digit ISO 3166-1)</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtCdtr/Name</p></td>
+<td><p>Ultimate Creditor’s name</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtCdtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtCdtr/StrtNm</p></td>
+<td><p>Ultimate Creditor’s street name</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtCdtr/BldgNb</p></td>
+<td><p>Ultimate Creditor’s house number</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtCdtr/PstCd</p></td>
+<td><p>Ultimate Creditor’s postal code</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtCdtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtCdtr/TwnNm</p></td>
+<td><p>Ultimate Creditor’s city</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtCdtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtCdtr/Ctry</p></td>
+<td><p>Ultimate Creditor’s country (2 digit ISO 3166-1)</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtCdtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/CcyAmtDate/Amt</p></td>
+<td><p>Payment amount</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/CcyAmtDate/Ccy</p></td>
+<td><p>Currency (‘CHF’ or ‘EUR’)</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/CcyAmtDate/ReqdExctnDt</p></td>
+<td><p>Due date</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>key/value pairs:</p>
+<ul class="simple">
+<li><p>‘year’ : YYYY,</p></li>
+<li><p>‘month’ : MM,</p></li>
+<li><p>‘day’ : DD</p></li>
+</ul>
+<p>with YYYY, MM, DD integers</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtDbtr/Name</p></td>
+<td><p>Ultimate Debitor’s name</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtDbtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtDbtr/StrtNm</p></td>
+<td><p>Ultimate Debitor’s street name</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtDbtr/BldgNb</p></td>
+<td><p>Ultimate Debitor’s house number</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtDbtr/PstCd</p></td>
+<td><p>Ultimate Debitor’s postal code</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtDbtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtDbtr/TwnNm</p></td>
+<td><p>Ultimate Debitor’s city</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtDbtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtDbtr/Ctry</p></td>
+<td><p>Ultimate Debitor’s country (2 digit ISO 3166-1)</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtDbtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/RmtInf/Tp</p></td>
+<td><p>Reference type (QRR for QR reference, SCOR for Creditor Reference, NON wihtout reference)</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/RmtInf/Ref</p></td>
+<td><p>Reference number</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/AltPmtInf/AltPmt/1</p></td>
+<td><p>Additional scheme parameters (first)</p></td>
+<td><p>no</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/AltPmtInf/AltPmt/1</p></td>
+<td><p>Additional scheme parameters (second)</p></td>
+<td><p>no</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="exposed-fields-for-version-2-0-and-2-1">
+<h2>Exposed fields for Version 2.0 and 2.1<a class="headerlink" href="#exposed-fields-for-version-2-0-and-2-1" title="Permalink to this headline">#</a></h2>
+<p>The exposed fields correspond one-to-one with the fields defined in the specs (<a class="reference external" href="https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf">link</a>). The full list is given below:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 33%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element Name</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Always Present</p></th>
+<th class="head"><p>May be empty</p></th>
+<th class="head"><p>Parsed Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>QRCH/Header/QRType</p></td>
+<td><p>Indicator for Swiss QR Code, always ‘SPC’</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/Header/Version</p></td>
+<td><p>Version string, ‘0200’ for v2.0 and ‘0210 for v2.1</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/Header/Coding</p></td>
+<td><p>Character set code, always 1</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td><p>parsed Integer</p></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/CdtrInf/IBAN</p></td>
+<td><p>IBAN (string of 21 characters)</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/Cdtr/AdrTp</p></td>
+<td><p>Creditor’s name</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/Cdtr/Name</p></td>
+<td><p>Creditor’s name</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/Cdtr/StrtNm</p></td>
+<td><p>Creditor’s street name</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/Cdtr/BldgNb</p></td>
+<td><p>Creditor’s house number</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/Cdtr/PstCd</p></td>
+<td><p>Creditor’s postal code</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/Cdtr/TwnNm</p></td>
+<td><p>Creditor’s city</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/Cdtr/Ctry</p></td>
+<td><p>Creditor’s country (2 digit ISO 3166-1)</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtCdtr/AdrTp</p></td>
+<td><p>Ultimate Creditor’s address type</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtCdtr/Name</p></td>
+<td><p>Ultimate Creditor’s name</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtCdtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtCdtr/StrtNm</p></td>
+<td><p>Ultimate Creditor’s street name</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtCdtr/BldgNb</p></td>
+<td><p>Ultimate Creditor’s house number</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtCdtr/PstCd</p></td>
+<td><p>Ultimate Creditor’s postal code</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtCdtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtCdtr/TwnNm</p></td>
+<td><p>Ultimate Creditor’s city</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtCdtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtCdtr/Ctry</p></td>
+<td><p>Ultimate Creditor’s country (2 digit ISO 3166-1)</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtCdtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/CcyAmtDate/Amt</p></td>
+<td><p>Payment amount</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/CcyAmtDate/Ccy</p></td>
+<td><p>Currency (‘CHF’ or ‘EUR’)</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtDbtr/AdrTp</p></td>
+<td><p>Ultimate Debitor’s address type</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtDbtr/Name</p></td>
+<td><p>Ultimate Debitor’s name</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtDbtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtDbtr/StrtNm</p></td>
+<td><p>Ultimate Debitor’s street name</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtDbtr/BldgNb</p></td>
+<td><p>Ultimate Debitor’s house number</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtDbtr/PstCd</p></td>
+<td><p>Ultimate Debitor’s postal code</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtDbtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/UltmtDbtr/TwnNm</p></td>
+<td><p>Ultimate Debitor’s city</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtDbtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/UltmtDbtr/Ctry</p></td>
+<td><p>Ultimate Debitor’s country (2 digit ISO 3166-1)</p></td>
+<td><p>yes</p></td>
+<td><p>yes (but only if all other QRCH/UltmtDbtr/* fields are empty)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/RmtInf/Tp</p></td>
+<td><p>Reference type (QRR for QR reference, SCOR for Creditor Reference, NON wihtout reference)</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/RmtInf/Ref</p></td>
+<td><p>Reference number</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/RmtInf/AddInf/Ustrd</p></td>
+<td><p>Unstructured message</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/RmtInf/AddInf/Trailer</p></td>
+<td><p>Unambigous information for the end of payment data, always ‘EPD’</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/RmtInf/AddInf/StrdBkgInf</p></td>
+<td><p>Bill information</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>QRCH/AltPmtInf/AltPmt/1</p></td>
+<td><p>Additional scheme parameters (first)</p></td>
+<td><p>no</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QRCH/AltPmtInf/AltPmt/2</p></td>
+<td><p>Additional scheme parameters (second)</p></td>
+<td><p>no</p></td>
+<td><p>yes</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

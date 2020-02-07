@@ -1,0 +1,111 @@
+Barcode Capture
+===============
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.capture
+
+.. class:: BarcodeCapture : core.IDataCaptureMode
+  @objc@ SDCBarcodeCapture : NSObject <SDCDataCaptureMode>
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  Capture mode for single barcode scanning. For MatrixScan-based barcode capture, use :type:`tracking.BarcodeTracking` instead.
+
+  Learn more on how to use barcode capture in our :doc:`/get-started-barcode` guide.
+
+  This capture mode uses the *barcode scanning* capability. It can not be used together with other capture modes that require the same capabilities, e.g. :type:`tracking.BarcodeTracking` or :type:`label.LabelCapture`.
+
+  .. method:: static BarcodeCapture ForDataCaptureContext(core.DataCaptureContext? dataCaptureContext, BarcodeCaptureSettings settings)
+    @objc@ + (instancetype)barcodeCaptureWithContext:(nullable SDCDataCaptureContext *)context settings:(nonnull SDCBarcodeCaptureSettings *)settings
+    @javascript@ static forContext(context: DataCaptureContext?, settings: BarcodeCaptureSettings): BarcodeCapture
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Construct a new barcode capture mode with the provided context and settings. When the context is not |null|, the capture mode is automatically added to the context.
+
+  .. method:: static BarcodeCapture FromJson(core.DataCaptureContext dataCaptureContext, String jsonData)
+    @objc@ + (nullable instancetype)barcodeCaptureFromJSONString:(nonnull NSString *)jsonString context:(nonnull SDCDataCaptureContext *)context error:(NSError **)error
+    :available: android=6.0, ios=6.0
+
+    Construct a new barcode capture mode with the provided JSON serialization. See :doc:`/core/serialization` for details. The capture mode is automatically added to the context.
+
+  .. property:: bool IsEnabled { get; set; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Implemented from :type:`core.IDataCaptureMode`. See :prop:`core.IDataCaptureMode.IsEnabled`.
+
+  .. property:: core.PointWithUnit? PointOfInterest { get; set; }
+    :available: ios=6.1, android=6.1, 
+
+    The point of interest overwriting the :prop:`point of interest of the data capture view<core.ui.DataCaptureView.PointOfInterest>`. By default, this overwriting point of interest is not set and the one from the data capture view is used.
+    The overwriting point of interest is used to control the *center of attention* for the following subsystems:
+
+    - :prop:`Location selection<BarcodeCaptureSettings.LocationSelection>`. When no location selection is set, the point of interest defines the location at which the recognition optimizes for reading barcodes.
+    - Rendered :type:`viewfinders<core.ui.IViewfinder>`.
+
+  .. method:: Task ApplySettingsAsync(BarcodeCaptureSettings settings)
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Asynchronously applies the new settings to the barcode scanner. If the scanner is currently running, the task will complete when the next frame is processed, and will use the new settings for that frame. If the scanner is currently *not* running, the task will complete as soon as the settings have been stored and won't wait until the next frame is going to be processed.
+
+  .. method:: void ApplySettings(BarcodeCaptureSettings settings)
+    :available: android=6.0
+
+    Same as :meth:`BarcodeCapture.ApplySettingsAsync` with the second argument set to |null|.
+
+  .. property:: BarcodeCaptureFeedback Feedback { get; set; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Instance of :type:`BarcodeCaptureFeedback` that is used by the barcode scanner to notify users about Success and Failure events.
+
+    The default instance of the Feedback will have both sound and vibration enabled. A default beep sound will be used for the sound.
+
+    To change the feedback emitted, the :type:`BarcodeCaptureFeedback` can be modified as shown below, or a new one can be assigned.
+
+    .. sample:: swift
+
+      let barcodeCapture: BarcodeCapture = ...
+      barcodeCapture.feedback.success = Feedback(vibration: nil, sound: Sound.default)
+
+    .. sample:: java
+
+      BarcodeCapture barcodeCapture = ...;
+      barcodeCapture.getFeedback().setSuccess(new Feedback(null, Sound.defaultSound()));
+
+    .. sample:: javascript
+
+      const barcodeCapture = ...
+      const feedback = Scandit.BarcodeCaptureFeedback.defaultFeedback
+      feedback.success = new Scandit.Feedback(Scandit.Vibration.defaultVibration, null)
+      barcodeCapture.feedback = feedback
+
+  .. method:: void AddListener(IBarcodeCaptureListener? listener)
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Adds the listener to this barcode capture instance.
+
+    |add-listener|
+
+  .. method:: void RemoveListener(IBarcodeCaptureListener? listener)
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Removes a previously added listener from this barcode capture instance.
+
+    |remove-listener|
+
+  .. method:: static core.CameraSettings CreateRecommendedCameraSettings()
+     @objc@ @property (class, nonatomic, readonly, nonnull) SDCCameraSettings *recommendedCameraSettings
+     @javascript@ static get recommendedCameraSettings(): CameraSettings
+    :available: android=6.0, ios=6.1, cordova=6.1
+
+    Returns the recommended camera settings for use with barcode capture.
+
+  .. property:: core.DataCaptureContext? Context { get; }
+    @java@ core.DataCaptureContext? DataCaptureContext { get; }
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Implemented from :type:`core.IDataCaptureMode`. See :prop:`core.IDataCaptureMode.Context`.
+
+  .. method:: void UpdateFromJson(String jsonData)
+    @objc@ - (BOOL)updateFromJSONString:(nonnull NSString *)jsonString error:(NSError **)error
+    :available: android=6.0, ios=6.0
+
+    Updates the mode according to a JSON serialization. See :doc:`/core/serialization` for details.

@@ -1,0 +1,36 @@
+Label Capture Session
+=====================
+
+.. module:: scandit.datacapture.label
+  :android-package: com.scandit.datacapture.label.capture
+
+.. class:: LabelCaptureSession
+  @objc@ SDCLabelCaptureSession : NSObject
+  :available: ios=6.0, android=6.0
+
+  Holds the ongoing state of capturing data contained in one or more labels. An instance of this class is passed to :meth:`ILabelCaptureListener.OnSessionUpdated` when new labels are captured, or existing labels are updated or lost. Methods and properties of this class are only meant to be used from within the :meth:`ILabelCaptureListener.OnSessionUpdated` callback and should not be called from other threads. The data returned from this class, however can be accessed from any thread.
+
+  .. property:: IList<CapturedLabel> CapturedLabels { get; }
+    :available: android=6.0, ios=6.0
+
+    List of currently captured labels.
+
+  .. property:: IList<barcode.Barcode> UnassignedBarcodes { get; }
+    :available: none
+
+    List of unassigned barcodes, e.g. barcodes that could not be assigned to a label.
+
+  .. property:: int LastProcessedFrameId { get; }
+    :available: android=6.0, ios=6.0
+
+    The identifier of the last processed frame.
+
+  .. property:: long FrameSequenceId { get; }
+    @objc@ @property (nonatomic, readonly) NSInteger frameSequenceId
+    :available: ios=6.1, android=6.1
+
+    The identifier of the current frame sequence.
+
+    .. important::
+        As long as there is no interruptions of frames coming from the camera, the :prop:`LabelCaptureSession.FrameSequenceId` will stay the same, whereas the :prop:`LabelCaptureSession.LastProcessedFrameId` will be incremented for every processed frame.
+

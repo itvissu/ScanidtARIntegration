@@ -1,0 +1,70 @@
+Data Capture Context Deserializer
+=================================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.capture.serialization
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. note::
+
+  This deserializer is not thread-safe, subsequent calls for the same context have to be called on the same thread.
+
+.. class:: DataCaptureContextDeserializer
+  @objc@ SDCDataCaptureContextDeserializer : NSObject
+  :available: ios=6.1, android=6.1
+
+  A deserializer to construct data capture contexts from JSON. To properly deserialize an entire context a :type:`FrameSourceDeserializer` and x need to be provided.
+
+  **Related topics**: :doc:`/core/serialization`.
+
+  .. method:: DataCaptureContextDeserializer(FrameSourceDeserializer frameSourceDeserializer, DataCaptureViewDeserializer viewDeserializer, IList<IDataCaptureModeDeserializer> modeDeserializers)
+    @objc@ + (instancetype)contextDeserializerWithFrameSourceDeserializer:(SDCFrameSourceDeserializer *)frameSourceDeserializer viewDeserializer:(SDCDataCaptureViewDeserializer *)viewDeserializer modeDeserializers:(NSArray<id<SDCDataCaptureModeDeserializer>> *)modeDeserializers
+    :available: ios=6.1, android=6.1
+
+    Creates a new deserializer object.
+
+  .. property:: IDataCaptureContextDeserializerListener Listener { get; set; }
+    @objc@ @property (nonatomic, weak, nullable) id<SDCDataCaptureContextDeserializerDelegate> delegate
+    :available: ios=6.1, android=6.1
+
+    The object informed about deserialization events.
+
+  .. property:: bool AvoidThreadDependencies { get; set; }
+    :available: ios=6.1, android=6.1
+
+    Avoids dependencies on other threads during :meth:`ContextFromJson` and :meth:`UpdateContextFromJson`. This flag is not set by default which means the mentioned methods can have dependencies on other threads, the dependencies are as follows:
+    
+    - When the context specifies a capture mode array (even an empty one), the deserialization needs to synchronize with the context thread.
+    - When the view specifies an overlay array (even an empty one), the deserialization needs to synchronize with the context thread.
+    
+    These dependencies are necessary to ensure the consistency of the deserialization across multiple calls. In certain situations they can cause issues though because the context thread is waiting for another thread that is trying to execute a deserialization, resulting in a deadlock. This flag was introduced to allow to circumvent deadlocks in such cases.
+    
+    If this flag is true, the deserializer can only be used with one context at a time and has to have created said context. Specifically this means the lifecycle is as follows:
+
+      - :prop:`AvoidThreadDependencies` is set to true.
+      - The deserializer's :meth:`ContextFromJson` is used to create a context.
+      - The deserializer's :meth:`UpdateContextFromJson` is used zero or more times but only with the context previously created through the deserializer.
+      - Every adding or removing of capture modes from this context is done through :meth:`UpdateContextFromJson` (other changes like properties of capture modes etc. can be done through other ways).
+    
+    It is possible to repeat this lifecycle over and over with different contexts, but it is essential that all calls involving a context are in sequence. It is not possible to create context A, update context A, create context B and then update context A again.
+
+    Just as without this flag the deserializer is not thread-safe and because of the above lifecycle all calls (not just the ones for the same context) have to be called on the same thread.
+
+  .. method:: DataCaptureContextDeserializerResult ContextFromJson(String jsonData)
+    @objc@ - (nullable SDCDataCaptureContextDeserializerResult *)contextFromJSONString:(NSString *)jsonString error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Deserializes a data capture context from JSON. 
+    
+    .. include:: /core/deserialization-exception.txt
+
+  .. method:: DataCaptureContextDeserializerResult UpdateContextFromJson(DataCaptureContext dataCaptureContext, ui.DataCaptureView view, String jsonData)
+    @objc@ - (nullable SDCDataCaptureContextDeserializerResult *) updateContext:(SDCDataCaptureContext *)context view:(nullable SDCDataCaptureView *)view fromJSON:(NSString *)jsonString error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Takes an existing data capture context and updates it by deserializing new or changed properties from JSON. See :ref:`serialization_update_from_json` for details of how updates are being done.
+
+    .. include:: /core/deserialization-exception.txt

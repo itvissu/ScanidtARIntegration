@@ -1,0 +1,54 @@
+Text Capture Settings
+=====================
+
+.. module:: scandit.datacapture.text
+  :android-package: com.scandit.datacapture.text.capture
+
+.. class:: TextCaptureSettings
+  @objc@ SDCTextCaptureSettings : NSObject <NSCopying>
+  :available: android=6.1, ios=6.1
+
+  Loads the text capture configuration and holds all the text recognition related settings, such as text selection area. To use the settings, use them when creating a :type:`text capture<TextCapture>` instance.
+
+  .. method:: static TextCaptureSettings? FromUri(String filePath)
+    @objc@ + (nullable instancetype)settingsWithContentsOfURL:(nonnull NSURL *)URL error:(NSError **)error
+    :available: ios=6.1
+
+    Construct a new text capture settings with the provided configuration file. The file contains the necessary configuration for the text capture back-end.
+
+    .. eager-ifconfig:: platform == 'ios'
+
+      In case of failure this method will return |null| and `error` will contain the failure reason.
+
+  .. method:: static TextCaptureSettings? FromJson(String json)
+    @objc@ + (nullable instancetype)settingsFromJSONString:(nonnull NSString *)JSONString error:(NSError **)error
+    :available: android=6.1, ios=6.1
+
+    Construct a new text capture settings with the provided JSON string. The JSON contains the necessary configuration for the text capture back-end.
+
+    .. eager-ifconfig:: platform == 'ios'
+
+      In case of failure this method will return |null| and `error` will contain the failure reason.
+
+    For details about the format of the JSON check :doc:`../json-structure`.
+
+  .. property:: TimeInterval DuplicateFilter { get; set; }
+    @java@ core.TimeInterval DuplicateFilter{ get; set; }
+    :available: android=6.1, ios=6.1
+
+    Determines the time interval in which captured texts with the same value are filtered out as duplicates. By default, when the same text is captured in consecutive frames, it is reported again as a new recognition. Use this property to change the interval or completely turn off duplicate filtering:
+
+    - Setting this property to value smaller than zero, means that the same text will not be reported again until the capturing session has been stopped.
+    - Setting this property to a value of zero means that the same text will be reported every time it is found.
+    - Setting this property to a value larger than zero indicates the time that must pass between the same text to be reported again.
+
+  .. property:: core.ILocationSelection? LocationSelection { get; set; }
+    @objc@ @property (nonatomic, nullable, strong) id<SDCLocationSelection> locationSelection
+    :available: android=6.1, ios=6.1
+
+    Defines the strategy with which to select one out of many visible texts. See :doc:`Scan Area Guide</scan-area>`. By default, this property is |null| and text selection is disabled.
+
+  .. property:: core.Direction RecognitionDirection { get; set; }
+    :available: android=6.1, ios=6.1
+
+    The recognition direction tells text capture in what direction text is expected.

@@ -1,0 +1,37 @@
+Text Capture Settings's JSON Structure
+======================================
+
+.. module:: scandit.datacapture.text
+  :hidden:
+
+The following data fields can be set in the JSON used to initialize :type:`TextCaptureSettings`.
+
++---------------------+-----------+-----------+---------------------------------------------------------------------------------------------------------------------------+
+| Key                 | Mandatory | Type      | Description                                                                                                               |
++=====================+===========+===========+===========================================================================================================================+
+| regex               | true      | String    | Regular expression for filtering the recognized characters. Text that does not match the regular expression is ignored.   |
+|                     |           |           | By default, no regex is set. You must set a regex in order for text capture to work.                                      |
++---------------------+-----------+-----------+---------------------------------------------------------------------------------------------------------------------------+
+| characterWhitelist  | false     | String    | White list of recognizable characters.                                                                                    |
+|                     |           |           | If the white list is provided, a recognition result will never contain characters that are not contained in it.           |
+|                     |           |           | By default there is no white list and all characters will be recognized.                                                  |
++---------------------+-----------+-----------+---------------------------------------------------------------------------------------------------------------------------+
+
+.. Note::
+  Using a regex with a capture group will make :type:`TextCapture` return only the text matching the capture group.
+  To return the full text matching the regex, use a non capturing group. ::
+     
+    (?: foo)
+
+Example
+-------
+
+The following JSON can be used for capturing price labels.
+
+  .. code-block:: json
+
+    {
+      "regex": "\\s*\\d+.\\d{2}\\s*",
+      "characterWhitelist": ""
+    }
+

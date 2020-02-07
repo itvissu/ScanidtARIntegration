@@ -1,0 +1,199 @@
+********
+Swiss QR
+********
+
+Overview
+========
+
+The parser supports the 1.0, 2.0 and the 2.1 versions of the Swiss QR ISO 20022 standard. For the complete documentation of the standard please refer to `the official website. <https://www.paymentstandards.ch/>`_
+
+Example
+=======
+
+Parsing following code (without quotes):
+
+::
+
+    "SPC\r\n0100\r\n1\r\nCH6812345678901234567\r\nScandit AG\r\nLimmatstrasse\r\n73\r\n8005\r\nZuerich\r\nCH\r\n\r\n\r\n\r\n\r\n\r\n\r\n1234.00\r\nCHF\r\n2020-01-01\r\n\r\n\r\n\r\n\r\n\r\n\r\nNON\r\n\r\ntest code\r\nAC:Alternative scheme data first\r\nAC:Alternative scheme data second"
+
+will result in following JSON output:
+
+.. code-block:: javascript
+
+   [
+    {
+      "name" : "QRCH/Header/QRType",
+      "parsed" : "SPC",
+      "rawString" : "SPC"
+   },
+   {
+      "name" : "QRCH/Header/Version",
+      "parsed" : "0100",
+      "rawString" : "0100"
+   },
+   {
+      "name" : "QRCH/Header/Coding",
+      "parsed" : 1,
+      "rawString" : "1"
+   },
+   {
+      "name" : "QRCH/CdtrInf/IBAN",
+      "parsed" : "CH6812345678901234567",
+      "rawString" : "CH6812345678901234567"
+   },
+   {
+      "name" : "QRCH/CdtrInf/Cdtr/Name",
+      "parsed" : "Scandit AG",
+      "rawString" : "Scandit AG"
+   },
+   {
+      "name" : "QRCH/CdtrInf/Cdtr/StrtNm",
+      "parsed" : "Limmatstrasse",
+      "rawString" : "Limmatstrasse"
+   },
+   {
+      "name" : "QRCH/CdtrInf/Cdtr/BldgNb",
+      "parsed" : "73",
+      "rawString" : "73"
+   },
+   {
+      "name" : "QRCH/CdtrInf/Cdtr/PstCd",
+      "parsed" : "8005",
+      "rawString" : "8005"
+   },
+   {
+      "name" : "QRCH/CdtrInf/Cdtr/TwnNm",
+      "parsed" : "Zuerich",
+      "rawString" : "Zuerich"
+   },
+   {
+      "name" : "QRCH/CdtrInf/Cdtr/Ctry",
+      "parsed" : "CH",
+      "rawString" : "CH"
+   },
+   {
+      "name" : "QRCH/UltmtCdtr/Name",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/UltmtCdtr/StrtNm",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/UltmtCdtr/BldgNb",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/UltmtCdtr/PstCd",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/UltmtCdtr/TwnNm",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/UltmtCdtr/Ctry",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/CcyAmtDate/Amt",
+      "parsed" : "1234.00",
+      "rawString" : "1234.00"
+   },
+   {
+      "name" : "QRCH/CcyAmtDate/Ccy",
+      "parsed" : "CHF",
+      "rawString" : "CHF"
+   },
+   {
+      "name" : "QRCH/CcyAmtDate/ReqdExctnDt",
+      "parsed" : {
+         "day" : 1,
+         "month" : 1,
+         "year" : 2020
+      },
+      "rawString" : "2020-01-01"
+   },
+   {
+      "name" : "QRCH/UltmtDbtr/Name",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/UltmtDbtr/StrtNm",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/UltmtDbtr/BldgNb",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/UltmtDbtr/PstCd",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/UltmtDbtr/TwnNm",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/UltmtDbtr/Ctry",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/RmtInf/Tp",
+      "parsed" : "NON",
+      "rawString" : "NON"
+   },
+   {
+      "name" : "QRCH/RmtInf/Ref",
+      "parsed" : "",
+      "rawString" : ""
+   },
+   {
+      "name" : "QRCH/RmtInf/Ustrd",
+      "parsed" : "test code",
+      "rawString" : "test code"
+   },
+   {
+      "name" : "QRCH/AltPmtInf/AltPmt/1",
+      "parsed" : "AC:Alternative scheme data first",
+      "rawString" : "AC:Alternative scheme data first"
+   },
+   {
+      "name" : "QRCH/AltPmtInf/AltPmt/2",
+      "parsed" : "AC:Alternative scheme data second",
+      "rawString" : "AC:Alternative scheme data second"
+   }
+   ] 
+
+Exposed fields for Version 1.0
+==============================
+
+The exposed fields correspond one-to-one with the fields defined in the specs. The full list is given below:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 6, 7, 1, 1, 6
+    :file: swissqr_fields.csv
+
+
+Exposed fields for Version 2.0 and 2.1
+======================================
+
+The exposed fields correspond one-to-one with the fields defined in the specs (`link <https://www.paymentstandards.ch/dam/downloads/ig-qr-bill-en.pdf>`_). The full list is given below:
+
+.. csv-table::
+    :header-rows: 1
+    :widths: 6, 7, 1, 1, 6
+    :file: swissqr_fields_version_2.csv

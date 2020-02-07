@@ -1,0 +1,75 @@
+Symbology Settings
+==================
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.capture
+
+.. class:: SymbologySettings
+  @objc@ SDCSymbologySettings : NSObject
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  Settings specific to a particular :type:`barcode symbology<Symbology>`.
+
+  Learn more on how to use symbology settings in our :doc:`/configure-barcodes` guide.
+
+  .. property:: Symbology Symbology { get; }
+    :available: ios=6.0, cordova=6.1
+
+    The symbology that this symbology settings affect.
+
+  .. property:: bool IsEnabled { get; set; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    By default decoding of all symbologies is disabled. To enable decoding of a symbology, set this property to |true|. It is advised to only enable symbologies that are required by the application as every enabled symbology adds processing overhead.
+
+    This property only enables decoding of dark codes on bright background. If color-inverted (bright on dark) codes for this symbology are required, enable them by changing the :prop:`IsColorInvertedEnabled` property.
+
+    .. @property (nonatomic, assign, getter=isEnabled) BOOL enabled
+
+  .. property:: bool IsColorInvertedEnabled { get; set; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Determines whether decoding of color-inverted (bright on dark) codes for this symbology is enabled. By default, decoding of color inverted codes is disabled. Currently, the :prop:`IsEnabled` property will also have to be set to |true| for bright on dark codes to be scanned, though this may change in a future release.
+
+    .. @objc@ @property (nonatomic, assign, getter=isColorInvertedEnabled) BOOL colorInvertedEnabled
+
+  .. property:: ISet<Checksum> Checksums { get; set; }
+    @objc@ @property (nonatomic, assign) SDCChecksum checksums
+    @java@ EnumSet<Checksum> Checksums { get; set; }
+    @javascript@ checksums: Checksum[]
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Set of optional checksums to be used for this symbology. The code is accepted if any of the checksums matches in addition to any mandatory checksum of the symbology.
+
+  .. property:: ISet<string> EnabledExtensions { get; }
+    @javascript@ get enabledExtensions(): string[]
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The set of enabled extensions of this symbology. Extensions allow to configure features that are specific to a small number of symbologies. For example, there is an extension to configure how to treat the leading zero for UPC-A codes. For a list of supported extensions, refer to :ref:`symbology-extensions`.
+
+  .. property:: ISet<uint16> ActiveSymbolCounts { get; set; }
+    @objc@ @property (nonatomic, strong) NSSet<NSNumber *> *activeSymbolCounts
+    @java@ Set<Short> ActiveSymbolCounts { get; set; }
+    @javascript@ activeSymbolCounts: number[]
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    This property determines the active symbol counts of the symbology, e.g. the supported length of barcodes to be decoded. Change this property to include symbol counts that are not enabled by default, or to optimize decoding performance for a certain number of symbols.
+
+    The mapping from characters to symbols is symbology-specific. For some symbologies, the start and end characters are included, others include checksums characters in the symbol counts.
+
+    The active symbol count setting is ignored for fixed-size barcodes (the EAN and UPC family of codes) as well as 2d codes. For other symbologies, refer to :ref:`active-symbol-count`.
+
+  .. method:: void SetExtensionEnabled(string extension, bool enabled)
+    @objc@ - (void)setExtension:(NSString *)extension enabled:(BOOL)enabled
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Activates/Deactivates a custom extension for the symbology.
+
+  .. method:: bool IsExtensionEnabled(string extension)
+    :available: android=6.0
+
+    Checks if the *extension* is enabled.
+    
+  .. method:: string toJson()
+    @objc@ @property (nonatomic, nonnull, readonly) NSString *JSONString
+    :available: ios=6.1

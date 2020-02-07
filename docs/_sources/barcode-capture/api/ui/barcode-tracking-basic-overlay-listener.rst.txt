@@ -1,0 +1,30 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Barcode Tracking Basic Overlay |Delegate|
+==========================================
+
+.. module:: scandit.datacapture.barcode.tracking.ui
+  :android-package: com.scandit.datacapture.barcode.tracking.ui.overlay
+
+.. interface:: IBarcodeTrackingBasicOverlayListener
+  @objc@ SDCBarcodeTrackingBasicOverlayDelegate <NSObject>
+  :available: ios=6.0, android=6.0
+    
+  .. method:: core.ui.Brush? BrushForTrackedBarcode(BarcodeTrackingBasicOverlay overlay, TrackedBarcode trackedBarcode)
+    @objc@ - (nullable SDCBrush *)barcodeTrackingBasicOverlay:(nonnull SDCBarcodeTrackingBasicOverlay *)overlay brushForTrackedBarcode:(nonnull SDCTrackedBarcode *)trackedBarcode
+    :available: ios=6.0, android=6.0
+
+    Callback method that can be used to set a :type:`core.ui.Brush` for a tracked barcode. It is called when a new tracked barcode appears. Called from the rendering thread.
+    If the callback returns |null|, then no visualization will be drawn for the tracked barcode. Additionally, tapping on the barcode will have no effect - the action defined by :meth:`ui.IBarcodeTrackingBasicOverlayListener.OnTrackedBarcodeTapped` callback will not be performed.
+
+  .. method:: void OnTrackedBarcodeTapped(BarcodeTrackingBasicOverlay overlay, TrackedBarcode trackedBarcode)
+    @objc@ - (void)barcodeTrackingBasicOverlay:(nonnull SDCBarcodeTrackingBasicOverlay *)overlay didTapTrackedBarcode:(nonnull SDCTrackedBarcode *)trackedBarcode
+    :available: ios=6.0, android=6.0
+      
+    Callback method that can be used to define an action that should be performed once a tracked barcode is tapped. Called from the main thread.
+
+    .. eager-ifconfig:: platform == 'ios'
+
+      If you are adding a UIGestureRecognizer to the data capture view, ensure that the `cancelsTouchesInView <https://developer.apple.com/documentation/uikit/uigesturerecognizer/1624218-cancelstouchesinview>`_ property is set to |false| as otherwise tap gestures will be cancelled instead of successfully completing.

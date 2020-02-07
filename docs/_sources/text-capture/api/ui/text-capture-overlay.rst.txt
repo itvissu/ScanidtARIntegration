@@ -1,0 +1,56 @@
+Text Capture Overlay
+=======================
+
+.. module:: scandit.datacapture.text.ui
+  :android-package: com.scandit.datacapture.text.ui.overlay
+
+.. class:: TextCaptureOverlay : core.ui.IDataCaptureOverlay
+  :available: android=6.1, ios=6.1
+
+   Overlay for the :type:`TextCapture` capture mode that displays the bounding boxes containing each captured text on top of the video preview. The appearance of bounding boxes can be configured or turned off completely through the :prop:`Brush` property.
+
+  .. method:: static TextCaptureOverlay NewInstance(TextCapture textCapture, core.ui.DataCaptureView? view)
+    @objc@ + (instancetype)overlayWithTextCapture:(nonnull SDCTextCapture *)textCapture forDataCaptureView:(nullable SDCDataCaptureView *)view
+    :available: android=6.1, ios=6.1
+
+     Construct a new text capture overlay for the provided text capture instance. When passing a non-|null| **view** instance, the overlay is automatically added to the view.
+
+  .. method:: static TextCaptureOverlay FromJson(TextCapture mode, String jsonData)
+    @objc@ + (nullable instancetype)textCaptureOverlayFromJSONString:(nonnull NSString *)jsonString mode:(nonnull SDCTextCapture *)mode error:(NSError **)error
+    :available: none
+
+    Construct a new text capture overlay with the provided JSON serialization. See :doc:`/core/serialization` for details. The overlay is automatically added to the capture mode.
+
+  .. method:: TextCaptureOverlay(TextCapture textCapture)
+    @objc@ + (instancetype)overlayWithTextCapture:(nonnull SDCTextCapture *)textCapture
+    :available: ios=6.1
+
+     Construct a new text capture overlay for the provided text capture instance. For the overlay to be displayed on screen, it must be added to a :type:`core.ui.DataCaptureView`.
+
+  .. property:: core.ui.IViewfinder? Viewfinder { get; set; }
+    @objc@ @property (nonatomic, strong, nullable) id<SDCViewfinder> viewfinder
+    :available: android=6.1, ios=6.1
+
+    Set the viewfinder. By default, the viewfinder is |null|. Set this to an instance of :type:`core.ui.SpotlightViewfinder` or :type:`core.ui.RectangularViewfinder` if you want to draw a viewfinder.
+
+  .. property:: core.ui.Brush Brush { get; set; }
+    :available: android=6.1, ios=6.1
+
+    The brush used for visualizing a captured text in the UI. To turn off drawing of locations, set the brush to use both a transparent fill and stroke color. By default, the brush has a transparent fill color, a "Scandit"-blue stroke color, and a stroke width of 1.
+
+  .. method:: static core.ui.Brush DefaultBrush()
+    @objc@ @property (class, nonatomic, nonnull, readonly) SDCBrush *defaultBrush
+    :available: android=6.1, ios=6.1
+
+    Returns the default brush used by the overlay.
+
+  .. property:: bool ShouldShowScanAreaGuides { get; set; }
+    :available: android=6.1, ios=6.1
+
+    Whether to show scan area guides on top of the preview. This property is useful during development to visualize the current scan areas on screen. It is not meant to be used for production. By default this property is |false|.
+
+  .. method:: void UpdateFromJson(String jsonData)
+    @objc@ - (BOOL)updateFromJSONString:(nonnull NSString *)jsonString error:(NSError **)error
+    :available: none
+
+    Updates the overlay according to a JSON serialization. See :doc:`/core/serialization` for details.

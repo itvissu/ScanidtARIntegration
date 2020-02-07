@@ -1,0 +1,125 @@
+Feedback
+===============================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.feedback
+
+.. class:: Vibration
+  @objc@ SDCVibration : NSObject
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  A vibration, to be emitted for example when a code has been successfully scanned.
+
+  .. method:: Vibration()
+    :available: android=6.0
+
+    Creates a new Vibration object.
+
+  .. method:: static Vibration DefaultVibration()
+    @objc@ @property (class, nonatomic, readonly) SDCVibration *defaultVibration
+    @javascript@ static get defaultVibration(): Vibration
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The default vibration for a successful scan. 
+
+    .. eager-ifconfig:: platform == 'android'
+
+      The duration of vibration is set to 300 milliseconds.
+
+  .. property:: TimeInterval Duration { get; }
+    @java@ core.TimeInterval Duration { get; }
+    :available: android=6.1
+
+    The duration of the vibration.
+
+  .. property:: TimeInterval VibrateTime { get; }
+    @java@ core.TimeInterval VibrateTime { get; }
+    :available: android=6.0
+
+    The duration of the vibration.
+
+    .. deprecated:: 6.1.0
+      Replaced by :prop:`Duration`.
+
+.. class:: Sound
+  @objc@ SDCSound : NSObject
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  A sound, to be played for example when a code has been successfully scanned.
+
+  .. method:: Sound(int resourceId)
+    :available: android=6.0
+
+    Creates a new Sound object for the given resource.
+
+  .. property:: int ResourceId { get; }
+    @javascript@ resource: string?
+    :available: android=6.0, cordova=6.1
+
+    Id of the sound resource.
+
+  .. method:: Sound(Url url)
+    @objc@ - (nullable instancetype)initWithURL:(nonnull NSURL *)url
+    :available: ios=6.0
+
+    Creates a new Sound loading the given file.
+
+  .. method:: static Sound DefaultSound()
+    @objc@ @property (class, nonatomic, readonly) SDCSound *defaultSound
+    @javascript@ static get defaultSound(): Sound
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The default beep sound for a successful scan.
+
+.. class:: Feedback
+  @objc@ SDCFeedback: NSObject
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  A feedback consisting of a sound and vibration, for example to be provided by a device when a code has been successfully scanned.
+
+  .. method:: static Feedback DefaultFeedback()
+    @objc@ @property (class, nonatomic, readonly) SDCFeedback *defaultFeedback
+    @javascript@ static get defaultFeedback(): Feedback
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The default feedback consisting of a default sound and a default vibration.
+
+  .. property:: Sound? Sound { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The sound to be played when a feedback is required. If |null|, no sound is played. Depending on the device's ring mode and/or volume settings, no sound may be played even if this property is properly set to a non-|null| instance.
+
+  .. property:: Vibration? Vibration { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The vibration to be emitted when a feedback is required. If |null|, no vibration is emitted. This property is further influenced by the device's ring mode: the device may not vibrate even if this property is properly set to a non-|null| instance.
+    
+  .. method:: Feedback()
+    :available: android=6.0
+
+    Creates a Feedback that emits no vibration and plays no sound.
+
+  .. method:: Feedback(Vibration? vibration)
+    :available: android=6.0
+
+    Creates a Feedback that emits the given vibration, but plays no sound.
+
+  .. method:: Feedback(Sound? sound)
+    :available: android=6.1
+
+    Creates a Feedback that plays the given sound, but emits no vibration.
+
+  .. method:: Feedback(Vibration? vibration, Sound? sound)
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Creates a Feedback that emits the given vibration and plays the given sound.
+
+  .. method:: void Emit()
+    :available: android=6.0, ios=6.0
+
+    Emits the feedback defined by this object. This method is further influenced by the device's ring mode and/or volume settings - check :prop:`Sound` and :prop:`Vibration` for more details.
+
+  .. method:: void Release()
+    :available: android=6.0
+
+    Frees the resources associated with this feedback instance. This is only required when you are using the feedback instance without a capture mode. When the instance gets used by a capture mode, the resources will automatically be freed when they are no longer required.

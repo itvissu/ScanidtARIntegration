@@ -1,0 +1,68 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+|sdk| 6.0 Release Notes
+=======================
+
+.. module:: scandit.datacapture.core
+  :hidden:
+
+Version 6.0 marks the initial release of |sdk|. It is a major update over the 5.x Scandit SDK and introduces new APIs and additional features. This release is not compatible with 5.x and will require code changes in your application. Take a look at our :doc:`migration guide </migrate-to-6>` for how to upgrade your app from 5.x to 6.0 and newer.
+
+|sdk| is available on Android and iOS.
+
+New Features/Performance Improvements
+-------------------------------------
+
+* Modernized and modularized API for more fine-grained control and better extensibility for future data capture technologies.
+* Improved use of multi core architectures of mobile devices with speedup of 2-3x depending on settings and number of cores.
+* Considerably improved MatrixScan animation smoothness and accuracy on Android.
+* Simplified interface for :doc:`configuring the scan area and code selection </scan-area>`.
+* Improve recognition speed of direct part marking mode.
+* Improved MatrixScan auto-focus stability on a wide range of rugged devices and low-end Android devices.
+
+Behavioral Changes
+------------------
+
+This section contains a list of behavioral changes between 5.x and 6.0.
+
+* The short 43 character legacy app keys supported in 4.x and 5.x have been deprecated and are not compatible with 6.0 anymore. Please contact support@scandit.com to get your new license keys.
+* It is now an error to enable symbologies that are not supported by your app key. In 5.x, these symbologies would silently be disabled without any warning.
+* EAN13 and UPCA used to be separate symbologies in Scandit SDK 5.x, but are now merged into one symbology called :enum:`EAN13/UPCA <barcode.Symbology.Ean13Upca>`.
+* Barcode capture: The default :prop:`code duplicate filter <barcode.BarcodeCaptureSettings.CodeDuplicateFilter>` has been changed from 500ms to 0ms, meaning that codes that are scanned are reported every frame.
+
+Updates
+-----------------------
+
+Bugfixes in |sdk| 6.0.3
+-----------------------
+
+* Now properly mirroring the point of interest and scan area margins when using the user-facing camera.
+
+Bugfixes in |sdk| 6.0.2
+-----------------------
+
+.. eager-ifconfig:: platform == 'ios'
+
+  * Fixed a bug that caused a crash on older devices.
+  * Fixed view animations after a call to `clearTrackedBarcodeViews()`.
+  * Fixed an issue with devices that do not support OpenGLES 3.0.
+
+.. eager-ifconfig:: platform == 'android'
+
+  * Fixed the JCenter uploads to list the needed dependencies in their POM files such that they are automatically fetched.
+
+Bugfixes in |sdk| 6.0.1
+-----------------------
+
+.. eager-ifconfig:: platform == 'ios'
+
+  * Fixed a bug that caused :type:`DataCaptureOverlay <core.ui.IDataCaptureOverlay>` to be rendered at the wrong position when using Auto Layout.
+  * Fixed a bug that caused the last frame of the previous camera to be shown when changing to a different camera.
+  * Fixed rendering issues when multiple :type:`DataCaptureView <core.ui.DataCaptureView>` instances are created and reused
+  * Fixed underlying issue that caused "... after fill simple" error messages.
+
+.. eager-ifconfig:: platform == 'android'
+
+  * Fixed an issue with barcodes never being in :prop:`addedTrackedBarcodes <barcode.tracking.BarcodeTrackingSession.AddedTrackedBarcodes>` and certain listener functions not being called when resuming a previously paused Barcode Tracking session.

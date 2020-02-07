@@ -1,0 +1,17 @@
+Data Capture Mode Deserializer
+==============================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.capture.serialization
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. interface:: IDataCaptureModeDeserializer
+  @objc@ SDCDataCaptureModeDeserializer <NSObject>
+  :available: ios=6.1, android=6.1
+
+  An interface for all data capture mode deserializers.
+
+  **Related topics**: :doc:`/core/serialization`.

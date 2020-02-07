@@ -1,0 +1,80 @@
+Text Capture Listener
+=====================
+
+.. module:: scandit.datacapture.text
+  :android-package: com.scandit.datacapture.text.capture
+
+.. interface:: ITextCaptureListener
+  @objc@ SDCTextCaptureListener <NSObject>
+  :available: android=6.1, ios=6.1
+
+  |Delegate| |interface| for traditional text capture.
+
+  .. method:: void OnObservationStarted(TextCapture textCapture)
+    @objc@ - (void)didStartObservingTextCapture:(SDCTextCapture *)textCapture
+    :available: android=6.1, ios=6.1
+
+    Called when the listener starts observing the text capture instance.
+
+  .. method:: void OnObservationStopped(TextCapture textCapture)
+    @objc@ - (void)didStopObservingTextCapture:(SDCTextCapture *)textCapture
+    :available: android=6.1, ios=6.1
+
+    Called when the listener stops observing the text capture instance.
+
+  .. method:: void OnTextCaptured(TextCapture capture, TextCaptureSession session, core.IFrameData frameData)
+    @objc@ - (void)textCapture:(SDCTextCapture *)textCapture didCaptureInSession:(SDCTextCaptureSession *)session frameData:(id<SDCFrameData>)frameData
+    :available: android=6.1, ios=6.1
+
+    Invoked whenever at least one text has been captured. The newly captured texts can be retrieved from :prop:`TextCaptureSession.NewlyCapturedTexts`.
+
+    |recognition-thread-dispatch-main|
+
+    Inside this method, you will typically want to start processing the captured texts somehow, e.g. by validating the text captured. Depending on the application, you will want to pause, or stop recognition, or continue reading texts:
+
+    * To pause the capture session, but keep the camera (frame source) running, just set the text capture's :prop:`enabled property<core.IDataCaptureMode.IsEnabled>` to |false|.
+
+      .. sample:: swift
+
+        captureMode.isEnabled = true
+
+      .. sample:: csharp
+
+        captureMode.Enabled = false;
+
+      .. sample:: java
+
+        captureMode.setEnabled(false);
+
+    * To stop the capture session, you will need to both :prop:`disable the capture mode<core.IDataCaptureMode.IsEnabled>` and :meth:`stop the frame source<core.IFrameSource.SwitchToDesiredStateAsync>`. While it is possible to only stop the camera and keep the capture mode enabled, this may lead to additional capture events being delivered, which is typically not desired. The following lines of code show how to disable the capture mode and stop the frame source as well:
+
+      .. sample:: swift
+
+        // no more didCapture callbacks will be invoked after this call.
+        captureMode.isEnabled = false
+        // asynchronously turn off the camera as quickly as possible.
+        captureMode.context?.frameSource?.switch(toDesiredState: .off, completionHandler: nil)
+
+      .. sample:: csharp
+
+        // no more onTextCaptured callbacks will be invoked after this call.
+        captureMode.Enabled = false;
+        // asynchronously turn off the camera
+        await captureMode.Context.FrameSource.SwitchToDesiredStateAsync(FrameSourceState.Off)
+
+      .. sample:: java
+
+        // no more onTextCaptured callbacks will be invoked after this call.
+        captureMode.setEnabled(false);
+        // asynchronously turn off the camera
+        captureMode.getContext().getFrameSource().switchToDesiredState(FrameSourceState.OFF, null);
+
+  .. method:: void OnSessionUpdated(TextCapture capture, BarcodeCaptureSession session, core.IFrameData frameData)
+    @objc@ - (void)barcodeCapture:(SDCTextCapture *)textCapture didUpdateSession:(SDCBarcodeCaptureSession *)session frameData:(id<SDCFrameData>)frameData
+    :available: none
+
+    Invoked after a frame has been processed by text capture and the session has been updated. In contrast to :meth:`OnTextCaptured`, this method is invoked, regardless whether a text was captured or not. If texts were recognized in this frame, this method is invoked after :meth:`OnTextCaptured`.
+
+    |recognition-thread-dispatch-main| Further recognition is blocked until this method completes. It is thus recommended to do as little work as possible in this method.
+
+    See the documentation in :meth:`OnTextCaptured` for information on how to properly stop recognition of barcodes.

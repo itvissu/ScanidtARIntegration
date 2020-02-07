@@ -1,0 +1,113 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Supported Data Formats
+======================
+
+.. toctree::
+  :maxdepth: 2
+  :hidden:
+  :includehidden:
+
+  hibc
+  gs1ai
+  dlid
+  mrtd
+  swissqr
+  vin
+
+This pages gives a short overview of supported data formats that the parser understands and links to further information.
+
+
+**HIBC (Health Industry Bar Code)**
+
+HIBC is an industrial standard used in the medical space. HIBC data is encoded in Code 128, Code 39, Aztec, Data Matrix ECC200 or QR codes. HIBC data always starts with a `+` character.
+
+
+*Example Codes:*
+
+::
+
+    "+HIBCMED121/$1728/S87V"
+
+::
+
+    "+$A1234GU"
+
+For further details, take a look at the :doc:`HIBC format docs <hibc>`.
+
+
+**GS1 AI**
+
+The GS1 Application Identifier (AI) system defines a comprehensive set of numeric keys for compact data representation. GS1 AI data may be encoded in a large number of different barcode symbologies, including ITF, Code 128, DataBar, Data Matrix and QR.
+
+*Example Code:*
+
+::
+
+    "1719060010SCANDIT123"
+
+For further details, take a look at the :doc:`GS1 AI format docs <gs1ai>`.
+
+
+**DL/ID (Driver License and Identification)**
+
+The Driver License and Identification (DL/ID) Card Design Standard is used to produce driver licences in the USA and in Canada. Each card has a PDF417 code printed on it which encodes the personal data of the owner. It is designed and maintained by the American Association of Motor Vehicle Administrators (AAMVA).
+
+*Example Code:*
+
+::
+
+	"@\n\x1e\rANSI 636000090002DL00410278ZV03190008DLDAQT64235789\nDCSSAMPLE\nDDEN\nDACMICHAEL\nDDFN\nDADJOHN\nDDGN\nDCUJR\nDCAD\nDCBK\nDCDPH\nDBD06062016\nDBB06061986\nDBA12102024\nDBC1\nDAU068 in\nDAYBRO\nDAG2300 WEST BROAD STREET\nDAIRICHMOND\nDAJVA\nDAK232690000  \nDCF2424244747474786102204\nDCGUSA\nDCK123456789\nDDAF\nDDB06062008\nDDC06062009\nDDD1\rZVZVA01\r"
+
+Example source: 2016 AAMVA DL/ID Card Design Standard, `<http://www.aamva.org/>`_
+
+For further details, take a look at the :doc:`DL/ID format docs <dlid>`.
+
+
+**MRTD (Machine Readable Travel Documents)**
+
+The Machine Readable Travel Documents (MRTD) standard specified by the International Civil Aviation Organization (ICAO) defines how to encode information for optical character recognition on official travel documents.
+
+*Example Code:*
+
+::
+
+    "I<UTOD231458907<<<<<<<<<<<<<<<\n7408122F1204159UTO<<<<<<<<<<<6\nERIKSSON<<ANNA<MARIA<<<<<<<<<<"
+
+Example source: 2015 ICAO Doc 9303, Specifications for TD1 Sized MRTDs, `<https://www.icao.int>`_
+
+For further details, take a look at the :doc:`MRTD format docs <mrtd>`.
+
+
+**Swiss QR**
+
+The ISO 20022 standard defines how payment information is encoded in a specific type of QR codes, called Swiss QR codes. Swiss QR codes can be recognized by their swiss cross in the centre of the code.
+
+*Example Code:*
+
+::
+
+    "SPC\r\n0100\r\n1\r\nCH6812345678901234567\r\nScandit AG\r\nLimmatstrasse\r\n73\r\n8005\r\nZuerich\r\nCH\r\n\r\n\r\n\r\n\r\n\r\n\r\n1234.00\r\nCHF\r\n2020-01-01\r\n\r\n\r\n\r\n\r\n\r\n\r\nNON\r\n\r\ntest code\r\n"
+
+For further details, take a look at the :doc:`SwissQR format docs <swissqr>`.
+
+
+**VIN (Vehicle Identification Number)**
+
+VIN (Vehicle Identification Number) is a unique code used by the automotive industry to identify vehicles (please refer to `Wikipedia <https://en.wikipedia.org/wiki/Vehicle_identification_number>`_ for more details).
+The structure of the code is defined by `ISO 3779 <https://www.iso.org/standard/52200.html>`_, though there are variations
+of the standards in use that differ based on the region (e.g., North America or EU).
+
+*Example Codes:*
+
+::
+
+    "5UXFG2C50DL782277"
+
+::
+
+    "WVWZZZ1JZ3W386752"
+
+For further details, take a look at the :doc:`VIN format docs <vin>`.

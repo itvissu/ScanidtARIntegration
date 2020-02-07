@@ -1,0 +1,34 @@
+Parser Data Format
+=========================
+
+.. module:: scandit.datacapture.parser
+
+
+.. enum:: ParserDataFormat
+  :available: ios=6.1, android=6.1
+
+  Data formats supported by the :type:`Parser`.
+
+  .. value:: Gs1Ai
+    @objc@ SDCParserDataFormatGS1AI
+    :available: ios=6.1, android=6.1
+
+  .. value:: Hibc
+    @objc@ SDCParserDataFormatHIBC
+    :available: ios=6.1, android=6.1
+
+  .. value:: Dlid
+    @objc@ SDCParserDataFormatDLID
+    :available: ios=6.1, android=6.1
+
+  .. value:: Mrtd
+    @objc@ SDCParserDataFormatMRTD
+    :available: ios=6.1, android=6.1
+
+  .. value:: SwissQr
+    @objc@ SDCParserDataFormatSwissQR
+    :available: ios=6.1, android=6.1
+
+  .. value:: Vin
+    @objc@ SDCParserDataFormatVIN
+    :available: ios=6.1, android=6.1

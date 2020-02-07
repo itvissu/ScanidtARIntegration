@@ -1,0 +1,51 @@
+Checksum
+========
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.data
+
+.. enum:: Checksum
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  An enumeration of possible checksum algorithms. The enumeration only lists optional checksum algorithms; mandatory checksums that can't be changed are not listed here. Use the values below to set :prop:`optional checksums<SymbologySettings.Checksums>` for a symbology. The exact implementation chosen depends on the symbology *and* checksum algorithm. Only a subset of algorithms is supported for each symbology. Check the symbology documentation to see which checksums are supported.
+
+  .. value:: Mod10
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Checksum is calculated using modulo of 10.
+
+  .. value:: Mod11
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Checksum is calculated using modulo of 11.
+
+  .. value:: Mod16
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Checksum is calculated using modulo of 16.
+
+  .. value:: Mod43
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Checksum is calculated using modulo of 43.
+
+  .. value:: Mod47
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Checksum is calculated using modulo of 47.
+
+  .. value:: Mod103
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Checksum is calculated using modulo of 103.
+
+  .. value:: Mod10AndMod11
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Checksum is calculated using two checksums, one using modulo of 10 and one using modulo of 11.
+
+  .. value:: Mod10AndMod10
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Checksum is calculated using two different modulo of 10 checksums
+

@@ -1,0 +1,67 @@
+Frame Source Deserializer
+=========================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.capture.serialization
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. class:: FrameSourceDeserializer
+  @objc@ SDCFrameSourceDeserializer : NSObject
+  :available: ios=6.1, android=6.1
+
+  A deserializer to construct frame sources from JSON. For most use cases it is enough to use :meth:`core.Camera.FromJson` which internally uses this deserializer. Using the deserializer gives the advantage of being able to listen to the deserialization events as they happen and potentially influence them. Additonally warnings can be read from the deserializer that would otherwise not be available.
+
+  **Related topics**: :doc:`/core/serialization`.
+
+  .. method:: FrameSourceDeserializer(IList<IDataCaptureModeDeserializer> modeDeserializers)
+    @objc@ + (instancetype)frameSourceDeserializerWithModeDeserializers:(NSArray<id<SDCDataCaptureModeDeserializer>> *)modeDeserializers
+    :available: ios=6.1, android=6.1
+
+    Creates a new deserializer object.
+
+  .. property:: IFrameSourceDeserializerListener Listener { get; set; }
+    @objc@ @property (nonatomic, weak, nullable) id<SDCFrameSourceDeserializerDelegate> delegate
+    :available: ios=6.1, android=6.1
+
+    The object informed about deserialization events.
+
+  .. property:: IList<String> Warnings { get; }
+    @objc@ @property (nonatomic, readonly) NSArray<NSString *> *warnings
+    :available: ios=6.1, android=6.1
+
+    The warnings produced during deserialization, for example which properties were not used during deserialization.
+
+  .. method:: IFrameSource FrameSourceFromJson(String jsonData)
+    @objc@ - (nullable id<SDCFrameSource>)frameSourceFromJSONString:(NSString *)JSONString error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Deserializes a frame source from JSON. 
+
+    .. include:: /core/deserialization-exception.txt
+
+  .. method:: IFrameSource UpdateFrameSourceFromJson(IFrameSource frameSource, String jsonData)
+    @objc@ - (nullable id<SDCFrameSource>)updateFrameSource:(id<SDCFrameSource>)frameSource fromJSONString:(NSString *)JSONString error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Takes an existing frame source and updates it by deserializing new or changed properties from JSON. See :ref:`serialization_update_from_json` for details of how updates are being done.
+
+    .. include:: /core/deserialization-exception.txt
+
+  .. method:: CameraSettings CameraSettingsFromJson(String jsonData)
+    @objc@ - (nullable SDCCameraSettings *)cameraSettingsFromJSONString:(NSString *)JSONString error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Deserializes camera settings from JSON. 
+    
+    .. include:: /core/deserialization-exception.txt
+
+  .. method:: CameraSettings UpdateCameraSettingsFromJson(CameraSettings cameraSettings, String jsonData)
+    @objc@ - (nullable SDCCameraSettings *)updateCameraSettings:(SDCCameraSettings *)settings fromJSONString:(NSString *)JSONString error:(NSError **)error
+    :available: ios=6.1, android=6.1
+
+    Takes existing camera settings and updates them by deserializing new or changed properties from JSON. See :ref:`serialization_update_from_json` for details of how updates are being done.
+
+    .. include:: /core/deserialization-exception.txt

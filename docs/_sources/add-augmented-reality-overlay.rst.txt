@@ -1,0 +1,296 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+.. _add-augmented-reality-overlay:
+
+Add AR Overlays in MatrixScan
+=============================
+
+.. module:: scandit.datacapture.barcode.tracking
+  :hidden:
+
+Prerequisites
+-------------
+
+To proceed, you need to setup a project that uses matrix scan first, check out :ref:`this guide<matrixscan-getting-started>` (you can ignore the bottom section about visualization of tracked barcodes using BarcodeTrackingBasicOverlay).
+
+Getting started
+---------------
+
+There are two ways to add advanced AR overlays to a Data Capture View:
+
+* Take advantage of the :type:`ui.BarcodeTrackingAdvancedOverlay` class, which provides a ready-to-use implementation for view-based AR overlays.
+* Provide your own custom implementation, using the function :meth:`IBarcodeTrackingListener.OnSessionUpdated` to retrieve the barcode's current screen position for each frame.
+
+.. note:: The first way is the easiest, as it takes care of adding, removing and animating the overlay's views whenever needed. It's also flexible enough to cover the majority of use cases.
+
+Using BarcodeTrackingAdvancedOverlay
+------------------------------------
+
+As mentioned above, the advanced overlay combined with its :type:`listener<ui.IBarcodeTrackingAdvancedOverlayListener>` offers an easy way of adding augmentations to your :type:`core.ui.DataCaptureView`.
+In this guide we will add a view above each barcode showing its content.
+
+First of all, create a new instance of :type:`ui.BarcodeTrackingAdvancedOverlay` and add it to the DataCaptureView.
+
+.. sample:: java
+
+  BarcodeTrackingAdvancedOverlay overlay = BarcodeTrackingAdvancedOverlay.newInstance(barcodeTracking, dataCaptureView);
+
+.. sample:: swift
+
+  let overlay = BarcodeTrackingAdvancedOverlay(barcodeTracking: barcodeTracking, for: captureView)
+
+At this point, you have two options.
+
+* Add a :type:`ui.IBarcodeTrackingAdvancedOverlayListener` to the overlay.
+* Use the setters in the :type:`overlay<ui.BarcodeTrackingAdvancedOverlay>` to specify the view, anchor and offset for each barcode.
+
+.. note:: The second way will take priority over the first one, which means that if a view for a barcode has been set using :meth:`ui.BarcodeTrackingAdvancedOverlay.SetViewForTrackedBarcode`, the function :meth:`ui.IBarcodeTrackingAdvancedOverlayListener.ViewForTrackedBarcode` won't be invoked for that specific barcode.
+
+
+Using :type:`ui.IBarcodeTrackingAdvancedOverlayListener`
+
+* You need to |implement| :type:`ui.IBarcodeTrackingAdvancedOverlayListener`. This |interface|'s methods are invoked every time a barcode is newly tracked.
+* :meth:`ui.IBarcodeTrackingAdvancedOverlayListener.ViewForTrackedBarcode` asks for a view to animate on top of the barcode. You can handle touch events of the view as you normally would. Returning |null| will show no view.
+* :meth:`ui.IBarcodeTrackingAdvancedOverlayListener.AnchorForTrackedBarcode` asks how to anchor the view to the barcode through :type:`core.Anchor`. Be aware that it anchors the view's center to the anchor point. To achieve anchoring the top of the view or the bottom etc. you will have to set an offset as explained in the next point.
+* :meth:`ui.IBarcodeTrackingAdvancedOverlayListener.OffsetForTrackedBarcode` asks for an offset that is applied on the already anchored view. This offset is expressed through a :type:`core.PointWithUnit`.
+
+.. sample:: java
+
+  @Nullable
+  @Override
+  public View viewForTrackedBarcode(
+      @NotNull BarcodeTrackingAdvancedOverlay overlay,
+      @NotNull TrackedBarcode trackedBarcode
+  ) {
+      // Create and return the view you want to show for this tracked barcode. You can also return null, to have no view for this barcode.
+      TextView textView = new TextView(this);
+      textView.setBackgroundColor(Color.WHITE);
+      textView.setLayoutParams(
+          new ViewGroup.LayoutParams(
+              ViewGroup.LayoutParams.WRAP_CONTENT,
+              ViewGroup.LayoutParams.WRAP_CONTENT
+          )
+      );
+      textView.setText(trackedBarcode.getBarcode().getData());
+      return textView;
+  }
+
+  @NotNull
+  @Override
+  public Anchor anchorForTrackedBarcode(
+      @NotNull BarcodeTrackingAdvancedOverlay overlay,
+      @NotNull TrackedBarcode trackedBarcode
+  ) {
+      // As we want the view to be above the barcode, we anchor the view's center to the top-center of the barcode quadrilateral.
+      // Use the function below to adjust the position of the view by providing an offset.
+      return Anchor.TOP_CENTER;
+  }
+
+  @NotNull
+  @Override
+  public PointWithUnit offsetForTrackedBarcode(
+      @NotNull BarcodeTrackingAdvancedOverlay overlay,
+      @NotNull TrackedBarcode trackedBarcode,
+      @NotNull View view
+  ) {
+      // This is the offset that will be applied to the view.
+      // You can use MeasureUnit.FRACTION to give a measure relative to the view itself, the sdk will take care of transforming this into pixel size.
+      // We now center horizontally and move up the view to make sure it's centered and above the barcode quadrilateral by half of the view's height.
+      return new PointWithUnit(
+          new FloatWithUnit(0f, MeasureUnit.FRACTION),
+          new FloatWithUnit(-1f, MeasureUnit.FRACTION)
+      );
+  }
+
+.. sample:: swift
+
+  func barcodeTrackingAdvancedOverlay(_ overlay: BarcodeTrackingAdvancedOverlay,
+                                      viewFor trackedBarcode: TrackedBarcode) -> UIView? {
+      // Create and return the view you want to show for this tracked barcode. You can also return nil, to have no view for this barcode.
+      let label = UILabel()
+      label.text = trackedBarcode.barcode.data
+      label.backgroundColor = .white
+      label.sizeToFit()
+      return label
+  }
+
+  func barcodeTrackingAdvancedOverlay(_ overlay: BarcodeTrackingAdvancedOverlay,
+                                      anchorFor trackedBarcode: TrackedBarcode) -> Anchor {
+      // As we want the view to be above the barcode, we anchor the view's center to the top-center of the barcode quadrilateral.
+      // Use the function below to adjust the position of the view by providing an offset.
+      return .topCenter
+  }
+
+  func barcodeTrackingAdvancedOverlay(_ overlay: BarcodeTrackingAdvancedOverlay,
+                                      offsetFor trackedBarcode: TrackedBarcode) -> PointWithUnit {
+
+      // This is the offset that will be applied to the view.
+      // You can use .fraction to give a measure relative to the view itself, the sdk will take care of transforming this into pixel size.
+      // We now center horizontally and move up the view to make sure it's centered and above the barcode quadrilateral by half of the view's height.
+      return PointWithUnit(
+          x: FloatWithUnit(value: 0, unit: .fraction),
+          y: FloatWithUnit(value: -1, unit: .fraction)
+      )
+  }
+
+
+Using the setters in the :type:`overlay<ui.BarcodeTrackingAdvancedOverlay>`
+
+The function :meth:`IBarcodeTrackingListener.OnSessionUpdated` gives you access to a :type:`session<BarcodeTrackingSession>`, which contains all added, updated and removed tracked barcodes. From here you can create the view you want to display, and then call :meth:`ui.BarcodeTrackingAdvancedOverlay.SetViewForTrackedBarcode`, :meth:`ui.BarcodeTrackingAdvancedOverlay.SetAnchorForTrackedBarcode` and :meth:`ui.BarcodeTrackingAdvancedOverlay.SetOffsetForTrackedBarcode`
+
+.. sample:: java
+
+  @Override
+  public void onSessionUpdated(
+      @NonNull BarcodeTracking mode,
+      @NonNull final BarcodeTrackingSession session,
+      @NonNull FrameData data
+  ) {
+        // Be careful, this function is not invoked on the main thread!
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for (TrackedBarcode trackedBarcode : session.getAddedTrackedBarcodes()) {
+                    TextView textView = new TextView(this);
+                    textView.setBackgroundColor(Color.WHITE);
+                    textView.setLayoutParams(
+                        new ViewGroup.LayoutParams(
+                            ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT
+                        )
+                    );
+                    textView.setText(trackedBarcode.getBarcode().getData());
+                    overlay.setViewForTrackedBarcode(trackedBarcode, textView);
+                    overlay.setAnchorForTrackedBarcode(
+                        trackedBarcode, Anchor.TOP_CENTER
+                    );
+                    overlay.setOffsetForTrackedBarcode(
+                        trackedBarcode,
+                        new PointWithUnit(
+                            new FloatWithUnit(0f, MeasureUnit.FRACTION),
+                            new FloatWithUnit(-1f, MeasureUnit.FRACTION)
+                        )
+                    );
+                }
+            }
+        });
+    }
+
+.. sample:: swift
+
+  func barcodeTracking(_ barcodeTracking: BarcodeTracking,
+                       didUpdate session: BarcodeTrackingSession,
+                       frameData: FrameData) {
+      DispatchQueue.main.async {
+          for trackedBarcode in session.addedTrackedBarcodes {
+              let label = UILabel()
+              label.text = trackedBarcode.barcode.data
+              label.backgroundColor = .white
+              label.sizeToFit()
+              self.overlay.setView(label, for: trackedBarcode)
+              self.overlay.setAnchor(.topCenter, for: trackedBarcode)
+              let point = PointWithUnit(x: FloatWithUnit(value: 0, unit: .fraction),
+                                        y: FloatWithUnit(value: -1, unit: .fraction))
+              self.overlay.setOffset(point, for: trackedBarcode)
+          }
+      }
+  }
+
+
+Provide your own custom implementation
+--------------------------------------
+
+If you do not want to use our overlay, it is also possible to add augmented reality features based on the tracking identifier and :type:`quadrilateral<core.Quadrilateral>` coordinates that every tracked barcode has. Below are some pointers.
+
+* Set a :type:`IBarcodeTrackingListener` on the barcode tracking
+* In the :meth:`IBarcodeTrackingListener.OnSessionUpdated` function fetch the :prop:`added<BarcodeTrackingSession.AddedTrackedBarcodes>`, :prop:`updated<BarcodeTrackingSession.UpdatedTrackedBarcodes>` and :prop:`removed<BarcodeTrackingSession.RemovedTrackedBarcodes>` tracked barcodes.
+* Create and show the views for the added barcodes.
+* Remove the views for the lost barcodes.
+* Compare the updated barcodes of the current frame with the ones from the previous one, and change your visualizations accordingly. Instead of using :prop:`scandit.datacapture.barcode.Barcode.Location` which gives you the exact location of the barcode in the frame you should generally use :prop:`TrackedBarcode.PredictedLocation` which gives you a predicted location for the barcode. Using the predicted location avoids lagging behind the camera feed.
+* There are some state transitions where animating from the previous location of a tracked barcode to its current position can end up with weird artifacts because the order of the location's corners is not stable. If your visualization depends on the order of the corners (by for example drawing a rectangle connecting all corners), make sure that you query :prop:`TrackedBarcode.ShouldAnimateFromPreviousToNextState` before animating. If the order of the corners were to change it is possible that an animation would flip the visualization, which is not what happened to the actual barcode. However, a visualization that just draws something in the center of the location does not depend on the the order of corners and can ignore this.
+* When animating your views take into consideration :prop:`TrackedBarcode.DeltaTime` which tells you how long it will take the code to move to the predicted location. This time generally is about as long as it will take to process the next frame, giving you a new predicted location right as your previous animation is coming to an end.
+
+.. note:: This frame coordinates needs to be mapped to view coordinates, using :meth:`core.ui.DataCaptureView.MapFrameQuadrilateralToView`.
+
+.. sample:: java
+
+  @Override
+    public void onSessionUpdated(
+        @NonNull BarcodeTracking mode,
+        @NonNull final BarcodeTrackingSession session,
+        @NonNull FrameData data
+    ) {
+        // Be careful, this function is not invoked on the main thread!
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                for (int lostTrackIdentifier : session.getRemovedTrackedBarcodes()) {
+                    // You now know the identifier of the tracked barcode that has been lost. Usually here you would remove the views.
+                }
+
+                for (TrackedBarcode trackedBarcode : session.getAddedTrackedBarcodes()) {
+
+                    // Fixed identifier for the tracked barcode,
+                    Integer trackingIdentifier = trackedBarcode.getIdentifier();
+
+                    // Current location of the tracked barcode.
+                    Quadrilateral predictedLocation = trackedBarcode.getPredictedLocation();
+                    Quadrilateral quadrilateral = dataCaptureView.mapFrameQuadrilateralToView(predictedLocation);
+
+                    // You now know this new tracking's identifier and location. Usually here you would create and show the views.
+                }
+
+                for (Map.Entry<Integer, TrackedBarcode>  tracking : session.getTrackedBarcodes().entrySet()) {
+
+                    // Fixed identifier for the tracked barcode,
+                    Integer trackingIdentifier = tracking.getKey();
+
+                    // Current location of the tracked barcode.
+                    Quadrilateral predictedLocation = tracking.getValue().getPredictedLocation();
+                    Quadrilateral quadrilateral = dataCaptureView.mapFrameQuadrilateralToView(predictedLocation);
+
+                    // This boolean indicates if it's safe to animate the views to the current location.
+                    boolean shouldAnimate = tracking.getValue().getShouldAnimateFromPreviousToNextState();
+
+                    // You now know the updated location of the tracked barcode. Usually here you would animate the views to the retrieved location.
+                }
+            }
+        });
+    }
+
+.. sample:: swift
+
+  func barcodeTracking(_ barcodeTracking: BarcodeTracking,
+                       didUpdate session: BarcodeTrackingSession,
+                       frameData: FrameData) {
+      DispatchQueue.main.async {
+          for lostTrackIdentifier in session.removedTrackedBarcodes {
+              // You now know the identifier of the tracked barcode that has been lost. Usually here you would remove the views.
+          }
+
+          for trackedBarcode in session.addedTrackedBarcodes {
+              // Fixed identifier for the tracked barcode,
+              let trackingIdentifier = trackedBarcode.identifier
+
+              // Current location of the tracked barcode.
+              let predictedLocation = trackedBarcode.predictedLocation
+              let quadrilateral = self.captureView.viewQuadrilateral(forFrameQuadrilateral: predictedLocation)
+
+              // You now know this new tracking's identifier and location. Usually here you would create and show the views.
+          }
+
+          for (identifier, trackedBarcode) in session.trackedBarcodes {
+              // Current location of the tracked barcode.
+              let predictedLocation = trackedBarcode.predictedLocation
+              let quadrilateral = self.captureView.viewQuadrilateral(forFrameQuadrilateral: predictedLocation)
+
+              // This boolean indicates if it's safe to animate the views to the current location.
+              let shouldAnimate = trackedBarcode.shouldAnimateFromPreviousToNextState
+
+              // You now know the updated location of the tracked barcode. Usually here you would animate the views to the retrieved location.
+          }
+      }
+  }

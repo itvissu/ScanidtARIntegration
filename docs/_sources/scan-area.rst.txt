@@ -1,0 +1,240 @@
+Set up the Active Scan Area and Location Selection
+==================================================
+
+.. module:: scandit.datacapture.barcode
+  :hidden:
+
+When capturing barcodes, you want to control where exactly barcodes are scanned. For example, you may want to scan codes only at one location to let users pick a barcode by precisely pointing at it. Or part of the camera preview is covered by UI elements and you want to ensure that no codes are scanned below these elements. 
+
+This page describes how to setup the scan area for barcode capture to get the optimal behavior for your app.
+
+
+Setting up the Scan Area for Your Use Case
+------------------------------------------
+
+.. _scan_area_margins:
+
+The Scan Area is Restricted to the Visible Part of the Preview
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When displaying the processed frames in the :type:`core.ui.DataCaptureView`, the scan area is automatically restricted to what is visible. This avoids unexpected scans as the code first has to be visible on screen before it can be scanned. This is especially important when the preview only shows a small part of the whole camera frame, e.g. when using a cropped view.
+
+If you want to scan codes in the whole visible area, no further configuration is required. If you want to further restrict the scanning area, e.g. to leave a region around the border of the preview, you can change the :prop:`core.ui.DataCaptureView.ScanAreaMargins` property on the :type:`core.ui.DataCaptureView`. Here an example of restricting the scanning area further by 50 device independent pixel from all sides.
+
+.. sample:: swift
+
+  let view: DataCaptureView = ...
+  view.scanAreaMargins = MarginsWithUnit(left: FloatWithUnit(value: 50, unit: .dip),
+                                    top: FloatWithUnit(value: 50, unit: .dip),
+                                    right: FloatWithUnit(value: 50, unit: .dip),
+                                    bottom: FloatWithUnit(value: 50, unit: .dip))
+
+.. sample:: java
+
+  DataCaptureView dataCaptureView = ...;
+  MarginsWithUnit margins = new MarginsWithUnit(
+          new FloatWithUnit(50f, MeasureUnit.DIP),
+          new FloatWithUnit(50f, MeasureUnit.DIP),
+          new FloatWithUnit(50f, MeasureUnit.DIP),
+          new FloatWithUnit(50f, MeasureUnit.DIP)
+  );
+  dataCaptureView.setScanAreaMargins(margins);
+
+.. _view-dimension-changes:
+
+If you want to adjust margins based on the view dimensions or orientation, e.g. to use different margins based on the device orientation, you can observe view size and orientation changes on the data capture view by registering a :type:`core.ui.IDataCaptureViewListener` on the data capture view.
+
+Changing the Point of Interest
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default, scanning is optimized for the center of the visible part of the preview (or the center of the frame if the frame is not displayed in a :type:`core.ui.DataCaptureView`). This is specified through what we call the point of interest. This point is also where code selection happens if it is enabled, more on that in the next section. If you want to shift the scanning to another point, you can change the :prop:`core.ui.DataCaptureView.PointOfInterest` property. For example, the code below shifts the point of interest vertically to a fourth of the height:
+
+.. sample:: swift
+
+  let view: DataCaptureView = ...
+  view.pointOfInterest = PointWithUnit(x: FloatWithUnit(value: 0.5, unit: .fraction),
+                                  y: FloatWithUnit(value: 0.25, unit: .fraction))
+
+.. sample:: java
+
+  DataCaptureView dataCaptureView = ...;
+  PointWithUnit pointOfInterest = new PointWithUnit(
+      new FloatWithUnit(0.5f, MeasureUnit.FRACTION), 
+      new FloatWithUnit(0.25f, MeasureUnit.FRACTION)
+  );
+  dataCaptureView.setPointOfInterest(pointOfInterest);
+
+When specifying fractions, they are relative to the visible area minus the margins. This means that a point of interest of 0.5/0.5 is always centered in the scan area defined through the size of the view and potentially added margins.
+
+As indicated :ref:`above<view-dimension-changes>`, register a :type:`core.ui.IDataCaptureViewListener` on the data capture view to change the point of interest whenever the view dimension or orientation changes.
+
+In case you are using multiple capture modes that care about the point of interest such as :type:`barcode.BarcodeCapture` and :type:`text.TextCapture`, you can overwrite the point of interest of the data capture view by setting the point of interest directly on the capture mode:
+
+- :prop:`barcode.BarcodeCapture.PointOfInterest`
+- :prop:`text.TextCapture.PointOfInterest`
+
+
+Location Selection
+^^^^^^^^^^^^^^^^^^
+
+.. note::
+
+  Location selection is only available for :type:`barcode.BarcodeCapture`.
+
+Sometimes it's necessary to let the user select which code to scan, e.g. to select one code from a dense stack of barcodes. Enabling full-image scanning is not desired in that case as any of the codes currently visible on screen could be returned as part of the results. To not return a random code but clearly target specific codes, a :type:`core.ILocationSelection` can be set in the :type:`barcode.BarcodeCaptureSettings`. Location selections implement a specific strategy to select barcodes by their location.
+
+.. _scan_area_radius_location_selection:
+
+Radius Location Selection
+"""""""""""""""""""""""""
+
+The :type:`core.RadiusLocationSelection` is the simplest and for barcode scanning the preferred way of location selection. It lets you define a radius around the point of interest (see previous section). Any barcode touched by the circle will be recognized and returned, any barcode not touched by the circle will be entirely ignored. Radius location selection can resolve all of the following scenarios that could not be handled properly with full-image scanning:
+
+ Selecting stacked codes, e.g. a sheet of vertically-stacked Code 128. Here the middle code will be returned as it is touched by the circle while the code above and below are not.
+
+  .. image:: /_static/scan-area-radius1.png
+    :align: center
+
+ Selecting codes printed next to each other. Once again only the middle code is returned as it is the only one touched by the circle.
+
+  .. image:: /_static/scan-area-radius3.png
+    :align: center
+
+ Both of those scenarios work with any symbology, here an example of Data Matrix codes printed next to each other.
+
+  .. image:: /_static/scan-area-radius6.png
+    :align: center
+
+ As the code selection is done through a circle it works just as well for vertical codes, or codes at any other angle.
+
+  .. image:: /_static/scan-area-radius5.png
+    :align: center
+
+A :type:`core.RadiusLocationSelection` is created by specifying a radius and then setting it on the barcode capture settings with :prop:`barcode.BarcodeCaptureSettings.LocationSelection`. For example, the code below creates a radius location selection for a radius of 0 (a valid radius forcing barcodes to contain the point of interest):
+
+.. sample:: swift
+
+  let settings: BarcodeCaptureSettings = ...
+  settings.locationSelection = RadiusLocationSelection(radius: .zero)
+
+.. sample:: java
+
+  BarcodeCaptureSettings settings = ...;
+  RadiusLocationSelection radiusSelection =
+          new RadiusLocationSelection(new FloatWithUnit(0.0f, MeasureUnit.FRACTION));
+  settings.setLocationSelection(radiusSelection);
+
+When choosing the radius it is important to consider two potential issues:
+
+ If the radius chosen is too large, it might often be touching multiple barcodes at the same time. In this case it is not a given that the central barcode will be returned and it is advicable to reduce the radius.
+
+  .. image:: /_static/scan-area-radius2.png
+    :align: center
+
+ If the radius chosen is too small, higher precision is needed to touch a barcode. It can be helpful to the user experience to increase the radius in this case.
+
+  .. image:: /_static/scan-area-radius4.png
+    :align: center
+
+.. todo:: Reference a guide about code selection UIs
+
+.. _scan_area_rectangular_location_selection:
+
+Rectangular Location Selection
+""""""""""""""""""""""""""""""
+
+The :type:`core.RectangularLocationSelection` lets you define the size of a rectangle around the point of interest (see previous section). Any code outside of the rectangle will not be recognized. The main use case for the rectangular location selection is to provide a code selection that matches the UI of the :type:`core.ui.LaserlineViewfinder`.
+
+A :type:`core.RectangularLocationSelection` is created by specifying the size of the rectangle and then setting it on the barcode capture settings with :prop:`barcode.BarcodeCaptureSettings.LocationSelection`. For example, the code below creates a rectangular location selection for a very thin laserline taking 10% of the view's height and 90% of the view's width:
+
+.. sample:: swift
+
+  let settings: BarcodeCaptureSettings = ...
+  let size = SizeWithUnit(width: FloatWithUnit(value: 0.9, unit: .fraction),
+                         height: FloatWithUnit(value: 0.1, unit: .fraction))
+  settings.locationSelection = RectangularLocationSelection(size: size)
+
+.. sample:: java
+
+  BarcodeCaptureSettings settings = ...;
+  RectangularLocationSelection rectangularSelection =
+          RectangularLocationSelection.withSize(
+                  new SizeWithUnit(new FloatWithUnit(0.9f, MeasureUnit.FRACTION),
+                          new FloatWithUnit(0.1f, MeasureUnit.FRACTION)));
+  settings.setLocationSelection(rectangularSelection);
+
+The size of the rectangle can also be set by only providing either the width or the height and then an aspect ratio to calculate the other dimension. This can be especially useful for defining a square area:
+
+.. sample:: swift
+
+  let settings: BarcodeCaptureSettings = ...
+  let width = FloatWithUnit(value: 0.5, unit: .fraction)
+  settings.locationSelection = RectangularLocationSelection(width: width, aspectRatio: 1)
+
+.. sample:: java
+
+  BarcodeCaptureSettings settings = ...;
+  RectangularLocationSelection rectangularSelection =
+          RectangularLocationSelection.withWidthAndAspectRatio(
+                  new FloatWithUnit(0.5f, MeasureUnit.FRACTION), 1.0f);
+  settings.setLocationSelection(rectangularSelection);
+
+Debugging The Scan Area And Location Selection
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It can be important to visually debug the scan area to make sure that it is configured exactly how it should be. To this purpose you can enable an overlay that visualizes everything that was set in the scan area through :prop:`barcode.ui.BarcodeCaptureOverlay.ShouldShowScanAreaGuides`:
+
+.. sample:: swift
+
+  let overlay: BarcodeCaptureOverlay = ...
+  overlay.shouldShowScanAreaGuides = true
+
+.. sample:: java
+
+  BarcodeCaptureOverlay overlay = ...;
+  overlay.setShouldShowScanAreaGuides(true);
+
+.. image:: /_static/scan-area-guides.png
+  :align: center
+
+Visualized are:
+
+* The scan area including the margins by a light grey rectangle
+* The radius location selection by a green crosshair
+
+The above visualization is for the following example settings:
+
+.. sample:: swift
+
+  let barcodeCaptureSettings: BarcodeCaptureSettings = ...
+  barcodeCaptureSettings.locationSelection = RadiusLocationSelection(radius: FloatWithUnit(value: 5, unit: .dip))
+
+  let view: DataCaptureView = ...
+  view.pointOfInterest = PointWithUnit(x: FloatWithUnit(value: 0.7, unit: .fraction),
+                                 y: FloatWithUnit(value: 0.25, unit: .fraction))
+
+  view.scanAreaMargins = MarginsWithUnit(left: FloatWithUnit(value: 40, unit: .dip),
+                                    top: .zero,
+                                    right: FloatWithUnit(value: 40, unit: .dip),
+                                    bottom: FloatWithUnit(value: 0.5, unit: .fraction))
+
+.. sample:: java
+
+  BarcodeCaptureSettings barcodeCaptureSettings = ...;
+  barcodeCaptureSettings.setLocationSelection(
+      new RadiusLocationSelection(new FloatWithUnit(5.0f, MeasureUnit.DIP)));
+
+  DataCaptureView dataCaptureView = ...;
+  PointWithUnit pointOfInterest = new PointWithUnit(
+      new FloatWithUnit(0.7f, MeasureUnit.FRACTION), 
+      new FloatWithUnit(0.25f, MeasureUnit.FRACTION)
+  );
+  dataCaptureView.setPointOfInterest(pointOfInterest);
+
+  MarginsWithUnit margins = new MarginsWithUnit(
+      new FloatWithUnit(40.0f, MeasureUnit.DIP),
+      new FloatWithUnit(0.0f, MeasureUnit.DIP),
+      new FloatWithUnit(40.0f, MeasureUnit.DIP),
+      new FloatWithUnit(0.5f, MeasureUnit.FRACTION)
+  );
+  dataCaptureView.setScanAreaMargins(margins);

@@ -1,0 +1,38 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Barcode Tracking Listener
+=========================
+
+.. module:: scandit.datacapture.barcode.tracking
+  :android-package: com.scandit.datacapture.barcode.tracking.capture
+
+.. interface:: IBarcodeTrackingListener
+  @objc@ SDCBarcodeTrackingListener <NSObject> 
+  :available: android=6.0, ios=6.0
+
+  The BarcodeTracking |delegate| is the main way for hooking into BarcodeTracking. It provides a callback that is invoked when the state of tracked barcodes changes.
+
+  .. method:: void OnObservationStarted(BarcodeTracking barcodeTracking)
+    @objc@ -(void)didStartObservingBarcodeTracking:(nonnull SDCBarcodeTracking *)barcodeTracking
+    :available: ios=6.0, android=6.0
+
+    Called when the listener starts observing the BarcodeTracking instance.
+
+  .. method:: void OnObservationStopped(BarcodeTracking barcodeTracking)
+    @objc@ -(void)didStopObservingBarcodeTracking:(nonnull SDCBarcodeTracking *)barcodeTracking
+    :available: ios=6.0, android=6.0
+
+    Called when the listener stops observing the BarcodeTracking instance.
+
+  .. method:: void OnSessionUpdated(BarcodeTracking barcodeTracking, BarcodeTrackingSession session, core.IFrameData frameData)
+    @objc@ - (void)barcodeTracking:(nonnull SDCBarcodeTracking *)barcodeTracking didUpdate:(nonnull SDCBarcodeTrackingSession *)session frameData:(nonnull id<SDCFrameData>)frameData
+    :available: android=6.0, ios=6.0
+
+    Called for every processed frame if one or more of the following events happened:
+    
+    1. A track is established. 
+    2. A track location has changed.
+    3. A track is lost and can no longer be tracked.
+    

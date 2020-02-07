@@ -1,0 +1,33 @@
+Parser Field
+=========================
+
+.. module:: scandit.datacapture.parser
+
+.. class:: ParsedField
+  @objc@ SDCParsedField : NSObject
+  :available: ios=6.1, android=6.1
+
+  .. property:: string Name { get; }
+   @objc@ @property (nonatomic, readonly) NSString *name
+   :available: ios=6.1, android=6.1
+
+   The name of the field.
+
+  .. property:: object Parsed { get; }
+   @objc@ @property (nonatomic, nullable, readonly) NSObject *parsed
+   :available: ios=6.1, android=6.1
+
+   The parsed data contained in this field. Depending on the field type, this returns a :type:`INumber`, :type:`IDictionary` or :type:`string` instance. Consult the field documentation for information on the type for the fields you are interested in.
+
+  .. property:: string RawString { get; }
+    @objc@ @property (nonatomic, readonly) NSString *rawString
+    :available: ios=6.1, android=6.1
+
+    The raw string that represents this field in the input string/data.
+
+  .. property:: IList<string> Issues { get; }
+    @objc@ @property (nonatomic, readonly, strong) NSArray<NSString *> *issues
+    :available: ios=6.1, android=6.1
+
+    The raw string that represents this field in the input string/data.
+

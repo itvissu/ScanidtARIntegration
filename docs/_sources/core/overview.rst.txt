@@ -1,0 +1,20 @@
+ScanditCaptureCore
+==================
+
+.. module:: scandit.datacapture.core
+  :hidden:
+
+*ScanditCaptureCore* builds the foundation of all data capture related functionality offered by the |sdk|. It contains classes and interfaces shared between the data capture modules.
+
+.. note::
+
+  Just getting started? Have a look at :doc:`our samples</run-samples>`, or learn how to :doc:`add the SDK to your app</add-sdk>`.
+  
+
+.. toctree::
+  :hidden:
+  :glob:
+
+  concepts
+  serialization
+  API<api>

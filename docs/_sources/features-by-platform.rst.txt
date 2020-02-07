@@ -1,0 +1,463 @@
+:orphan:
+
+Features By Platform
+====================================
+
+Core
+----
+
+.. list-table::
+  :header-rows: 1
+  :widths: 10 4 4 4
+
+  * - Feature
+    - iOS
+    - Android
+    - Cordova
+
+  * - 
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - **UI**
+    - 
+    - 
+    - 
+
+  * - Scaled/Cropped View
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - Draw On Top Of View
+    - 6.0
+    - 6.0
+    - 
+
+  * - Move Logo
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - Torch On/Off Control
+    - 6.0
+    - 6.0
+    - 
+
+  * - Camera Switch Control
+    - 
+    - 
+    - 
+
+  * - Icon Customization of Controls
+    - 
+    - 
+    - 
+
+  * - Location Customization of Controls
+    - 
+    - 
+    - 
+
+  * - **Viewfinders**
+    - 
+    - 
+    - 
+
+  * - Rectangular
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - Laserline
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - Spotlight
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - **Camera**
+    - 
+    - 
+    - 
+
+  * - HD & FullHD
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - 4K
+    - 6.0
+    - 6.1 :ref:`[1]<by-feature-special-remarks>`
+    - 6.1
+
+  * - Camera API 2 :ref:`[2]<by-feature-special-remarks>`
+    - n/a
+    - 6.1
+    - 6.1
+
+  * - Focus & Exposure On Point Of Interest
+    - 6.1
+    - 6.1
+    - 6.1
+
+  * - Zoom
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - Camera Frame Access
+    - 6.0
+    - 6.0
+    - 
+
+  * - Fixed Focus :ref:`[1][2]<by-feature-special-remarks>`
+    - 6.0
+    - 6.1
+    - 6.1
+
+  * - USB Camera
+    - 
+    - 
+    - 
+
+  * - Image (Non-Camera) Processing
+    - 
+    - 
+    - 
+
+  * - **Camera Interaction**
+    - 
+    - 
+    - 
+
+  * - Focus on Touch
+    - 
+    - 
+    - 
+
+  * - Pinch to Zoom
+    - 
+    - 
+    - 
+
+  * - **Additional APIs**
+    - 
+    - 
+    - 
+
+  * - Image Capture & Upload API
+    - 
+    - 
+    - 
+
+
+Barcode Capture
+---------------
+
+.. list-table::
+  :header-rows: 1
+  :widths: 10 4 4 4
+
+  * - Feature
+    - iOS
+    - Android
+    - Cordova
+
+  * - 
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - **Scanning**
+    - 
+    - 
+    - 
+
+  * - Extension Codes
+    - 
+    - 
+    - 
+
+  * - Composite Codes
+    - 
+    - 
+    - 
+
+  * - Location Selection / Area Restriction
+    - 
+    - 
+    - 
+
+  * - :type:`Radius<scandit.datacapture.core.RadiusLocationSelection>`
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - :type:`Rectangular<scandit.datacapture.core.RectangularLocationSelection>`
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - **UI**
+    - 
+    - 
+    - 
+
+  * - :type:`Overlay<scandit.datacapture.barcode.ui.BarcodeCaptureOverlay>` (Barcode Highlights)
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - **Feedback**
+    - 
+    - 
+    - 
+
+  * - Beep on Scan
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - Vibrate on Scan
+    - 6.0
+    - 6.0
+    - 6.1
+
+  * - **Workflow**
+    - 
+    - 
+    - 
+
+  * - Code Rejection (Sample)
+    - 6.1
+    - 6.1
+    - 
+
+
+Barcode Tracking (MatrixScan)
+-----------------------------
+
+.. list-table::
+  :header-rows: 1
+  :widths: 10 4 4 4
+
+  * - Feature
+    - iOS
+    - Android
+    - Cordova
+
+  * - 
+    - 6.0
+    - 6.0
+    - 
+
+  * - **Scanning**
+    - 
+    - 
+    - 
+
+  * - 1D Codes
+    - 6.0
+    - 6.0
+    - 
+
+  * - QR & DataMatrix
+    - 6.0
+    - 6.0
+    - 
+
+  * - Extension Codes
+    - 
+    - 
+    - 
+
+  * - Composite Codes
+    - 
+    - 
+    - 
+
+  * - **UI**
+    - 
+    - 
+    - 
+
+  * - :type:`Overlay<scandit.datacapture.barcode.tracking.ui.BarcodeTrackingBasicOverlay>` (Barcode Highlights)
+    - 6.0
+    - 6.0
+    - 
+
+  * - :type:`Overlay<scandit.datacapture.barcode.tracking.ui.BarcodeTrackingAdvancedOverlay>` (Animated Views)
+    - 6.0
+    - 6.0
+    - 
+
+  * - **Feedback**
+    - 
+    - 
+    - 
+
+  * - Manual Beep on Scan :ref:`[3]<by-feature-special-remarks>`
+    - 6.0
+    - 6.0
+    - 
+
+  * - Manual Vibrate on Scan :ref:`[3]<by-feature-special-remarks>`
+    - 6.0
+    - 6.0
+    - 
+
+
+Text Capture
+------------
+
+.. list-table::
+  :header-rows: 1
+  :widths: 10 4 4 4
+
+  * - Feature
+    - iOS
+    - Android
+    - Cordova
+
+  * - 
+    - 6.1
+    - 6.1
+    - 
+
+  * - Location Selection / Area Restriction
+    - 
+    - 
+    - 
+
+  * - :type:`Radius<scandit.datacapture.core.RadiusLocationSelection>`
+    - 
+    - 
+    - 
+
+  * - :type:`Rectangular<scandit.datacapture.core.RectangularLocationSelection>`
+    - 6.1
+    - 6.1
+    - 
+
+  * - **UI**
+    - 
+    - 
+    - 
+
+  * - :type:`Basic Overlay<scandit.datacapture.text.ui.TextCaptureOverlay>` (No Highlights)
+    - 6.1
+    - 6.1
+    - 
+
+  * - **Feedback**
+    - 
+    - 
+    - 
+
+  * - Beep on Scan
+    - 6.1
+    - 6.1
+    - 
+
+  * - Vibrate on Scan
+    - 6.1
+    - 6.1
+    - 
+
+
+Label Capture
+-------------
+
+.. list-table::
+  :header-rows: 1
+  :widths: 10 4 4 4
+
+  * - Feature
+    - iOS
+    - Android
+    - Cordova
+
+  * - 
+    - 6.0
+    - 6.0
+    - 
+
+  * - **UI**
+    - 
+    - 
+    - 
+
+  * - :type:`Basic Overlay<scandit.datacapture.label.ui.LabelCaptureBasicOverlay>` (Form Highlight)
+    - 6.0
+    - 6.0
+    - 
+
+  * - **Feedback**
+    - 
+    - 
+    - 
+
+  * - Manual Beep on Scan :ref:`[3]<by-feature-special-remarks>`
+    - 6.0
+    - 6.0
+    - 
+
+  * - Manual Vibrate on Scan :ref:`[3]<by-feature-special-remarks>`
+    - 6.0
+    - 6.0
+    - 
+
+
+Parser
+------
+
+.. list-table::
+  :header-rows: 1
+  :widths: 10 4 4 4
+
+  * - Feature
+    - iOS
+    - Android
+    - Cordova
+
+  * - 
+    - 6.1
+    - 6.1
+    - 
+
+
+Barcode Generator
+-----------------
+
+.. list-table::
+  :header-rows: 1
+  :widths: 10 4 4 4
+
+  * - Feature
+    - iOS
+    - Android
+    - Cordova
+
+  * - 
+    - 
+    - 
+    - 
+
+
+Special Remarks
+---------------
+
+.. _by-feature-special-remarks:
+
+[1] Requires camera API 2 to be enabled.
+
+[2] To use the camera API 2 please contact us at support@scandit.com.
+
+[3] Manual feedback means that we have no strategy to automatically trigger the feedback, instead the customer has to decide when to trigger it, but we provide functionality to easily do so.
+
+[4] Barcode Tracking only supports the following 2D symbologies: .

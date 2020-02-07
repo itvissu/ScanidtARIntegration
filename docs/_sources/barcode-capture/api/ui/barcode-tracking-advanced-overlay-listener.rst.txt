@@ -1,0 +1,43 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Barcode Tracking Advanced Overlay |Delegate|
+============================================
+
+.. module:: scandit.datacapture.barcode.tracking.ui
+  :android-package: com.scandit.datacapture.barcode.tracking.ui.overlay
+
+.. interface:: IBarcodeTrackingAdvancedOverlayListener
+  @objc@ SDCBarcodeTrackingAdvancedOverlayDelegate <NSObject>
+  :available: android=6.0, ios=6.0
+
+  .. method:: View? ViewForTrackedBarcode(BarcodeTrackingAdvancedOverlay overlay, TrackedBarcode trackedBarcode)
+    @objc@ - (nullable UIView *)barcodeTrackingAdvancedOverlay:(nonnull SDCBarcodeTrackingAdvancedOverlay *)overlay viewForTrackedBarcode:(nonnull SDCTrackedBarcode *)trackedBarcode
+    :available: android=6.0, ios=6.0
+
+    View to be drawn corresponding to the given :type:`TrackedBarcode`.
+    This method will be called before :meth:`IBarcodeTrackingAdvancedOverlayListener.AnchorForTrackedBarcode` and :meth:`IBarcodeTrackingAdvancedOverlayListener.OffsetForTrackedBarcode`.
+    Called from the main thread.
+    Beware that this view can be overridden with :meth:`BarcodeTrackingAdvancedOverlay.SetViewForTrackedBarcode` method.
+    This method will only be called for new tracked barcodes that do not have a view yet, e.g. a view set by a call to :meth:`BarcodeTrackingAdvancedOverlay.SetViewForTrackedBarcode`.
+
+  .. method:: core.Anchor AnchorForTrackedBarcode(BarcodeTrackingAdvancedOverlay overlay, TrackedBarcode trackedBarcode)
+    @objc@ - (SDCAnchor)barcodeTrackingAdvancedOverlay:(nonnull SDCBarcodeTrackingAdvancedOverlay *)overlay anchorForTrackedBarcode:(nonnull SDCTrackedBarcode *)trackedBarcode
+    :available: android=6.0, ios=6.0
+
+    Anchor point that should be used for the view corresponding to the given :type:`TrackedBarcode`.
+    This method will be called after :meth:`IBarcodeTrackingAdvancedOverlayListener.ViewForTrackedBarcode` and before :meth:`IBarcodeTrackingAdvancedOverlayListener.OffsetForTrackedBarcode`.
+    Called from the main thread.
+    Beware that this anchor can be overridden with :meth:`BarcodeTrackingAdvancedOverlay.SetAnchorForTrackedBarcode` method.
+    This method will only be called for new tracked barcodes that do not have an anchor yet, e.g. an anchor set by a call to :meth:`BarcodeTrackingAdvancedOverlay.SetAnchorForTrackedBarcode`.
+
+  .. method:: core.PointWithUnit OffsetForTrackedBarcode(BarcodeTrackingAdvancedOverlay overlay, TrackedBarcode trackedBarcode, View view)
+    @objc@ - (SDCPointWithUnit)barcodeTrackingAdvancedOverlay:(nonnull SDCBarcodeTrackingAdvancedOverlay *)overlay offsetForTrackedBarcode:(nonnull SDCTrackedBarcode *)trackedBarcode
+    :available: android=6.0, ios=6.0
+
+    Offset to be set to the view corresponding to the given :type:`TrackedBarcode`. The offset is relative to the anchor point of the tracked barcode.
+    This method will be called after :meth:`IBarcodeTrackingAdvancedOverlayListener.ViewForTrackedBarcode` and :meth:`IBarcodeTrackingAdvancedOverlayListener.AnchorForTrackedBarcode`.
+    Called from the main thread.
+    Beware that this offset can be overridden with :meth:`BarcodeTrackingAdvancedOverlay.SetOffsetForTrackedBarcode` method.
+    This method will only be called for new tracked barcodes that do not have an offset yet, e.g. an offset set by a call to :meth:`BarcodeTrackingAdvancedOverlay.SetOffsetForTrackedBarcode`.

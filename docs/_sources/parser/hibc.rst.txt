@@ -1,0 +1,156 @@
+****
+HIBC
+****
+
+Overview
+========
+
+The parser supports the ANSI HIBC 2.5 supplier labeling standard. For the complete documentation of the standard please refer to `the official website. <http://www.hibcc.org>`_
+
+Example
+=======
+
+Parsing following code (without quotes):
+
+::
+
+    "+A123BJC5D6E71G"
+
+will result in following JSON output:
+
+.. code-block:: javascript
+
+   [
+       {
+          "name" : "lic",
+          "parsed" : "A123",
+          "rawString" : "A123"
+       },
+       {
+          "name" : "pcn",
+          "parsed" : "BJC5D6E7",
+          "rawString" : "BJC5D6E7"
+       },
+       {
+          "name" : "uom",
+          "parsed" : 1,
+          "rawString" : "1"
+       },
+       {
+          "name" : "metadata",
+          "parsed" : {
+             "checksum" : "G",
+             "primary" : true,
+             "secondary" : false
+          },
+          "rawString" : ""
+       }
+    ] 
+
+Exposed fields
+==============
+
+A code might contain a primary and/or secondary section. If it contains a secondary section, it might also contain an additional section for miscellaneous data. To check whether a primary/secondary/additional section is present, check the 'metadata' field.
+The order of the fields corresponds to order in the data string. The 'metadata' field, is always the last field.
+
+Primary data fields
+-------------------
+
+==============  ==========================  ==============================  ================================
+Field Name      Always present?             Parsed Data Sructure            Additional Notes
+==============  ==========================  ==============================  ================================
+lic             yes (if primary present)    alphanumeric string             Label Identification Code
+pcn             yes (if primary present)    alphanumeric string             Product or Catalogue Number
+uom             yes (if primary present)    One-digit integer               Unit of Measure
+==============  ==========================  ==============================  ================================
+
+Secondary data fields
+---------------------
+
+==============  ==========================  ==============================  ================================
+Field Name      | Always                    Parsed Data Structure           Additional Notes
+                | present?                                                  
+==============  ==========================  ==============================  ================================
+quantity        no                          integer                    
+expiryDate      no                          | Dictionary with these 
+                                            | key/value pairs:
+                                              
+                                             - 'year' : YY,
+                                             - 'month' : MM,
+                                             - 'day' : DD,
+                                             - ('hour' : HH)
+                                              
+                                            | where YY, MM, DD, HH are
+                                            | two-digit integers. 'hour' 
+                                            | is optional and not always 
+                                            | present.
+serial          no                          string                          Serial number
+lot             no                          string                          Lot/Batch number
+==============  ==========================  ==============================  ================================
+
+Additional data fields
+----------------------
+
+=============== ============  ==============================  ================================
+ Field Name     | Always            Parsed Data Sructure            Additional Notes
+                | present?
+=============== ============  ==============================  ================================
+serial          no            | String                        | Serial number
+                                                              | If the serial number is
+                                                              | specified in the secondary 
+                                                              | and the additional data, 
+                                                              | then the first is ignored.
+expiryDate      no            | Dictionary with these         | If the expiry date 
+                              | key/value pairs:              | specified in the secondary
+                                                              | and in the additional data,
+                                - 'year' : YYYY,              | then the first is ignored.
+                                - 'month': MM,
+                                - 'day' : DD
+
+                              | with YYYY, MM, DD 
+                              | integers
+manufactureDate no            | Dictionary with these
+                              | key/value pairs:
+
+                                - 'year' : YYYY,
+                                - 'month': MM, 
+                                - 'day' : DD
+                                              
+                              | with YYYY, MM, DD 
+                              | integers
+=============== ============  ==============================  ================================
+
+.. _hibc-metadata:
+
+Metadata field
+--------------
+
+=============== ==========================  ==============================  ================================
+Field Name      Always present?             Parsed Data Sructure            Additional Notes
+=============== ==========================  ==============================  ================================
+metadata        yes                         |  Dictionary with these
+                                            |  key/value pairs:
+                                            
+                                              - 'primary' : boolean,
+                                              - 'secondary' : boolean,
+                                              - 'link' : string, optional
+                                              - 'checksum' : string
+                                            
+                                            |  The primary and secondary
+                                            |  booleans indicate wether
+                                            |  the corresponding section
+                                            |  is present in the code.
+
+                                            |  The link string is one
+                                            |  character and is used to
+                                            |  link a separate primary and
+                                            |  secondary code together. It
+                                            |  is only present for
+                                            |  standalone secondary codes.
+
+                                            |  'check' is the checksum
+                                            |  character of the code. The
+                                            |  Scandit parser library
+                                            |  automatically checks the
+                                            |  ingerity of the code.
+=============== ==========================  ==============================  ================================

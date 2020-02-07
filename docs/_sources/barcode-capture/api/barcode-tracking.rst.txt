@@ -1,0 +1,83 @@
+.. eager-ifconfig:: platform == 'cordova'
+
+  :orphan:
+
+Barcode Tracking
+================
+
+.. module:: scandit.datacapture.barcode.tracking
+  :android-package: com.scandit.datacapture.barcode.tracking.capture
+
+.. class:: BarcodeTracking : scandit.datacapture.core.IDataCaptureMode
+  @objc@ SDCBarcodeTracking : NSObject <SDCDataCaptureMode>
+  :available: android=6.0, ios=6.0
+
+  Data capture mode that implements MatrixScan (barcode tracking). 
+
+  Learn more on how to use barcode tracking in our :doc:`/get-started-matrixscan` guide. 
+
+  This capture mode uses the *barcode scanning* and *tracking* capabilities. It can not be used together with other capture modes that require the same capabilities, e.g. :type:`barcode.BarcodeCapture` or :type:`label.LabelCapture`.
+
+  .. method:: static BarcodeTracking ForDataCaptureContext(core.DataCaptureContext? dataCaptureContext, BarcodeTrackingSettings settings)
+    @objc@ + (instancetype)barcodeTrackingWithContext:(nullable SDCDataCaptureContext *)context settings:(nonnull SDCBarcodeTrackingSettings *)settings
+    :available: ios=6.0, android=6.0
+
+    Constructs a new barcode tracking mode with the provided context and settings. When the context is not |null|, the capture mode is automatically added to the context.
+
+  .. method:: static BarcodeTracking FromJson(core.DataCaptureContext dataCaptureContext, String jsonData)
+    @objc@ + (nullable instancetype)barcodeTrackingFromJSONString:(nonnull NSString *)jsonString context:(nonnull SDCDataCaptureContext *)context error:(NSError **)error
+    :available: android=6.0, ios=6.0
+
+    Constructs a new barcode tracking mode with the provided JSON serialization. See :doc:`/core/serialization` for details. The capture mode is automatically added to the context.
+
+  .. property:: bool IsEnabled { get; set; }
+    :available: ios=6.0, android=6.0
+
+    Implemented from :type:`core.IDataCaptureMode`. See :prop:`core.IDataCaptureMode.IsEnabled`.
+
+  .. method:: Task ApplySettingsAsync(BarcodeTrackingSettings settings)
+    :available: android=6.0, ios=6.0
+
+        Asynchronously applies the new settings to the barcode scanner. If the scanner is currently running, the task will complete when the next frame is processed, and will use the new settings for that frame. If the scanner is currently *not* running, the task will complete as soon as the settings have been stored and won't wait until the next frame is going to be processed.
+
+    .. implnote::
+
+      Implementation note: The settings should be copied prior to passing them to the other thread, so no concurrent modifications can happen.
+
+  .. method:: void ApplySettings(BarcodeTrackingSettings settings)
+    :available: android=6.0
+
+    Same as :meth:`BarcodeTracking.ApplySettingsAsync` with the second argument set to |null|.
+
+  .. method:: void AddListener(IBarcodeTrackingListener listener)
+    :available: android=6.0, ios=6.0
+
+    Adds the listener to observe this barcode capture instance.
+    
+    If the listener is already observing the barcode tracking instance, calling this method has no effect.
+
+  .. method:: void RemoveListener(IBarcodeTrackingListener listener)
+    :available: android=6.0, ios=6.0
+
+    Removes a previously added listener from this barcode tracking instance. 
+    
+    If the listener is not currently observing the barcode tracking instance, calling this method has no effect.
+
+  .. method:: static core.CameraSettings CreateRecommendedCameraSettings()
+     @objc@ @property (class, nonatomic, readonly, nonnull) SDCCameraSettings *recommendedCameraSettings
+    :available: android=6.0, ios=6.1
+
+    Returns the recommended camera settings for use with barcode tracking.
+
+  .. property:: core.DataCaptureContext? Context { get; }
+    @java@ core.DataCaptureContext? DataCaptureContext { get; }
+    :available: ios=6.0, android=6.0
+
+    Implemented from :type:`core.IDataCaptureMode`. See :prop:`core.IDataCaptureMode.Context`.
+
+  .. method:: void UpdateFromJson(String jsonData)
+    @objc@ - (BOOL)updateFromJSONString:(nonnull NSString *)jsonString error:(NSError **)error
+    :available: android=6.0, ios=6.0
+
+    Updates the mode according to a JSON serialization. See :doc:`/core/serialization` for details.
+

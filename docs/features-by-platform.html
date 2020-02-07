@@ -1,0 +1,749 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Features By Platform &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Migrate from Barcode Scanner 5.x" href="migrate-to-6.html" />
+    <link rel="prev" title="Support &amp; FAQ" href="support.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Features By Platform</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#core">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#barcode-capture">Barcode Capture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#barcode-tracking-matrixscan">Barcode Tracking (MatrixScan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#text-capture">Text Capture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#label-capture">Label Capture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parser">Parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#barcode-generator">Barcode Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#special-remarks">Special Remarks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Features By Platform</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="features-by-platform">
+<h1>Features By Platform<a class="headerlink" href="#features-by-platform" title="Permalink to this headline">#</a></h1>
+<div class="section" id="core">
+<h2>Core<a class="headerlink" href="#core" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>iOS</p></th>
+<th class="head"><p>Android</p></th>
+<th class="head"><p>Cordova</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>UI</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Scaled/Cropped View</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Draw On Top Of View</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Move Logo</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Torch On/Off Control</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Camera Switch Control</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Icon Customization of Controls</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Location Customization of Controls</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Viewfinders</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Rectangular</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Laserline</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-even"><td><p>Spotlight</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Camera</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>HD &amp; FullHD</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>4K</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1 <a class="reference internal" href="#by-feature-special-remarks"><span class="std std-ref">[1]</span></a></p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-even"><td><p>Camera API 2 <a class="reference internal" href="#by-feature-special-remarks"><span class="std std-ref">[2]</span></a></p></td>
+<td><p>n/a</p></td>
+<td><p>6.1</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Focus &amp; Exposure On Point Of Interest</p></td>
+<td><p>6.1</p></td>
+<td><p>6.1</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-even"><td><p>Zoom</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Camera Frame Access</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Fixed Focus <a class="reference internal" href="#by-feature-special-remarks"><span class="std std-ref">[1][2]</span></a></p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>USB Camera</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Image (Non-Camera) Processing</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Camera Interaction</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Focus on Touch</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Pinch to Zoom</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>Additional APIs</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Image Capture &amp; Upload API</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="barcode-capture">
+<h2>Barcode Capture<a class="headerlink" href="#barcode-capture" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>iOS</p></th>
+<th class="head"><p>Android</p></th>
+<th class="head"><p>Cordova</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Scanning</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Extension Codes</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Composite Codes</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Location Selection / Area Restriction</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="core/api/radius-location-selection.html#class-scandit.datacapture.core.RadiusLocationSelection" title="Radius class">Radius</a></p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="core/api/rectangular-location-selection.html#class-scandit.datacapture.core.RectangularLocationSelection" title="Rectangular class">Rectangular</a></p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>UI</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="barcode-capture/api/ui/barcode-capture-overlay.html#class-scandit.datacapture.barcode.ui.BarcodeCaptureOverlay" title="Overlay class">Overlay</a> (Barcode Highlights)</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Feedback</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Beep on Scan</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Vibrate on Scan</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td><p>6.1</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Workflow</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Code Rejection (Sample)</p></td>
+<td><p>6.1</p></td>
+<td><p>6.1</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="barcode-tracking-matrixscan">
+<h2>Barcode Tracking (MatrixScan)<a class="headerlink" href="#barcode-tracking-matrixscan" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>iOS</p></th>
+<th class="head"><p>Android</p></th>
+<th class="head"><p>Cordova</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Scanning</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>1D Codes</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>QR &amp; DataMatrix</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Extension Codes</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Composite Codes</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>UI</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BarcodeTrackingBasicOverlay</span></code> (Barcode Highlights)</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BarcodeTrackingAdvancedOverlay</span></code> (Animated Views)</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Feedback</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Manual Beep on Scan <a class="reference internal" href="#by-feature-special-remarks"><span class="std std-ref">[3]</span></a></p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Manual Vibrate on Scan <a class="reference internal" href="#by-feature-special-remarks"><span class="std std-ref">[3]</span></a></p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="text-capture">
+<h2>Text Capture<a class="headerlink" href="#text-capture" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>iOS</p></th>
+<th class="head"><p>Android</p></th>
+<th class="head"><p>Cordova</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>6.1</p></td>
+<td><p>6.1</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Location Selection / Area Restriction</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="core/api/radius-location-selection.html#class-scandit.datacapture.core.RadiusLocationSelection" title="Radius class">Radius</a></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="core/api/rectangular-location-selection.html#class-scandit.datacapture.core.RectangularLocationSelection" title="Rectangular class">Rectangular</a></p></td>
+<td><p>6.1</p></td>
+<td><p>6.1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>UI</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TextCaptureOverlay</span></code> (No Highlights)</p></td>
+<td><p>6.1</p></td>
+<td><p>6.1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>Feedback</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Beep on Scan</p></td>
+<td><p>6.1</p></td>
+<td><p>6.1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Vibrate on Scan</p></td>
+<td><p>6.1</p></td>
+<td><p>6.1</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="label-capture">
+<h2>Label Capture<a class="headerlink" href="#label-capture" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>iOS</p></th>
+<th class="head"><p>Android</p></th>
+<th class="head"><p>Cordova</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>UI</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LabelCaptureBasicOverlay</span></code> (Form Highlight)</p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Feedback</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Manual Beep on Scan <a class="reference internal" href="#by-feature-special-remarks"><span class="std std-ref">[3]</span></a></p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Manual Vibrate on Scan <a class="reference internal" href="#by-feature-special-remarks"><span class="std std-ref">[3]</span></a></p></td>
+<td><p>6.0</p></td>
+<td><p>6.0</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="parser">
+<h2>Parser<a class="headerlink" href="#parser" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>iOS</p></th>
+<th class="head"><p>Android</p></th>
+<th class="head"><p>Cordova</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td><p>6.1</p></td>
+<td><p>6.1</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="barcode-generator">
+<h2>Barcode Generator<a class="headerlink" href="#barcode-generator" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>iOS</p></th>
+<th class="head"><p>Android</p></th>
+<th class="head"><p>Cordova</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="special-remarks">
+<h2>Special Remarks<a class="headerlink" href="#special-remarks" title="Permalink to this headline">#</a></h2>
+<p id="by-feature-special-remarks">[1] Requires camera API 2 to be enabled.</p>
+<p>[2] To use the camera API 2 please contact us at <a class="reference external" href="mailto:support&#37;&#52;&#48;scandit&#46;com">support<span>&#64;</span>scandit<span>&#46;</span>com</a>.</p>
+<p>[3] Manual feedback means that we have no strategy to automatically trigger the feedback, instead the customer has to decide when to trigger it, but we provide functionality to easily do so.</p>
+<p>[4] Barcode Tracking only supports the following 2D symbologies: .</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

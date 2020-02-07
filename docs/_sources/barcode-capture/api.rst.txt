@@ -1,0 +1,93 @@
+ScanditBarcodeCapture API
+=========================
+
+.. module:: scandit.datacapture.barcode
+  :hidden:
+
+.. eager-ifconfig:: platform != "cordova"
+
+  .. toctree::
+    :hidden:
+    :glob:
+
+    api/*
+    api/ui/*
+
+.. eager-ifconfig:: platform == "cordova"
+
+  .. toctree::
+    :hidden:
+
+    api/barcode-capture.rst
+    api/barcode-capture-settings.rst
+    api/barcode-capture-listener.rst
+    api/barcode-capture-session.rst
+    api/barcode-capture-feedback.rst
+    api/ui/barcode-capture-overlay.rst
+    api/barcode.rst
+    api/checksum.rst
+    api/composite-flag.rst
+    api/localized-only-barcode.rst
+    api/symbology-description.rst
+    api/symbology-settings.rst
+    api/symbology.rst
+
+
+Traditional Barcode Scanning
+----------------------------
+
+.. hlist::
+
+  * :type:`BarcodeCapture`
+  * :type:`BarcodeCaptureSession`
+  * :type:`IBarcodeCaptureListener`
+  * :type:`BarcodeCaptureSettings`
+  * :type:`ui.BarcodeCaptureOverlay`
+  * :type:`BarcodeCaptureFeedback`
+  * :type:`Barcode`
+  * :type:`Checksum`
+  * :type:`CompositeFlag`
+  * :type:`Symbology`
+  * :type:`SymbologySettings`
+
+.. module:: scandit.datacapture.barcode.tracking
+  :hidden:
+
+MatrixScan (Barcode Tracking)
+-----------------------------
+
+.. eager-ifconfig:: platform == "cordova"
+
+  Coming to Cordova with version 6.2.
+
+.. eager-ifconfig:: platform != "cordova"
+
+  .. hlist::
+
+    * :type:`BarcodeTracking`
+    * :type:`BarcodeTrackingSession`
+    * :type:`BarcodeTrackingSettings`
+    * :type:`IBarcodeTrackingListener`
+    * :type:`TrackedBarcode`
+    * :type:`ui.BarcodeTrackingBasicOverlay`
+    * :type:`ui.IBarcodeTrackingBasicOverlayListener`
+    * :type:`ui.BarcodeTrackingAdvancedOverlay`
+    * :type:`ui.IBarcodeTrackingAdvancedOverlayListener`
+
+Deserialization
+---------------
+
+.. eager-ifconfig:: platform == "cordova"
+
+  The deserialization API is not available for Cordova.
+
+.. eager-ifconfig:: platform != "cordova"
+
+  .. warning::
+
+    The deserialization API is not yet stable and will still change over the coming releases.
+
+  .. hlist::
+
+    * :type:`BarcodeCaptureDeserializer`
+    * :type:`BarcodeTrackingDeserializer`

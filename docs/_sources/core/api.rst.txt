@@ -1,0 +1,101 @@
+ScanditCaptureCore API
+======================
+
+.. module:: scandit.datacapture.core
+  :hidden:
+
+.. toctree::
+  :hidden:
+  :glob:
+
+  api/*
+  api/ui/*
+
+Camera and Frame Sources
+---------------------------------
+
+.. hlist::
+
+  .. eager-ifconfig:: platform != 'cordova'
+
+    * :type:`Camera`
+    * :type:`IFrameSource`
+    * :type:`FrameSourceState`
+    * :type:`IFrameData`
+    * :type:`ImageBuffer`
+    * :type:`ImagePlane`
+
+  .. eager-ifconfig:: platform == 'cordova'
+
+    * :type:`Camera`
+    * :type:`IFrameSource`
+    * :type:`FrameSourceState`
+
+Context and Capture Modes
+--------------------------------
+
+.. hlist::
+
+  .. eager-ifconfig:: platform != 'cordova'
+
+    * :type:`DataCaptureContext`
+    * :type:`IDataCaptureContextListener`
+    * :type:`IDataCaptureContextFrameListener`
+    * :type:`IDataCaptureMode`
+    * :type:`ContextStatus`
+
+  .. eager-ifconfig:: platform == 'cordova'
+
+    * :type:`DataCaptureContext`
+    * :type:`IDataCaptureContextListener`
+    * :type:`IDataCaptureMode`
+    * :type:`ContextStatus`
+
+Location Selection
+---------------------------------
+
+.. hlist::
+
+  * :type:`ILocationSelection`
+  * :type:`RadiusLocationSelection`
+  * :type:`RectangularLocationSelection`
+
+
+User Interface
+---------------------------------
+
+.. hlist::
+
+  * :type:`ui.IDataCaptureOverlay`
+  * :type:`ui.DataCaptureView`
+  * :type:`ui.LaserlineViewfinder`
+  * :type:`ui.RectangularViewfinder`
+
+Misc Data Structures
+---------------------------------
+
+.. hlist::
+
+  * :type:`Anchor`
+  * :type:`FloatWithUnit`
+  * :type:`MarginsWithUnit`
+  * :type:`PointWithUnit`
+  * :type:`RectWithUnit`
+  * :type:`SizeWithUnit`
+  * :type:`SizeWithAspect`
+  * :type:`SizingMode`
+  * :type:`SizeWithUnitAndAspect`
+
+Deserialization
+---------------
+
+.. warning::
+
+  The deserialization API is not yet stable and will still change over the coming releases.
+
+.. hlist::
+
+  * :type:`DataCaptureContextDeserializer`
+  * :type:`DataCaptureViewDeserializer`
+  * :type:`FrameSourceDeserializer`
+  * :type:`JsonValue`

@@ -1,0 +1,51 @@
+Data Capture Context Listener
+-----------------------------------
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.capture
+
+.. interface:: IDataCaptureContextListener
+  @objc@ SDCDataCaptureContextListener <NSObject>
+  :available: ios=6.0, android=6.0, cordova=6.1
+
+  |Interface| for observing/listening to mode and status changes of a data capture context.
+
+  To observe changes of the data capture context, one or more :type:`IDataCaptureContextListener` may be added. These listeners provide hooks into different parts of the data capture context.
+
+  .. method:: void OnFrameSourceChanged(DataCaptureContext dataCaptureContext, IFrameSource? frameSource)
+    @objc@ - (void)context:(SDCDataCaptureContext*)context didChangeFrameSource:(nullable id<SDCFrameSource>)frameSource
+    :available: ios=6.0, android=6.0
+
+    Invoked when the data capture context changed the frame source. Also invoked if the frame source is reset to |null|.
+
+  .. method:: void OnModeAdded(DataCaptureContext dataCaptureContext, IDataCaptureMode mode)
+    @objc@ - (void)context:(SDCDataCaptureContext*)context didAddMode:(id<SDCDataCaptureMode>)mode
+    :available: ios=6.0, android=6.0
+
+    Called when a mode got added to the context.
+
+  .. method:: void OnModeRemoved(DataCaptureContext dataCaptureContext, IDataCaptureMode mode)
+    @objc@ - (void)context:(SDCDataCaptureContext*)context didRemoveMode:(id<SDCDataCaptureMode>)mode
+    :available: ios=6.0, android=6.0
+
+    Called when a mode got removed from the context.
+
+  .. method:: void OnObservationStarted(DataCaptureContext dataCaptureContext)
+    @objc@ - (void)didStartObservingContext:(SDCDataCaptureContext*)context
+    :available: ios=6.0, android=6.0
+
+    Called when the listener has been added to the data capture context and is from now on receiving events.
+
+  .. method:: void OnObservationStopped(DataCaptureContext dataCaptureContext)
+    @objc@ - (void)didStopObservingContext:(SDCDataCaptureContext*)context
+    :available: ios=6.0, android=6.0
+
+    Called when the listener has been removed from the data capture context and is no longer receiving events.
+
+  .. method:: void OnStatusChanged(DataCaptureContext dataCaptureContext, ContextStatus status)
+    @objc@ - (void)context:(SDCDataCaptureContext *)context didChangeStatus:(SDCContextStatus *)contextStatus
+    @javascript@ didChangeStatus(context: DataCaptureContext, contextStatus: ContextStatus): void
+    :available: ios=6.0, android=6.0, cordova=6.1
+
+    Called when a context status changed. 
+

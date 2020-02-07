@@ -1,0 +1,106 @@
+Barcode Capture Listener
+========================
+
+.. module:: scandit.datacapture.barcode
+  :android-package: com.scandit.datacapture.barcode.capture
+
+.. interface:: IBarcodeCaptureListener
+  @objc@ SDCBarcodeCaptureListener <NSObject>
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  |Delegate| |interface| for traditional barcode capture.
+
+  .. method:: void OnObservationStarted(BarcodeCapture barcodeCapture)
+    @objc@ - (void)didStartObservingBarcodeCapture:(SDCBarcodeCapture *)barcodeCapture
+    :available: android=6.0, ios=6.0
+
+    Called when the listener starts observing the barcode capture instance.
+
+  .. method:: void OnObservationStopped(BarcodeCapture barcodeCapture)
+    @objc@ - (void)didStopObservingBarcodeCapture:(SDCBarcodeCapture *)barcodeCapture
+    :available: android=6.0, ios=6.0
+
+    Called when the listener stops observing the barcode capture instance.
+
+  .. method:: void OnBarcodeScanned(BarcodeCapture capture, BarcodeCaptureSession session, core.IFrameData frameData)
+    @objc@ - (void)barcodeCapture:(SDCBarcodeCapture *)barcodeCapture didScanInSession:(SDCBarcodeCaptureSession *)session frameData:(id<SDCFrameData>)frameData
+    @javascript@ didScan(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession): void;
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Invoked whenever a code has been scanned. The newly scanned codes can be retrieved from :prop:`BarcodeCaptureSession.NewlyRecognizedBarcodes`.
+
+    .. eager-ifconfig:: platform != 'cordova'
+
+      |recognition-thread-dispatch-main| After receiving this callback, you will typically want to start processing the scanned barcodes. Keep in mind however, that any further recognition is blocked until this method completes. Therefore, if you need to perform a time-consuming operation, like querying a database or opening an URL encoded in the barcode data, consider switching to another thread.
+
+    .. eager-ifconfig:: platform == 'cordova'
+
+      This callback will be blocking the further processing of frames, so you should return from it as quickly as possible. Therefore, if you need to perform a time-consuming operation, like querying a database or opening an URL encoded in the barcode data, consider moving it out of this callback, e.g. by using a timeout to let this function return before you do any more work. It is advised to disable the capture mode while you're doing additional work and enabling it again once that work is done.
+
+    Sometimes, after receiving this callback, you may want to pause scanning or to stop scanning completely.
+
+    * To pause scanning, but keep the camera (frame source) running, just set the barcode capture's :prop:`enabled property<core.IDataCaptureMode.IsEnabled>` to |false|.
+
+      .. sample:: swift
+
+        captureMode.isEnabled = true
+
+      .. sample:: csharp
+
+        captureMode.Enabled = false;
+
+      .. sample:: java
+
+        captureMode.setEnabled(false);
+
+      .. sample:: javascript
+
+        captureMode.enabled = false
+
+    * To stop scanning, you will need to both :prop:`disable the capture mode<core.IDataCaptureMode.IsEnabled>` and :meth:`stop the frame source<core.IFrameSource.SwitchToDesiredStateAsync>`. While it's possible to only stop the camera and keep the capture mode enabled, this may lead to additional scan events being delivered, which is typically not desired. The following lines of code show how to disable the capture mode and stop the frame source as well:
+
+      .. sample:: swift
+
+        // no more didScan callbacks will be invoked after this call.
+        captureMode.isEnabled = false
+        // asynchronously turn off the camera as quickly as possible.
+        captureMode.context?.frameSource?.switch(toDesiredState: .off, completionHandler: nil)
+
+      .. sample:: csharp
+
+        // no more didScan callbacks will be invoked after this call.
+        captureMode.Enabled = false;
+        // asynchronously turn off the camera
+        await captureMode.Context.FrameSource.SwitchToDesiredStateAsync(FrameSourceState.Off)
+
+      .. sample:: java
+
+        // no more didScan callbacks will be invoked after this call.
+        captureMode.setEnabled(false);
+        // asynchronously turn off the camera
+        capture.getDataCaptureContext().getFrameSource().switchToDesiredState(FrameSourceState.OFF, null);
+
+      .. sample:: javascript
+
+        // no more didScan callbacks will be invoked after this call.
+        captureMode.enabled = false
+        // asynchronously turn off the camera as quickly as possible.
+        captureMode.context.frameSource.switchToDesiredState(Scandit.FrameSourceState.Off);
+
+  .. method:: void OnSessionUpdated(BarcodeCapture capture, BarcodeCaptureSession session, core.IFrameData frameData)
+    @objc@ - (void)barcodeCapture:(SDCBarcodeCapture *)barcodeCapture didUpdateSession:(SDCBarcodeCaptureSession *)session frameData:(id<SDCFrameData>)frameData
+    @javascript@ didUpdateSession(barcodeCapture: BarcodeCapture, session: BarcodeCaptureSession): void
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Invoked after a frame has been processed by barcode capture and the session has been updated. In contrast to :meth:`OnBarcodeScanned`, this method is invoked, regardless whether a code was scanned or not. If codes were recognized in this frame, this method is invoked after :meth:`OnBarcodeScanned`.
+
+    .. eager-ifconfig:: platform != 'cordova'
+
+      |recognition-thread-dispatch-main| Further recognition is blocked until this method completes. It is thus recommended to do as little work as possible in this method.
+
+    .. eager-ifconfig:: platform == 'cordova'
+
+      This callback will be blocking the further processing of frames, so you should return from it as quickly as possible. Therefore, if you need to perform a time-consuming operation, like querying a database or opening an URL encoded in the barcode data, consider moving it out of this callback, e.g. by using a timeout to let this function return before you do any more work. It is advised to disable the capture mode while you're doing additional work and enabling it again once that work is done.
+
+    See the documentation in :meth:`OnBarcodeScanned` for information on how to properly stop recognition of barcodes.
+

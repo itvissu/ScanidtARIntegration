@@ -1,0 +1,30 @@
+Data Capture Context Builder
+============================
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.capture
+
+.. class:: DataCaptureContextBuilder
+  :available: android=6.1
+
+  A builder for the :type:`DataCaptureContext` that allows to set additional properties that cannot be set through :meth:`DataCaptureContext.ForLicenseKey`.
+
+  .. method:: DataCaptureContextBuilder(string licenseKey)
+    :available: android=6.1
+
+    Constructs a builder to build a data capture context with additional properties.
+
+  .. method:: DataCaptureContextBuilder DeviceName(string deviceName)
+    :available: android=6.1
+
+    Sets a device name. The device name allows to optionally identify the device with a user-provided name. This name is then associated with the unique identifier of the device and displayed in the online dashboard.
+
+  .. method:: DataCaptureContextBuilder ExternalId(string externalId)
+    :available: android=6.1
+
+    Sets an external ID. The external ID is a customer defined identifier that is verified in the license key. This is an optional feature for resellers of the |sdk|.
+
+  .. method:: DataCaptureContext Build()
+    :available: android=6.1
+
+    Constructs a data capture context with the properties set on the builder.

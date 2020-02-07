@@ -1,0 +1,91 @@
+Frame Source
+============
+
+.. module:: scandit.datacapture.core
+  :android-package: com.scandit.datacapture.core.source
+
+.. enum:: FrameSourceState
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  The different states a frame source can be in.
+
+  .. value:: On
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The frame source is on and producing frames.
+
+  .. value:: Off
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The frame source is off and not producing frames.
+
+  .. value:: Starting
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The frame source is currently starting (moving from :enum:`Off` to state :enum:`On`). This value can not be set directly but is returned by :prop:`IFrameSource.CurrentState` to indicate that the frame source is currently starting.
+
+  .. value:: Stopping
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    The frame source is currently stopping (moving from :enum:`On` to state :enum:`Off`). This value can not be set directly but is returned by :prop:`IFrameSource.CurrentState` to indicate that the frame source is currently stopping.
+
+.. interface:: IFrameSource
+  @objc@ SDCFrameSource <NSObject>
+  :available: android=6.0, ios=6.0, cordova=6.1
+
+  |Interface| for producers of frames. Typically this |interface| is used through :type:`Camera` which gives access to the built-in camera on |platform|. For more sophisticated use cases this |interface| can be implemented by programmers to support other sources of frames, such as external cameras with proprietary APIs.
+
+  .. note:: 
+  
+    The :type:`IFrameSource` |interface| is currently restricted to frame sources included in the |sdk| and can not be used to implement custom frame sources.
+
+  .. method:: Task<bool> SwitchToDesiredStateAsync(FrameSourceState state)
+    @javascript@ switchToDesiredState(desiredState: FrameSourceState): Promise<void>
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Sets the desired state of the frame source
+
+    Possible values are :enum:`FrameSourceState.On`/:enum:`FrameSourceState.Off`. The frame source's state needs to be switched to :enum:`FrameSourceState.On` for it to produce frames.
+
+    It is not allowed to set the desired state to :enum:`FrameSourceState.Starting`/:enum:`FrameSourceState.Stopping`. These values are only used to report ongoing state transitions.
+
+    In case the desired state is equal to the current state, calling this method has no effect. Otherwise, a call to this method initiates a state transition from the current state to the desired state.
+
+    The state transition is asynchronous, meaning that it may not complete immediately for certain frame source implementations. When a state transition is ongoing, further changes to the desired state are delayed until the state transition completes. Only the last of the desired states will be processed; previous requested state transitions will be cancelled.
+
+    The completion handler is invoked when the state transition finishes. |True| is passed to the completion handler in case the state transition is successful, |false| if it either was cancelled or the state transition failed.
+
+  .. property:: FrameSourceState DesiredState { get; }
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Readonly attribute for accessing the desired state. Possible states are :enum:`FrameSourceState.On`, :enum:`FrameSourceState.Off`.
+
+  .. property:: FrameSourceState CurrentState { get; }
+    @javascript@ getCurrentState(): Promise<FrameSourceState>
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Readonly attribute for accessing the current state. Possible states are :enum:`FrameSourceState.On`, :enum:`FrameSourceState.Off`, :enum:`FrameSourceState.Starting`, :enum:`FrameSourceState.Stopping`.
+
+    The current state can not be changed directly, but is modified by :meth:`SwitchToDesiredStateAsync`.
+
+  .. method:: void AddListener(IFrameSourceListener? listener)
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Adds the listener to this frame source.
+    
+    |add-listener|
+
+  .. method:: void RemoveListener(IFrameSourceListener? listener)
+    :available: android=6.0, ios=6.0, cordova=6.1
+
+    Removes a previously added listener from this frame source.
+    
+    |remove-listener|
+
+.. method:: string StringFromFrameSourceState(FrameSourceState state)
+  @objc@ NSString *_Nonnull NSStringFromFrameSourceState(SDCFrameSourceState state)
+  :available: ios=6.1
+
+.. method:: FrameSourceState FrameSourceStateFromJSONString(string JSONString)
+  @objc@ BOOL SDCFrameSourceStateFromJSONString(NSString *_Nonnull JSONString, SDCFrameSourceState *_Nonnull frameSourceState)
+  :available: ios=6.1

@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Barcode Capture Listener &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Barcode Capture Session" href="barcode-capture-session.html" />
+    <link rel="prev" title="Barcode Capture Settings" href="barcode-capture-settings.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../overview.html">ScanditBarcodeCapture</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../symbology-properties.html">Symbology Properties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture.html">Barcode Capture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture-settings.html">Barcode Capture Settings</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Barcode Capture Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture-session.html">Barcode Capture Session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode-capture-feedback.html">Barcode Capture Feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/barcode-capture-overlay.html">Barcode Capture Overlay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode.html">Barcode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checksum.html">Checksum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="composite-flag.html">Composite Flag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localized-only-barcode.html">Localized Only Barcode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbology-description.html">Symbology Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbology-settings.html">Symbology Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbology.html">Symbology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#traditional-barcode-scanning">Traditional Barcode Scanning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#matrixscan-barcode-tracking">MatrixScan (Barcode Tracking)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#deserialization">Deserialization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../overview.html">ScanditBarcodeCapture</a> &raquo;</li>
+        
+          <li><a href="../api.html">ScanditBarcodeCapture API</a> &raquo;</li>
+        
+      <li>Barcode Capture Listener</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="barcode-capture-listener">
+<h1>Barcode Capture Listener<a class="headerlink" href="#barcode-capture-listener" title="Permalink to this headline">#</a></h1>
+<p>Defined under the namespace <em>Scandit.Datacapture.Barcode</em></p>
+<dl class="interface">
+<dt id="interface-scandit.datacapture.barcode.IBarcodeCaptureListener">
+<code class="sig-name descname">BarcodeCaptureListener</code><a class="headerlink" href="#interface-scandit.datacapture.barcode.IBarcodeCaptureListener" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">interface BarcodeCaptureListener</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Delegate interface for traditional barcode capture.</p>
+<dl class="method">
+<dt id="method-scandit.datacapture.barcode.IBarcodeCaptureListener.OnBarcodeScanned">
+<code class="sig-name descname">didScan(barcodeCapture, session)</code><a class="headerlink" href="#method-scandit.datacapture.barcode.IBarcodeCaptureListener.OnBarcodeScanned" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">didScan</code>(<em>barcodeCapture</em>: <a class="reference internal" href="barcode-capture.html#class-scandit.datacapture.barcode.BarcodeCapture" title="BarcodeCapture class">BarcodeCapture</a>,
+        <em>session</em>: <a class="reference internal" href="barcode-capture-session.html#class-scandit.datacapture.barcode.BarcodeCaptureSession" title="BarcodeCaptureSession class">BarcodeCaptureSession</a>): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Invoked whenever a code has been scanned. The newly scanned codes can be retrieved from <a class="reference internal" href="barcode-capture-session.html#property-scandit.datacapture.barcode.BarcodeCaptureSession.NewlyRecognizedBarcodes" title="BarcodeCaptureSession.newlyRecognizedBarcodes property">BarcodeCaptureSession.newlyRecognizedBarcodes</a>.</p>
+<p>This callback will be blocking the further processing of frames, so you should return from it as quickly as possible. Therefore, if you need to perform a time-consuming operation, like querying a database or opening an URL encoded in the barcode data, consider moving it out of this callback, e.g. by using a timeout to let this function return before you do any more work. It is advised to disable the capture mode while you’re doing additional work and enabling it again once that work is done.</p>
+<p>Sometimes, after receiving this callback, you may want to pause scanning or to stop scanning completely.</p>
+<ul>
+<li><p>To pause scanning, but keep the camera (frame source) running, just set the barcode capture’s <a class="reference internal" href="../../core/api/data-capture-mode.html#property-scandit.datacapture.core.IDataCaptureMode.IsEnabled" title="enabled property property">enabled property</a> to <em>false</em>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">captureMode</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="kc">false</span>
+</pre></div>
+</div>
+</li>
+<li><p>To stop scanning, you will need to both <a class="reference internal" href="../../core/api/data-capture-mode.html#property-scandit.datacapture.core.IDataCaptureMode.IsEnabled" title="disable the capture mode property">disable the capture mode</a> and <a class="reference internal" href="../../core/api/frame-source.html#method-scandit.datacapture.core.IFrameSource.SwitchToDesiredStateAsync" title="stop the frame source method">stop the frame source</a>. While it’s possible to only stop the camera and keep the capture mode enabled, this may lead to additional scan events being delivered, which is typically not desired. The following lines of code show how to disable the capture mode and stop the frame source as well:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// no more didScan callbacks will be invoked after this call.</span>
+<span class="nx">captureMode</span><span class="p">.</span><span class="nx">enabled</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="c1">// asynchronously turn off the camera as quickly as possible.</span>
+<span class="nx">captureMode</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">frameSource</span><span class="p">.</span><span class="nx">switchToDesiredState</span><span class="p">(</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">FrameSourceState</span><span class="p">.</span><span class="nx">Off</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.barcode.IBarcodeCaptureListener.OnSessionUpdated">
+<code class="sig-name descname">didUpdateSession(barcodeCapture, session)</code><a class="headerlink" href="#method-scandit.datacapture.barcode.IBarcodeCaptureListener.OnSessionUpdated" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">didUpdateSession</code>(<em>barcodeCapture</em>: <a class="reference internal" href="barcode-capture.html#class-scandit.datacapture.barcode.BarcodeCapture" title="BarcodeCapture class">BarcodeCapture</a>,
+        <em>session</em>: <a class="reference internal" href="barcode-capture-session.html#class-scandit.datacapture.barcode.BarcodeCaptureSession" title="BarcodeCaptureSession class">BarcodeCaptureSession</a>): <code class="docutils literal notranslate"><span class="pre">void</span></code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Invoked after a frame has been processed by barcode capture and the session has been updated. In contrast to <a class="reference internal" href="#method-scandit.datacapture.barcode.IBarcodeCaptureListener.OnBarcodeScanned" title="didScan() method">didScan()</a>, this method is invoked, regardless whether a code was scanned or not. If codes were recognized in this frame, this method is invoked after <a class="reference internal" href="#method-scandit.datacapture.barcode.IBarcodeCaptureListener.OnBarcodeScanned" title="didScan() method">didScan()</a>.</p>
+<p>This callback will be blocking the further processing of frames, so you should return from it as quickly as possible. Therefore, if you need to perform a time-consuming operation, like querying a database or opening an URL encoded in the barcode data, consider moving it out of this callback, e.g. by using a timeout to let this function return before you do any more work. It is advised to disable the capture mode while you’re doing additional work and enabling it again once that work is done.</p>
+<p>See the documentation in <a class="reference internal" href="#method-scandit.datacapture.barcode.IBarcodeCaptureListener.OnBarcodeScanned" title="didScan() method">didScan()</a> for information on how to properly stop recognition of barcodes.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

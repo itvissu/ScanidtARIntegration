@@ -1,0 +1,125 @@
+Unilang
+=========================
+
+Unilang is a sphinx extension that allows to write documentation that can be used for multiple programming languages. It's foremost an experiment to see if this could replace our current documentation system.
+
+Pro
+-----------------
+
+- Documentation does only have to be written once.
+- Documentation for all the platforms is in one place. The hope is that this makes the API more consistent.
+- Guides can be written for all platforms at the same time. The exception to this rule are getting started guides.
+
+
+Cons
+---------------
+
+- The documentation is less native than using native documentation generators, e.g. Apple Doc, or Sandcastle on Windows.
+- Some of the concepts are difficult to map across languages. When writing documentation one has to be careful to chose wording that works for all the languages. This may not always be possible.
+- It's a substantial amount of code that needs to be written to parse all the different languages.
+- It's software that doesn't exist yet and as such will have to be maintained by us.
+
+Open Tasks
+--------------
+
+General
+^^^^^^^^^^^^^
+
+- Allow prefixing of links with ``~`` to only keep the last part of the target signature.
+- Allow platform overrides of class, interface signatures.
+- Add ``struct`` object type. On C#, Obj-C this will result in a struct, on Android, this is a class.
+- Improve handling of sample code for the different platforms. Add a construct that checks that a code sample exists for all the platforms. Should be opt-out for certain platforms.
+- Add ability to mark a member as not available on certain platforms.
+- Nice to have: Add functionality to cross-check the documented signatures with the signatures present on the platforms.
+- Make use of nullable, nonnull information.
+- Add support for specifying when a certain features was introduced (since).
+- Add support for specifying when a certain features was deprecated.
+- Add support for referencing methods/properties defined in a base class/interface. For example, let's say method DoFoo is defined in a base class Base, that gets implemented by Derived. Then it should be possible to reference Derived.DoFoo and get a reference to Base.DoFoo.
+- There are a couple of methods that virtually have the same description. For example, there are many classes that allow to add/remove listeners. The description of these methods is almost the same everywhere. Instead of repeating the same text over and over again, we should be able to insert a certain role/directive into the method description that then automatically adds the text.
+
+
+Obj-C
+^^^^^^^^^^^^^
+
+- References to protocols show ``id<Protocol>`` as a link, instead of just ``Protocol``. We only know at reference resolution what the type of the link target is. At the time the link is created, we don't know that the target is a protocol. During reference resolution, we would have to not only modify the link but also the parent node to insert the ``id<>`` part.
+- class signatures incorrectly show ``id<Protocol>`` instead of ``NSObject<Protocol>``.
+- Improve parsing of signatures. Add support for ``const``, ``nullable``, ``nonnull`` etc.
+
+C#
+^^^^^^^^^^^^^
+
+- Insert correct links to docs.microsoft.com. Currently, it points to the android documentation.
+
+Documenting with Unilang
+--------------------------
+
+Directives
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following directives are supported:
+
+.. rst:directive::  .. class:: ClassName : Base1[, Base2]
+
+  Documents a class, including it's bases.
+
+  Does not yet support overriding signatures for native languages
+
+
+.. rst:directive:: .. interface:: InterfaceName
+
+  Documents an interface. InterfaceName must start with an ``I``, e.g. ``IProvider``.
+
+  Interfaces are referred to as protocols in Obj-C. To make sure the correct word is used, make sure to write ``|interface|`` (or ``|Interface|`` at the beginning of a sentence) when talking about interface. This will be substituted with protocol when building for Obj-C.
+
+.. rst:directive:: .. enum:: EnumName
+
+  Documents an enum. Individual enum values are documented using ``.. value::``.
+
+.. rst:directive:: .. value:: ValueName
+
+  Documents a particular value of an enum. This directive can only be used as a child directive of ``.. enum::``.
+
+
+.. rst:directive:: .. method:: [ReturnType] Name([Arg1Type arg1[, Arg2Type arg2]])
+
+  Documents a method. Methods without return types are interpreted as constructors. Signatures can be overridden by providing language-specific overrides. Language-specific overrides are written in the target language, e.g. Java, Obj-C or C#.
+
+  For example, to provide a Java and Obj-C override, this can be done like this:
+
+  .. code-block:: rst
+
+    .. method::  T MakeCoffee()
+      @java@ T makeCoffee(Context context)
+      @objc@ - (T*)makeCoffeeOrError:(NSError**)error
+
+.. rst:directive:: .. property:: [Type] Name { [get;, ] [ set;] }
+
+  Documents a property.The output uses property syntax for languages that support it (Obj-C, C#) and coverts to setters/getters for platforms that don't have property support (Java). Static properties are mapped to a static method in Obj-C. Currently only works for readonly properties.
+  Allows to provide platform-specific overrides. For Obj-C, the platform specific override is provided in Obj-C, for Java, C#, use the unilang syntax. In the future, the override for Java may also be provided in Java syntax.
+
+Feature Availability
+"""""""""""""""""""""""""""""""""""""""""""
+
+  For each of the above documented entities, their availability must be marked.
+
+  .. code-block:: rst
+
+    .. method::  T MakeCoffee()
+      :available: ios
+
+  Presets can be used for quick access to a group of frequently used platforms (currently all and major)
+
+  .. code-block:: rst
+
+    .. method::  T MakeCoffee()
+      :available: all
+
+Roles
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unilang has a bunch of roles for cross-referencing content. The target is the unilang target name of the documented entity.
+
+- ``:type:`` is used to refer to interfaces, classes and enums (not their values, just the enum itself)
+- ``:enum:`` is used to refer to enum values
+- ``:meth:`` is used to refer to methods.
+- ``:prop:`` is used to refer to properties.

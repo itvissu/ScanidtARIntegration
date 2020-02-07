@@ -1,0 +1,808 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Common Data Structures &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Context Status" href="context-status.html" />
+    <link rel="prev" title="Camera Settings" href="camera-settings.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configure-barcodes.html">Configure Which Barcodes Are Read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../overview.html">ScanditCaptureCore</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">Core Concepts of the Scandit Data Capture SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../serialization.html">Serialization</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="anchor.html">Anchor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera-settings.html">Camera Settings</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Common Data Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#geometric-types">Geometric Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#misc-types">Misc Types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="context-status.html">Context Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context.html">Data Capture Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-builder.html">Data Capture Context Builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer.html">Data Capture Context Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer-listener.html">Data Capture Context Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-deserializer-result.html">Data Capture Context Deserializer Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-frame-listener.html">Data Capture Context Frame Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-context-listener.html">Data Capture Context Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-mode.html">Data Capture Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-mode-deserializer.html">Data Capture Mode Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-view-deserializer.html">Data Capture View Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-capture-view-deserializer-listener.html">Data Capture View Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="direction.html">Direction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="feedback.html">Feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-data.html">Frame Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source.html">Frame Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-deserializer.html">Frame Source Deserializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-deserializer-listener.html">Frame Source Deserializer Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame-source-listener.html">Frame Source Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="json-value.html">Json Value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laserline-viewfinder.html">Laserline Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="location-selection.html">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radius-location-selection.html">Radius Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rectangular-location-selection.html">Rectangular Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rectangular-viewfinder.html">Rectangular Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spotlight-viewfinder.html">Spotlight Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewfinder.html">Viewfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/brush.html">Brush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/control.html">Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-overlay.html">Data Capture Overlay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-view.html">Data Capture View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/data-capture-view-listener.html">Data Capture View Listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui/torch-switch-control.html">Torch Switch Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#camera-and-frame-sources">Camera and Frame Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#context-and-capture-modes">Context and Capture Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#location-selection">Location Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#user-interface">User Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#misc-data-structures">Misc Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#deserialization">Deserialization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../overview.html">ScanditCaptureCore</a> &raquo;</li>
+        
+          <li><a href="../api.html">ScanditCaptureCore API</a> &raquo;</li>
+        
+      <li>Common Data Structures</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="common-data-structures">
+<h1>Common Data Structures<a class="headerlink" href="#common-data-structures" title="Permalink to this headline">#</a></h1>
+<p>Defined under the namespace <em>Scandit.Datacapture.Core</em></p>
+<div class="section" id="geometric-types">
+<h2>Geometric Types<a class="headerlink" href="#geometric-types" title="Permalink to this headline">#</a></h2>
+<dl class="enum">
+<dt id="enum-scandit.datacapture.core.MeasureUnit">
+<code class="sig-name descname">MeasureUnit</code><a class="headerlink" href="#enum-scandit.datacapture.core.MeasureUnit" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Specifies in what units the value has been specified (fraction, device-independent pixels, pixels).</p>
+<dl class="value">
+<dt id="value-scandit.datacapture.core.MeasureUnit.Dip">
+<code class="sig-name descname">DIP</code><a class="headerlink" href="#value-scandit.datacapture.core.MeasureUnit.Dip" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Value is measured in device-independent pixels.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.MeasureUnit.Pixel">
+<code class="sig-name descname">Pixel</code><a class="headerlink" href="#value-scandit.datacapture.core.MeasureUnit.Pixel" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Value is measured in pixels.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.MeasureUnit.Fraction">
+<code class="sig-name descname">Fraction</code><a class="headerlink" href="#value-scandit.datacapture.core.MeasureUnit.Fraction" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Value is measured as a fraction. Valid values range from 0 to 1. This can be used to specify values in relative coordinates with respect to a reference, e.g. the view width or height.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-scandit.datacapture.core.SizingMode">
+<code class="sig-name descname">SizingMode</code><a class="headerlink" href="#enum-scandit.datacapture.core.SizingMode" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>An enumeration of possible ways to define a rectangular size.</p>
+<dl class="value">
+<dt id="value-scandit.datacapture.core.SizingMode.WidthAndHeight">
+<code class="sig-name descname">WidthAndHeight</code><a class="headerlink" href="#value-scandit.datacapture.core.SizingMode.WidthAndHeight" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>This value will use a <a class="reference internal" href="#struct-scandit.datacapture.core.SizeWithUnit" title="SizeWithUnit struct">SizeWithUnit</a> to determine width and the height.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.SizingMode.WidthAndAspectRatio">
+<code class="sig-name descname">WidthAndAspectRatio</code><a class="headerlink" href="#value-scandit.datacapture.core.SizingMode.WidthAndAspectRatio" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>This value will use a <a class="reference internal" href="#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a> to determine the width and a float multiplier to determine the height.</p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.SizingMode.HeightAndAspectRatio">
+<code class="sig-name descname">HeightAndAspectRatio</code><a class="headerlink" href="#value-scandit.datacapture.core.SizingMode.HeightAndAspectRatio" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>This value will use a <a class="reference internal" href="#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a> to determine the height and a float multiplier to determine the width.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="struct">
+<dt id="struct-scandit.datacapture.core.Point">
+<code class="sig-name descname">Point</code><a class="headerlink" href="#struct-scandit.datacapture.core.Point" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class Point</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Point.X">
+<code class="sig-name descname">x</code><a class="headerlink" href="#property-scandit.datacapture.core.Point.X" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get x(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>X coordinate of the point.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Point.Y">
+<code class="sig-name descname">y</code><a class="headerlink" href="#property-scandit.datacapture.core.Point.Y" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get y(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Y coordinate of the point.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="struct">
+<dt id="struct-scandit.datacapture.core.PointWithUnit">
+<code class="sig-name descname">PointWithUnit</code><a class="headerlink" href="#struct-scandit.datacapture.core.PointWithUnit" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class PointWithUnit</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.PointWithUnit.X">
+<code class="sig-name descname">x</code><a class="headerlink" href="#property-scandit.datacapture.core.PointWithUnit.X" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get x(): <a class="reference internal" href="#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>X coordinate of the point.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.PointWithUnit.Y">
+<code class="sig-name descname">y</code><a class="headerlink" href="#property-scandit.datacapture.core.PointWithUnit.Y" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get y(): <a class="reference internal" href="#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Y coordinate of the point.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="struct">
+<dt id="struct-scandit.datacapture.core.RectWithUnit">
+<code class="sig-name descname">RectWithUnit</code><a class="headerlink" href="#struct-scandit.datacapture.core.RectWithUnit" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class RectWithUnit</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.RectWithUnit.Origin">
+<code class="sig-name descname">origin</code><a class="headerlink" href="#property-scandit.datacapture.core.RectWithUnit.Origin" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get origin(): <a class="reference internal" href="#struct-scandit.datacapture.core.PointWithUnit" title="PointWithUnit struct">PointWithUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The origin (top-left corner) of the rectangle.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.RectWithUnit.Size">
+<code class="sig-name descname">size</code><a class="headerlink" href="#property-scandit.datacapture.core.RectWithUnit.Size" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get size(): <a class="reference internal" href="#struct-scandit.datacapture.core.SizeWithUnit" title="SizeWithUnit struct">SizeWithUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The size of the rectangle.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="struct">
+<dt id="struct-scandit.datacapture.core.SizeWithUnit">
+<code class="sig-name descname">SizeWithUnit</code><a class="headerlink" href="#struct-scandit.datacapture.core.SizeWithUnit" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class SizeWithUnit</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.SizeWithUnit.Width">
+<code class="sig-name descname">width</code><a class="headerlink" href="#property-scandit.datacapture.core.SizeWithUnit.Width" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get width(): <a class="reference internal" href="#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The width.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.SizeWithUnit.Height">
+<code class="sig-name descname">height</code><a class="headerlink" href="#property-scandit.datacapture.core.SizeWithUnit.Height" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get height(): <a class="reference internal" href="#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The height.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="struct">
+<dt id="struct-scandit.datacapture.core.SizeWithAspect">
+<code class="sig-name descname">SizeWithAspect</code><a class="headerlink" href="#struct-scandit.datacapture.core.SizeWithAspect" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class SizeWithAspect</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Holds values to define a rectangular size using a dimension and an aspect ratio multiplier.</p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.SizeWithAspect.Size">
+<code class="sig-name descname">size</code><a class="headerlink" href="#property-scandit.datacapture.core.SizeWithAspect.Size" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get size(): <a class="reference internal" href="#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The size of one dimension.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.SizeWithAspect.Aspect">
+<code class="sig-name descname">aspect</code><a class="headerlink" href="#property-scandit.datacapture.core.SizeWithAspect.Aspect" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get aspect(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The aspect ratio for the other dimension.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="struct">
+<dt id="struct-scandit.datacapture.core.FloatWithUnit">
+<code class="sig-name descname">NumberWithUnit</code><a class="headerlink" href="#struct-scandit.datacapture.core.FloatWithUnit" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class NumberWithUnit</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Holds a floating-point value plus a measure unit.</p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.FloatWithUnit.Value">
+<code class="sig-name descname">value</code><a class="headerlink" href="#property-scandit.datacapture.core.FloatWithUnit.Value" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get value(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.FloatWithUnit.Unit">
+<code class="sig-name descname">unit</code><a class="headerlink" href="#property-scandit.datacapture.core.FloatWithUnit.Unit" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get unit(): <a class="reference internal" href="#enum-scandit.datacapture.core.MeasureUnit" title="MeasureUnit enum">MeasureUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="struct">
+<dt id="struct-scandit.datacapture.core.MarginsWithUnit">
+<code class="sig-name descname">MarginsWithUnit</code><a class="headerlink" href="#struct-scandit.datacapture.core.MarginsWithUnit" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class MarginsWithUnit</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Holds margin values (left, top, right, bottom) that can each be expressed with a different measure unit.</p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.MarginsWithUnit.Left">
+<code class="sig-name descname">left</code><a class="headerlink" href="#property-scandit.datacapture.core.MarginsWithUnit.Left" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get left(): <a class="reference internal" href="#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Left margin.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.MarginsWithUnit.Right">
+<code class="sig-name descname">right</code><a class="headerlink" href="#property-scandit.datacapture.core.MarginsWithUnit.Right" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get right(): <a class="reference internal" href="#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Right margin.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.MarginsWithUnit.Top">
+<code class="sig-name descname">top</code><a class="headerlink" href="#property-scandit.datacapture.core.MarginsWithUnit.Top" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get top(): <a class="reference internal" href="#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Top margin.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.MarginsWithUnit.Bottom">
+<code class="sig-name descname">bottom</code><a class="headerlink" href="#property-scandit.datacapture.core.MarginsWithUnit.Bottom" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get bottom(): <a class="reference internal" href="#struct-scandit.datacapture.core.FloatWithUnit" title="NumberWithUnit struct">NumberWithUnit</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Bottom margin.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="struct">
+<dt id="struct-scandit.datacapture.core.Quadrilateral">
+<code class="sig-name descname">Quadrilateral</code><a class="headerlink" href="#struct-scandit.datacapture.core.Quadrilateral" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class Quadrilateral</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Polygon represented by 4 corners.</p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Quadrilateral.TopLeft">
+<code class="sig-name descname">topLeft</code><a class="headerlink" href="#property-scandit.datacapture.core.Quadrilateral.TopLeft" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get topLeft(): <a class="reference internal" href="#struct-scandit.datacapture.core.Point" title="Point struct">Point</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Quadrilateral.TopRight">
+<code class="sig-name descname">topRight</code><a class="headerlink" href="#property-scandit.datacapture.core.Quadrilateral.TopRight" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get topRight(): <a class="reference internal" href="#struct-scandit.datacapture.core.Point" title="Point struct">Point</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Quadrilateral.BottomRight">
+<code class="sig-name descname">bottomRight</code><a class="headerlink" href="#property-scandit.datacapture.core.Quadrilateral.BottomRight" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get bottomRight(): <a class="reference internal" href="#struct-scandit.datacapture.core.Point" title="Point struct">Point</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Quadrilateral.BottomLeft">
+<code class="sig-name descname">bottomLeft</code><a class="headerlink" href="#property-scandit.datacapture.core.Quadrilateral.BottomLeft" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get bottomLeft(): <a class="reference internal" href="#struct-scandit.datacapture.core.Point" title="Point struct">Point</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="struct">
+<dt id="struct-scandit.datacapture.core.Size">
+<code class="sig-name descname">Size</code><a class="headerlink" href="#struct-scandit.datacapture.core.Size" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class Size</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Size.Width">
+<code class="sig-name descname">width</code><a class="headerlink" href="#property-scandit.datacapture.core.Size.Width" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get width(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The width.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Size.Height">
+<code class="sig-name descname">height</code><a class="headerlink" href="#property-scandit.datacapture.core.Size.Height" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get height(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The height.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="class-scandit.datacapture.core.SizeWithUnitAndAspect">
+<code class="sig-name descname">SizeWithUnitAndAspect</code><a class="headerlink" href="#class-scandit.datacapture.core.SizeWithUnitAndAspect" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class SizeWithUnitAndAspect</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Holds a <a class="reference internal" href="#enum-scandit.datacapture.core.SizingMode" title="SizingMode enum">SizingMode</a> - and corresponding required values - to define a rectangular size.</p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.SizeWithUnitAndAspect.WidthAndHeight">
+<code class="sig-name descname">widthAndHeight</code><a class="headerlink" href="#property-scandit.datacapture.core.SizeWithUnitAndAspect.WidthAndHeight" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get widthAndHeight(): <a class="reference internal" href="#struct-scandit.datacapture.core.SizeWithUnit" title="SizeWithUnit struct">SizeWithUnit</a> | null
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The values for width and height.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This value will always be <em>null</em> unless <a class="reference internal" href="#property-scandit.datacapture.core.SizeWithUnitAndAspect.SizingMode" title="sizingMode property">sizingMode</a> is <a class="reference internal" href="#value-scandit.datacapture.core.SizingMode.WidthAndHeight" title="SizingMode.WidthAndHeight value">SizingMode.WidthAndHeight</a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.SizeWithUnitAndAspect.WidthAndAspectRatio">
+<code class="sig-name descname">widthAndAspectRatio</code><a class="headerlink" href="#property-scandit.datacapture.core.SizeWithUnitAndAspect.WidthAndAspectRatio" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get widthAndAspectRatio(): <a class="reference internal" href="#struct-scandit.datacapture.core.SizeWithAspect" title="SizeWithAspect struct">SizeWithAspect</a> | null
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The value for width and the aspect ratio for height.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This value will always be <em>null</em> unless <a class="reference internal" href="#property-scandit.datacapture.core.SizeWithUnitAndAspect.SizingMode" title="sizingMode property">sizingMode</a> is <a class="reference internal" href="#value-scandit.datacapture.core.SizingMode.WidthAndAspectRatio" title="SizingMode.WidthAndAspectRatio value">SizingMode.WidthAndAspectRatio</a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.SizeWithUnitAndAspect.HeightAndAspectRatio">
+<code class="sig-name descname">heightAndAspectRatio</code><a class="headerlink" href="#property-scandit.datacapture.core.SizeWithUnitAndAspect.HeightAndAspectRatio" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get heightAndAspectRatio(): <a class="reference internal" href="#struct-scandit.datacapture.core.SizeWithAspect" title="SizeWithAspect struct">SizeWithAspect</a> | null
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The value for height and the aspect ratio for width.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This value will always be <em>null</em> unless <a class="reference internal" href="#property-scandit.datacapture.core.SizeWithUnitAndAspect.SizingMode" title="sizingMode property">sizingMode</a> is <a class="reference internal" href="#value-scandit.datacapture.core.SizingMode.HeightAndAspectRatio" title="SizingMode.HeightAndAspectRatio value">SizingMode.HeightAndAspectRatio</a>.</p>
+</div>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.SizeWithUnitAndAspect.SizingMode">
+<code class="sig-name descname">sizingMode</code><a class="headerlink" href="#property-scandit.datacapture.core.SizeWithUnitAndAspect.SizingMode" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get sizingMode(): <a class="reference internal" href="#enum-scandit.datacapture.core.SizingMode" title="SizingMode enum">SizingMode</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>The sizing mode.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="misc-types">
+<h2>Misc Types<a class="headerlink" href="#misc-types" title="Permalink to this headline">#</a></h2>
+<dl class="class">
+<dt id="class-scandit.datacapture.core.EncodingRange">
+<code class="sig-name descname">EncodingRange</code><a class="headerlink" href="#class-scandit.datacapture.core.EncodingRange" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class EncodingRange</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Defines the encoding of a range of bytes.</p>
+<dl class="property">
+<dt id="property-scandit.datacapture.core.EncodingRange.IanaName">
+<code class="sig-name descname">ianaName</code><a class="headerlink" href="#property-scandit.datacapture.core.EncodingRange.IanaName" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get ianaName(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Charset encoding name as defined by <a class="reference external" href="http://www.iana.org/assignments/character-sets/character-sets.xhtml">IANA</a>.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.EncodingRange.StartIndex">
+<code class="sig-name descname">startIndex</code><a class="headerlink" href="#property-scandit.datacapture.core.EncodingRange.StartIndex" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get startIndex(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Start index of this encoding range.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.EncodingRange.EndIndex">
+<code class="sig-name descname">endIndex</code><a class="headerlink" href="#property-scandit.datacapture.core.EncodingRange.EndIndex" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get endIndex(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>End index (first index after the last) of this encoding range.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="enum-scandit.datacapture.core.Orientation">
+<code class="sig-name descname">Orientation</code><a class="headerlink" href="#enum-scandit.datacapture.core.Orientation" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<dl class="value">
+<dt id="value-scandit.datacapture.core.Orientation.Unknown">
+<code class="sig-name descname">Unknown</code><a class="headerlink" href="#value-scandit.datacapture.core.Orientation.Unknown" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.Orientation.Portrait">
+<code class="sig-name descname">Portrait</code><a class="headerlink" href="#value-scandit.datacapture.core.Orientation.Portrait" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.Orientation.PortraitUpsideDown">
+<code class="sig-name descname">PortraitUpsideDown</code><a class="headerlink" href="#value-scandit.datacapture.core.Orientation.PortraitUpsideDown" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.Orientation.LandscapeRight">
+<code class="sig-name descname">LandscapeRight</code><a class="headerlink" href="#value-scandit.datacapture.core.Orientation.LandscapeRight" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+<dl class="value">
+<dt id="value-scandit.datacapture.core.Orientation.LandscapeLeft">
+<code class="sig-name descname">LandscapeLeft</code><a class="headerlink" href="#value-scandit.datacapture.core.Orientation.LandscapeLeft" title="Permalink to this definition">#</a></dt>
+<dd><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="class-scandit.datacapture.core.Color">
+<code class="sig-name descname">Color</code><a class="headerlink" href="#class-scandit.datacapture.core.Color" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">class Color</code></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<dl class="method">
+<dt id="method-scandit.datacapture.core.Color.FromHex">
+<code class="sig-name descname">fromHex(hex)</code><a class="headerlink" href="#method-scandit.datacapture.core.Color.FromHex" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">static <code class="sig-name descname">fromHex</code>(<em>hex</em>: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>): <a class="reference internal" href="#class-scandit.datacapture.core.Color" title="Color class">Color</a></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Create a color from a hexadecimal string. Colors can be represented by hexadecimal strings in the following formats (R = red, G = green, B = blue, A = alpha) with an optional # prefix. The characters can be upper or lower case:</p>
+<ul class="simple">
+<li><p>RRGGBB</p></li>
+<li><p>RRGGBBAA</p></li>
+<li><p>#RRGGBB</p></li>
+<li><p>#RRGGBBAA</p></li>
+<li><p>RGB</p></li>
+<li><p>RGBA</p></li>
+<li><p>#RGB</p></li>
+<li><p>#RGBA</p></li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.Color.FromRGBA">
+<code class="sig-name descname">fromRGBA(red, green, blue, alpha)</code><a class="headerlink" href="#method-scandit.datacapture.core.Color.FromRGBA" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">static <code class="sig-name descname">fromRGBA</code>(<em>red</em>: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>,
+        <em>green</em>: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>,
+        <em>blue</em>: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>,
+        <em>alpha</em>: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>): <a class="reference internal" href="#class-scandit.datacapture.core.Color" title="Color class">Color</a></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Create a color from numerical color components.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="method-scandit.datacapture.core.Color.WithAlpha">
+<code class="sig-name descname">withAlpha(alpha)</code><a class="headerlink" href="#method-scandit.datacapture.core.Color.WithAlpha" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature"><code class="sig-name descname">withAlpha</code>(<em>alpha</em>: <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>): <a class="reference internal" href="#class-scandit.datacapture.core.Color" title="Color class">Color</a></pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Create a color that only differs in it’s alpha component.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Color.RedComponent">
+<code class="sig-name descname">redComponent</code><a class="headerlink" href="#property-scandit.datacapture.core.Color.RedComponent" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get redComponent(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Red component of the color as a hexadecimal string.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Color.GreenComponent">
+<code class="sig-name descname">greenComponent</code><a class="headerlink" href="#property-scandit.datacapture.core.Color.GreenComponent" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get greenComponent(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Green component of the color as a hexadecimal string.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Color.BlueComponent">
+<code class="sig-name descname">blueComponent</code><a class="headerlink" href="#property-scandit.datacapture.core.Color.BlueComponent" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get blueComponent(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Blue component of the color as a hexadecimal string.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Color.AlphaComponent">
+<code class="sig-name descname">alphaComponent</code><a class="headerlink" href="#property-scandit.datacapture.core.Color.AlphaComponent" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get alphaComponent(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String" title="string">string</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Alpha component of the color as a hexadecimal string.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Color.Red">
+<code class="sig-name descname">red</code><a class="headerlink" href="#property-scandit.datacapture.core.Color.Red" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get red(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Red component of the color as a decimal value.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Color.Green">
+<code class="sig-name descname">green</code><a class="headerlink" href="#property-scandit.datacapture.core.Color.Green" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get green(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Green component of the color as a decimal value.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Color.Blue">
+<code class="sig-name descname">blue</code><a class="headerlink" href="#property-scandit.datacapture.core.Color.Blue" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get blue(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Blue component of the color as a decimal value.</p>
+</dd></dl>
+
+<dl class="property">
+<dt id="property-scandit.datacapture.core.Color.Alpha">
+<code class="sig-name descname">alpha</code><a class="headerlink" href="#property-scandit.datacapture.core.Color.Alpha" title="Permalink to this definition">#</a></dt>
+<dd><pre class="full-signature">get alpha(): <a class="reference external" href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number" title="number">number</a>
+</pre><p><span class="versionmodified versionadded">Added in version 6.1.0</span></p>
+<p>Alpha component of the color as a decimal value.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

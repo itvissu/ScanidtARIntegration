@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configure Which Barcodes Are Read &mdash; Data Capture SDK 6.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Barcode Symbologies" href="barcode-symbologies.html" />
+    <link rel="prev" title="Get Started With Barcode Scanning" href="get-started-barcode.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Data Capture SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">First Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run-samples.html">Run our Sample Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-sdk.html">Add the SDK to Your App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barcode Scanning</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="get-started-barcode.html">Get Started With Barcode Scanning</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configure Which Barcodes Are Read</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#enable-the-symbologies-you-want-to-read">Enable the Symbologies You Want to Read</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-the-active-symbol-count">Configure the Active Symbol Count</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-calculate-the-active-symbol-count">How to Calculate the Active Symbol Count</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#read-bright-on-dark-barcodes">Read Bright-on-Dark Barcodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enforce-checksums">Enforce Checksums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enable-symbology-specific-extensions">Enable Symbology-Specific Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="barcode-symbologies.html">Barcode Symbologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimize-performance.html">Optimize Scanning Performance</a></li>
+</ul>
+<p class="caption"><span class="caption-text">All Capture Modes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="camera-advanced.html">Advanced Camera Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scan-area.html">Set up the Active Scan Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ui-examples.html">Choose the Scanner UI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core/overview.html">ScanditCaptureCore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="barcode-capture/overview.html">ScanditBarcodeCapture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption"><span class="caption-text">More Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support &amp; FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features-by-platform.html">Features By Platform</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.scandit.com/barcode-scanner-sdk.html">SDK 5.x Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrate-to-6.html">Migrate from Barcode Scanner 5.x</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://ssl.scandit.com">Dashboard</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Data Capture SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Configure Which Barcodes Are Read</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configure-which-barcodes-are-read">
+<h1>Configure Which Barcodes Are Read<a class="headerlink" href="#configure-which-barcodes-are-read" title="Permalink to this headline">#</a></h1>
+<p>In this guide you will learn how to configure a barcode based capture mode (<a class="reference internal" href="barcode-capture/api/barcode-capture.html#class-scandit.datacapture.barcode.BarcodeCapture" title="BarcodeCapture class">BarcodeCapture</a> and <code class="docutils literal notranslate"><span class="pre">BarcodeTracking</span></code>) to read the barcodes that you need it to read. The available symbol count range, checksum, extensions, etc. for all symbologies are listed in <a class="reference internal" href="barcode-capture/symbology-properties.html"><span class="doc">Symbology Properties</span></a></p>
+<div class="admonition-before-you-start admonition">
+<p class="admonition-title">Before you start…</p>
+<p>To get the most out of this guide, we recommend that you have read the following articles:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="add-sdk.html"><span class="doc">Add the SDK to Your App</span></a></p></li>
+<li><p><a class="reference internal" href="get-started-barcode.html"><span class="doc">Get Started With Barcode Scanning</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="enable-the-symbologies-you-want-to-read">
+<h2>Enable the Symbologies You Want to Read<a class="headerlink" href="#enable-the-symbologies-you-want-to-read" title="Permalink to this headline">#</a></h2>
+<p>The type of a barcode is referred to as its symbology, e.g <a class="reference internal" href="barcode-capture/api/symbology.html#value-scandit.datacapture.barcode.Symbology.Qr" title="QR Code value">QR Code</a> or <a class="reference internal" href="barcode-capture/api/symbology.html#value-scandit.datacapture.barcode.Symbology.Code128" title="Code 128 value">Code 128</a>. To enable scanning of a particular barcode, its symbology must be enabled. This is done through calling <a class="reference internal" href="barcode-capture/api/barcode-capture-settings.html#method-scandit.datacapture.barcode.BarcodeCaptureSettings.EnableSymbology" title="BarcodeCaptureSettings.enableSymbology() method">BarcodeCaptureSettings.enableSymbology()</a> on the <a class="reference internal" href="barcode-capture/api/barcode-capture-settings.html#class-scandit.datacapture.barcode.BarcodeCaptureSettings" title="BarcodeCaptureSettings class">BarcodeCaptureSettings</a> and then applying the settings to the <a class="reference internal" href="barcode-capture/api/barcode-capture.html#class-scandit.datacapture.barcode.BarcodeCapture" title="barcode capture class">barcode capture</a> instance. Similarly, for barcode tracking (MatrixScan), the barcode’s symbology must be enabled by calling <code class="docutils literal notranslate"><span class="pre">EnableSymbology</span></code> on the <code class="docutils literal notranslate"><span class="pre">BarcodeTrackingSettings</span></code> and then applying the settings to the <code class="docutils literal notranslate"><span class="pre">BarcodeTracking</span></code> instance.</p>
+<p>If you already know the names of the symbologies you want to scan/read, take a look at the list of <a class="reference internal" href="barcode-capture/api/symbology.html#enum-scandit.datacapture.barcode.Symbology" title="symbologies supported enum">symbologies supported</a> by the Scandit Data Capture SDK. If you are unsure what the symbology of your barcode is, use the Scandit Demo App available in the <a class="reference external" href="https://itunes.apple.com/us/app/scandit-barcode-scanner-demo/id453880584?ls=1&amp;mt=8">iOS App Store</a> or <a class="reference external" href="https://play.google.com/store/apps/details?id=com.scandit.demoapp">Android Play Store</a>.  After you have installed the app, select the “Any Code” mode and scan the codes you are interested in. The name of the symbology will appear on the result screen.</p>
+<p>The following lines of code show you how to enable scanning Code 128 codes for barcode capture:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Scandit</span><span class="p">.</span><span class="nx">BarcodeCaptureSettings</span><span class="p">();</span>
+<span class="nx">settings</span><span class="p">.</span><span class="nx">enableSymbology</span><span class="p">(</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">Symbology</span><span class="p">.</span><span class="nx">Code128</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-the-active-symbol-count">
+<h2>Configure the Active Symbol Count<a class="headerlink" href="#configure-the-active-symbol-count" title="Permalink to this headline">#</a></h2>
+<p>Barcode symbologies such as <a class="reference internal" href="barcode-capture/api/symbology.html#value-scandit.datacapture.barcode.Symbology.Code128" title="Code 128 value">Code 128</a>, <a class="reference internal" href="barcode-capture/api/symbology.html#value-scandit.datacapture.barcode.Symbology.Code39" title="Code 39 value">Code 39</a>, <a class="reference internal" href="barcode-capture/api/symbology.html#value-scandit.datacapture.barcode.Symbology.Code93" title="Code 93 value">Code 93</a> or <a class="reference internal" href="barcode-capture/api/symbology.html#value-scandit.datacapture.barcode.Symbology.InterleavedTwoOfFive" title="Interleaved Two of Five value">Interleaved Two of Five</a> can store variable-length data. As an example, Code 39 can be used to store a string anywhere from 1 up to around 40-50 symbols. There is no fixed upper limit, though there are practical limitations to the code’s length for it to still be conveniently readable by barcode scanners. For performance reasons, the Scandit Data Capture SDK limits the <a class="reference internal" href="barcode-capture/api/symbology-settings.html#property-scandit.datacapture.barcode.SymbologySettings.ActiveSymbolCounts" title="possible symbol range property">possible symbol range</a> for variable-length symbologies. If you want to read codes that are shorter/longer than the specified default range or you want to tailor your app to only read codes of a certain length, you need to change the active symbol count of the symbology to accommodate the data length you want to use in your application.</p>
+<p>The below lines of code show how to change the active symbol count for Code 128 to read codes with 6, 7 and 8 symbols.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Scandit</span><span class="p">.</span><span class="nx">BarcodeCaptureSettings</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">symbologySettings</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">settingsForSymbology</span><span class="p">(</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">Symbology</span><span class="p">.</span><span class="nx">Code128</span><span class="p">);</span>
+<span class="nx">symbologySettings</span><span class="p">.</span><span class="nx">activeSymbolCounts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">];</span>
+</pre></div>
+</div>
+<div class="section" id="how-to-calculate-the-active-symbol-count">
+<h3>How to Calculate the Active Symbol Count<a class="headerlink" href="#how-to-calculate-the-active-symbol-count" title="Permalink to this headline">#</a></h3>
+<p>Calculating the active symbol count is symbology-specific as each symbology has a different understanding of what a symbol is. To learn how to compute the active symbol count for a particular symbology, consult the documentation on <a class="reference internal" href="barcode-capture/symbology-properties.html"><span class="doc">symbology properties</span></a>. As an alternative, you can also use the Scandit Demo App in the <a class="reference external" href="https://itunes.apple.com/us/app/scandit-barcode-scanner-demo/id453880584?ls=1&amp;mt=8">iOS App Store</a>, or <a class="reference external" href="https://play.google.com/store/apps/details?id=com.scandit.demoapp">Android Play Store</a>. After you have installed the app, select the “Any Code” mode and scan the codes you are interested in. The active symbol count will appear on the result screen.</p>
+</div>
+</div>
+<div class="section" id="read-bright-on-dark-barcodes">
+<h2>Read Bright-on-Dark Barcodes<a class="headerlink" href="#read-bright-on-dark-barcodes" title="Permalink to this headline">#</a></h2>
+<p>Most barcodes are printed using dark ink on a bright background. Some symbologies allow the colors to be inverted and can also be printed using bright ink on a dark background. This is not possible for all symbologies as it could lead to false reads when the symbology is not designed for this use case. When you enable a symbology as described above, only dark-on-bright codes are enabled (see <a class="reference internal" href="barcode-capture/api/symbology-settings.html#property-scandit.datacapture.barcode.SymbologySettings.IsEnabled" title="SymbologySettings.isEnabled property">SymbologySettings.isEnabled</a>). When you also want to read bright-on-dark codes, color-inverted reading for that symbology must also be enabled (see <a class="reference internal" href="barcode-capture/api/symbology-settings.html#property-scandit.datacapture.barcode.SymbologySettings.IsColorInvertedEnabled" title="SymbologySettings.isColorInvertedEnabled property">SymbologySettings.isColorInvertedEnabled</a>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Scandit</span><span class="p">.</span><span class="nx">BarcodeCaptureSettings</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">symbologySettings</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">settingsForSymbology</span><span class="p">(</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">Symbology</span><span class="p">.</span><span class="nx">Code128</span><span class="p">);</span>
+<span class="nx">symbologySettings</span><span class="p">.</span><span class="nx">isColorInvertedEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enforce-checksums">
+<h2>Enforce Checksums<a class="headerlink" href="#enforce-checksums" title="Permalink to this headline">#</a></h2>
+<p>Some symbologies have a mandatory checksum that will always be enforced while others only have optional <a class="reference internal" href="barcode-capture/api/checksum.html#enum-scandit.datacapture.barcode.Checksum" title="checksums enum">checksums</a>. Enforcing an optional checksum will reduce false positives as an additional check can be performed. When enabling a checksum you have to make sure that the data of your codes contains the calculated checksum otherwise the codes will be discarded as they checksum doesn’t match. You can enforce a specific checksum by setting it through <a class="reference internal" href="barcode-capture/api/symbology-settings.html#property-scandit.datacapture.barcode.SymbologySettings.Checksums" title="SymbologySettings.checksums property">SymbologySettings.checksums</a>:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Scandit</span><span class="p">.</span><span class="nx">BarcodeCaptureSettings</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">symbologySettings</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">settingsForSymbology</span><span class="p">(</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">Symbology</span><span class="p">.</span><span class="nx">Code39</span><span class="p">);</span>
+<span class="nx">symbologySettings</span><span class="p">.</span><span class="nx">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">Checksum</span><span class="p">.</span><span class="nx">Mod43</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enable-symbology-specific-extensions">
+<h2>Enable Symbology-Specific Extensions<a class="headerlink" href="#enable-symbology-specific-extensions" title="Permalink to this headline">#</a></h2>
+<p>Some symbologies allow further configuration. These configuration options are available as symbology extensions that can be enabled/disabled for each symbology individually. Some of the extensions affect how the data in the code is formatted, others allow to enable more relaxed recognition modes that are disabled by default to eliminate false reads.</p>
+<p>To enable/disable a symbology extension, use <a class="reference internal" href="barcode-capture/api/symbology-settings.html#method-scandit.datacapture.barcode.SymbologySettings.SetExtensionEnabled" title="SymbologySettings.setExtensionEnabled() method">SymbologySettings.setExtensionEnabled()</a>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Scandit</span><span class="p">.</span><span class="nx">BarcodeCaptureSettings</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">symbologySettings</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">settingsForSymbology</span><span class="p">(</span><span class="nx">Scandit</span><span class="p">.</span><span class="nx">Symbology</span><span class="p">.</span><span class="nx">Code39</span><span class="p">);</span>
+<span class="nx">symbologySettings</span><span class="p">.</span><span class="nx">setExtensionEnabled</span><span class="p">(</span><span class="s2">&quot;full_ascii&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition-what-s-next admonition">
+<p class="admonition-title">What’s next?</p>
+<p>To dive further into the Scandit Data Capture SDK we recommend the following articles:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="barcode-capture/symbology-properties.html"><span class="doc">Symbology Properties</span></a></p></li>
+<li><p><a class="reference internal" href="barcode-symbologies.html"><span class="doc">Barcode Symbologies</span></a></p></li>
+<li><p><a class="reference internal" href="optimize-performance.html"><span class="doc">Optimize Scanning Performance</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Scandit AG
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-23556890-7', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

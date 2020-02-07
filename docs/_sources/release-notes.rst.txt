@@ -1,0 +1,19 @@
+|sdk| Release Notes
+===================
+ 
+Below are the release notes sorted by released versions of the |sdk|. Information on bugfix releases is available under the respective major/minor release.
+
+.. eager-ifconfig:: platform != 'cordova'
+
+  .. toctree::
+    :titlesonly:
+
+    6.1 <release-notes/6.1>
+    6.0 <release-notes/6.0>
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  .. toctree::
+    :titlesonly:
+
+    6.1 <release-notes/6.1>

@@ -1,0 +1,344 @@
+Run our Sample Apps
+============================
+
+.. eager-ifconfig:: platform == 'android'
+
+  The best way to start working with the |sdk| is to run one of our sample apps. In this guide we will go through the available apps and how to run them with `Android Studio <https://developer.android.com/studio/>`_ or `IntelliJ IDEA with the official Android Plugin <https://www.jetbrains.com/help/idea/android-support-overview.html>`_.
+
+.. eager-ifconfig:: platform == 'ios'
+
+  The best way to start working with the |sdk| is to run one of our sample apps. In this guide we will go through the available apps and how to run them with Xcode.
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  The best way to start working with the |sdk| is to run one of our sample apps. In this guide we will go through the available apps and how to run them.
+
+.. _available-samples:
+
+Available Samples
+-----------------
+
+We have created both simple and advanced samples that show you how to capture barcodes and how to use the MatrixScan functionality.
+The simple samples allow you to get going quickly, while the advanced samples show you how to use additional settings and setup the scanner for the best user experience.
+
+Barcode Capture Samples
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. eager-ifconfig:: platform == 'ios'
+
+  .. list-table::
+    :header-rows: 0
+    :widths: 5 5 5
+    :align: center
+
+    * -  Simple Sample
+      -  View Sample
+      -  Settings Sample
+
+    * - .. figure:: /_static/getting-started/ios/sample-bc-simple-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/ios/sample-bc-simple-2.jpg
+            :align: center
+      - .. figure:: /_static/getting-started/ios/sample-bc-view-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/ios/sample-bc-view-2.jpg
+            :align: center
+      - .. figure:: /_static/getting-started/ios/sample-bc-settings-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/ios/sample-bc-settings-2.jpg
+            :align: center
+
+    * -  Basic sample that uses the camera to read a single barcode.
+      -  Demonstrates the various ways to best integrate the scanner into the UI of your app.
+      -  Demonstrates how you can adapt the scanner settings best to your needs and experiment with all the options.
+
+  .. list-table::
+    :header-rows: 0
+    :widths: 5 5 5
+    :align: center
+
+    * -  Reject Sample
+      -
+      -
+
+    * - .. figure:: /_static/getting-started/ios/sample-bc-reject-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/ios/sample-bc-reject-2.jpg
+            :align: center
+      - 
+      - 
+
+    * -  Sample that uses the camera to read a single QR code that starts with "09:" but ignores/rejects all other codes.
+      -  
+      -  
+
+.. eager-ifconfig:: platform == 'android'
+
+  .. list-table::
+    :header-rows: 0
+    :widths: 5 5 5
+    :align: center
+
+    * -  Simple Sample
+      -  View Sample
+      -  Settings Sample
+
+    * - .. figure:: /_static/getting-started/android/sample-bc-simple-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/android/sample-bc-simple-2.jpg
+            :align: center
+      - .. figure:: /_static/getting-started/android/sample-bc-view-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/android/sample-bc-view-2.jpg
+            :align: center
+      - .. figure:: /_static/getting-started/android/sample-bc-settings-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/android/sample-bc-settings-2.jpg
+            :align: center
+
+    * -  Basic sample that uses the camera to read a single barcode.
+      -  Demonstrates the various ways to best integrate the scanner into the UI of your app.
+      -  Demonstrates how you can adapt the scanner settings best to your needs and experiment with all the options.
+
+  .. list-table::
+    :header-rows: 0
+    :widths: 5 5 5
+    :align: center
+
+    * -  Reject Sample
+      -
+      -
+
+    * - .. figure:: /_static/getting-started/android/sample-bc-reject-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/android/sample-bc-reject-2.jpg
+            :align: center
+      - 
+      - 
+
+    * -  Sample that uses the camera to read a single QR code that starts with "09:" but ignores/rejects all other codes.
+      -  
+      -  
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  .. list-table::
+    :header-rows: 0
+    :widths: 5 5 5
+    :align: center
+
+    * -  Simple Sample
+      -  View Sample
+      -  Settings Sample
+
+    * - .. figure:: /_static/getting-started/cordova/sample-bc-simple-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/cordova/sample-bc-simple-2.jpg
+            :align: center
+      -
+      -
+
+    * -  Basic sample that uses the camera to read a single barcode.
+      -  Coming Soon
+      -  Coming Soon
+
+MatrixScan Samples
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. eager-ifconfig:: platform == 'ios'
+
+  .. list-table::
+    :header-rows: 0
+    :widths: 5 5 5
+    :align: center
+
+    * -  Simple Sample
+      -  Bubble Sample
+      -  Search And Find Sample
+
+    * - .. figure:: /_static/getting-started/ios/sample-ms-reject-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/ios/sample-ms-reject-2.jpg
+            :align: center
+      - .. figure:: /_static/getting-started/ios/sample-ms-bubble-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/ios/sample-ms-bubble-2.jpg
+            :align: center
+      - .. figure:: /_static/getting-started/ios/sample-ms-saf-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/ios/sample-ms-saf-2.jpg
+            :align: center
+
+    * -  Very simple sample which shows how you can highlight barcodes on screen with the |sdk|.
+
+      -  Demonstrates the use of more advanced augmented reality use cases with the |sdk|.
+
+      -  Demonstrates a use case that requires a consecutive use of both Barcode Capture and MatrixScan in a single app.
+
+.. eager-ifconfig:: platform == 'android'
+
+  .. list-table::
+    :header-rows: 0
+    :widths: 5 5 5
+    :align: center
+
+    * -  Reject Sample
+      -  Bubble Sample
+      -  Search And Find Sample
+
+    * - .. figure:: /_static/getting-started/android/sample-ms-reject-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/android/sample-ms-reject-2.jpg
+            :align: center
+      - .. figure:: /_static/getting-started/android/sample-ms-bubble-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/android/sample-ms-bubble-2.jpg
+            :align: center
+      - .. figure:: /_static/getting-started/android/sample-ms-saf-1.jpg
+            :align: center
+        .. figure:: /_static/getting-started/android/sample-ms-saf-2.jpg
+            :align: center
+
+    * -  Sample which shows how you can highlight selected (by a custom condition) barcodes on screen and scan them with the |sdk|.
+
+      -  Demonstrates the use of more advanced augmented reality use cases with the |sdk|.
+
+      -  Demonstrates a use case that requires a consecutive use of both Barcode Capture and MatrixScan in a single app.
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  MatrixScan samples for Cordova are coming soon.
+
+Text Capture Samples
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. eager-ifconfig:: platform == 'ios'
+
+  Text Capture samples for iOS are coming soon.
+
+.. eager-ifconfig:: platform == 'android'
+
+  .. list-table::
+    :header-rows: 0
+    :widths: 5 5 5
+    :align: center
+
+    * -  Text Recognition Sample
+      -
+      -
+
+    * - .. figure:: /_static/getting-started/android/sample-tc-textrecognition-1.png
+            :align: center
+        .. figure:: /_static/getting-started/android/sample-tc-textrecognition-2.png
+            :align: center
+        .. figure:: /_static/getting-started/android/sample-tc-textrecognition-3.png
+            :align: center
+
+      -
+      -
+
+    * -  Shows how to recognize various kinds of texts in the specific locations in the frame.
+      -
+      -
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  Text Capture samples for Cordova are coming soon.
+
+All our samples can be found in the archive that can be downloaded from our dashboard. Check the following section for more details.
+
+Run the Samples
+-----------------
+
+Before you can run a sample app, you need to go through a few simple steps:
+
+.. eager-ifconfig:: platform == 'android'
+
+  1. Sign in to your Scandit account and download the newest Android library at `ssl.scandit.com/sdk <https://ssl.scandit.com/sdk>`_. Unzip the archive and go to the `samples` directory.
+
+  2. Open the `samples` directory as a project in Android Studio or IntelliJ IDEA. Make sure you always have the most recent version of Android Studio or IntelliJ IDEA and the Android plugin installed.
+
+  3. Set the license key. To do this, sign in to your Scandit account and find your license key at `ssl.scandit.com/licenses <https://ssl.scandit.com/licenses/>`_. 
+    
+    Once you have the license key, add it to the sample:
+
+    .. sample:: java
+  
+      // Enter your Scandit SDK License key here.
+      // Your Scandit SDK License key is available via your Scandit SDK web account.
+      public static final String SCANDIT_LICENSE_KEY = "-- ENTER YOUR SCANDIT LICENSE KEY HERE --";
+
+    `SCANDIT_LICENSE_KEY` variables are placed in each sample project Activity class.
+
+  4. Run the sample in Android Studio or IntelliJ IDEA by selecting a run configuration and pressing the Run button. We recommend running our samples on a physical device as otherwise no camera is available.
+
+.. eager-ifconfig:: platform == 'ios'
+
+  1. Sign in to your Scandit account and download the newest iOS Framework at `ssl.scandit.com/sdk <https://ssl.scandit.com/sdk>`_. Unzip the archive and go to the `samples` folder.
+
+  2. Open one of the project files in Xcode. Make sure you always have the most recent version of Xcode installed.
+
+  3. Set the license key. To do this, sign in to your Scandit account and find your license key at `ssl.scandit.com/licenses <https://ssl.scandit.com/licenses/>`_.
+    
+    Once you have the license key, add it to the sample:
+
+    .. code-block:: swift
+
+      extension DataCaptureContext {
+          private static let licenseKey = "-- ENTER YOUR SCANDIT LICENSE KEY HERE --"
+
+          // Get a licensed DataCaptureContext
+          static let licensed = DataCaptureContext(licenseKey: licenseKey)
+      }
+
+  4. Run the sample in Xcode by clicking the Build & Run button. We recommend running our samples on a physical device as otherwise no camera is available.
+
+.. eager-ifconfig:: platform == 'cordova'
+
+  1. Sign in to your Scandit account and download the newest Cordova plugins at `ssl.scandit.com/sdk <https://ssl.scandit.com/sdk>`_. Unzip the archive and go to the `samples` folder.
+
+  2. Set the license key. To do this, sign in to your Scandit account and find your license key at `ssl.scandit.com/licenses <https://ssl.scandit.com/licenses/>`_.
+    
+    Once you have the license key, add it to the sample that you'd like to run:
+
+    .. sample:: javascript
+
+      Scandit.DataCaptureContext.forLicenseKey('-- ENTER YOUR SCANDIT LICENSE KEY HERE --')
+
+  3. Create the Cordova project for the sample that you'd like to run. Make sure you always have the most recent version of Cordova installed.
+
+    For example, to create a Cordova project for the simple Barcode Capture sample in a `helloscandit` directory:
+
+    .. code-block:: bash
+
+      cordova create helloscandit --template ./SimpleBarcodeSample
+
+    .. note::
+
+      Make sure that you're creating the Cordova project for the sample in the `samples` folder of the archive you downloaded, as the samples relatively reference the plugins included in the archive.
+
+  4. Add a platform to the Cordova project.
+
+    Once you created the Cordova project for the sample you'd like to run, navigate to the root of the project, e.g. `cd helloscandit`, and add the platform you'd like to run the sample on:
+
+    .. code-block:: bash
+
+      cordova platform add [ios|android]
+
+  5. Run the sample. We recommend running the samples on a physical device as otherwise no camera is available.
+
+    .. code-block:: bash
+
+      cordova run [ios|android] --device
+
+    .. note::
+
+      You probably need to setup signing for iOS. To do this, open the Xcode project from `platforms/ios` and setup signing in the project settings. You can also run the sample from Xcode by clicking the Build & Run button.
+
+
+Next steps
+-----------
+
+You are now ready to tackle the following guide:
+
+  - :doc:`add-sdk`
